@@ -1,0 +1,224 @@
+name: farmapronto_semantic_model
+description: "Modelo semántico para el análisis de ventas y operaciones de Farmapronto."
+tables:
+  - name: sucursales
+    description: "Contiene información de cada sucursal de la farmacia."
+    base_table:
+      database: FARMAPRONTO_DB
+      schema: NEGOCIO
+      table: SUCURSALES
+    primary_key:
+      columns: [ID_SUCURSAL]
+
+    dimensions:
+      - name: id_sucursal
+        expr: ID_SUCURSAL
+        data_type: NUMBER
+        unique: true
+      - name: nombre_sucursal
+        synonyms: ["sucursal", "tienda", "farmacia"]
+        expr: NOMBRE
+        data_type: STRING
+      - name: direccion
+        expr: DIRECCION
+        data_type: STRING
+      - name: ciudad
+        expr: CIUDAD
+        data_type: STRING
+      - name: estado
+        expr: ESTADO
+        data_type: STRING
+      - name: codigo_postal
+        expr: CP
+        data_type: STRING
+      - name: telefono
+        expr: TELEFONO
+        data_type: STRING
+      - name: horario
+        expr: HORARIO
+        data_type: STRING
+
+  - name: productos
+    description: "Catálogo de productos disponibles en las farmacias."
+    base_table:
+      database: FARMAPRONTO_DB
+      schema: NEGOCIO
+      table: PRODUCTOS
+    primary_key:
+      columns: [ID_PRODUCTO]
+    
+    dimensions:
+      - name: id_producto
+        expr: ID_PRODUCTO
+        data_type: NUMBER
+        unique: true
+      - name: nombre_producto
+        synonyms: ["producto", "artículo"]
+        expr: NOMBRE
+        data_type: STRING
+      - name: descripcion_producto
+        expr: DESCRIPCION
+        data_type: STRING
+      - name: marca
+        expr: MARCA
+        data_type: STRING
+      - name: categoria
+        expr: CATEGORIA
+        data_type: STRING
+
+    facts:
+      - name: precio
+        expr: PRECIO
+        data_type: NUMBER
+      - name: stock
+        expr: STOCK
+        data_type: NUMBER
+
+  - name: clientes
+    description: "Información de los clientes registrados."
+    base_table:
+      database: FARMAPRONTO_DB
+      schema: NEGOCIO
+      table: CLIENTES
+    primary_key:
+      columns: [ID_CLIENTE]
+    
+    dimensions:
+      - name: id_cliente
+        expr: ID_CLIENTE
+        data_type: NUMBER
+        unique: true
+      - name: nombre_cliente
+        expr: NOMBRE
+        data_type: STRING
+      - name: apellido_cliente
+        expr: APELLIDO
+        data_type: STRING
+      - name: email
+        expr: EMAIL
+        data_type: STRING
+      - name: telefono_cliente
+        expr: TELEFONO
+        data_type: STRING
+      - name: direccion_cliente
+        expr: DIRECCION
+        data_type: STRING
+
+    time_dimensions:
+      - name: fecha_registro
+        expr: FECHA_REGISTRO
+        data_type: DATE
+
+  - name: pedidos
+    description: "Encabezado de los pedidos realizados por los clientes."
+    base_table:
+      database: FARMAPRONTO_DB
+      schema: NEGOCIO
+      table: PEDIDOS
+    primary_key:
+      columns: [ID_PEDIDO]
+    
+    dimensions:
+      - name: id_pedido
+        expr: ID_PEDIDO
+        data_type: NUMBER
+        unique: true
+      - name: id_cliente
+        expr: ID_CLIENTE
+        data_type: NUMBER
+      - name: id_sucursal
+        expr: ID_SUCURSAL
+        data_type: NUMBER
+      - name: estado_pedido
+        expr: ESTADO
+        data_type: STRING
+    
+    facts:
+      - name: total_pedido
+        expr: TOTAL
+        data_type: NUMBER
+
+    time_dimensions:
+      - name: fecha_pedido
+        expr: FECHA_PEDIDO
+        data_type: DATE
+
+  - name: detalle_pedidos
+    description: "Detalle de productos por cada pedido."
+    base_table:
+      database: FARMAPRONTO_DB
+      schema: NEGOCIO
+      table: DETALLE_PEDIDO
+    primary_key:
+      columns: [ID_DETALLE]
+
+    dimensions:
+      - name: id_detalle
+        expr: ID_DETALLE
+        data_type: NUMBER
+        unique: true
+      - name: id_pedido
+        expr: ID_PEDIDO
+        data_type: NUMBER
+      - name: id_producto
+        expr: ID_PRODUCTO
+        data_type: NUMBER
+
+    facts:
+      - name: cantidad
+        expr: CANTIDAD
+        data_type: NUMBER
+      - name: precio_unitario
+        expr: PRECIO_UNITARIO
+        data_type: NUMBER
+      - name: importe_detalle
+        expr: CANTIDAD * PRECIO_UNITARIO
+        data_type: NUMBER
+
+metrics:
+  - name: total_ventas
+    description: "Suma total de ventas de todos los pedidos."
+    expr: SUM(detalle_pedidos.importe_detalle)
+  - name: numero_de_pedidos
+    description: "Cantidad total de pedidos."
+    expr: COUNT(DISTINCT pedidos.id_pedido)
+  - name: ticket_promedio
+    description: "Valor promedio de cada pedido."
+    expr: AVG(pedidos.total_pedido)
+
+relationships:
+  - name: pedidos_a_clientes
+    leftTable: pedidos
+    rightTable: clientes
+    relationshipColumns:
+      - left_column: ID_CLIENTE
+        right_column: ID_CLIENTE
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: pedidos_a_sucursales
+    leftTable: pedidos
+    rightTable: sucursales
+    relationshipColumns:
+      - left_column: ID_SUCURSAL
+        right_column: ID_SUCURSAL
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: detalle_a_pedidos
+    leftTable: detalle_pedidos
+    rightTable: pedidos
+    relationshipColumns:
+      - left_column: ID_PEDIDO
+        right_column: ID_PEDIDO
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: detalle_a_productos
+    leftTable: detalle_pedidos
+    rightTable: productos
+    relationshipColumns:
+      - left_column: ID_PRODUCTO
+        right_column: ID_PRODUCTO
+    joinType: left_outer
+    relationshipType: many_to_one

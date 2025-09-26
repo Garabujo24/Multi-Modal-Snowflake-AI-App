@@ -1,0 +1,1082 @@
+name: officemax_mexico_business_model
+description: Modelo semántico para análisis de negocio de OfficeMax México. Incluye datos de productos, ventas, clientes, inventario y performance de tiendas para análisis integral del retail.
+
+tables:
+  - name: PRODUCTOS
+    description: Catálogo completo de productos OfficeMax México incluyendo tecnología, papelería, mobiliario y material escolar
+    base_table:
+      database: OFFICEMAX_MEXICO
+      schema: RAW_DATA
+      table: PRODUCTOS
+    
+    dimensions:
+      - name: PRODUCTO_ID
+        expr: PRODUCTO_ID
+        data_type: VARCHAR
+        description: Identificador único del producto
+        unique: true
+        synonyms:
+          - "id producto"
+          - "código producto"
+          - "identificador producto"
+      
+      - name: SKU
+        expr: SKU
+        data_type: VARCHAR
+        description: Código SKU único del producto para inventario
+        unique: true
+        synonyms:
+          - "sku"
+          - "código sku"
+          - "código de barras interno"
+      
+      - name: NOMBRE_PRODUCTO
+        expr: NOMBRE_PRODUCTO
+        data_type: VARCHAR
+        description: Nombre completo del producto
+        synonyms:
+          - "nombre"
+          - "producto"
+          - "descripción producto"
+          - "artículo"
+      
+      - name: MARCA
+        expr: MARCA
+        data_type: VARCHAR
+        description: Marca del producto (HP, BIC, JanSport, etc.)
+        synonyms:
+          - "marca"
+          - "fabricante"
+          - "brand"
+        sample_values:
+          - "HP"
+          - "Dell"
+          - "Apple"
+          - "Logitech"
+          - "BIC"
+          - "Pilot"
+          - "JanSport"
+          - "Kipling"
+          - "OfficeMax"
+      
+      - name: CATEGORIA_ID
+        expr: CATEGORIA_ID
+        data_type: INTEGER
+        description: ID de la categoría del producto
+        synonyms:
+          - "categoría id"
+          - "id categoría"
+      
+      - name: TEMPORADA
+        expr: TEMPORADA
+        data_type: VARCHAR
+        description: Temporada del producto (Back-to-School, Todo el año)
+        synonyms:
+          - "temporada"
+          - "estación"
+          - "período"
+        sample_values:
+          - "Back-to-School"
+          - "Todo el año"
+          - "Navidad"
+          - "Fin de año"
+      
+      - name: ACTIVO
+        expr: ACTIVO
+        data_type: BOOLEAN
+        description: Indica si el producto está activo en el catálogo
+        synonyms:
+          - "activo"
+          - "disponible"
+          - "vigente"
+    
+    facts:
+      - name: PRECIO_REGULAR
+        expr: PRECIO_REGULAR
+        data_type: NUMBER
+        description: Precio regular de venta del producto en pesos mexicanos
+        synonyms:
+          - "precio"
+          - "precio regular"
+          - "precio lista"
+          - "costo"
+      
+      - name: PRECIO_PROMOCIONAL
+        expr: PRECIO_PROMOCIONAL
+        data_type: NUMBER
+        description: Precio promocional cuando aplica
+        synonyms:
+          - "precio promocional"
+          - "precio descuento"
+          - "oferta"
+      
+      - name: COSTO_UNITARIO
+        expr: COSTO_UNITARIO
+        data_type: NUMBER
+        description: Costo unitario del producto para cálculo de margen
+        synonyms:
+          - "costo unitario"
+          - "costo"
+          - "precio costo"
+    
+    time_dimensions:
+      - name: FECHA_LANZAMIENTO
+        expr: FECHA_LANZAMIENTO
+        data_type: DATE
+        description: Fecha de lanzamiento del producto
+        synonyms:
+          - "fecha lanzamiento"
+          - "fecha introducción"
+          - "lanzamiento"
+    
+    primary_key:
+      columns:
+        - PRODUCTO_ID
+
+  - name: CATEGORIAS
+    description: Jerarquía de categorías de productos OfficeMax (Tecnología, Papelería, Mobiliario, Material Escolar)
+    base_table:
+      database: OFFICEMAX_MEXICO
+      schema: RAW_DATA
+      table: CATEGORIAS
+    
+    dimensions:
+      - name: CATEGORIA_ID
+        expr: CATEGORIA_ID
+        data_type: INTEGER
+        description: Identificador único de la categoría
+        unique: true
+      
+      - name: CATEGORIA_PADRE
+        expr: CATEGORIA_PADRE
+        data_type: VARCHAR
+        description: Categoría principal (nivel 1)
+        synonyms:
+          - "categoría principal"
+          - "categoría padre"
+          - "departamento"
+        sample_values:
+          - "Tecnología"
+          - "Papelería"
+          - "Mobiliario de Oficina"
+          - "Material Escolar"
+          - "Organización"
+          - "Comunicaciones"
+          - "Seguridad"
+      
+      - name: CATEGORIA_HIJO
+        expr: CATEGORIA_HIJO
+        data_type: VARCHAR
+        description: Subcategoría específica (nivel 2-3)
+        synonyms:
+          - "subcategoría"
+          - "categoría hija"
+          - "categoría específica"
+        sample_values:
+          - "Computadoras"
+          - "Tablets y Accesorios"
+          - "Periféricos"
+          - "Instrumentos de Escritura"
+          - "Papel y Cuadernos"
+          - "Mochilas"
+          - "Sillas"
+          - "Escritorios"
+      
+      - name: NIVEL
+        expr: NIVEL
+        data_type: INTEGER
+        description: Nivel jerárquico de la categoría (1, 2 o 3)
+        synonyms:
+          - "nivel"
+          - "jerarquía"
+          - "profundidad"
+    
+    primary_key:
+      columns:
+        - CATEGORIA_ID
+
+  - name: VENTAS
+    description: Transacciones de venta detalladas de todos los canales OfficeMax México
+    base_table:
+      database: OFFICEMAX_MEXICO
+      schema: RAW_DATA
+      table: VENTAS
+    
+    dimensions:
+      - name: VENTA_ID
+        expr: VENTA_ID
+        data_type: VARCHAR
+        description: Identificador único de la línea de venta
+        unique: true
+      
+      - name: TICKET_ID
+        expr: TICKET_ID
+        data_type: VARCHAR
+        description: Identificador del ticket o factura
+        synonyms:
+          - "ticket"
+          - "factura"
+          - "recibo"
+          - "número de venta"
+      
+      - name: CLIENTE_ID
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: Identificador del cliente (puede ser nulo para ventas anónimas)
+        synonyms:
+          - "cliente"
+          - "id cliente"
+      
+      - name: TIPO_CLIENTE
+        expr: TIPO_CLIENTE
+        data_type: VARCHAR
+        description: Tipo de cliente que realizó la compra
+        synonyms:
+          - "tipo cliente"
+          - "segmento cliente"
+          - "categoría cliente"
+        sample_values:
+          - "INDIVIDUAL"
+          - "EMPRESARIAL"
+          - "EDUCATIVO"
+          - "GOBIERNO"
+      
+      - name: PRODUCTO_ID
+        expr: PRODUCTO_ID
+        data_type: VARCHAR
+        description: Identificador del producto vendido
+        synonyms:
+          - "producto"
+          - "artículo"
+          - "ítem"
+      
+      - name: SUCURSAL_ID
+        expr: SUCURSAL_ID
+        data_type: INTEGER
+        description: Identificador de la sucursal donde se realizó la venta
+        synonyms:
+          - "sucursal"
+          - "tienda"
+          - "punto de venta"
+      
+      - name: CANAL_VENTA
+        expr: CANAL_VENTA
+        data_type: VARCHAR
+        description: Canal por el cual se realizó la venta
+        synonyms:
+          - "canal"
+          - "medio de venta"
+          - "punto de contacto"
+        sample_values:
+          - "TIENDA"
+          - "ONLINE"
+          - "APP_MOVIL"
+          - "TELEFONO"
+      
+      - name: METODO_PAGO
+        expr: METODO_PAGO
+        data_type: VARCHAR
+        description: Método de pago utilizado
+        synonyms:
+          - "método pago"
+          - "forma pago"
+          - "tipo pago"
+        sample_values:
+          - "EFECTIVO"
+          - "TARJETA_DEBITO"
+          - "TARJETA_CREDITO"
+          - "TRANSFERENCIA"
+          - "MESES_SIN_INTERESES"
+      
+      - name: CODIGO_PROMOCION
+        expr: CODIGO_PROMOCION
+        data_type: VARCHAR
+        description: Código de promoción aplicado si existe
+        synonyms:
+          - "promoción"
+          - "código descuento"
+          - "cupón"
+          - "oferta"
+      
+      - name: TIPO_DESCUENTO
+        expr: TIPO_DESCUENTO
+        data_type: VARCHAR
+        description: Tipo de descuento aplicado
+        synonyms:
+          - "descuento"
+          - "tipo promoción"
+        sample_values:
+          - "TEMPORADA"
+          - "BLACK_FRIDAY"
+          - "LIQUIDACION"
+          - "VOLUMEN"
+      
+      - name: VENDEDOR_ID
+        expr: VENDEDOR_ID
+        data_type: VARCHAR
+        description: Identificador del vendedor que realizó la venta
+        synonyms:
+          - "vendedor"
+          - "empleado"
+          - "asesor"
+      
+      - name: MES_ANO
+        expr: MES_ANO
+        data_type: VARCHAR
+        description: Mes y año en formato YYYY-MM
+        synonyms:
+          - "mes año"
+          - "período"
+          - "mes"
+    
+    time_dimensions:
+      - name: FECHA_VENTA
+        expr: FECHA_VENTA
+        data_type: TIMESTAMP
+        description: Fecha y hora exacta de la venta
+        synonyms:
+          - "fecha venta"
+          - "fecha transacción"
+          - "timestamp"
+          - "fecha"
+      
+      - name: FECHA_SOLO
+        expr: FECHA_SOLO
+        data_type: DATE
+        description: Solo la fecha de la venta (sin hora)
+        synonyms:
+          - "fecha"
+          - "día"
+          - "fecha únicamente"
+    
+    facts:
+      - name: CANTIDAD
+        expr: CANTIDAD
+        data_type: NUMBER
+        description: Cantidad de unidades vendidas
+        synonyms:
+          - "cantidad"
+          - "unidades"
+          - "piezas"
+          - "volumen unidades"
+      
+      - name: PRECIO_UNITARIO
+        expr: PRECIO_UNITARIO
+        data_type: NUMBER
+        description: Precio unitario de venta
+        synonyms:
+          - "precio unitario"
+          - "precio por unidad"
+          - "precio"
+      
+      - name: DESCUENTO_UNITARIO
+        expr: DESCUENTO_UNITARIO
+        data_type: NUMBER
+        description: Descuento aplicado por unidad
+        synonyms:
+          - "descuento unitario"
+          - "descuento por unidad"
+      
+      - name: SUBTOTAL
+        expr: SUBTOTAL
+        data_type: NUMBER
+        description: Subtotal antes de descuentos (cantidad × precio unitario)
+        synonyms:
+          - "subtotal"
+          - "importe bruto"
+          - "total antes descuentos"
+      
+      - name: DESCUENTO_TOTAL
+        expr: DESCUENTO_TOTAL
+        data_type: NUMBER
+        description: Descuento total aplicado a la línea
+        synonyms:
+          - "descuento total"
+          - "total descuentos"
+          - "ahorro"
+      
+      - name: TOTAL_LINEA
+        expr: TOTAL_LINEA
+        data_type: NUMBER
+        description: Total de la línea después de descuentos
+        synonyms:
+          - "total línea"
+          - "importe final"
+          - "total neto"
+          - "importe"
+      
+      - name: COSTO_TOTAL
+        expr: COSTO_TOTAL
+        data_type: NUMBER
+        description: Costo total de los productos vendidos
+        synonyms:
+          - "costo total"
+          - "costo"
+          - "costo mercancía"
+      
+      - name: MARGEN_BRUTO
+        expr: MARGEN_BRUTO
+        data_type: NUMBER
+        description: Margen bruto en pesos (total línea - costo total)
+        synonyms:
+          - "margen bruto"
+          - "utilidad bruta"
+          - "ganancia"
+          - "margen"
+      
+      - name: PORCENTAJE_MARGEN
+        expr: PORCENTAJE_MARGEN
+        data_type: NUMBER
+        description: Porcentaje de margen bruto
+        synonyms:
+          - "porcentaje margen"
+          - "margen porcentual"
+          - "% margen"
+          - "rentabilidad"
+      
+      - name: PORCENTAJE_DESCUENTO
+        expr: PORCENTAJE_DESCUENTO
+        data_type: NUMBER
+        description: Porcentaje de descuento aplicado
+        synonyms:
+          - "porcentaje descuento"
+          - "% descuento"
+          - "descuento porcentual"
+    
+    primary_key:
+      columns:
+        - VENTA_ID
+
+  - name: CLIENTES
+    description: Base de datos de clientes OfficeMax México (individuales, empresariales, educativos y gobierno)
+    base_table:
+      database: OFFICEMAX_MEXICO
+      schema: RAW_DATA
+      table: CLIENTES
+    
+    dimensions:
+      - name: CLIENTE_ID
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: Identificador único del cliente
+        unique: true
+        synonyms:
+          - "cliente id"
+          - "id cliente"
+          - "número cliente"
+      
+      - name: TIPO_CLIENTE
+        expr: TIPO_CLIENTE
+        data_type: VARCHAR
+        description: Tipo de cliente según su naturaleza
+        synonyms:
+          - "tipo cliente"
+          - "categoría cliente"
+          - "segmento"
+        sample_values:
+          - "INDIVIDUAL"
+          - "EMPRESARIAL"
+          - "EDUCATIVO"
+          - "GOBIERNO"
+      
+      - name: NOMBRE_COMPLETO
+        expr: NOMBRE_COMPLETO
+        data_type: VARCHAR
+        description: Nombre completo del cliente o razón social
+        synonyms:
+          - "nombre"
+          - "cliente"
+          - "razón social"
+      
+      - name: SEGMENTO
+        expr: SEGMENTO
+        data_type: VARCHAR
+        description: Segmento comercial del cliente
+        synonyms:
+          - "segmento"
+          - "nivel cliente"
+          - "categoría"
+        sample_values:
+          - "REGULAR"
+          - "VIP"
+          - "CORPORATIVO"
+          - "PREMIUM"
+      
+      - name: ESTADO
+        expr: ESTADO
+        data_type: VARCHAR
+        description: Estado de la República donde se ubica el cliente
+        synonyms:
+          - "estado"
+          - "entidad federativa"
+          - "ubicación"
+        sample_values:
+          - "CDMX"
+          - "Nuevo León"
+          - "Jalisco"
+          - "Puebla"
+          - "Baja California"
+      
+      - name: MUNICIPIO
+        expr: MUNICIPIO
+        data_type: VARCHAR
+        description: Municipio o delegación del cliente
+        synonyms:
+          - "municipio"
+          - "delegación"
+          - "ciudad"
+      
+      - name: CANAL_PREFERIDO
+        expr: CANAL_PREFERIDO
+        data_type: VARCHAR
+        description: Canal de compra preferido del cliente
+        synonyms:
+          - "canal preferido"
+          - "preferencia canal"
+        sample_values:
+          - "TIENDA"
+          - "ONLINE"
+          - "TELEFONO"
+          - "APP"
+      
+      - name: METODO_PAGO_PREFERIDO
+        expr: METODO_PAGO_PREFERIDO
+        data_type: VARCHAR
+        description: Método de pago preferido del cliente
+        synonyms:
+          - "método pago preferido"
+          - "forma pago preferida"
+      
+      - name: FRECUENCIA_COMPRA
+        expr: FRECUENCIA_COMPRA
+        data_type: VARCHAR
+        description: Frecuencia típica de compra del cliente
+        synonyms:
+          - "frecuencia"
+          - "periodicidad"
+        sample_values:
+          - "SEMANAL"
+          - "QUINCENAL"
+          - "MENSUAL"
+          - "BIMESTRAL"
+          - "TRIMESTRAL"
+      
+      - name: ACTIVO
+        expr: ACTIVO
+        data_type: BOOLEAN
+        description: Indica si el cliente está activo
+        synonyms:
+          - "activo"
+          - "vigente"
+          - "habilitado"
+    
+    time_dimensions:
+      - name: FECHA_REGISTRO
+        expr: FECHA_REGISTRO
+        data_type: DATE
+        description: Fecha de registro del cliente
+        synonyms:
+          - "fecha registro"
+          - "fecha alta"
+          - "registro"
+    
+    facts:
+      - name: LIMITE_CREDITO
+        expr: LIMITE_CREDITO
+        data_type: NUMBER
+        description: Límite de crédito autorizado al cliente
+        synonyms:
+          - "límite crédito"
+          - "crédito autorizado"
+          - "línea crédito"
+      
+      - name: DESCUENTO_CORPORATIVO
+        expr: DESCUENTO_CORPORATIVO
+        data_type: NUMBER
+        description: Porcentaje de descuento corporativo autorizado
+        synonyms:
+          - "descuento corporativo"
+          - "descuento especial"
+          - "% descuento"
+      
+      - name: PROMEDIO_COMPRA
+        expr: PROMEDIO_COMPRA
+        data_type: NUMBER
+        description: Promedio de compra del cliente
+        synonyms:
+          - "promedio compra"
+          - "ticket promedio"
+          - "gasto promedio"
+      
+      - name: TOTAL_COMPRAS_HISTORICAS
+        expr: TOTAL_COMPRAS_HISTORICAS
+        data_type: NUMBER
+        description: Total histórico de compras del cliente
+        synonyms:
+          - "total histórico"
+          - "compras acumuladas"
+          - "valor lifetime"
+    
+    primary_key:
+      columns:
+        - CLIENTE_ID
+
+  - name: SUCURSALES
+    description: Red de sucursales y puntos de venta OfficeMax México
+    base_table:
+      database: OFFICEMAX_MEXICO
+      schema: RAW_DATA
+      table: SUCURSALES
+    
+    dimensions:
+      - name: SUCURSAL_ID
+        expr: SUCURSAL_ID
+        data_type: INTEGER
+        description: Identificador único de la sucursal
+        unique: true
+        synonyms:
+          - "sucursal id"
+          - "id sucursal"
+      
+      - name: CODIGO_SUCURSAL
+        expr: CODIGO_SUCURSAL
+        data_type: VARCHAR
+        description: Código único de la sucursal
+        unique: true
+        synonyms:
+          - "código sucursal"
+          - "código tienda"
+      
+      - name: NOMBRE_SUCURSAL
+        expr: NOMBRE_SUCURSAL
+        data_type: VARCHAR
+        description: Nombre de la sucursal
+        synonyms:
+          - "nombre sucursal"
+          - "tienda"
+          - "sucursal"
+      
+      - name: TIPO_PUNTO_VENTA
+        expr: TIPO_PUNTO_VENTA
+        data_type: VARCHAR
+        description: Tipo de punto de venta
+        synonyms:
+          - "tipo tienda"
+          - "formato punto venta"
+        sample_values:
+          - "TIENDA"
+          - "OUTLET"
+          - "KIOSCO"
+          - "POP_UP"
+      
+      - name: FORMATO_TIENDA
+        expr: FORMATO_TIENDA
+        data_type: VARCHAR
+        description: Formato de la tienda según tamaño y oferta
+        synonyms:
+          - "formato tienda"
+          - "tipo formato"
+          - "categoría tienda"
+        sample_values:
+          - "MEGATIENDA"
+          - "TIENDA_EXPRESS"
+          - "TRADICIONAL"
+          - "OUTLET"
+      
+      - name: ESTADO
+        expr: ESTADO
+        data_type: VARCHAR
+        description: Estado donde se ubica la sucursal
+        synonyms:
+          - "estado"
+          - "entidad federativa"
+        sample_values:
+          - "CDMX"
+          - "Jalisco"
+          - "Nuevo León"
+          - "Puebla"
+          - "Baja California"
+      
+      - name: MUNICIPIO
+        expr: MUNICIPIO
+        data_type: VARCHAR
+        description: Municipio donde se ubica la sucursal
+        synonyms:
+          - "municipio"
+          - "ciudad"
+          - "delegación"
+      
+      - name: ACTIVO
+        expr: ACTIVO
+        data_type: BOOLEAN
+        description: Indica si la sucursal está operativa
+        synonyms:
+          - "activo"
+          - "operativo"
+          - "abierto"
+    
+    time_dimensions:
+      - name: FECHA_APERTURA
+        expr: FECHA_APERTURA
+        data_type: DATE
+        description: Fecha de apertura de la sucursal
+        synonyms:
+          - "fecha apertura"
+          - "apertura"
+          - "inauguración"
+    
+    facts:
+      - name: METROS_CUADRADOS
+        expr: METROS_CUADRADOS
+        data_type: NUMBER
+        description: Superficie en metros cuadrados de la sucursal
+        synonyms:
+          - "metros cuadrados"
+          - "superficie"
+          - "área"
+          - "tamaño"
+      
+      - name: NUMERO_EMPLEADOS
+        expr: NUMERO_EMPLEADOS
+        data_type: NUMBER
+        description: Número de empleados de la sucursal
+        synonyms:
+          - "empleados"
+          - "personal"
+          - "trabajadores"
+          - "staff"
+    
+    primary_key:
+      columns:
+        - SUCURSAL_ID
+
+  - name: INVENTARIO
+    description: Inventario actual por producto y sucursal
+    base_table:
+      database: OFFICEMAX_MEXICO
+      schema: RAW_DATA
+      table: INVENTARIO
+    
+    dimensions:
+      - name: PRODUCTO_ID
+        expr: PRODUCTO_ID
+        data_type: VARCHAR
+        description: Identificador del producto en inventario
+        synonyms:
+          - "producto"
+          - "artículo"
+          - "ítem"
+      
+      - name: SUCURSAL_ID
+        expr: SUCURSAL_ID
+        data_type: INTEGER
+        description: Identificador de la sucursal
+        synonyms:
+          - "sucursal"
+          - "tienda"
+      
+      - name: UBICACION_ALMACEN
+        expr: UBICACION_ALMACEN
+        data_type: VARCHAR
+        description: Ubicación específica en el almacén
+        synonyms:
+          - "ubicación"
+          - "posición"
+          - "rack"
+    
+    time_dimensions:
+      - name: ULTIMO_CONTEO
+        expr: ULTIMO_CONTEO
+        data_type: DATE
+        description: Fecha del último conteo de inventario
+        synonyms:
+          - "último conteo"
+          - "inventario físico"
+          - "conteo"
+      
+      - name: FECHA_ULTIMA_ENTRADA
+        expr: FECHA_ULTIMA_ENTRADA
+        data_type: TIMESTAMP
+        description: Fecha de la última entrada de mercancía
+        synonyms:
+          - "última entrada"
+          - "recepción"
+          - "ingreso"
+      
+      - name: FECHA_ULTIMA_SALIDA
+        expr: FECHA_ULTIMA_SALIDA
+        data_type: TIMESTAMP
+        description: Fecha de la última salida de mercancía
+        synonyms:
+          - "última salida"
+          - "venta"
+          - "despacho"
+    
+    facts:
+      - name: STOCK_ACTUAL
+        expr: STOCK_ACTUAL
+        data_type: NUMBER
+        description: Stock actual disponible
+        synonyms:
+          - "stock actual"
+          - "inventario actual"
+          - "existencias"
+          - "disponible"
+      
+      - name: STOCK_DISPONIBLE
+        expr: STOCK_DISPONIBLE
+        data_type: NUMBER
+        description: Stock disponible para venta (excluye reservado)
+        synonyms:
+          - "stock disponible"
+          - "disponible venta"
+          - "libre"
+      
+      - name: STOCK_RESERVADO
+        expr: STOCK_RESERVADO
+        data_type: NUMBER
+        description: Stock reservado para órdenes pendientes
+        synonyms:
+          - "stock reservado"
+          - "reservado"
+          - "comprometido"
+      
+      - name: STOCK_EN_TRANSITO
+        expr: STOCK_EN_TRANSITO
+        data_type: NUMBER
+        description: Stock en tránsito hacia la sucursal
+        synonyms:
+          - "en tránsito"
+          - "por recibir"
+          - "pendiente llegada"
+      
+      - name: COSTO_PROMEDIO
+        expr: COSTO_PROMEDIO
+        data_type: NUMBER
+        description: Costo promedio del inventario
+        synonyms:
+          - "costo promedio"
+          - "costo inventario"
+          - "valor promedio"
+      
+      - name: ROTACION_DIAS
+        expr: ROTACION_DIAS
+        data_type: NUMBER
+        description: Días de rotación de inventario
+        synonyms:
+          - "rotación"
+          - "días rotación"
+          - "velocidad venta"
+    
+    primary_key:
+      columns:
+        - PRODUCTO_ID
+        - SUCURSAL_ID
+
+# Relaciones entre tablas
+relationships:
+  - name: ventas_productos
+    left_table: VENTAS
+    right_table: PRODUCTOS
+    relationship_columns:
+      - left_column: PRODUCTO_ID
+        right_column: PRODUCTO_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: ventas_clientes
+    left_table: VENTAS
+    right_table: CLIENTES
+    relationship_columns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: ventas_sucursales
+    left_table: VENTAS
+    right_table: SUCURSALES
+    relationship_columns:
+      - left_column: SUCURSAL_ID
+        right_column: SUCURSAL_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: productos_categorias
+    left_table: PRODUCTOS
+    right_table: CATEGORIAS
+    relationship_columns:
+      - left_column: CATEGORIA_ID
+        right_column: CATEGORIA_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: inventario_productos
+    left_table: INVENTARIO
+    right_table: PRODUCTOS
+    relationship_columns:
+      - left_column: PRODUCTO_ID
+        right_column: PRODUCTO_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: inventario_sucursales
+    left_table: INVENTARIO
+    right_table: SUCURSALES
+    relationship_columns:
+      - left_column: SUCURSAL_ID
+        right_column: SUCURSAL_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+# Consultas verificadas para Cortex Analyst
+verified_queries:
+  - name: ventas_totales_por_mes
+    question: ¿Cuáles son las ventas totales por mes?
+    sql: |
+      SELECT 
+        MES_ANO,
+        COUNT(*) AS TRANSACCIONES,
+        SUM(CANTIDAD) AS UNIDADES_VENDIDAS,
+        SUM(TOTAL_LINEA) AS INGRESOS_TOTALES,
+        AVG(TOTAL_LINEA) AS TICKET_PROMEDIO
+      FROM VENTAS 
+      GROUP BY MES_ANO
+      ORDER BY MES_ANO DESC
+    verified_by: Sistema OfficeMax
+    verified_at: 1703721600
+
+  - name: productos_mas_vendidos
+    question: ¿Cuáles son los productos más vendidos?
+    sql: |
+      SELECT 
+        p.NOMBRE_PRODUCTO,
+        p.MARCA,
+        c.CATEGORIA_PADRE,
+        SUM(v.CANTIDAD) AS UNIDADES_VENDIDAS,
+        SUM(v.TOTAL_LINEA) AS INGRESOS_TOTALES
+      FROM VENTAS v
+      JOIN PRODUCTOS p ON v.PRODUCTO_ID = p.PRODUCTO_ID
+      JOIN CATEGORIAS c ON p.CATEGORIA_ID = c.CATEGORIA_ID
+      GROUP BY p.NOMBRE_PRODUCTO, p.MARCA, c.CATEGORIA_PADRE
+      ORDER BY UNIDADES_VENDIDAS DESC
+      LIMIT 20
+    verified_by: Sistema OfficeMax
+    verified_at: 1703721600
+
+  - name: performance_sucursales
+    question: ¿Cómo es el performance de ventas por sucursal?
+    sql: |
+      SELECT 
+        s.NOMBRE_SUCURSAL,
+        s.ESTADO,
+        s.FORMATO_TIENDA,
+        COUNT(v.VENTA_ID) AS TRANSACCIONES,
+        SUM(v.TOTAL_LINEA) AS INGRESOS_TOTALES,
+        AVG(v.TOTAL_LINEA) AS TICKET_PROMEDIO,
+        SUM(v.MARGEN_BRUTO) AS MARGEN_TOTAL
+      FROM VENTAS v
+      JOIN SUCURSALES s ON v.SUCURSAL_ID = s.SUCURSAL_ID
+      WHERE v.FECHA_VENTA >= CURRENT_DATE() - 90
+      GROUP BY s.NOMBRE_SUCURSAL, s.ESTADO, s.FORMATO_TIENDA
+      ORDER BY INGRESOS_TOTALES DESC
+    verified_by: Sistema OfficeMax
+    verified_at: 1703721600
+
+  - name: analisis_canales_venta
+    question: ¿Cómo se distribuyen las ventas por canal?
+    sql: |
+      SELECT 
+        CANAL_VENTA,
+        COUNT(*) AS TRANSACCIONES,
+        SUM(CANTIDAD) AS UNIDADES_VENDIDAS,
+        SUM(TOTAL_LINEA) AS INGRESOS_TOTALES,
+        AVG(TOTAL_LINEA) AS TICKET_PROMEDIO,
+        ROUND((SUM(TOTAL_LINEA) / (SELECT SUM(TOTAL_LINEA) FROM VENTAS)) * 100, 2) AS PARTICIPACION_PORCENTAJE
+      FROM VENTAS
+      WHERE FECHA_VENTA >= CURRENT_DATE() - 30
+      GROUP BY CANAL_VENTA
+      ORDER BY INGRESOS_TOTALES DESC
+    verified_by: Sistema OfficeMax
+    verified_at: 1703721600
+
+  - name: segmentacion_clientes
+    question: ¿Cómo se distribuyen las ventas por tipo de cliente?
+    sql: |
+      SELECT 
+        c.TIPO_CLIENTE,
+        c.SEGMENTO,
+        COUNT(DISTINCT c.CLIENTE_ID) AS TOTAL_CLIENTES,
+        COUNT(v.VENTA_ID) AS TRANSACCIONES,
+        SUM(v.TOTAL_LINEA) AS INGRESOS_TOTALES,
+        AVG(v.TOTAL_LINEA) AS TICKET_PROMEDIO
+      FROM CLIENTES c
+      LEFT JOIN VENTAS v ON c.CLIENTE_ID = v.CLIENTE_ID
+      WHERE v.FECHA_VENTA >= CURRENT_DATE() - 90
+      GROUP BY c.TIPO_CLIENTE, c.SEGMENTO
+      ORDER BY INGRESOS_TOTALES DESC
+    verified_by: Sistema OfficeMax
+    verified_at: 1703721600
+
+  - name: inventario_critico
+    question: ¿Qué productos tienen inventario crítico?
+    sql: |
+      SELECT 
+        p.NOMBRE_PRODUCTO,
+        p.MARCA,
+        c.CATEGORIA_PADRE,
+        s.NOMBRE_SUCURSAL,
+        i.STOCK_ACTUAL,
+        i.STOCK_DISPONIBLE,
+        i.ROTACION_DIAS,
+        p.STOCK_MINIMO
+      FROM INVENTARIO i
+      JOIN PRODUCTOS p ON i.PRODUCTO_ID = p.PRODUCTO_ID
+      JOIN CATEGORIAS c ON p.CATEGORIA_ID = c.CATEGORIA_ID
+      JOIN SUCURSALES s ON i.SUCURSAL_ID = s.SUCURSAL_ID
+      WHERE i.STOCK_ACTUAL <= p.STOCK_MINIMO
+      ORDER BY i.STOCK_ACTUAL ASC
+    verified_by: Sistema OfficeMax
+    verified_at: 1703721600
+
+  - name: efectividad_promociones
+    question: ¿Qué tan efectivas han sido las promociones?
+    sql: |
+      SELECT 
+        CODIGO_PROMOCION,
+        TIPO_DESCUENTO,
+        COUNT(*) AS TRANSACCIONES_CON_DESCUENTO,
+        SUM(CANTIDAD) AS UNIDADES_CON_DESCUENTO,
+        SUM(DESCUENTO_TOTAL) AS DESCUENTOS_OTORGADOS,
+        SUM(TOTAL_LINEA) AS INGRESOS_CON_DESCUENTO,
+        AVG(PORCENTAJE_DESCUENTO) AS DESCUENTO_PROMEDIO
+      FROM VENTAS
+      WHERE CODIGO_PROMOCION IS NOT NULL
+        AND FECHA_VENTA >= CURRENT_DATE() - 180
+      GROUP BY CODIGO_PROMOCION, TIPO_DESCUENTO
+      ORDER BY INGRESOS_CON_DESCUENTO DESC
+    verified_by: Sistema OfficeMax
+    verified_at: 1703721600
+
+# Instrucciones personalizadas para el contexto de OfficeMax México
+custom_instructions: |
+  Este modelo semántico está diseñado para analizar los datos de negocio de OfficeMax México, 
+  la cadena líder de productos de oficina, tecnología y material escolar en México.
+  
+  Contexto del negocio:
+  - OfficeMax México opera con múltiples formatos: Megatiendas, Tiendas Tradicionales, Tiendas Express y Outlets
+  - Atiende diversos segmentos: clientes individuales, empresariales, educativos y gobierno
+  - Vende a través de múltiples canales: tiendas físicas, online, app móvil y teléfono
+  - Temporadas importantes: Back-to-School (julio-agosto), Black Friday/Cyber Monday, fin de año
+  
+  Al responder preguntas:
+  - Considerar el contexto del retail mexicano y patrones estacionales
+  - Las promociones Back-to-School son críticas para el negocio
+  - Los clientes empresariales y educativos tienen patrones de compra diferentes
+  - El inventario varía significativamente por formato de tienda
+  - Los márgenes varían por categoría: tecnología (menor), papelería (mayor)
+  - Incluir análisis de rentabilidad cuando sea relevante
+  - Considerar la distribución geográfica (CDMX, Jalisco, Nuevo León son mercados clave)
+  - Los canales digitales están creciendo pero las tiendas físicas siguen siendo dominantes
+
+

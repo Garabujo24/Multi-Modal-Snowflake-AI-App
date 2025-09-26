@@ -1,0 +1,31 @@
+name: ado_cortex_search
+
+description: Servicio Cortex Search para búsqueda inteligente en documentos de ADO.
+
+index:
+  name: ado_docs
+  description: Índice de documentos PDF relevantes para la operación de ADO.
+  documents:
+    - path: docs/Política de Equipaje ADO.pdf
+      title: Política de Equipaje
+    - path: docs/Historia de ADO.pdf
+      title: Historia de ADO
+    - path: docs/Términos y Condiciones del Servicio.pdf
+      title: Términos y Condiciones del Servicio
+    - path: docs/Guía para Viajar con Mascotas.pdf
+      title: Guía para Viajar con Mascotas
+    - path: docs/Club ADO - Programa de Lealtad.pdf
+      title: Club ADO - Programa de Lealtad
+    - path: docs/Medidas de Seguridad en Viaje.pdf
+      title: Medidas de Seguridad en Viaje
+
+settings:
+  language: es
+  file_types: [pdf]
+  enable_ocr: false
+  chunk_size: 1000
+  overlap: 100
+  metadata_fields:
+    - title
+    - path
+

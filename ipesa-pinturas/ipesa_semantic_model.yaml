@@ -1,0 +1,154 @@
+name: ipesa_pinturas
+description: Modelo semántico para análisis de ventas y productos de Ipesa Pinturas.
+tables:
+  - name: clientes
+    description: Tabla de clientes
+    base_table:
+      database: IPESA_PINTURAS
+      schema: PUBLIC
+      table: CLIENTES
+    primary_key:
+      columns: [ID_CLIENTE]
+    dimensions:
+      - name: id_cliente
+        expr: ID_CLIENTE
+        data_type: NUMBER
+      - name: cliente_nombre
+        expr: NOMBRE
+        data_type: STRING
+        description: Nombre del cliente
+      - name: cliente_email
+        expr: EMAIL
+        data_type: STRING
+      - name: cliente_telefono
+        expr: TELEFONO
+        data_type: STRING
+      - name: cliente_direccion
+        expr: DIRECCION
+        data_type: STRING
+
+  - name: productos
+    description: Tabla de productos
+    base_table:
+      database: IPESA_PINTURAS
+      schema: PUBLIC
+      table: PRODUCTOS
+    primary_key:
+      columns: [ID_PRODUCTO]
+    dimensions:
+      - name: id_producto
+        expr: ID_PRODUCTO
+        data_type: NUMBER
+      - name: producto_nombre
+        expr: NOMBRE
+        data_type: STRING
+      - name: producto_tipo
+        expr: TIPO
+        data_type: STRING
+      - name: producto_color
+        expr: COLOR
+        data_type: STRING
+      - name: producto_presentacion
+        expr: PRESENTACION
+        data_type: STRING
+    facts:
+      - name: producto_precio
+        expr: PRECIO
+        data_type: NUMBER
+
+  - name: pedidos
+    description: Tabla de pedidos
+    base_table:
+      database: IPESA_PINTURAS
+      schema: PUBLIC
+      table: PEDIDOS
+    primary_key:
+      columns: [ID_PEDIDO]
+    dimensions:
+      - name: id_pedido
+        expr: ID_PEDIDO
+        data_type: NUMBER
+      - name: id_cliente
+        expr: ID_CLIENTE
+        data_type: NUMBER
+      - name: pedido_estado
+        expr: ESTADO
+        data_type: STRING
+    time_dimensions:
+      - name: pedido_fecha
+        expr: FECHA
+        data_type: DATE
+
+  - name: detalle_pedido
+    description: Detalle de cada pedido
+    base_table:
+      database: IPESA_PINTURAS
+      schema: PUBLIC
+      table: DETALLE_PEDIDO
+    primary_key:
+      columns: [ID_DETALLE]
+    dimensions:
+      - name: id_detalle
+        expr: ID_DETALLE
+        data_type: NUMBER
+      - name: id_pedido
+        expr: ID_PEDIDO
+        data_type: NUMBER
+      - name: id_producto
+        expr: ID_PRODUCTO
+        data_type: NUMBER
+    facts:
+      - name: cantidad
+        expr: CANTIDAD
+        data_type: NUMBER
+      - name: precio_unitario
+        expr: PRECIO_UNITARIO
+        data_type: NUMBER
+      - name: importe_detalle
+        expr: CANTIDAD * PRECIO_UNITARIO
+        data_type: NUMBER
+
+metrics:
+  - name: total_pedido
+    description: Importe total por pedido
+    expr: SUM(detalle_pedido.importe_detalle)
+  - name: total_ventas
+    description: Suma total de ventas
+    expr: SUM(detalle_pedido.importe_detalle)
+  - name: cantidad_total_productos
+    description: Total de productos vendidos
+    expr: SUM(detalle_pedido.cantidad)
+  - name: pedidos_por_cliente
+    description: Número de pedidos por cliente
+    expr: COUNT(DISTINCT pedidos.ID_PEDIDO)
+  - name: productos_distintos_vendidos
+    description: Número de productos distintos vendidos
+    expr: COUNT(DISTINCT detalle_pedido.ID_PRODUCTO)
+
+relationships:
+  - name: pedido_cliente
+    leftTable: pedidos
+    rightTable: clientes
+    relationshipColumns:
+      - left_column: ID_CLIENTE
+        right_column: ID_CLIENTE
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: detalle_pedido_pedido
+    leftTable: detalle_pedido
+    rightTable: pedidos
+    relationshipColumns:
+      - left_column: ID_PEDIDO
+        right_column: ID_PEDIDO
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: detalle_pedido_producto
+    leftTable: detalle_pedido
+    rightTable: productos
+    relationshipColumns:
+      - left_column: ID_PRODUCTO
+        right_column: ID_PRODUCTO
+    joinType: left_outer
+    relationshipType: many_to_one

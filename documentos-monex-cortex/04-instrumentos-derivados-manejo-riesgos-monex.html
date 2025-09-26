@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monex Grupo Financiero - 04 Instrumentos Derivados Manejo Riesgos Monex</title>
+    
+    <style>
+    @page {
+        margin: 2cm;
+        size: A4;
+    }
+    
+    @media print {
+        .page-break {
+            page-break-before: always;
+        }
+        
+        h1 {
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            page-break-after: avoid;
+        }
+        
+        table {
+            page-break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        pre {
+            page-break-inside: avoid;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-bottom: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-top: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        body {
+            margin-top: 1.5cm;
+            margin-bottom: 1.5cm;
+        }
+    }
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 1.6;
+        color: #333;
+        max-width: none;
+        margin: 0;
+        padding: 20px;
+        background: white;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+    }
+    
+    h1 {
+        color: #1e3a8a;
+        font-size: 24pt;
+        margin-top: 30pt;
+        margin-bottom: 15pt;
+        border-bottom: 3px solid #1e3a8a;
+        padding-bottom: 8pt;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    h2 {
+        color: #1e40af;
+        font-size: 18pt;
+        margin-top: 25pt;
+        margin-bottom: 12pt;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 5pt;
+        font-weight: bold;
+    }
+    
+    h3 {
+        color: #1e40af;
+        font-size: 16pt;
+        margin-top: 20pt;
+        margin-bottom: 10pt;
+        font-weight: bold;
+    }
+    
+    h4 {
+        color: #374151;
+        font-size: 14pt;
+        margin-top: 15pt;
+        margin-bottom: 8pt;
+        font-weight: bold;
+    }
+    
+    h5 {
+        color: #4b5563;
+        font-size: 12pt;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+        font-weight: bold;
+    }
+    
+    p {
+        margin: 8pt 0;
+        text-align: justify;
+        line-height: 1.6;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15pt 0;
+        font-size: 10pt;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    th, td {
+        border: 1px solid #d1d5db;
+        padding: 8pt 12pt;
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    th {
+        background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        font-weight: bold;
+        color: #1f2937;
+        text-align: center;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9fafb;
+    }
+    
+    tr:hover {
+        background-color: #f3f4f6;
+    }
+    
+    code {
+        background-color: #f1f5f9;
+        padding: 3pt 6pt;
+        border-radius: 3pt;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        color: #1f2937;
+        border: 1px solid #e5e7eb;
+    }
+    
+    pre {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        padding: 15pt;
+        border-radius: 6pt;
+        border-left: 4pt solid #3b82f6;
+        overflow-x: auto;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        margin: 15pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        color: #1f2937;
+        line-height: 1.4;
+    }
+    
+    pre code {
+        background: none;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+    }
+    
+    blockquote {
+        border-left: 4pt solid #3b82f6;
+        padding: 15pt 20pt;
+        margin: 15pt 0;
+        font-style: italic;
+        color: #4b5563;
+        background: linear-gradient(to right, #f8fafc, white);
+        border-radius: 0 6pt 6pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    blockquote p {
+        margin: 0;
+    }
+    
+    ul, ol {
+        padding-left: 25pt;
+        margin: 10pt 0;
+    }
+    
+    li {
+        margin-bottom: 6pt;
+        line-height: 1.5;
+    }
+    
+    ul li {
+        list-style-type: disc;
+    }
+    
+    ol li {
+        list-style-type: decimal;
+    }
+    
+    strong {
+        font-weight: bold;
+        color: #1f2937;
+    }
+    
+    em {
+        font-style: italic;
+        color: #4b5563;
+    }
+    
+    hr {
+        border: none;
+        border-top: 2px solid #e5e7eb;
+        margin: 25pt 0;
+        opacity: 0.7;
+    }
+    
+    .toc {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 20pt;
+        border-radius: 8pt;
+        margin: 20pt 0;
+        border: 1px solid #dee2e6;
+    }
+    
+    .toc h3 {
+        margin-top: 0;
+        color: #1e40af;
+        text-align: center;
+        border-bottom: 1px solid #1e40af;
+        padding-bottom: 8pt;
+    }
+    
+    .highlight {
+        background-color: #fef3c7;
+        padding: 2pt 4pt;
+        border-radius: 2pt;
+    }
+    
+    .monex-logo {
+        text-align: center;
+        font-size: 28pt;
+        font-weight: bold;
+        color: #1e3a8a;
+        margin: 30pt 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    .document-title {
+        text-align: center;
+        font-size: 20pt;
+        color: #1e40af;
+        margin: 20pt 0;
+        font-weight: normal;
+    }
+    
+    .subtitle {
+        text-align: center;
+        font-size: 14pt;
+        color: #6b7280;
+        margin-bottom: 30pt;
+        font-style: italic;
+    }
+    
+    .footer-info {
+        text-align: center;
+        font-size: 9pt;
+        color: #6b7280;
+        margin-top: 30pt;
+        padding-top: 15pt;
+        border-top: 1px solid #e5e7eb;
+        font-style: italic;
+    }
+    
+    @media screen {
+        body {
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="monex-logo">MONEX</div>
+        <div class="document-title">04 Instrumentos Derivados Manejo Riesgos Monex</div>
+        <div class="subtitle">Grupo Financiero</div>
+        
+        <div class="header" style="display: none;">MONEX GRUPO FINANCIERO - DOCUMENTO CONFIDENCIAL</div>
+        
+        <h1 id="instrumentos-derivados-y-manejo-de-riesgos-monex">INSTRUMENTOS DERIVADOS Y MANEJO DE RIESGOS MONEX</h1>
+<h2 id="soluciones-avanzadas-para-la-gestion-de-riesgos-financieros">Soluciones Avanzadas para la Gestión de Riesgos Financieros</h2>
+<hr />
+<h3 id="tabla-de-contenido">TABLA DE CONTENIDO</h3>
+<ol>
+<li><strong>Marco Conceptual de Riesgos Financieros</strong></li>
+<li><strong>Derivados de Tasas de Interés</strong></li>
+<li><strong>Derivados de Tipo de Cambio</strong></li>
+<li><strong>Productos Estructurados OTC</strong></li>
+<li><strong>Gestión Integral de Riesgos Corporativos</strong></li>
+<li><strong>Casos Prácticos y Estrategias de Implementación</strong></li>
+</ol>
+<hr />
+<h2 id="1-marco-conceptual-de-riesgos-financieros">1. MARCO CONCEPTUAL DE RIESGOS FINANCIEROS</h2>
+<h3 id="filosofia-de-gestion-de-riesgos-en-monex">Filosofía de Gestión de Riesgos en Monex</h3>
+<p>Monex se posiciona como líder en México en el desarrollo y estructuración de instrumentos derivados, habiendo establecido durante 2022 un área de manejo de riesgos como una de las divisiones más dinámicas del banco. Con la emisión de 1,705 notas estructuradas por un nocional de $41,216 millones de pesos, Monex demuestra su capacidad para crear soluciones innovadoras que respondan a las necesidades específicas de gestión de riesgos de sus clientes.</p>
+<h3 id="tipos-de-riesgos-financieros">Tipos de Riesgos Financieros</h3>
+<h4 id="riesgo-de-mercado">Riesgo de Mercado</h4>
+<p><strong>Riesgo de Tasa de Interés:</strong>
+- <strong>Impacto</strong>: Variaciones en el valor de activos/pasivos por cambios en tasas
+- <strong>Medición</strong>: Duration, PV01, simulación de escenarios
+- <strong>Instrumentos de cobertura</strong>: IRS, FRAs, Caps, Floors, Collars</p>
+<p><strong>Riesgo Cambiario:</strong>
+- <strong>Impacto</strong>: Exposición a fluctuaciones en tipos de cambio
+- <strong>Medición</strong>: VaR, exposición neta por divisa, análisis de sensibilidad
+- <strong>Instrumentos de cobertura</strong>: Forwards, Swaps, Opciones FX</p>
+<p><strong>Riesgo de Precio de Commodities:</strong>
+- <strong>Impacto</strong>: Volatilidad en precios de materias primas
+- <strong>Medición</strong>: Beta commodity, correlaciones históricas
+- <strong>Instrumentos de cobertura</strong>: Futuros, Opciones, Swaps de commodities</p>
+<h4 id="riesgo-de-credito">Riesgo de Crédito</h4>
+<p><strong>Riesgo de Contraparte:</strong>
+- <strong>Definición</strong>: Probabilidad de incumplimiento del counterparty
+- <strong>Medición</strong>: Credit VaR, Exposure at Default (EAD)
+- <strong>Mitigación</strong>: Garantías, netting agreements, CSA</p>
+<p><strong>Riesgo de Concentración:</strong>
+- <strong>Definición</strong>: Exposición excesiva a un solo emisor/sector
+- <strong>Medición</strong>: Límites por contraparte, índice de Herfindahl
+- <strong>Mitigación</strong>: Diversificación, credit default swaps</p>
+<h4 id="riesgo-de-liquidez">Riesgo de Liquidez</h4>
+<p><strong>Riesgo de Financiamiento:</strong>
+- <strong>Definición</strong>: Incapacidad de cumplir obligaciones de pago
+- <strong>Medición</strong>: Gaps de liquidez, stress testing
+- <strong>Mitigación</strong>: Líneas de crédito, repos, asset sales</p>
+<p><strong>Riesgo de Mercado de Liquidez:</strong>
+- <strong>Definición</strong>: Dificultad para liquidar posiciones sin impacto adverso
+- <strong>Medición</strong>: Bid-offer spreads, volúmenes históricos
+- <strong>Mitigación</strong>: Market making agreements, diversificación</p>
+<h3 id="marco-regulatorio">Marco Regulatorio</h3>
+<h4 id="normativa-mexicana">Normativa Mexicana</h4>
+<p><strong>Circulares CNBV:</strong>
+- <strong>Circular Única de Bancos</strong>: Requerimientos de capital por riesgo de mercado
+- <strong>Metodologías de VaR</strong>: Modelos internos vs estándar
+- <strong>Límites Regulatorios</strong>: Capital Tier 1, exposiciones máximas</p>
+<p><strong>Banco de México:</strong>
+- <strong>Operaciones Derivadas</strong>: Autorización y registro requeridos
+- <strong>Reportes Regulatorios</strong>: R04 A (posiciones), R04 C (riesgos)
+- <strong>Provisiones</strong>: Requerimientos de reservas por riesgo de crédito</p>
+<h4 id="estandares-internacionales">Estándares Internacionales</h4>
+<p><strong>Basel III/IV:</strong>
+- <strong>CVA (Credit Valuation Adjustment)</strong>: Ajuste por riesgo de crédito
+- <strong>SA-CCR</strong>: Standardized Approach for Counterparty Credit Risk
+- <strong>FRTB</strong>: Fundamental Review of the Trading Book</p>
+<p><strong>ISDA Master Agreements:</strong>
+- <strong>1992/2002 ISDA</strong>: Marco legal para derivados OTC
+- <strong>CSA (Credit Support Annex)</strong>: Gestión de colateral
+- <strong>Dodd-Frank Compliance</strong>: Clearing mandatory, reporting</p>
+<hr />
+<h2 id="2-derivados-de-tasas-de-interes">2. DERIVADOS DE TASAS DE INTERÉS</h2>
+<h3 id="interest-rate-swaps-irs">Interest Rate Swaps (IRS)</h3>
+<h4 id="swap-de-tasa-fija-vs-flotante">Swap de Tasa Fija vs Flotante</h4>
+<p><strong>Estructura Básica:</strong>
+- <strong>Pata Fija</strong>: Cliente paga tasa fija anual (e.g., 8.50%)
+- <strong>Pata Flotante</strong>: Cliente recibe TIIE 28 días + spread
+- <strong>Frecuencia</strong>: Pagos trimestrales o semestrales
+- <strong>Nocional</strong>: $10 millones MXN mínimo</p>
+<p><strong>Casos de Uso:</strong>
+- <strong>Asset-Liability Matching</strong>: Banco con créditos a tasa fija, funding flotante
+- <strong>Especulación Direccional</strong>: Views sobre dirección de tasas
+- <strong>Arbitraje</strong>: Aprovechamiento de ineficiencias de mercado</p>
+<p><strong>Ejemplo Práctico:</strong></p>
+<pre class="codehilite"><code>Nocional: $100 millones MXN
+Plazo: 5 años
+Cliente paga: 8.50% anual fijo
+Cliente recibe: TIIE 28 + 0.25%
+Fechas de pago: Trimestrales (28 mar, jun, sep, dic)
+</code></pre>
+
+<h4 id="forward-rate-agreements-fras">Forward Rate Agreements (FRAs)</h4>
+<p><strong>Características:</strong>
+- <strong>Definición</strong>: Swap de un solo período sobre tasa futura
+- <strong>Settlement</strong>: Cash settlement en fecha de inicio
+- <strong>Benchmark</strong>: TIIE 28, TIIE 91, CETES 28
+- <strong>Plazos estándar</strong>: 1x4, 2x5, 3x6, 6x9, 9x12</p>
+<p><strong>Pricing Formula:</strong></p>
+<pre class="codehilite"><code>FRA Rate = [(1 + R2 × D2/360) / (1 + R1 × D1/360) - 1] × 360/DF
+Donde:
+R2 = Tasa larga (período total)
+R1 = Tasa corta (período inicial)  
+D2 = Días período total
+D1 = Días período inicial
+DF = Días del FRA
+</code></pre>
+
+<p><strong>Cash Settlement:</strong></p>
+<pre class="codehilite"><code>Settlement = (FRA Rate - Fixing Rate) × Nocional × DF/360
+             / (1 + Fixing Rate × DF/360)
+</code></pre>
+
+<h4 id="caps-floors-y-collars">Caps, Floors y Collars</h4>
+<p><strong>Interest Rate Caps:</strong>
+- <strong>Función</strong>: Protección contra alza de tasas
+- <strong>Strike</strong>: Tasa máxima a pagar (e.g., 10.00%)
+- <strong>Premium</strong>: Costo upfront del cap
+- <strong>Underlying</strong>: TIIE 28, TIIE 91</p>
+<p><strong>Interest Rate Floors:</strong>
+- <strong>Función</strong>: Protección contra baja de tasas<br />
+- <strong>Strike</strong>: Tasa mínima a recibir (e.g., 6.00%)
+- <strong>Premium</strong>: Costo upfront del floor
+- <strong>Estrategia</strong>: Monetización de views bajistas</p>
+<p><strong>Interest Rate Collars:</strong>
+- <strong>Estructura</strong>: Compra cap + venta floor (o viceversa)
+- <strong>Ventaja</strong>: Menor costo (premium neto)
+- <strong>Rango</strong>: Protección en banda específica
+- <strong>Zero-Cost Collar</strong>: Premium neto = 0</p>
+<h3 id="derivados-de-inflacion">Derivados de Inflación</h3>
+<h4 id="inflation-linked-swaps">Inflation-Linked Swaps</h4>
+<p><strong>UDI Swaps:</strong>
+- <strong>Pata Real</strong>: Cliente paga tasa real fija
+- <strong>Pata Nominal</strong>: Cliente recibe TIIE 28 + spread
+- <strong>Referencia</strong>: UDIs (Unidades de Inversión)
+- <strong>Uso</strong>: Hedge de exposición inflacionaria</p>
+<p><strong>TIIE Real Swaps:</strong>
+- <strong>Pata Fija</strong>: Tasa real fija anual
+- <strong>Pata Flotante</strong>: TIIE Real (TIIE - inflación esperada)
+- <strong>Ventaja</strong>: Cobertura directa de poder adquisitivo</p>
+<h4 id="breakeven-inflation-analysis">Breakeven Inflation Analysis</h4>
+<p><strong>Cálculo de Inflación Implícita:</strong></p>
+<pre class="codehilite"><code>Breakeven = [(1 + TIIE Nominal) / (1 + TIIE Real)] - 1
+</code></pre>
+
+<p><strong>Interpretación:</strong>
+- <strong>Breakeven &gt; Inflación esperada</strong>: Oportunidad de venta de inflación
+- <strong>Breakeven &lt; Inflación esperada</strong>: Oportunidad de compra de inflación</p>
+<hr />
+<h2 id="3-derivados-de-tipo-de-cambio">3. DERIVADOS DE TIPO DE CAMBIO</h2>
+<h3 id="cross-currency-swaps">Cross Currency Swaps</h3>
+<h4 id="estructura-basica">Estructura Básica</h4>
+<p><strong>Cross Currency Interest Rate Swap:</strong>
+- <strong>Intercambio inicial</strong>: Principal en ambas divisas
+- <strong>Intercambio periódico</strong>: Intereses en monedas respectivas
+- <strong>Intercambio final</strong>: Reintercambio de principales
+- <strong>Divisas</strong>: USD/MXN, EUR/MXN, GBP/MXN</p>
+<p><strong>Ejemplo USD/MXN:</strong></p>
+<pre class="codehilite"><code>Fecha inicio: 15 enero 2024
+Fecha vencimiento: 15 enero 2029
+Principal USD: $10 millones
+Principal MXN: $180 millones (TC inicial: 18.00)
+Cliente paga: 5.25% anual en USD
+Cliente recibe: 9.75% anual en MXN
+Frecuencia: Semestral
+</code></pre>
+
+<h4 id="aplicaciones-corporativas">Aplicaciones Corporativas</h4>
+<p><strong>Financiamiento en Divisa Extranjera:</strong>
+- <strong>Problema</strong>: Empresa necesita USD pero solo tiene acceso a MXN
+- <strong>Solución</strong>: CCS para sintetizar funding en USD
+- <strong>Beneficio</strong>: Tasa potencialmente menor que préstamo directo USD</p>
+<p><strong>Natural Hedging:</strong>
+- <strong>Exposición</strong>: Ingresos en USD, costos en MXN
+- <strong>Estrategia</strong>: CCS que replique flujos naturales
+- <strong>Resultado</strong>: Eliminación de riesgo cambiario</p>
+<h3 id="opciones-de-divisas">Opciones de Divisas</h3>
+<h4 id="opciones-vanilla">Opciones Vanilla</h4>
+<p><strong>Call Options (USD/MXN):</strong>
+- <strong>Right to Buy</strong>: USD contra MXN
+- <strong>Strike</strong>: Tipo de cambio de ejercicio (e.g., 19.00)
+- <strong>Expiry</strong>: Fecha de vencimiento
+- <strong>Premium</strong>: Costo de la opción (% del nocional)</p>
+<p><strong>Put Options (USD/MXN):</strong>
+- <strong>Right to Sell</strong>: USD contra MXN<br />
+- <strong>Protection</strong>: Contra depreciación del USD
+- <strong>Uso</strong>: Exportadores mexicanos, inversionistas en USD</p>
+<h4 id="estrategias-con-opciones">Estrategias con Opciones</h4>
+<p><strong>Protective Put (Collar):</strong></p>
+<pre class="codehilite"><code>Posición: Long USD 10 millones
+Compra: Put USD/MXN strike 18.50
+Vende: Call USD/MXN strike 19.50
+Resultado: Protección 18.50-19.50, costo reducido
+</code></pre>
+
+<p><strong>Risk Reversal:</strong></p>
+<pre class="codehilite"><code>View: USD alcista vs MXN
+Compra: Call USD/MXN strike 19.00
+Vende: Put USD/MXN strike 18.00
+Resultado: Exposición direccional, premium mínimo
+</code></pre>
+
+<p><strong>Straddle:</strong></p>
+<pre class="codehilite"><code>View: Alta volatilidad esperada
+Compra: Call USD/MXN strike 18.50
+Compra: Put USD/MXN strike 18.50
+Resultado: Profit si |movimiento| &gt; premium pagado
+</code></pre>
+
+<h3 id="opciones-exoticas">Opciones Exóticas</h3>
+<h4 id="opciones-barrera">Opciones Barrera</h4>
+<p><strong>Knock-Out Options:</strong>
+- <strong>Up-and-Out Call</strong>: Se desactiva si USD/MXN &gt; barrera
+- <strong>Down-and-Out Put</strong>: Se desactiva si USD/MXN &lt; barrera
+- <strong>Ventaja</strong>: Premium significativamente menor
+- <strong>Riesgo</strong>: Protección puede desaparecer</p>
+<p><strong>Knock-In Options:</strong>
+- <strong>Up-and-In Call</strong>: Se activa si USD/MXN &gt; barrera
+- <strong>Down-and-In Put</strong>: Se activa si USD/MXN &lt; barrera
+- <strong>Uso</strong>: Protección contingente, reducción de costo</p>
+<h4 id="opciones-asiaticas">Opciones Asiáticas</h4>
+<p><strong>Average Rate Options:</strong>
+- <strong>Settlement</strong>: Basado en promedio de observaciones
+- <strong>Frecuencia</strong>: Diaria, semanal, mensual
+- <strong>Ventaja</strong>: Menor volatilidad, costo reducido
+- <strong>Uso</strong>: Hedging de flujos recurrentes</p>
+<p><strong>Average Strike Options:</strong>
+- <strong>Strike</strong>: Promedio de spot durante período observación
+- <strong>Uso</strong>: Protección cuando entrada es gradual
+- <strong>Beneficio</strong>: Optimización de nivel de protección</p>
+<hr />
+<h2 id="4-productos-estructurados-otc">4. PRODUCTOS ESTRUCTURADOS OTC</h2>
+<h3 id="notas-estructuradas">Notas Estructuradas</h3>
+<h4 id="certificados-de-deposito-estructurados">Certificados de Depósito Estructurados</h4>
+<p>Monex lidera el mercado mexicano con más de 1,700 notas estructuradas emitidas en 2022, representando $41,216 millones de pesos en nocional.</p>
+<p><strong>Estructura Típica:</strong>
+- <strong>Capital Protegido</strong>: 85%-100% del principal
+- <strong>Upside Participation</strong>: Exposición a subyacente específico
+- <strong>Vencimiento</strong>: 6 meses a 5 años
+- <strong>Denominación</strong>: MXN, USD, EUR</p>
+<h4 id="certificados-ligados-a-equity">Certificados Ligados a Equity</h4>
+<p><strong>S&amp;P 500 Linked Certificate:</strong></p>
+<pre class="codehilite"><code>Principal: $1 millón USD
+Protección: 90% del principal
+Participación: 120% del performance S&amp;P 500
+Barrera: Down-and-in put a 70% del nivel inicial
+Vencimiento: 2 años
+Cupón: 0% (solo upside equity)
+</code></pre>
+
+<p><strong>Autocall Equity Certificate:</strong></p>
+<pre class="codehilite"><code>Subyacente: Basket de 5 acciones mexicanas
+Observación: Trimestral
+Autocall: 105% del nivel inicial
+Cupón autocall: 8.5% anual
+Protección: 70% barrera americana
+Vencimiento: 3 años máximo
+</code></pre>
+
+<h4 id="certificados-de-divisas">Certificados de Divisas</h4>
+<p><strong>USD/MXN Range Accrual:</strong></p>
+<pre class="codehilite"><code>Nocional: $500,000 USD
+Rango: 17.50 - 19.50
+Cupón diario: Si USD/MXN dentro del rango: 0.025%
+Cupón máximo: 9.125% anual (365 días × 0.025%)
+Observación: Diaria (días hábiles México)
+Vencimiento: 1 año
+</code></pre>
+
+<p><strong>Multi-Currency Worst-Of:</strong></p>
+<pre class="codehilite"><code>Basket: EUR/USD, GBP/USD, USD/JPY
+Performance: Worst performing currency pair
+Participación: 100% del worst performance (si positivo)
+Protección: 80% barrera europea
+Cupón: Memory coupon 2.5% trimestral
+Vencimiento: 18 meses
+</code></pre>
+
+<h3 id="bonos-bancarios-estructurados">Bonos Bancarios Estructurados</h3>
+<h4 id="productos-de-tasa">Productos de Tasa</h4>
+<p><strong>Step-Up Floating Rate Notes:</strong>
+- <strong>Año 1</strong>: TIIE 28 + 100 bp
+- <strong>Año 2</strong>: TIIE 28 + 150 bp<br />
+- <strong>Año 3</strong>: TIIE 28 + 200 bp
+- <strong>Call Option</strong>: Banco puede redimir a partir año 2
+- <strong>Protection</strong>: Principal 100% protegido</p>
+<p><strong>Inflation Plus Notes:</strong>
+- <strong>Base Rate</strong>: Inflación México (INPC)
+- <strong>Spread</strong>: +300 basis points
+- <strong>Floor</strong>: 4.0% anual mínimo
+- <strong>Cap</strong>: 12.0% anual máximo
+- <strong>Vencimiento</strong>: 5 años</p>
+<h4 id="productos-de-credito">Productos de Crédito</h4>
+<p><strong>Credit-Linked Notes:</strong>
+- <strong>Reference Entity</strong>: Gobierno de México
+- <strong>Credit Event</strong>: Default, restructuring, acceleration
+- <strong>Coupon</strong>: 200 bp sobre TIIE 28
+- <strong>Recovery</strong>: Physical delivery o cash settlement
+- <strong>Rating</strong>: Investment grade requerido</p>
+<h3 id="derivados-de-commodities">Derivados de Commodities</h3>
+<h4 id="oil-linked-products">Oil-Linked Products</h4>
+<p><strong>WTI Crude Oil Participation Certificate:</strong></p>
+<pre class="codehilite"><code>Underlying: WTI Crude Oil ($/barrel)
+Participation: 75% del performance WTI
+Observation: Precio promedio mensual
+Protection: 90% del principal
+Cap: 25% máximo retorno
+Tenor: 2 años
+</code></pre>
+
+<p><strong>Pemex vs WTI Spread Note:</strong></p>
+<pre class="codehilite"><code>Underlying: Spread entre Pemex bond yield vs Oil price
+Strategy: Benefit si spread se contrae
+Protection: Capital preservation si spread &gt; trigger
+Payout: Linear participation in spread convergence
+Maturity: 18 meses
+</code></pre>
+
+<h4 id="metals-and-agriculture">Metals and Agriculture</h4>
+<p><strong>Gold Participation Certificate:</strong>
+- <strong>Underlying</strong>: Oro USD/onza troy
+- <strong>Participation</strong>: 100% del performance oro
+- <strong>Currency</strong>: MXN (incluye hedge USD/MXN)
+- <strong>Protection</strong>: 95% del principal
+- <strong>Observation</strong>: Fixing diario London PM</p>
+<p><strong>Agricultural Basket Note:</strong>
+- <strong>Underlying</strong>: Maíz, trigo, soya (igual peso)
+- <strong>Participation</strong>: 80% del mejor performer
+- <strong>Protection</strong>: 85% capital protection
+- <strong>Seasonality</strong>: Adjusted para ciclos agrícolas</p>
+<hr />
+<h2 id="5-gestion-integral-de-riesgos-corporativos">5. GESTIÓN INTEGRAL DE RIESGOS CORPORATIVOS</h2>
+<h3 id="assessment-de-riesgos-corporativos">Assessment de Riesgos Corporativos</h3>
+<h4 id="metodologia-de-evaluacion">Metodología de Evaluación</h4>
+<p><strong>Fase 1: Identificación de Exposiciones</strong>
+1. <strong>Mapeo de flujos de efectivo</strong>: Ingresos, egresos, timing
+2. <strong>Análisis de balance</strong>: Activos/pasivos por divisa y tasa
+3. <strong>Evaluación de competidores</strong>: Riesgos relativos del sector
+4. <strong>Stress testing</strong>: Escenarios extremos de mercado</p>
+<p><strong>Fase 2: Cuantificación de Riesgos</strong>
+1. <strong>Value at Risk (VaR)</strong>: Pérdida potencial en condiciones normales
+2. <strong>Expected Shortfall</strong>: Pérdida esperada en tail events
+3. <strong>Scenario Analysis</strong>: Impacto de eventos específicos
+4. <strong>Sensitivity Analysis</strong>: Efectos de movimientos graduales</p>
+<p><strong>Fase 3: Desarrollo de Estrategia</strong>
+1. <strong>Risk tolerance</strong>: Definición de límites aceptables
+2. <strong>Cost-benefit analysis</strong>: Evaluación cobertura vs exposición
+3. <strong>Hedging strategy</strong>: Selección de instrumentos óptimos
+4. <strong>Implementation plan</strong>: Timing y ejecución gradual</p>
+<h4 id="herramientas-de-medicion">Herramientas de Medición</h4>
+<p><strong>Software Especializado:</strong>
+- <strong>Bloomberg Risk &amp; Analytics</strong>: Análisis de portafolios
+- <strong>Reuters Eikon</strong>: Data feeds y analytics
+- <strong>Monex Risk Platform</strong>: Desarrollos internos propietarios
+- <strong>Monte Carlo Simulation</strong>: Modelado de escenarios</p>
+<p><strong>Métricas Clave:</strong>
+- <strong>VaR 1-día 95%</strong>: Pérdida máxima probable diaria
+- <strong>VaR 1-día 99%</strong>: Pérdida en eventos extremos
+- <strong>Expected Shortfall</strong>: Promedio pérdidas &gt; VaR
+- <strong>Conditional VaR</strong>: Peor 5% de outcomes</p>
+<h3 id="politicas-de-hedging">Políticas de Hedging</h3>
+<h4 id="hedging-de-riesgo-cambiario">Hedging de Riesgo Cambiario</h4>
+<p><strong>Policy Framework:</strong>
+- <strong>Hedge Ratio</strong>: 50%-90% de exposición neta
+- <strong>Horizon</strong>: Rolling 12-month hedging
+- <strong>Instruments</strong>: Forwards (60%), options (40%)
+- <strong>Rebalancing</strong>: Mensual o por triggers específicos</p>
+<p><strong>Triggers de Hedging:</strong>
+- <strong>Exposición &gt;$5 millones USD</strong>: Cobertura mandatoria
+- <strong>Volatilidad &gt;20% anualizada</strong>: Incremento hedge ratio
+- <strong>Events</strong>: Earnings, M&amp;A, capex significativo</p>
+<p><strong>Ejemplo de Política:</strong></p>
+<pre class="codehilite"><code>Empresa exportadora:
+- Cobertura mínima: 60% de ventas próximos 6 meses
+- Cobertura máxima: 90% de ventas próximos 12 meses
+- Instrumentos permitidos: Forwards, vanilla options
+- Prohibido: Especulación, apalancamiento
+- Reporting: Mensual al CFO, trimestral al board
+</code></pre>
+
+<h4 id="hedging-de-riesgo-de-tasa">Hedging de Riesgo de Tasa</h4>
+<p><strong>Asset-Liability Management:</strong>
+- <strong>Duration Matching</strong>: Activos vs pasivos
+- <strong>Gap Analysis</strong>: Vencimientos por períodos
+- <strong>Interest Rate Sensitivity</strong>: PV01 por bucket
+- <strong>Immunization</strong>: Estrategias duration-neutral</p>
+<p><strong>Estrategias Corporativas:</strong>
+- <strong>Deuda Variable → Fija</strong>: Swaps pay-fixed
+- <strong>Activos Fijos, Funding Variable</strong>: Receive-fixed swaps
+- <strong>Anticipated Financing</strong>: FRAs o caps para protección</p>
+<h3 id="implementacion-y-monitoring">Implementación y Monitoring</h3>
+<h4 id="proceso-de-implementacion">Proceso de Implementación</h4>
+<p><strong>Pre-Trade Analysis:</strong>
+1. <strong>Approval Process</strong>: Committee review requerido
+2. <strong>Pricing Validation</strong>: Multiple dealer quotes
+3. <strong>Legal Documentation</strong>: ISDA agreements actualizados
+4. <strong>Credit Assessment</strong>: Líneas de crédito disponibles</p>
+<p><strong>Trade Execution:</strong>
+1. <strong>Best Execution</strong>: Competitive pricing process
+2. <strong>Trade Confirmation</strong>: Matching dentro 30 minutos
+3. <strong>Settlement Instructions</strong>: SSI validation
+4. <strong>Trade Capture</strong>: Risk systems actualizados</p>
+<p><strong>Post-Trade Management:</strong>
+1. <strong>Mark-to-Market</strong>: Valuación diaria
+2. <strong>Risk Reporting</strong>: Dashboard actualizado
+3. <strong>P&amp;L Attribution</strong>: Análisis de drivers
+4. <strong>Hedge Effectiveness</strong>: Testing ASC 815/IFRS 9</p>
+<h4 id="reporting-y-governance">Reporting y Governance</h4>
+<p><strong>Daily Risk Report:</strong>
+- <strong>Position Summary</strong>: Exposiciones por tipo de riesgo
+- <strong>P&amp;L Summary</strong>: MTM, realized, unrealized
+- <strong>VaR Summary</strong>: Actual vs limits
+- <strong>Limit Monitoring</strong>: Excesos y near-misses</p>
+<p><strong>Monthly Board Report:</strong>
+- <strong>Strategy Performance</strong>: ROI del programa hedging
+- <strong>Market Commentary</strong>: Outlook y positioning
+- <strong>Policy Compliance</strong>: Adherencia a políticas
+- <strong>Recommendations</strong>: Ajustes estratégicos</p>
+<hr />
+<h2 id="6-casos-practicos-y-estrategias-de-implementacion">6. CASOS PRÁCTICOS Y ESTRATEGIAS DE IMPLEMENTACIÓN</h2>
+<h3 id="caso-1-empresa-manufacturera-exportadora">Caso 1: Empresa Manufacturera Exportadora</h3>
+<h4 id="perfil-de-la-empresa">Perfil de la Empresa</h4>
+<p><strong>Sector</strong>: Automotriz (autopartes)
+<strong>Ingresos</strong>: 60% USD, 40% MXN<br />
+<strong>Costos</strong>: 20% USD, 80% MXN
+<strong>Exposición neta</strong>: Long USD $50 millones anuales
+<strong>Estacionalidad</strong>: Q4 representa 40% de ventas anuales</p>
+<h4 id="analisis-de-riesgos">Análisis de Riesgos</h4>
+<p><strong>Exposure Mapping:</strong></p>
+<pre class="codehilite"><code>Q1: Net long USD $8 millones
+Q2: Net long USD $10 millones  
+Q3: Net long USD $12 millones
+Q4: Net long USD $20 millones
+</code></pre>
+
+<p><strong>Sensitivity Analysis:</strong>
+- <strong>USD/MXN +1.00</strong>: Impacto positivo $50 millones MXN
+- <strong>USD/MXN -1.00</strong>: Impacto negativo $50 millones MXN
+- <strong>Volatilidad</strong>: 15% anualizada histórica</p>
+<h4 id="estrategia-de-hedging-implementada">Estrategia de Hedging Implementada</h4>
+<p><strong>Phase 1: Core Hedging (Months 1-6)</strong></p>
+<pre class="codehilite"><code>Instrument: USD/MXN Forward
+Notional: $30 millones USD (60% de exposición)
+Maturity: Rolling 6-month forwards
+Strike: 18.25 promedio ponderado
+Objective: Base protection para cash flows
+</code></pre>
+
+<p><strong>Phase 2: Collar Strategy (Months 7-12)</strong></p>
+<pre class="codehilite"><code>Instrument: USD/MXN Collar  
+Notional: $15 millones USD (30% exposición restante)
+Put Strike: 17.50 (protección downside)
+Call Strike: 19.50 (renuncia upside)
+Premium: Zero-cost collar
+Objective: Protección asimétrica
+</code></pre>
+
+<p><strong>Phase 3: Seasonal Adjustment (Q4)</strong></p>
+<pre class="codehilite"><code>Instrument: USD/MXN Call Options
+Notional: $5 millones USD adicional
+Strike: 18.00 (at-the-money)
+Premium: 1.5% del nocional
+Objective: Participación en upside estacional
+</code></pre>
+
+<h4 id="resultados-obtenidos">Resultados Obtenidos</h4>
+<p><strong>Año 1 Performance:</strong>
+- <strong>Hedge Effectiveness</strong>: 85% de la exposición cubierta
+- <strong>Cost of Hedging</strong>: 0.8% de ingresos anuales
+- <strong>Earnings Volatility</strong>: Reducción del 60%
+- <strong>Cash Flow Predictability</strong>: Improved planning accuracy</p>
+<h3 id="caso-2-banco-comercial-regional">Caso 2: Banco Comercial Regional</h3>
+<h4 id="perfil-de-la-institucion">Perfil de la Institución</h4>
+<p><strong>Activos</strong>: $15,000 millones MXN
+<strong>Cartera Crédito</strong>: 70% tasa variable, 30% tasa fija
+<strong>Captación</strong>: 80% tasa variable, 20% tasa fija
+<strong>Gap de Tasa</strong>: Asset sensitive (beneficia de alzas)
+<strong>Regulatory</strong>: Sujeto a requerimientos Basel III</p>
+<h4 id="analisis-alm-asset-liability-management">Análisis ALM (Asset-Liability Management)</h4>
+<p><strong>Interest Rate Gap Analysis:</strong></p>
+<pre class="codehilite"><code>0-3 meses: Gap positivo $2,500 millones (asset sensitive)
+3-6 meses: Gap positivo $1,800 millones  
+6-12 meses: Gap negativo $800 millones (liability sensitive)
+1-3 años: Gap negativo $1,200 millones
+3+ años: Gap neutral $0 millones
+</code></pre>
+
+<p><strong>Duration Analysis:</strong>
+- <strong>Asset Duration</strong>: 2.8 años promedio
+- <strong>Liability Duration</strong>: 1.2 años promedio
+- <strong>Duration Gap</strong>: +1.6 años (riesgo a baja de tasas)</p>
+<h4 id="estrategia-de-hedging">Estrategia de Hedging</h4>
+<p><strong>Objective</strong>: Reducir sensitivity a movimientos de tasas, mantener spread positivo</p>
+<p><strong>Tactical Implementation:</strong></p>
+<pre class="codehilite"><code>Instrument 1: Pay-Fixed IRS
+Notional: $3,000 millones MXN
+Tenor: 2 años
+Fixed Rate: 9.25%
+Floating: TIIE 28 + 0%
+Effect: Reduce asset sensitivity corto plazo
+</code></pre>
+
+<pre class="codehilite"><code>Instrument 2: Interest Rate Collar
+Notional: $2,000 millones MXN  
+Cap Strike: 11.00% (venta para generar premium)
+Floor Strike: 7.00% (compra para protección)
+Effect: Monetizar view range-bound en tasas
+</code></pre>
+
+<pre class="codehilite"><code>Instrument 3: Swaption Strategy
+Type: 1Y x 3Y Receiver Swaption
+Strike: 8.50%
+Premium: 0.45% del nocional
+Rationale: Protección contra caída abrupta tasas
+</code></pre>
+
+<h4 id="risk-management-framework">Risk Management Framework</h4>
+<p><strong>Governance Structure:</strong>
+- <strong>ALCO Committee</strong>: Reunión mensual, decisiones estratégicas
+- <strong>Risk Committee</strong>: Oversight independiente, límites
+- <strong>Trading Committee</strong>: Ejecución táctica, day-to-day
+- <strong>Audit Function</strong>: Validación independiente de modelos</p>
+<p><strong>Limit Structure:</strong>
+- <strong>VaR Limit</strong>: 2% del Tier 1 Capital
+- <strong>Duration Gap</strong>: +/- 1 año máximo
+- <strong>Basis Point Value</strong>: $500,000 MXN por 1 bp
+- <strong>Concentration</strong>: Máximo 25% con un counterparty</p>
+<h3 id="caso-3-corporativo-de-infraestructura">Caso 3: Corporativo de Infraestructura</h3>
+<h4 id="perfil-del-proyecto">Perfil del Proyecto</h4>
+<p><strong>Sector</strong>: Energía renovable (parque eólico)
+<strong>Investment</strong>: $300 millones USD total
+<strong>Financing</strong>: 70% deuda, 30% equity
+<strong>Revenue</strong>: Contratos PPA en USD, 20 años
+<strong>Construction</strong>: 24 meses, exposición a inflación</p>
+<h4 id="estructura-de-riesgos">Estructura de Riesgos</h4>
+<p><strong>Currency Risk:</strong>
+- <strong>Revenue</strong>: 100% USD (contratos PPA)
+- <strong>Capex</strong>: 60% USD (equipment), 40% MXN (labor, local)
+- <strong>Opex</strong>: 30% USD (maintenance), 70% MXN (operations)
+- <strong>Debt Service</strong>: 100% USD (project finance)</p>
+<p><strong>Interest Rate Risk:</strong>
+- <strong>Construction Loan</strong>: SOFR + 300 bp (floating)
+- <strong>Term Loan</strong>: 7-year bullet, rate to be fixed
+- <strong>Exposure</strong>: $210 millones USD debt</p>
+<p><strong>Inflation Risk:</strong>
+- <strong>Construction Costs</strong>: Indexed to local inflation
+- <strong>O&amp;M Escalation</strong>: 3% annual real increase
+- <strong>PPA Escalation</strong>: 2.5% USD inflation adjustment</p>
+<h4 id="comprehensive-hedging-strategy">Comprehensive Hedging Strategy</h4>
+<p><strong>Phase 1: Construction Period Hedging</strong></p>
+<p><strong>FX Strategy:</strong></p>
+<pre class="codehilite"><code>Objective: Match currency of costs with natural hedge
+Instrument: MXN/USD Forward Program
+Schedule: Monthly forwards for MXN capex requirements
+Notional: $120 millones USD equivalent over 24 months
+Execution: Rolling 6-month forward strip
+</code></pre>
+
+<p><strong>Interest Rate Strategy:</strong></p>
+<pre class="codehilite"><code>Objective: Lock financing cost for term loan
+Instrument: Forward Starting Interest Rate Swap
+Start Date: Month 24 (construction completion)
+Notional: $210 millones USD
+Tenor: 7 years
+Fixed Rate: 6.75% (locked during construction)
+</code></pre>
+
+<p><strong>Inflation Protection:</strong></p>
+<pre class="codehilite"><code>Objective: Protect against Mexico construction inflation
+Instrument: UDI-linked Cost Plus Contract
+Coverage: 40% of construction costs (MXN portion)
+Mechanism: Automatic adjustment per UDI variation
+Cap: 8% annual inflation (catastrophic protection)
+</code></pre>
+
+<p><strong>Phase 2: Operational Period Strategy</strong></p>
+<p><strong>Long-term FX Management:</strong></p>
+<pre class="codehilite"><code>Natural Hedge: USD revenue vs USD debt service
+Residual Exposure: Net USD 15 millones annual (operations)
+Strategy: Quarterly forward sales of excess USD
+Flexibility: 25% unhedged for USD appreciation upside
+</code></pre>
+
+<p><strong>Operational Cost Inflation:</strong></p>
+<pre class="codehilite"><code>Challenge: O&amp;M costs in MXN, revenue escalation in USD
+Solution: Inflation swap (MXN inflation vs USD inflation)
+Notional: $20 millones USD equivalent annually
+Tenor: 15 years (after construction)
+</code></pre>
+
+<h4 id="risk-monitoring-and-kpis">Risk Monitoring and KPIs</h4>
+<p><strong>Financial KPIs:</strong>
+- <strong>DSCR (Debt Service Coverage Ratio)</strong>: Maintain &gt; 1.3x
+- <strong>Hedge Effectiveness</strong>: ASC 815 compliance testing
+- <strong>Cash Flow at Risk</strong>: 5% VaR &lt; $10 millones USD
+- <strong>Unhedged Exposure</strong>: Maximum 25% of any risk factor</p>
+<p><strong>Operational KPIs:</strong>
+- <strong>Availability Factor</strong>: &gt;95% (affects revenue)
+- <strong>O&amp;M Cost/MWh</strong>: Benchmark vs industry
+- <strong>Inflation Pass-through</strong>: Actual vs contracted escalation</p>
+<h3 id="caso-4-multinacional-farmaceutica">Caso 4: Multinacional Farmacéutica</h3>
+<h4 id="perfil-corporativo">Perfil Corporativo</h4>
+<p><strong>Geografía</strong>: México (manufacturing), LATAM sales
+<strong>Revenue Mix</strong>: 40% MXN, 35% USD, 15% BRL, 10% COP
+<strong>Cost Structure</strong>: 60% MXN, 30% USD, 10% EUR (IP/royalties)
+<strong>Seasonality</strong>: Q4 = 35% annual sales (flu season)
+<strong>Regulatory</strong>: FDA-approved facility, export quality</p>
+<h4 id="multi-currency-risk-assessment">Multi-Currency Risk Assessment</h4>
+<p><strong>Translation Risk:</strong>
+- <strong>Subsidiaries</strong>: 5 countries, different functional currencies
+- <strong>Consolidation</strong>: Monthly USD reporting
+- <strong>Volatility</strong>: Earnings affected by FX translation
+- <strong>Hedge Accounting</strong>: CTA hedge designation consideration</p>
+<p><strong>Transaction Risk:</strong></p>
+<pre class="codehilite"><code>Exposure Matrix (Monthly, USD millions):
+          Inflows    Outflows    Net Position
+MXN         15         -20          -5
+USD         12          -8          +4  
+BRL          6          -1          +5
+COP          3          -1          +2
+EUR          0          -3          -3
+</code></pre>
+
+<p><strong>Economic Risk:</strong>
+- <strong>Competitive Position</strong>: Currency-driven pricing pressure
+- <strong>Market Share</strong>: FX impact on relative positioning
+- <strong>Input Costs</strong>: Active pharmaceutical ingredients (APIs)</p>
+<h4 id="multi-layered-hedging-approach">Multi-Layered Hedging Approach</h4>
+<p><strong>Layer 1: Transaction Hedging (Rolling 12-month)</strong></p>
+<pre class="codehilite"><code>Objective: Hedge confirmed exposures
+Coverage: 90% of net exposures by currency
+Instruments: Forwards (70%), options (30%)
+Rebalancing: Monthly, based on updated forecasts
+</code></pre>
+
+<p><strong>Layer 2: Forecasted Hedging (12-18 months)</strong></p>
+<pre class="codehilite"><code>Objective: Hedge highly probable transactions
+Coverage: 60% of forecasted exposures
+Instruments: Options-heavy (maintain flexibility)
+Probability Threshold: &gt;80% confidence level
+</code></pre>
+
+<p><strong>Layer 3: Strategic Hedging (2-3 years)</strong></p>
+<pre class="codehilite"><code>Objective: Hedge translation and economic exposures
+Coverage: 25% of net investment in subsidiaries
+Instruments: Long-dated forwards, debt in foreign currency
+Accounting: Net investment hedge designation
+</code></pre>
+
+<p><strong>Collar Strategy for BRL Exposure:</strong></p>
+<pre class="codehilite"><code>Background: High BRL volatility, significant exposure
+Structure: BRL/USD Collar (monthly rolling)
+Put Strike: 5.20 (protection level)
+Call Strike: 5.80 (participate until this level)  
+Premium: Zero cost (strikes adjusted monthly)
+Notional: $5 millones USD equivalent
+</code></pre>
+
+<h4 id="advanced-strategies">Advanced Strategies</h4>
+<p><strong>Natural Hedging Enhancement:</strong>
+- <strong>Supply Chain Optimization</strong>: Source APIs in export markets
+- <strong>Pricing Mechanisms</strong>: Currency adjustment clauses
+- <strong>Netting Programs</strong>: Inter-company exposures offset
+- <strong>Leading/Lagging</strong>: Timing of receivables/payables</p>
+<p><strong>Exotic Structures for Tail Risk:</strong>
+- <strong>Worst-of Basket Options</strong>: Protection against correlated EM selloff
+- <strong>Himalayan Options</strong>: Sequential best performer elimination
+- <strong>Barrier Options</strong>: Knock-in protection for extreme moves</p>
+<p><strong>ESG-Aligned Hedging:</strong>
+- <strong>Sustainable Finance Framework</strong>: Green bond proceeds hedging
+- <strong>Carbon Credit Exposure</strong>: USD/Carbon price correlation
+- <strong>Social Impact Bonds</strong>: Currency-hedged impact investments</p>
+<hr />
+<h3 id="informacion-de-contacto-derivados-y-riesgos">Información de Contacto - Derivados y Riesgos</h3>
+<p><strong>Mesa de Derivados:</strong>
+- <strong>Teléfono</strong>: +52 55 5231-4580
+- <strong>Email</strong>: derivados@monex.com.mx
+- <strong>Horarios</strong>: 8:00 - 17:00 hrs (México)</p>
+<p><strong>Structured Products:</strong>
+- <strong>Teléfono</strong>: +52 55 5231-4590<br />
+- <strong>Email</strong>: estructurados@monex.com.mx
+- <strong>Minimum</strong>: $1 millón MXN / $250,000 USD</p>
+<p><strong>Risk Advisory:</strong>
+- <strong>Teléfono</strong>: +52 55 5231-4595
+- <strong>Email</strong>: riskadvisory@monex.com.mx
+- <strong>Consultation</strong>: Complimentary assessment</p>
+<p><strong>Documentation:</strong>
+- <strong>ISDA Master Agreement</strong>: Legal template required
+- <strong>CSA (Credit Support Annex)</strong>: Collateral management
+- <strong>Confirmations</strong>: Electronic platform available
+- <strong>Netting</strong>: Close-out netting agreements</p>
+<p><strong>Regulatory Compliance:</strong>
+- <strong>MiFID II</strong>: European clients coverage
+- <strong>Dodd-Frank</strong>: US persons compliance<br />
+- <strong>EMIR</strong>: European Market Infrastructure
+- <strong>Local</strong>: CNBV, Banco de México adherence</p>
+<hr />
+<p><em>La información contenida es solo para fines educativos. Los derivados conllevan riesgo sustancial de pérdida. Consulte con profesionales calificados antes de implementar estrategias. Monex no garantiza resultados específicos de las estrategias descritas.</em></p>
+        
+        <div class="footer-info">
+            <p><strong>© 2024 Monex Grupo Financiero</strong></p>
+            <p>Este documento contiene información confidencial y propietaria. Todos los derechos reservados.</p>
+            <p>Para más información, visite: <strong>www.monex.com.mx</strong></p>
+        </div>
+        
+        <div class="footer" style="display: none;">© 2024 Monex Grupo Financiero - Página <span id="pageNumber"></span></div>
+    </div>
+    
+    <script>
+        // Show header and footer only when printing
+        window.addEventListener('beforeprint', function() {
+            document.querySelector('.header').style.display = 'block';
+            document.querySelector('.footer').style.display = 'block';
+        });
+        
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

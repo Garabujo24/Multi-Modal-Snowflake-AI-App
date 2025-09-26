@@ -1,0 +1,63 @@
+**Informe Financiero Consolidado - Segundo Trimestre (Q2) 2024**
+
+**Para:** Comité Directivo
+**De:** Dirección de Finanzas
+**Fecha:** 25 de Julio de 2024
+
+---
+
+**1. Resumen Ejecutivo (Narrativa Financiera)**
+
+Farmapronto ha concluido el segundo trimestre de 2024 con resultados financieros robustos, impulsados por un aumento en el volumen de ventas y una gestión eficiente de los costos operativos. Los ingresos totales crecieron un 11% en comparación con el mismo trimestre del año anterior (YoY), alcanzando los $37.62 millones de MXN. La utilidad neta experimentó un crecimiento aún mayor, del 15% YoY, situándose en $4.51 millones de MXN, lo que refleja una mejora en los márgenes de rentabilidad.
+
+La salud financiera de la compañía es sólida, con un flujo de efectivo operativo positivo y una posición de liquidez adecuada para afrontar los planes de inversión en tecnología y marketing para el segundo semestre del año.
+
+---
+
+**2. Estado de Resultados (Simplificado)**
+*Cifras en miles de MXN*
+
+| Concepto                    | Q2 2024    | Q2 2023    | Variación % |
+|-----------------------------|------------|------------|-------------|
+| **Ingresos Totales**        | **$37,620**| **$33,892**| **+11.0%**  |
+| Costo de Ventas (COGS)      | ($22,572)  | ($20,674)  | +9.2%       |
+| **Utilidad Bruta**          | **$15,048**| **$13,218**| **+13.8%**  |
+| *Margen Bruto*              | *40.0%*    | *39.0%*    | *+1.0 pp*   |
+|                             |            |            |             |
+| Gastos Operativos (SG&A)    | ($8,276)   | ($7,592)   | +9.0%       |
+| Gastos de Marketing         | ($1,075)   | ($850)     | +26.5%      |
+| **Utilidad Operativa**      | **$5,697** | **$4,776** | **+19.3%**  |
+| *Margen Operativo*          | *15.1%*    | *14.1%*    | *+1.0 pp*   |
+|                             |            |            |             |
+| Impuestos (ISR, 30%)        | ($1,691)   | ($1,433)   |             |
+| **Utilidad Neta**           | **$4,006** | **$3,343** | **+19.8%**  |
+
+---
+
+**3. Balance General (Resumido al 30 de Junio de 2024)**
+*Cifras en miles de MXN*
+
+| Activos                     | Monto      | Pasivos y Patrimonio        | Monto      |
+|-----------------------------|------------|-----------------------------|------------|
+| **Activos Circulantes**     |            | **Pasivos Circulantes**     |            |
+| Efectivo y Equivalentes     | $8,500     | Cuentas por Pagar (Prov.)   | $11,200    |
+| Cuentas por Cobrar          | $1,200     | Impuestos por Pagar         | $1,691     |
+| Inventario                  | $25,300    | **Total Pasivos Circ.**     | **$12,891**|
+| **Total Activos Circ.**     | **$35,000**|                             |            |
+|                             |            | **Patrimonio Neto**         |            |
+| **Activos Fijos**           |            | Capital Social              | $20,000    |
+| Propiedad, Planta y Equipo  | $15,000    | Utilidades Retenidas        | $17,109    |
+| **Total Activos**           | **$50,000**| **Total Patrimonio**        | **$37,109**|
+|                             |            |                             |            |
+|                             |            | **Total Pasivo + Patrimonio** | **$50,000**|
+
+---
+
+**4. Análisis Financiero y Proyecciones**
+
+- **Rentabilidad:** La mejora en el margen bruto (de 39% a 40%) se atribuye a una mejor negociación con proveedores y al aumento de la participación de nuestra marca propia, que tiene un margen superior. El control de los gastos operativos, que crecieron a un ritmo menor que los ingresos, permitió expandir el margen operativo.
+- **Liquidez:** La Razón Circulante (Activo Circulante / Pasivo Circulante) es de 2.71, lo que indica una excelente capacidad para cubrir las obligaciones a corto plazo.
+- **Gestión de Inventario:** Los días de inventario se sitúan en 95 días, una ligera mejora respecto a los 100 días del trimestre anterior. El objetivo para Q3 es reducirlo a 90 días mediante la optimización del reabastecimiento.
+
+**Proyecciones para Q3 2024:**
+Se proyecta un crecimiento de ingresos del 8% para el tercer trimestre, considerando la ausencia de temporalidades fuertes como la de alergias. Se mantendrá la inversión en marketing para la campaña de "Regreso a Clases Saludable" y se espera mantener el margen neto por encima del 10%.

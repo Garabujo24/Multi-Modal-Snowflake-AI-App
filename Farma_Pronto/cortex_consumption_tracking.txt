@@ -1,0 +1,127 @@
+# How to Track Snowflake Cortex Token and Message Consumption
+
+Tracking token and message consumption for Snowflake Cortex is crucial for managing costs and understanding usage patterns. You can do this primarily through the `SNOWFLAKE.ACCOUNT_USAGE` schema, which provides detailed logs.
+
+The two most important views for this are:
+1.  **`COMPLETION_LOGS`**: This is the most direct and detailed view for tracking LLM function usage, including tokens.
+2.  **`QUERY_HISTORY`**: A more general view that shows the credit cost of all queries, including Cortex function calls.
+
+Here’s a breakdown of how to use them with practical SQL examples.
+
+---
+
+### 1. Using `SNOWFLAKE.ACCOUNT_USAGE.COMPLETION_LOGS` (Best for Token-Level Detail)
+
+This view is specifically designed to log metadata about calls to Snowflake's LLM functions (like `COMPLETE`, `EXTRACT_ANSWER`, `SENTIMENT`, etc.). It's the most accurate source for token counts.
+
+**Key Columns:**
+*   `FUNCTION_NAME`: The Cortex function that was called (e.g., `SNOWFLAKE.CORTEX.COMPLETE`).
+*   `PROMPT_TOKENS`: Number of tokens in the input prompt.
+*   `COMPLETION_TOKENS`: Number of tokens in the generated response.
+*   `TOTAL_TOKENS`: The sum of prompt and completion tokens.
+*   `CREDITS_USED`: The number of Snowflake credits consumed by the call.
+*   `USER_NAME`, `ROLE_NAME`: Who ran the query.
+*   `START_TIME`, `END_TIME`: When the function was executed.
+
+#### Example Queries:
+
+**A. Total Consumption by Cortex Function**
+This query shows the total tokens, credits, and number of calls for each Cortex function used in the last 30 days.
+
+```sql
+SELECT
+    FUNCTION_NAME,
+    COUNT(*) AS total_calls,
+    SUM(TOTAL_TOKENS) AS total_tokens_consumed,
+    SUM(CREDITS_USED) AS total_credits_consumed
+FROM
+    SNOWFLAKE.ACCOUNT_USAGE.COMPLETION_LOGS
+WHERE
+    START_TIME >= DATEADD('day', -30, CURRENT_TIMESTAMP())
+GROUP BY
+    FUNCTION_NAME
+ORDER BY
+    total_credits_consumed DESC;
+```
+
+**B. Daily Token Consumption**
+Track how your token usage trends over time.
+
+```sql
+SELECT
+    DATE_TRUNC('day', START_TIME)::DATE AS usage_date,
+    SUM(TOTAL_TOKENS) AS daily_total_tokens,
+    SUM(CREDITS_USED) AS daily_credits_used
+FROM
+    SNOWFLAKE.ACCOUNT_USAGE.COMPLETION_LOGS
+WHERE
+    START_TIME >= DATEADD('day', -30, CURRENT_TIMESTAMP())
+GROUP BY
+    usage_date
+ORDER BY
+    usage_date;
+```
+
+**C. Consumption by User or Role**
+Identify which users or roles are the heaviest consumers of Cortex services.
+
+```sql
+SELECT
+    USER_NAME,
+    ROLE_NAME,
+    SUM(TOTAL_TOKENS) AS total_tokens_consumed,
+    SUM(CREDITS_USED) AS total_credits_consumed
+FROM
+    SNOWFLAKE.ACCOUNT_USAGE.COMPLETION_LOGS
+WHERE
+    START_TIME >= DATEADD('day', -30, CURRENT_TIMESTAMP())
+GROUP BY
+    USER_NAME, ROLE_NAME
+ORDER BY
+    total_credits_consumed DESC;
+```
+
+---
+
+### 2. Using `SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY` (For Overall Credit Cost)
+
+This view logs every query executed in your account. It's useful for seeing the total credit cost of a query that *contains* a Cortex function call, but it **does not** provide token-level details.
+
+#### Example Query:
+
+**Find All Queries Using Cortex Functions**
+This helps you identify the specific SQL statements that are driving Cortex consumption.
+
+```sql
+SELECT
+    QUERY_TEXT,
+    USER_NAME,
+    ROLE_NAME,
+    TOTAL_ELAPSED_TIME / 1000 AS duration_seconds,
+    CREDITS_USED_CLOUD_SERVICES
+FROM
+    SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY
+WHERE
+    QUERY_TEXT ILIKE '%SNOWFLAKE.CORTEX%'
+    AND START_TIME >= DATEADD('day', -7, CURRENT_TIMESTAMP())
+ORDER BY
+    CREDITS_USED_CLOUD_SERVICES DESC;
+```
+
+---
+
+### Summary and Recommendations
+
+| To Track...                | Best View to Use    | Why?                                                                                         |
+| :------------------------- | :------------------ | :------------------------------------------------------------------------------------------- |
+| **Tokens & Messages**      | `COMPLETION_LOGS`   | Provides granular data on `PROMPT_TOKENS`, `COMPLETION_TOKENS`, and `TOTAL_TOKENS` per call.    |
+| **Credit Cost of Functions** | `COMPLETION_LOGS`   | The `CREDITS_USED` column is specific to the function's serverless compute cost.             |
+| **Overall Query Cost**     | `QUERY_HISTORY`     | Shows the total cost of the entire SQL query, including any cloud service credits.         |
+
+**Best Practice:**
+
+1.  **Start with `COMPLETION_LOGS`** for detailed token and credit analysis of Cortex functions.
+2.  **Use `QUERY_HISTORY`** if you need to investigate the full context of a query or troubleshoot performance.
+3.  **Create a Dashboard:** Use the queries above to build a Snowsight dashboard to monitor Cortex consumption in near real-time, tracking KPIs like "Cost per User," "Tokens per Day," and "Most Used Functions."
+
+**Important Note:** Data in `ACCOUNT_USAGE` views can have some latency (typically from 45 minutes to a few hours), so it's not perfectly real-time. You also need the appropriate permissions (e.g., a role with access to the `SNOWFLAKE` database) to query these views.

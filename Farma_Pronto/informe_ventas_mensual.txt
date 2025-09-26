@@ -1,0 +1,59 @@
+**Informe de Ventas Mensual - Mayo 2024**
+
+**Fecha de Elaboración:** 05 de Junio de 2024
+**Autor:** Departamento de Análisis de Datos
+
+---
+
+**1. Resumen Ejecutivo**
+
+El mes de mayo ha mostrado un sólido desempeño en las ventas, con un crecimiento general del 8.5% en comparación con el mes anterior (abril de 2024) y un 12% en comparación con mayo de 2023. El ingreso total consolidado para el mes fue de $12,540,000 MXN.
+
+Los principales impulsores del crecimiento fueron la categoría de "Antihistamínicos y Alergias", debido a la temporada, y un notable aumento en las ventas a través de nuestro servicio a domicilio, que creció un 25% mes a mes. La sucursal "Farmapronto Polanco" se posicionó como la de mayor rendimiento, contribuyendo con el 15% del total de los ingresos.
+
+Se recomienda reforzar el stock de productos estacionales y expandir la campaña de marketing digital para el servicio a domicilio con el fin de capitalizar el impulso actual.
+
+---
+
+**2. Ventas por Categoría de Producto**
+
+| Categoría                 | Ingresos (MXN) | Porcentaje del Total | Crecimiento vs. Abril 2024 |
+|---------------------------|----------------|----------------------|----------------------------|
+| Medicamentos con Receta   | $4,514,400     | 36%                  | +5%                        |
+| Medicamentos de Venta Libre | $3,135,000     | 25%                  | +10%                       |
+| Cuidado Personal e Higiene| $1,881,000     | 15%                  | +7%                        |
+| Antihistamínicos y Alergias| $1,254,000     | 10%                  | +45%                       |
+| Vitaminas y Suplementos   | $1,003,200     | 8%                   | +3%                        |
+| Material de Curación      | $752,400       | 6%                   | +2%                        |
+| **Total**                 | **$12,540,000**| **100%**             | **+8.5%**                  |
+
+**Análisis:**
+La categoría de Antihistamínicos experimentó un crecimiento excepcional, alineado con las proyecciones estacionales. Los medicamentos de venta libre también mostraron un fuerte aumento, impulsado por analgésicos y productos para el resfriado común. Se debe monitorear el inventario de estos productos de cerca.
+
+---
+
+**3. Desempeño de Ventas por Sucursal (Top 5)**
+
+| Sucursal              | Ingresos (MXN) | Ticket Promedio (MXN) | Crecimiento vs. Abril 2024 |
+|-----------------------|----------------|-----------------------|----------------------------|
+| Farmapronto Polanco   | $1,881,000     | $450                  | +15%                       |
+| Farmapronto Centro    | $1,504,800     | $380                  | +8%                        |
+| Farmapronto Satélite  | $1,128,600     | $410                  | +10%                       |
+| Farmapronto Roma      | $940,500       | $400                  | +9%                        |
+| Farmapronto Coyoacán  | $815,100       | $390                  | +7%                        |
+
+**Análisis:**
+La sucursal de Polanco superó las expectativas, en gran parte debido a una mayor adopción del servicio a domicilio en su área de influencia. Satélite también muestra un crecimiento robusto. Se sugiere analizar las estrategias locales de la sucursal de Polanco para identificar prácticas replicables.
+
+---
+
+**4. Conclusiones y Recomendaciones**
+
+- **Conclusión 1:** El crecimiento está fuertemente influenciado por factores estacionales y la consolidación del canal de entrega a domicilio.
+- **Recomendación 1:** Iniciar una campaña de reabastecimiento proactivo para productos de alergias y resfriado, anticipando la demanda de junio.
+
+- **Conclusión 2:** El servicio a domicilio es un diferenciador clave y una fuente importante de crecimiento.
+- **Recomendación 2:** Lanzar una campaña de marketing en redes sociales geo-segmentada para promover el servicio a domicilio en zonas de influencia de las sucursales con menor adopción.
+
+- **Conclusión 3:** Existe una disparidad de rendimiento notable entre las sucursales.
+- **Recomendación 3:** Organizar una reunión con los gerentes de las sucursales Top 5 y las de menor rendimiento para compartir mejores prácticas en atención al cliente y gestión de inventario local.

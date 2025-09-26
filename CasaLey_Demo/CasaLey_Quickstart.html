@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa Ley + Snowflake Quickstart</title>
+  <style>
+    :root {
+      --casaley-rojo: #d62828;
+      --casaley-verde: #007f3b;
+      --casaley-gris: #f4f4f4;
+      --snowflake-azul: #29b5e8;
+      --texto: #2b2b2b;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Work Sans", "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--texto);
+      background: #ffffff;
+    }
+    header {
+      background: linear-gradient(120deg, var(--casaley-rojo), var(--casaley-verde));
+      color: #ffffff;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    header .marca {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    header .marca img {
+      width: 120px;
+      height: auto;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      letter-spacing: 0.02em;
+    }
+    header p {
+      margin: 0.25rem 0 0;
+      max-width: 660px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .layout {
+      display: flex;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+    nav.toc {
+      flex: 0 0 260px;
+      padding: 2rem 1rem;
+      position: sticky;
+      top: 1.5rem;
+      align-self: flex-start;
+      background: var(--casaley-gris);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+    nav.toc h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--casaley-rojo);
+    }
+    nav.toc ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+    nav.toc a {
+      text-decoration: none;
+      color: var(--texto);
+      font-weight: 600;
+      display: block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 12px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    nav.toc a:hover {
+      background: rgba(41, 181, 232, 0.15);
+      color: var(--casaley-rojo);
+      transform: translateX(4px);
+    }
+    main {
+      flex: 1 1 auto;
+      padding: 2rem 0 2rem 2rem;
+    }
+    section {
+      margin-bottom: 3.5rem;
+    }
+    section h2 {
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--casaley-verde);
+    }
+    section h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+      width: 6px;
+      height: 70%;
+      border-radius: 999px;
+      background: var(--snowflake-azul);
+    }
+    section p, section li {
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .callout {
+      background: rgba(41, 181, 232, 0.12);
+      border-left: 5px solid var(--snowflake-azul);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      margin: 1.25rem 0;
+    }
+    .callout strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--casaley-rojo);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+    }
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .badge {
+      border-radius: 14px;
+      padding: 1rem;
+      background: #ffffff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+      border-top: 6px solid var(--casaley-verde);
+    }
+    .badge h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--casaley-rojo);
+    }
+    .badge p {
+      margin-bottom: 0;
+    }
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+    }
+    code {
+      font-family: "Source Code Pro", "Fira Code", Menlo, monospace;
+    }
+    .step-list {
+      counter-reset: pasos;
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      display: grid;
+      gap: 1rem;
+    }
+    .step-list li {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+    .step-list li::before {
+      counter-increment: pasos;
+      content: counter(pasos, decimal-leading-zero);
+      font-weight: bold;
+      color: var(--casaley-verde);
+      font-size: 1.1rem;
+      margin-right: 0.75rem;
+    }
+    footer {
+      background: var(--casaley-gris);
+      padding: 2rem 1.5rem;
+      color: #5b5b5b;
+      font-size: 0.9rem;
+    }
+    footer .contenido {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        flex-direction: column;
+        padding: 0 1rem 3rem;
+      }
+      nav.toc {
+        position: relative;
+        top: auto;
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+      main {
+        padding: 0;
+      }
+      header {
+        padding: 2rem 1rem 1.5rem;
+      }
+      header .marca {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      header .marca img {
+        width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="marca">
+      <img src="https://www.casaley.com.mx/wp-content/uploads/2020/01/logo.svg" alt="Logo Casa Ley">
+      <div>
+        <h1>Quickstart Casa Ley + Snowflake: Inteligencia Comercial Escalable</h1>
+        <p>Como Ingenieros de Datos en Casa Ley, consolidamos inventarios, ventas y métricas regionales en Snowflake para responder a la demanda con agilidad, gobernar datos sensibles y controlar costos con precisión.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Tabla de contenidos">
+      <h2>Pasos</h2>
+      <ol>
+        <li><a href="#section-1">1. Narrativa Casa Ley y Alcance</a></li>
+        <li><a href="#section-2">2. Preparación del Entorno Snowflake</a></li>
+        <li><a href="#section-3">3. Datos Sintéticos y Elasticidad</a></li>
+        <li><a href="#section-4">4. Automatización y Gobierno</a></li>
+        <li><a href="#section-5">5. Colaboración Segura y Insights</a></li>
+        <li><a href="#section-6">6. FinOps y Métricas de Costo</a></li>
+        <li><a href="#section-7">Próximos Pasos</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section id="section-1">
+        <h2>1. Narrativa Casa Ley y Alcance</h2>
+        <p>Casa Ley opera supermercados y formatos de conveniencia en múltiples ciudades mexicanas. La continuidad operativa exige información diaria para ajustar promociones regionales, reponer inventarios frescos y cuidar el margen. Snowflake habilita esta visión unificada sin infraestructuras rígidas, liberando al equipo de datos para enfocarse en decisiones comerciales.</p>
+        <div class="badge-grid">
+          <div class="badge">
+            <h3>Respuesta Regional Inmediata</h3>
+            <p>Escala recursos analíticos en minutos para absorber picos de demanda en temporadas locales como Semana Santa o Cuaresma.</p>
+          </div>
+          <div class="badge">
+            <h3>Gobernanza Central</h3>
+            <p>Aplica políticas de seguridad homogéneas en todas las tiendas y socios, sin sacrificar velocidad de análisis.</p>
+          </div>
+          <div class="badge">
+            <h3>Costos Bajo Control</h3>
+            <p>Monitorea créditos consumidos por almacén y ajusta antes de incurrir en cargos innecesarios.</p>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Objetivo del Quickstart</strong>
+          Configurar un entorno demostrativo con SnowSQL, generar 10,000+ registros sintéticos, automatizar métricas clave y habilitar visibilidad de costos para Casa Ley.
+        </div>
+        <p>Valida la conexión y el rol activo antes de comenzar:</p>
+        <pre><code>select
+  current_account() as cuenta_activa,
+  current_region() as region_activa,
+  current_role() as rol_activo;</code></pre>
+      </section>
+
+      <section id="section-2">
+        <h2>2. Preparación del Entorno Snowflake</h2>
+        <p>En esta sección habilitamos el ecosistema dedicado para Casa Ley con roles, almacenes virtuales y esquemas alineados a los lineamientos corporativos. Aprovechamos la separación de cómputo y almacenamiento de Snowflake para iniciar con un warehouse <em>X-Small</em> y escalar según la carga.</p>
+        <ol class="step-list">
+          <li>
+            Autentícate con SnowSQL y establece la base de trabajo:
+            <pre><code>snowsql -a &lt;account&gt; -u &lt;usuario&gt; -r ACCOUNTADMIN</code></pre>
+          </li>
+          <li>
+            Ejecuta la hoja <code>CasaLey_SnowSQL_Worksheet.sql</code> ubicada en <code>CasaLey_Demo</code>:
+            <pre><code>!source /Users/gjimenez/Documents/GitHub/ipesa-pinturas/CasaLey_Demo/CasaLey_SnowSQL_Worksheet.sql</code></pre>
+          </li>
+          <li>
+            Verifica que el warehouse <code>CASALEY_WH</code> esté disponible y en estado suspendido para iniciar bajo demanda.
+          </li>
+        </ol>
+        <p>Ejecuta el bloque clave para crear recursos dedicados:</p>
+        <pre><code>create or replace role CASALEY_DEMO_ROLE;
+create or replace warehouse CASALEY_WH
+  warehouse_size = 'X-SMALL'
+  auto_suspend = 60
+  auto_resume = true;
+create or replace database CASALEY_DB;
+create or replace schema CASALEY_DB.CASALEY_ANALYTICS;</code></pre>
+        <div class="callout">
+          <strong>Ventaja Clave</strong>
+          Cambia el tamaño del warehouse en segundos según la complejidad de las consultas, sin reprovisionar infraestructura ni interrumpir cargas.
+        </div>
+      </section>
+
+      <section id="section-3">
+        <h2>3. Datos Sintéticos y Elasticidad</h2>
+        <p>Generamos tablas transitorias con más de 15,000 filas sumadas entre clientes, ventas e inventario. Este volumen permite simular las cadenas de suministro y comportamiento de compra real en Casa Ley, mientras Snowflake automáticamente comprime y optimiza el almacenamiento.</p>
+        <p>Para validar la elasticidad:</p>
+        <ol class="step-list">
+          <li>Escala el warehouse a <code>SMALL</code> con <code>ALTER WAREHOUSE CASALEY_WH SET WAREHOUSE_SIZE = 'SMALL';</code></li>
+          <li>Ejecuta la agregación de ventas por categoría incluida en la hoja de trabajo y observa la respuesta en segundos.</li>
+          <li>Suspende el warehouse tras los cálculos para evitar consumo innecesario; Snowflake lo hará automáticamente tras 60 segundos de inactividad.</li>
+        </ol>
+        <p>Genera los datos sintéticos con SnowSQL:</p>
+        <pre><code>create or replace transient table CASALEY_DB.CASALEY_ANALYTICS.VENTAS_SINTETICAS as
+select
+  seq4() + 1 as venta_id,
+  dateadd(day, - uniform(0, 120, random()), current_date()) as fecha_venta,
+  ceil(uniform(1, 1000, random())) as tienda_id,
+  round(uniform(50, 1500, random())::numeric(12,2), 2) as monto_ticket
+from table(generator(rowcount =&gt; 12000));</code></pre>
+        <div class="badge-grid">
+          <div class="badge">
+            <h3>Compresión Nativa</h3>
+            <p>Los datos sintéticos se almacenan columnarmente, reduciendo el costo por registro sin configuraciones extra.</p>
+          </div>
+          <div class="badge">
+            <h3>Auto-Suspend</h3>
+            <p>Consumirás créditos solo mientras se ejecutan consultas; al terminar, el warehouse entra en pausa automáticamente.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-4">
+        <h2>4. Automatización y Gobierno</h2>
+        <p>Snowflake simplifica la analítica continua con <em>streams</em> y <em>tasks</em>, además de políticas de masking administradas desde un solo punto. Esto asegura que Casa Ley pueda calcular ventas por hora en tiendas críticas y proteger segmentos de clientes sensibles.</p>
+        <div class="callout">
+          <strong>Automatización en Minutos</strong>
+          La tarea <code>CASALEY_TASK_VENTAS_HORA</code> procesa cada hora los cambios detectados por el stream y actualiza la tabla de métricas, sin servidores dedicados.</div>
+        <ul>
+          <li><code>STREAM CASALEY_VENTAS_STREAM</code> captura cambios incrementales sobre ventas.</li>
+          <li><code>TASK CASALEY_TASK_VENTAS_HORA</code> opera con el mismo warehouse, asegurando consistencia y escalando bajo la misma política de costos.</li>
+          <li>La política de enmascaramiento <code>CASALEY_SEGMENTO_MASK</code> permite exponer datos agregados a socios sin revelar la clasificación de lealtad.</li>
+        </ul>
+        <pre><code>create or replace stream CASALEY_DB.CASALEY_ANALYTICS.CASALEY_VENTAS_STREAM
+  on table CASALEY_DB.CASALEY_ANALYTICS.VENTAS_SINTETICAS;
+
+create or replace task CASALEY_DB.CASALEY_ANALYTICS.CASALEY_TASK_VENTAS_HORA
+  warehouse = CASALEY_WH
+  schedule = '60 minute'
+as
+merge into CASALEY_DB.CASALEY_ANALYTICS.METRICAS_HORA tgt
+using (
+  select date_trunc(hour, fecha_venta) as ventana_inicio,
+         categoria,
+         sum(monto_ticket) as ventas_hora
+  from CASALEY_DB.CASALEY_ANALYTICS.CASALEY_VENTAS_STREAM
+  group by 1,2
+) src
+on tgt.ventana_inicio = src.ventana_inicio and tgt.categoria = src.categoria
+when matched then update set ventas_hora = src.ventas_hora
+when not matched then insert (ventana_inicio, ventana_fin, categoria, ventas_hora)
+values (src.ventana_inicio, dateadd(hour,1,src.ventana_inicio), src.categoria, src.ventas_hora);</code></pre>
+      </section>
+
+      <section id="section-5">
+        <h2>5. Colaboración Segura y Insights</h2>
+        <p>Casa Ley puede compartir cuadros de mando y reportes segmentados con áreas de mercadotecnia, finanzas y operaciones gracias a vistas seguras y el modelo multi-tenant de Snowflake.</p>
+        <div class="badge-grid">
+          <div class="badge">
+            <h3>Vistas Seguras</h3>
+            <p><code>VW_VENTAS_SEGMENTO</code> permite compartir ventas por programa de lealtad sin exponer datos PI.</p>
+          </div>
+          <div class="badge">
+            <h3>Data Sharing Controlado</h3>
+            <p>Comparte sets agregados en segundos con filiales o socios de logística, sin mover datos fuera de Snowflake.</p>
+          </div>
+        </div>
+        <p>Integra estas vistas con herramientas de BI o dashboards de Casa Ley, aprovechando conectores nativos de Snowflake.</p>
+        <pre><code>create or replace secure view CASALEY_DB.CASALEY_ANALYTICS.VW_VENTAS_SEGMENTO as
+select
+  v.fecha_venta,
+  v.categoria,
+  c.segmento_fidelidad,
+  sum(v.monto_ticket) as ventas_segmento
+from CASALEY_DB.CASALEY_ANALYTICS.VENTAS_SINTETICAS v
+join CASALEY_DB.CASALEY_ANALYTICS.CLIENTES_DIM c on v.cliente_id = c.cliente_id
+group by 1,2,3;</code></pre>
+      </section>
+
+      <section id="section-6">
+        <h2>6. FinOps y Métricas de Costo</h2>
+        <p>La disciplina FinOps es prioritaria para Casa Ley. Implementamos el monitor de recursos <code>CASALEY_COST_MONITOR</code> con umbrales de alerta al 80%, 90% y 100% del presupuesto diario.</p>
+        <ol class="step-list">
+          <li>Configura el monitor al ejecutar la hoja SQL; queda ligado al warehouse <code>CASALEY_WH</code>.</li>
+          <li>Consulta consumos recientes desde <code>SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_METERING_HISTORY</code> usando el bloque provisto.</li>
+          <li>Integra las métricas con dashboards financieros para decisiones de presupuesto diario en logística.</li>
+        </ol>
+        <pre><code>select
+  usage_date,
+  sum(credits_used) as creditos_consumidos,
+  sum(credits_used) * current_account()::variant:"DATA_TRANSFER_CURRENCY_RATE" as costo_estimado
+from snowflake.account_usage.warehouse_metering_history
+where warehouse_name = 'CASALEY_WH'
+  and usage_date &gt;= dateadd(day, -7, current_date())
+group by usage_date
+order by usage_date;</code></pre>
+        <div class="callout">
+          <strong>Insight Accionable</strong>
+          Con los créditos monitoreados diariamente, Casa Ley puede ajustar horarios de carga o suspender tareas no críticas al detectar desviaciones tempranas.
+        </div>
+      </section>
+
+      <section id="section-7">
+        <h2>Próximos Pasos</h2>
+        <ul>
+          <li>Conecta fuentes reales (POS, ERP, logística) reproduciendo la estructura creada en <code>CASALEY_RAW</code>.</li>
+          <li>Publica dashboards en Streamlit on Snowflake para mostrar ventas en tiempo real a gerentes regionales.</li>
+          <li>Habilita data sharing con proveedores estratégicos asegurando gobernanza con políticas dinámicas.</li>
+          <li>Amplía el monitor de costos con budgets semanales y alertas vía Snowflake Alerts o integraciones con equipos FinOps.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="contenido">
+      <span>© Casa Ley 2025 · Construido en colaboración con Snowflake para impulsar decisiones comerciales oportunas.</span>
+      <span>Contacto del equipo de datos: datos@casaley.com.mx · Referencia interna: Demo SnowSQL Ingeniero de Datos.</span>
+    </div>
+  </footer>
+</body>
+</html>
+

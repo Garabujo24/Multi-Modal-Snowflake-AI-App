@@ -1,0 +1,137 @@
+MANUAL DE PROGRAMACIÓN AZTECA UNO
+=======================================
+
+TV Azteca - División Digital
+Documento Interno - Confidencial
+
+INTRODUCCIÓN
+------------
+Azteca UNO es el canal principal de TV Azteca, transmitiendo las 24 horas del día con una programación variada que incluye entretenimiento, noticias, deportes y contenido original.
+
+PROGRAMACIÓN MATUTINA
+--------------------
+6:00 AM - 7:00 AM: Hechos AM Primera Línea
+- Noticiero matutino con las principales noticias del día
+- Conducido por el equipo editorial de Hechos
+- Duración: 60 minutos
+
+7:00 AM - 8:00 AM: Hechos AM
+- Continuación del noticiero matutino
+- Análisis de coyuntura política y económica
+- Reportes del clima y tráfico
+
+8:00 AM - 9:00 AM: Nosotros, ustedes y hechos
+- Programa de análisis y opinión
+- Participación de especialistas y analistas
+- Interacción con audiencia
+
+9:00 AM - 1:00 PM: Venga la Alegría
+- Programa de entretenimiento matutino
+- Música, bailes, juegos y concursos
+- Entrevistas con celebridades
+- Segmentos de cocina y estilo de vida
+
+PROGRAMACIÓN VESPERTINA
+----------------------
+1:00 PM - 2:00 PM: Ventaneando
+- Programa de espectáculos líder en México
+- Noticias del mundo del entretenimiento
+- Chismes y exclusivas de celebridades
+- Conducido por Pati Chapoy y su equipo
+
+2:00 PM - 3:00 PM: Hechos Meridiano
+- Noticiero del mediodía
+- Resumen de noticias nacionales e internacionales
+- Análisis político y económico
+
+3:00 PM - 4:00 PM: FIA - Fútbol Internacional Azteca
+- Programa deportivo especializado en fútbol
+- Análisis de ligas internacionales
+- Entrevistas con futbolistas mexicanos en el extranjero
+
+4:00 PM - 5:30 PM: Al Extremo
+- Programa de noticias de impacto social
+- Reportajes especiales sobre casos policiacos
+- Investigaciones periodísticas
+
+5:30 PM - 7:30 PM: Acércate a Rocío
+- Talk show conducido por Rocío Sánchez Azuara
+- Casos de la vida real
+- Apoyo psicológico a familias mexicanas
+
+PROGRAMACIÓN ESTELAR
+-------------------
+7:30 PM - 8:30 PM: Entre Correr y Vivir
+- Telenovela original de TV Azteca
+- Drama familiar mexicano
+- Producción de alta calidad
+
+8:30 PM - 9:30 PM: Las Bravo
+- Telenovela de horario estelar
+- Historia de mujeres empoderadas
+- Elenco de primer nivel
+
+9:30 PM - 10:15 PM: La Mujer de Judas
+- Telenovela de suspenso y drama
+- Producción internacional
+- Adaptación de formato exitoso
+
+10:15 PM - 11:15 PM: Hechos con Javier Alatorre
+- Noticiero nocturno principal
+- Análisis profundo de la actualidad nacional
+- Conducido por Javier Alatorre
+
+PROGRAMACIÓN NOCTURNA
+--------------------
+11:15 PM - 12:00 AM: FIA - Carolina Rocha
+- Programa deportivo nocturno
+- Análisis de resultados deportivos del día
+- Entrevistas exclusivas
+
+12:00 AM - 1:00 AM: Lo Que La Gente Cuenta
+- Programa de casos reales
+- Historias de la gente común
+- Testimonios impactantes
+
+1:00 AM - 2:00 AM: Mujeres Rompiendo el Silencio
+- Programa de empoderamiento femenino
+- Historias de superación
+- Apoyo a mujeres en situación vulnerable
+
+ESPECIFICACIONES TÉCNICAS
+-------------------------
+- Transmisión en alta definición (HD)
+- Señal digital terrestre
+- Cobertura nacional
+- Repetidoras en toda la República Mexicana
+
+AUDIENCIA OBJETIVO
+-----------------
+- Familias mexicanas de clase media
+- Edades: 18-54 años
+- Nivel socioeconómico: C+, B-, B, B+
+- Intereses: entretenimiento, noticias, deportes
+
+MÉTRICAS DE RATING
+-----------------
+- Rating promedio diario: 8.5 puntos
+- Share promedio: 24%
+- Horario pico: 8:30 PM - 10:15 PM
+- Programa líder: Hechos con Javier Alatorre
+
+ESTRATEGIA DIGITAL
+-----------------
+- Transmisión simultánea en www.tvazteca.com
+- Contenido exclusivo en redes sociales
+- Aplicación móvil "TV Azteca"
+- Videos on-demand disponibles 24/7
+
+CONTACTO
+--------
+TV Azteca S.A.B. de C.V.
+Periférico Sur 4121
+Col. Fuentes del Pedregal
+C.P. 14140, Ciudad de México
+Tel: 55 1720 1313
+
+

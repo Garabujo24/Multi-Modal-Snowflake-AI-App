@@ -1,0 +1,61 @@
+**Análisis de Resultados: Campaña de Temporada "Verano Protegido"**
+
+**Periodo de la Campaña:** 01 de Junio - 30 de Junio de 2024
+**Autor:** Departamento de Marketing
+
+---
+
+**1. Resumen de la Promoción**
+
+La campaña "Verano Protegido" consistió en ofrecer un 25% de descuento en todos los productos de protección solar, repelentes de insectos y antihistamínicos seleccionados. El objetivo era posicionar a Farmapronto como el destino principal para el cuidado de la salud durante la temporada de vacaciones y aumentar las ventas en estas categorías clave. La campaña se difundió a través de material en tienda, email marketing y anuncios en redes sociales.
+
+---
+
+**2. Resultados Generales de Ventas**
+
+- **Ingresos de Productos en Promoción:** Se generaron $3,500,000 MXN en ventas de los productos participantes, superando la meta de $3,000,000 en un 16.7%.
+- **Unidades Vendidas:** Se vendieron un total de 45,000 unidades de los productos en promoción, un 85% más que en el mismo periodo del año anterior.
+- **Venta Cruzada (Cross-Selling):** El 40% de los tickets que incluyeron un producto en promoción también contenían al menos un artículo de otra categoría (principalmente bebidas hidratantes y material de curación), lo que indica un efecto "halo" exitoso. El valor de esta venta cruzada se estima en $850,000 MXN adicionales.
+
+---
+
+**3. Impacto en Tráfico y Clientes**
+
+- **Tráfico en Tiendas:** Se registró un aumento promedio del 12% en el tráfico de clientes en las sucursales durante los fines de semana de la campaña, en comparación con los fines de semana de mayo.
+- **Nuevos Clientes:** 2,800 nuevos clientes se registraron en nuestro programa de lealtad durante el periodo de la campaña, un 30% más que el promedio mensual. Muchos de ellos citaron la promoción como su principal motivo de visita.
+
+---
+
+**4. Retorno de Inversión (ROI) de la Campaña**
+
+| Descripción                    | Monto (MXN)      |
+|--------------------------------|------------------|
+| **Inversión Total:**             |                  |
+| - Costo de Descuentos Otorgados| -$875,000        |
+| - Pauta en Medios Digitales    | -$150,000        |
+| - Material POP en Tiendas      | -$50,000         |
+| **Total Invertido**            | **-$1,075,000**  |
+|                                |                  |
+| **Retorno:**                     |                  |
+| - Ingreso Incremental*         | $1,620,000       |
+| - Valor Estimado Venta Cruzada | $850,000         |
+| **Ganancia Bruta de la Campaña**| **$1,395,000**   |
+|                                |                  |
+| **ROI**                        | **129.7%**       |
+
+_*Ingreso incremental calculado sobre la venta base histórica del mismo periodo._
+
+**Análisis:** El ROI del 129.7% es excepcionalmente bueno, lo que demuestra que la campaña fue altamente rentable. El costo de los descuentos fue compensado con creces por el volumen de ventas y el valor generado por la venta cruzada.
+
+---
+
+**5. Lecciones Aprendidas y Recomendaciones**
+
+- **Lección 1: El enfoque en categorías estacionales es altamente efectivo.** Los clientes responden muy bien a descuentos relevantes para sus necesidades inmediatas.
+  - **Recomendación:** Planificar con mayor antelación la próxima campaña de temporada (Invierno/Gripe) y asegurar un inventario robusto desde el inicio.
+
+- **Lección 2: Los anuncios geolocalizados en redes sociales fueron el canal con mejor tasa de conversión.**
+  - **Recomendación:** Aumentar el presupuesto para pauta en redes sociales en un 20% para la próxima campaña y desarrollar creativos en formato de video corto, que tuvieron mejor rendimiento.
+
+- **Lección 3: Algunas sucursales agotaron el stock de protectores solares para niños en la segunda semana.**
+  - **Recomendación:** Utilizar los datos de venta de esta campaña para crear un modelo de pronóstico de demanda más preciso y mejorar la distribución inicial del inventario para futuras promociones.

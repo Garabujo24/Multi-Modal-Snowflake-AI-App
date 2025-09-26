@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Broxel + Snowflake Quickstart: Data Cloud for Financial Innovation</title>
+  <style>
+    :root {
+      --broxel-primary: #0046be;
+      --broxel-secondary: #003399;
+      --broxel-accent: #00d4ff;
+      --broxel-light: #f8fafc;
+      --broxel-gray: #64748b;
+      --snowflake-blue: #29b5e8;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--broxel-primary) 0%, var(--broxel-secondary) 100%);
+      color: #ffffff;
+      padding: 3rem 1.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="90" cy="80" r="1.2" fill="rgba(255,255,255,0.09)"/></svg>') repeat;
+      opacity: 0.3;
+    }
+    
+    header .brand-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    header .brand-info {
+      flex: 1;
+      max-width: 700px;
+    }
+    
+    header .logos {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    header .logo-placeholder {
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+    
+    header h1 {
+      margin: 0 0 1rem 0;
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+    
+    header .subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--broxel-accent);
+      font-weight: 600;
+    }
+    
+    header .description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      opacity: 0.95;
+      max-width: 600px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .layout {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    
+    nav.sidebar {
+      flex: 0 0 280px;
+      position: sticky;
+      top: 2rem;
+      align-self: flex-start;
+      background: var(--broxel-light);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 40px rgba(0, 70, 190, 0.08);
+    }
+    
+    nav.sidebar h2 {
+      margin: 0 0 1.5rem 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--broxel-primary);
+      font-weight: 700;
+    }
+    
+    nav.sidebar ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    nav.sidebar a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 600;
+      display: block;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    
+    nav.sidebar a:hover {
+      background: var(--broxel-primary);
+      color: #ffffff;
+      transform: translateX(4px);
+      border-color: var(--broxel-primary);
+    }
+    
+    main {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    section {
+      margin-bottom: 4rem;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(0, 70, 190, 0.08);
+    }
+    
+    section h2 {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--broxel-primary);
+      font-weight: 700;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    section h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 8px;
+      height: 60%;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--snowflake-blue), var(--broxel-accent));
+    }
+    
+    section h3 {
+      font-size: 1.4rem;
+      color: var(--broxel-secondary);
+      margin: 2rem 0 1rem 0;
+      font-weight: 600;
+    }
+    
+    section p, section li {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1.2rem;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(41, 181, 232, 0.1));
+      border: 1px solid var(--broxel-accent);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    
+    .highlight-box::before {
+      content: "💡";
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: #ffffff;
+      padding: 0 8px;
+      font-size: 1.2rem;
+    }
+    
+    .highlight-box h4 {
+      margin: 0 0 0.75rem 0;
+      color: var(--broxel-primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .feature-card {
+      background: linear-gradient(135deg, #ffffff, var(--broxel-light));
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(0, 70, 190, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--broxel-primary), var(--broxel-accent));
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 70, 190, 0.15);
+    }
+    
+    .feature-card h4 {
+      margin: 0 0 1rem 0;
+      color: var(--broxel-primary);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    
+    .feature-card p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-family: "Fira Code", "Source Code Pro", monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border: 1px solid #334155;
+    }
+    
+    .step-list {
+      counter-reset: steps;
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+    
+    .step-list li {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-left: 6px solid var(--broxel-accent);
+      position: relative;
+    }
+    
+    .step-list li::before {
+      counter-increment: steps;
+      content: "Paso " counter(steps);
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--broxel-primary);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .metrics-dashboard {
+      background: linear-gradient(135deg, var(--broxel-light), #ffffff);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 2px solid var(--broxel-accent);
+    }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .metric-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    
+    .metric-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--broxel-primary);
+      display: block;
+    }
+    
+    .metric-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+    
+    footer {
+      background: var(--broxel-primary);
+      color: #ffffff;
+      padding: 3rem 0 2rem;
+      margin-top: 4rem;
+    }
+    
+    footer .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    footer .footer-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    
+    footer .footer-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.95rem;
+    }
+    
+    footer a {
+      color: var(--broxel-accent);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 1024px) {
+      .layout {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      nav.sidebar {
+        position: relative;
+        top: auto;
+      }
+      
+      header .brand-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      header h1 {
+        font-size: 2.25rem;
+      }
+      
+      section {
+        padding: 2rem 1.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 2rem 1rem 2rem;
+      }
+      
+      header h1 {
+        font-size: 1.875rem;
+      }
+      
+      section h2 {
+        font-size: 1.75rem;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      footer .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="brand-section">
+        <div class="brand-info">
+          <div class="logos">
+            <div class="logo-placeholder">BROXEL</div>
+            <div style="color: var(--broxel-accent); font-size: 1.5rem;">×</div>
+            <div class="logo-placeholder">SNOWFLAKE</div>
+          </div>
+          <h1>Transforming Financial Data at Scale</h1>
+          <div class="subtitle">Next-Generation Data Cloud for Fintech Innovation</div>
+          <p class="description">
+            Accelerate your financial technology initiatives with Snowflake's unified data platform. 
+            Build secure, compliant, and scalable data solutions that power real-time insights, 
+            enable advanced analytics, and drive innovation in financial services.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="layout">
+      <nav class="sidebar" aria-label="Tabla de contenidos">
+        <h2>Guía de Navegación</h2>
+        <ol>
+          <li><a href="#introduccion">Introducción y Contexto</a></li>
+          <li><a href="#arquitectura-separada">Arquitectura Separada de Cómputo y Almacenamiento</a></li>
+          <li><a href="#escalabilidad-elastica">Escalabilidad Elástica Instantánea</a></li>
+          <li><a href="#datos-semiestructurados">Soporte Nativo para Datos Semiestructurados</a></li>
+          <li><a href="#seguridad-gobernanza">Seguridad y Gobernanza Empresarial</a></li>
+          <li><a href="#ecosistema-integracion">Ecosistema de Integración Abierto</a></li>
+          <li><a href="#siguientes-pasos">Siguientes Pasos</a></li>
+        </ol>
+      </nav>
+
+      <main>
+        <section id="introduccion">
+          <h2>Introducción y Contexto</h2>
+          <p>
+            En el ecosistema fintech, la capacidad de procesar, analizar y actuar sobre datos en tiempo real 
+            define el éxito competitivo. Broxel, como líder en soluciones financieras digitales, requiere 
+            una plataforma de datos que no solo maneje volúmenes masivos de transacciones, sino que también 
+            proporcione la agilidad necesaria para innovar constantemente.
+          </p>
+          
+          <div class="highlight-box">
+            <h4>Por qué Snowflake para Fintech</h4>
+            <p>
+              Snowflake elimina las limitaciones tradicionales de las plataformas de datos, permitiendo 
+              a las empresas fintech escalar sin comprometos en rendimiento, seguridad o costos. 
+              Su arquitectura cloud-native está diseñada específicamente para las demandas modernas 
+              de datos financieros.
+            </p>
+          </div>
+
+          <div class="metrics-dashboard">
+            <h3>Impacto Esperado con Snowflake</h3>
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <span class="metric-number">85%</span>
+                <div class="metric-label">Reducción en Tiempo de Consultas</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">60%</span>
+                <div class="metric-label">Menor Costo Total de Propiedad</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">99.9%</span>
+                <div class="metric-label">Disponibilidad del Sistema</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">10x</span>
+                <div class="metric-label">Velocidad de Desarrollo</div>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Este quickstart explora cinco características fundamentales que posicionan a Snowflake 
+            como la plataforma ideal para empresas fintech que buscan maximizar el valor de sus datos 
+            mientras mantienen los más altos estándares de seguridad y cumplimiento.
+          </p>
+        </section>
+
+        <section id="arquitectura-separada">
+          <h2>1. Arquitectura Separada de Cómputo y Almacenamiento</h2>
+          <p>
+            La innovación más significativa de Snowflake radica en su arquitectura que separa 
+            completamente el almacenamiento de datos del procesamiento computacional. Esta separación 
+            fundamental permite optimizaciones imposibles en sistemas tradicionales.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h4>Escalabilidad Independiente</h4>
+              <p>Ajusta recursos de cómputo sin afectar el almacenamiento, optimizando costos según demanda real.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Almacenamiento Ilimitado</h4>
+              <p>Crece tu lago de datos sin restricciones de capacidad o configuraciones complejas.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Múltiples Cargas Concurrentes</h4>
+              <p>Ejecuta análisis, ETL y reportes simultáneamente sin interferencias de rendimiento.</p>
+            </div>
+          </div>
+
+          <h3>Implementación Práctica</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Configuración de Warehouses Especializados</strong>
+              <p>Crea diferentes warehouses para distintas cargas de trabajo:</p>
+              <div class="code-block">
+-- Warehouse para análisis en tiempo real
+CREATE WAREHOUSE BROXEL_REALTIME_WH 
+  WITH WAREHOUSE_SIZE = 'MEDIUM'
+  AUTO_SUSPEND = 60
+  AUTO_RESUME = TRUE;
+
+-- Warehouse para procesos ETL batch  
+CREATE WAREHOUSE BROXEL_ETL_WH
+  WITH WAREHOUSE_SIZE = 'LARGE'
+  AUTO_SUSPEND = 180;</div>
+            </li>
+            <li>
+              <strong>Optimización de Costos</strong>
+              <p>Implementa políticas de auto-suspensión y escalado dinámico según patrones de uso.</p>
+            </li>
+            <li>
+              <strong>Monitoreo de Rendimiento</strong>
+              <p>Utiliza las vistas del sistema para analizar consumo de recursos y optimizar configuraciones.</p>
+            </li>
+          </ol>
+
+          <div class="highlight-box">
+            <h4>Ventaja Competitiva</h4>
+            <p>
+              Mientras otras plataformas requieren dimensionamiento anticipado y reconfiguración manual, 
+              Snowflake permite ajustes instantáneos basados en demanda real, reduciendo significativamente 
+              los costos operativos.
+            </p>
+          </div>
+        </section>
+
+        <section id="escalabilidad-elastica">
+          <h2>2. Escalabilidad Elástica Instantánea</h2>
+          <p>
+            La capacidad de Snowflake para escalar recursos en segundos, no horas o días, 
+            representa un cambio paradigmático para empresas fintech que enfrentan cargas 
+            de trabajo variables e impredecibles.
+          </p>
+
+          <h3>Escalabilidad Multi-Dimensional</h3>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h4>Escalado Vertical</h4>
+              <p>Aumenta la potencia de cómputo de XS a 6XL en segundos sin interrupciones.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Escalado Horizontal</h4>
+              <p>Agrega múltiples clusters para manejar consultas concurrentes de miles de usuarios.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Auto-Escalado</h4>
+              <p>Configuración automática basada en carga de trabajo y políticas definidas.</p>
+            </div>
+          </div>
+
+          <h3>Casos de Uso Financieros</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Procesamiento de Fin de Día</strong>
+              <p>Escala automáticamente para procesar millones de transacciones al cierre del mercado:</p>
+              <div class="code-block">
+-- Escalado automático para batch nocturno
+ALTER WAREHOUSE BROXEL_BATCH_WH 
+  SET WAREHOUSE_SIZE = 'X-LARGE'
+  MIN_CLUSTER_COUNT = 2
+  MAX_CLUSTER_COUNT = 5
+  SCALING_POLICY = 'STANDARD';</div>
+            </li>
+            <li>
+              <strong>Análisis de Riesgo en Tiempo Real</strong>
+              <p>Responde a picos de demanda durante eventos del mercado manteniendo latencias bajas.</p>
+            </li>
+            <li>
+              <strong>Reportes Regulatorios</strong>
+              <p>Maneja cargas intensivas de cumplimiento sin afectar operaciones diarias.</p>
+            </li>
+          </ol>
+
+          <div class="highlight-box">
+            <h4>Beneficio Financiero</h4>
+            <p>
+              El modelo de pago por uso significa que solo pagas por los recursos que realmente consumes. 
+              Broxel puede manejar cargas máximas sin mantener infraestructura ociosa el 90% del tiempo.
+            </p>
+          </div>
+        </section>
+
+        <section id="datos-semiestructurados">
+          <h2>3. Soporte Nativo para Datos Semiestructurados</h2>
+          <p>
+            En el mundo fintech, los datos llegan en múltiples formatos: JSON de APIs, XML de sistemas legacy, 
+            logs de aplicaciones, y más. Snowflake maneja todos estos formatos nativamente sin necesidad 
+            de transformaciones previas complejas.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h4>JSON Nativo</h4>
+              <p>Consulta directamente datos JSON con sintaxis SQL estándar.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Esquema Flexible</h4>
+              <p>Evoluciona estructuras de datos sin migraciones costosas.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Indexación Automática</h4>
+              <p>Optimización automática de consultas sobre datos semi-estructurados.</p>
+            </div>
+          </div>
+
+          <h3>Implementación con Datos Financieros</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Ingesta de Datos de Transacciones</strong>
+              <div class="code-block">
+-- Crear tabla para datos JSON de transacciones
+CREATE TABLE broxel_transactions (
+  transaction_data VARIANT,
+  ingested_at TIMESTAMP_LTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- Consultar datos JSON directamente
+SELECT 
+  transaction_data:user_id::string as user_id,
+  transaction_data:amount::number as amount,
+  transaction_data:currency::string as currency,
+  transaction_data:metadata:location::string as location
+FROM broxel_transactions
+WHERE transaction_data:amount::number > 1000;</div>
+            </li>
+            <li>
+              <strong>Análisis de Logs de Aplicación</strong>
+              <p>Procesa logs de aplicaciones para detectar patrones de fraude y optimizar UX.</p>
+            </li>
+            <li>
+              <strong>Integración de APIs Externas</strong>
+              <p>Consume datos de proveedores financieros sin transformaciones ETL complejas.</p>
+            </li>
+          </ol>
+
+          <div class="highlight-box">
+            <h4>Agilidad de Desarrollo</h4>
+            <p>
+              Los equipos de Broxel pueden trabajar directamente con datos tal como llegan, 
+              reduciendo el tiempo de desarrollo de semanas a días y eliminando cuellos 
+              de botella en pipelines de datos.
+            </p>
+          </div>
+        </section>
+
+        <section id="seguridad-gobernanza">
+          <h2>4. Seguridad y Gobernanza Empresarial</h2>
+          <p>
+            Para empresas fintech como Broxel, la seguridad no es opcional. Snowflake proporciona 
+            capacidades de seguridad de nivel bancario integradas nativamente en la plataforma, 
+            no como complementos posteriores.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h4>Cifrado End-to-End</h4>
+              <p>Datos cifrados en tránsito y en reposo con claves gestionadas automáticamente.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Control de Acceso Granular</h4>
+              <p>RBAC avanzado con políticas dinámicas y herencia de permisos.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Auditoría Completa</h4>
+              <p>Trazabilidad completa de todas las operaciones para cumplimiento regulatorio.</p>
+            </div>
+          </div>
+
+          <h3>Implementación de Políticas de Seguridad</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Enmascaramiento Dinámico de Datos</strong>
+              <div class="code-block">
+-- Crear política de enmascaramiento para datos PII
+CREATE MASKING POLICY pii_mask AS (val string) RETURNS string ->
+  CASE 
+    WHEN CURRENT_ROLE() IN ('BROXEL_ADMIN', 'COMPLIANCE_OFFICER') 
+    THEN val
+    ELSE '*****'
+  END;
+
+-- Aplicar enmascaramiento a columnas sensibles
+ALTER TABLE customer_data 
+  MODIFY COLUMN credit_card_number 
+  SET MASKING POLICY pii_mask;</div>
+            </li>
+            <li>
+              <strong>Control de Acceso Basado en Atributos</strong>
+              <p>Implementa políticas de fila que limitan acceso según región, departamento o función.</p>
+            </li>
+            <li>
+              <strong>Monitoreo de Seguridad</strong>
+              <p>Configurar alertas automáticas para actividades sospechosas o accesos no autorizados.</p>
+            </li>
+          </ol>
+
+          <div class="highlight-box">
+            <h4>Cumplimiento Regulatorio</h4>
+            <p>
+              Snowflake cuenta con certificaciones SOC 2 Type II, PCI DSS, HIPAA, y cumple con 
+              regulaciones financieras internacionales, simplificando auditorías y certificaciones 
+              para Broxel.
+            </p>
+          </div>
+        </section>
+
+        <section id="ecosistema-integracion">
+          <h2>5. Ecosistema de Integración Abierto</h2>
+          <p>
+            La fortaleza de Snowflake radica en su capacidad de integrarse seamlessly con 
+            el ecosistema tecnológico existente de Broxel, desde herramientas de BI hasta 
+            plataformas de ML y aplicaciones personalizadas.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h4>Conectores Nativos</h4>
+              <p>Integración directa con Tableau, Power BI, Looker, y principales herramientas de BI.</p>
+            </div>
+            <div class="feature-card">
+              <h4>APIs Estándar</h4>
+              <p>REST APIs, JDBC, ODBC para integración con aplicaciones custom.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Marketplace de Datos</h4>
+              <p>Acceso a datasets externos y servicios de terceros sin movimiento de datos.</p>
+            </div>
+          </div>
+
+          <h3>Integraciones Clave para Fintech</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Plataformas de Machine Learning</strong>
+              <div class="code-block">
+-- Integración con Python para ML
+CREATE FUNCTION risk_score(transaction_data variant)
+RETURNS FLOAT
+LANGUAGE PYTHON
+RUNTIME_VERSION = '3.8'
+PACKAGES = ('scikit-learn','pandas','numpy')
+HANDLER = 'calculate_risk'
+AS $$
+def calculate_risk(transaction_data):
+    # Modelo de scoring de riesgo
+    import pandas as pd
+    import numpy as np
+    
+    amount = transaction_data.get('amount', 0)
+    location = transaction_data.get('location', 'unknown')
+    
+    # Lógica de scoring simplificada
+    base_score = min(amount / 10000, 1.0)
+    return float(base_score)
+$$;</div>
+            </li>
+            <li>
+              <strong>Herramientas de Visualización</strong>
+              <p>Conecta dashboards en tiempo real para monitoreo operacional y análisis ejecutivo.</p>
+            </li>
+            <li>
+              <strong>Sistemas de Alertas</strong>
+              <p>Integra con Slack, PagerDuty, y sistemas de notificación para respuesta rápida.</p>
+            </li>
+          </ol>
+
+          <div class="highlight-box">
+            <h4>Time to Value</h4>
+            <p>
+              Con integraciones pre-construidas y APIs estándar, Broxel puede estar productivo 
+              con Snowflake en días, no meses. La arquitectura abierta permite evolución 
+              tecnológica sin vendor lock-in.
+            </p>
+          </div>
+        </section>
+
+        <section id="siguientes-pasos">
+          <h2>Siguientes Pasos para Broxel</h2>
+          <p>
+            La implementación exitosa de Snowflake en Broxel requiere un enfoque estructurado 
+            que maximice el valor mientras minimiza riesgos y tiempos de implementación.
+          </p>
+
+          <h3>Roadmap Recomendado</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Fase 1: Prueba de Concepto (2-4 semanas)</strong>
+              <p>
+                Implementar un caso de uso específico (ej: análisis de transacciones) 
+                para validar capacidades y cuantificar beneficios.
+              </p>
+            </li>
+            <li>
+              <strong>Fase 2: Migración de Datos Críticos (4-8 semanas)</strong>
+              <p>
+                Migrar datasets core manteniendo sistemas legacy en paralelo 
+                para garantizar continuidad operacional.
+              </p>
+            </li>
+            <li>
+              <strong>Fase 3: Expansión de Casos de Uso (8-12 semanas)</strong>
+              <p>
+                Implementar análisis avanzados, machine learning, y nuevas 
+                capacidades analíticas.
+              </p>
+            </li>
+            <li>
+              <strong>Fase 4: Optimización y Escala (ongoing)</strong>
+              <p>
+                Optimizar rendimiento, costos, y expandir a nuevas fuentes de datos 
+                y casos de uso.
+              </p>
+            </li>
+          </ol>
+
+          <div class="metrics-dashboard">
+            <h3>KPIs de Éxito</h3>
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <span class="metric-number">&lt;500ms</span>
+                <div class="metric-label">Latencia de Consultas</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">99.99%</span>
+                <div class="metric-label">Disponibilidad del Sistema</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">-40%</span>
+                <div class="metric-label">Reducción Costos IT</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">5x</span>
+                <div class="metric-label">Velocidad de Insights</div>
+              </div>
+            </div>
+          </div>
+
+          <h3>Recursos y Soporte</h3>
+          <ul>
+            <li><strong>Documentación Técnica:</strong> Acceso completo a documentación y mejores prácticas</li>
+            <li><strong>Soporte Premier:</strong> Support 24/7 con SLAs garantizados para entornos productivos</li>
+            <li><strong>Training & Certification:</strong> Programas de capacitación para equipos técnicos</li>
+            <li><strong>Professional Services:</strong> Acompañamiento especializado para implementación</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          © 2025 Broxel × Snowflake Partnership
+        </div>
+        <div class="footer-links">
+          <a href="mailto:contact@broxel.com">Contacto Técnico</a>
+          <a href="https://snowflake.com/fintech">Recursos Fintech</a>
+          <a href="#">Documentación</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling para navegación
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Highlight sección activa en navegación
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          const navLink = document.querySelector(`nav a[href="#${id}"]`);
+          
+          // Remove active class from all links
+          document.querySelectorAll('nav a').forEach(link => {
+            link.style.background = '';
+            link.style.color = '';
+          });
+          
+          // Add active style to current link
+          if (navLink) {
+            navLink.style.background = 'var(--broxel-primary)';
+            navLink.style.color = '#ffffff';
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section[id]').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>

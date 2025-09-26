@@ -1,0 +1,502 @@
+MANUAL DE GESTIÓN DE CRISIS Y COMUNICACIÓN
+=========================================
+
+TV Azteca - Dirección de Comunicación Corporativa
+Protocolo de Manejo de Crisis 2025
+
+MARCO TEÓRICO DE CRISIS
+-----------------------
+
+DEFINICIÓN DE CRISIS CORPORATIVA:
+Una crisis es cualquier evento inesperado que amenaza significativamente las operaciones, reputación, relaciones con stakeholders o viabilidad financiera de TV Azteca, requiriendo una respuesta inmediata y coordinada.
+
+TIPOS DE CRISIS IDENTIFICADAS:
+
+CRISIS OPERACIONALES:
+- Fallas técnicas en transmisión
+- Interrupciones de señal nacional
+- Ciberataques y security breaches
+- Accidentes en instalaciones
+- Fallas de equipos críticos
+
+CRISIS DE CONTENIDO:
+- Controversias en programación
+- Demandas por contenido inapropiado
+- Violación de derechos de autor
+- Censura gubernamental
+- Controversias de conductores/artistas
+
+CRISIS FINANCIERAS:
+- Pérdidas significativas
+- Problemas de liquidez
+- Incumplimiento de deuda
+- Fraude o malversación
+- Devaluación de acciones
+
+CRISIS LEGALES:
+- Demandas judiciales
+- Investigaciones regulatorias
+- Sanciones gubernamentales
+- Violaciones laborales
+- Problemas de compliance
+
+CRISIS DE REPUTACIÓN:
+- Escándalos de ejecutivos
+- Boicots organizados
+- Críticas en redes sociales
+- Fake news sobre la empresa
+- Protestas públicas
+
+NIVELES DE ESCALAMIENTO
+-----------------------
+
+NIVEL 1 - INCIDENTE MENOR:
+Características:
+- Impacto limitado (<1 hora)
+- Sin cobertura mediática
+- Resolución con recursos internos
+- Sin impacto en stakeholders externos
+- Costo de resolución <$500K pesos
+
+Respuesta:
+- Activación: Gerente de área
+- Tiempo de respuesta: 30 minutos
+- Comunicación: Solo interna
+- Reporte: Director de área
+
+NIVEL 2 - CRISIS MODERADA:
+Características:
+- Impacto medio (1-6 horas)
+- Cobertura mediática local
+- Recursos externos necesarios
+- Impacto en algunos stakeholders
+- Costo de resolución $500K-$5M pesos
+
+Respuesta:
+- Activación: Director de división
+- Tiempo de respuesta: 15 minutos
+- Comunicación: Interna + statement público
+- Reporte: VP ejecutivo
+
+NIVEL 3 - CRISIS MAYOR:
+Características:
+- Impacto significativo (6-24 horas)
+- Cobertura mediática nacional
+- Múltiples stakeholders afectados
+- Posible impacto regulatorio
+- Costo de resolución $5M-$50M pesos
+
+Respuesta:
+- Activación: Comité ejecutivo
+- Tiempo de respuesta: 10 minutos
+- Comunicación: Multi-canal coordinated
+- Reporte: CEO + Board of Directors
+
+NIVEL 4 - CRISIS CRÍTICA:
+Características:
+- Impacto severo (>24 horas)
+- Cobertura mediática internacional
+- Amenaza existencial para la empresa
+- Investigaciones gubernamentales
+- Costo de resolución >$50M pesos
+
+Respuesta:
+- Activación: Crisis Management Team completo
+- Tiempo de respuesta: 5 minutos
+- Comunicación: CEO + external experts
+- Reporte: Board + regulatory bodies
+
+EQUIPO DE MANEJO DE CRISIS
+--------------------------
+
+CRISIS MANAGEMENT TEAM (CMT):
+
+LÍDER DE CRISIS: CEO Ricardo Salinas Pliego
+- Autoridad de decisión final
+- Spokesperson principal en crisis mayores
+- Coordinación con Board of Directors
+- Relaciones gubernamentales de alto nivel
+
+CHIEF COMMUNICATIONS OFFICER: 
+Lic. Patricia Armendáriz
+- Coordinación de comunicaciones
+- Relaciones con medios
+- Gestión de mensaje clave
+- Supervisión de redes sociales
+
+CHIEF LEGAL OFFICER:
+Lic. Alejandro Soberón
+- Evaluación de riesgos legales
+- Coordinación con autoridades
+- Gestión de litigation
+- Compliance y regulatory affairs
+
+CHIEF TECHNOLOGY OFFICER:
+Ing. Roberto Alcántara
+- Resolución de crisis técnicas
+- Coordinación con proveedores
+- Backup systems activation
+- Security incident response
+
+CHIEF HUMAN RESOURCES OFFICER:
+Lic. Carmen Vega
+- Comunicación interna
+- Protección de empleados
+- Crisis de recursos humanos
+- Stakeholder interno management
+
+CHIEF FINANCIAL OFFICER:
+Lic. Alejandro Burruel
+- Evaluación de impacto financiero
+- Comunicación con inversionistas
+- Gestión de liquidez
+- Insurance claims coordination
+
+PROTOCOLO DE ACTIVACIÓN
+-----------------------
+
+FASE 1: DETECCIÓN Y ALERTA (0-15 minutos)
+
+FUENTES DE DETECCIÓN:
+- Monitoreo de redes sociales 24/7
+- Alertas de Google y medios
+- Reportes internos de empleados
+- Llamadas de medios de comunicación
+- Notificaciones de autoridades
+
+SISTEMA DE ALERTAS:
+- Nivel 1: Email a gerencia de área
+- Nivel 2: SMS a directores + email
+- Nivel 3: Llamada + SMS a VP + email
+- Nivel 4: Activación inmediata CMT
+
+EVALUACIÓN INICIAL:
+- ¿Qué sucedió exactamente?
+- ¿Cuál es el nivel de severidad?
+- ¿Quién está afectado?
+- ¿Cuál es el riesgo reputacional?
+- ¿Se requiere activación del CMT?
+
+FASE 2: ANÁLISIS Y PLANIFICACIÓN (15-60 minutos)
+
+REUNIÓN DE CRISIS:
+- Convocatoria: CMT completo
+- Modalidad: Presencial o virtual
+- Duración máxima: 45 minutos
+- Decisiones: Por consenso o CEO
+
+ANÁLISIS SITUACIONAL:
+- Recopilación de hechos verificados
+- Evaluación de stakeholders afectados
+- Análisis de riesgos potenciales
+- Identificación de oportunidades
+- Desarrollo de escenarios posibles
+
+DESARROLLO DE ESTRATEGIA:
+- Objetivos de comunicación
+- Mensajes clave por audiencia
+- Canales de comunicación
+- Timeline de actividades
+- Asignación de responsabilidades
+
+FASE 3: IMPLEMENTACIÓN (Inmediata)
+
+COMUNICACIÓN INTERNA:
+- Briefing a empleados clave
+- Talking points para managers
+- FAQ para customer service
+- Updates periódicos al personal
+
+COMUNICACIÓN EXTERNA:
+- Statement inicial (máximo 2 horas)
+- Contacto proactivo con medios clave
+- Activación de redes sociales
+- Comunicación a stakeholders específicos
+
+MONITOREO CONTINUO:
+- Seguimiento de cobertura mediática
+- Análisis de sentiment en redes
+- Feedback de stakeholders
+- Ajustes a la estrategia
+
+MENSAJES CLAVE Y AUDIENCIAS
+---------------------------
+
+PRINCIPIOS DE COMUNICACIÓN:
+
+VERACIDAD:
+- Solo comunicar hechos verificados
+- Admitir cuando no se tiene información
+- Corregir errores inmediatamente
+- Transparencia dentro de lo legal
+
+RAPIDEZ:
+- Primera respuesta en <2 horas
+- Updates regulares cada 4-6 horas
+- Estar ahead of the story
+- No permitir vacío informativo
+
+EMPATÍA:
+- Reconocer impacto en stakeholders
+- Mostrar concern genuino
+- Asumir responsabilidad cuando aplique
+- Demostrar acción correctiva
+
+CONSISTENCIA:
+- Mismo mensaje en todos los canales
+- Coordinación entre voceros
+- Alineación temporal de comunicaciones
+- Coherencia con valores corporativos
+
+AUDIENCIAS PRIORITARIAS:
+
+EMPLEADOS:
+- Mensaje: Transparencia y protección
+- Canal: Email, intranet, reuniones
+- Vocero: CHRO + managers directos
+- Frecuencia: Cada 2-4 horas
+
+MEDIOS DE COMUNICACIÓN:
+- Mensaje: Hechos objetivos + acción
+- Canal: Press release, interviews, briefings
+- Vocero: CCO + CEO (crisis mayores)
+- Frecuencia: Según demanda
+
+INVERSIONISTAS:
+- Mensaje: Impacto financiero + mitigation
+- Canal: Conference calls, reports
+- Vocero: CFO + CEO
+- Frecuencia: Según materialidad
+
+REGULADORES:
+- Mensaje: Compliance + cooperation
+- Canal: Comunicación formal
+- Vocero: CLO + CEO
+- Frecuencia: Según requerimientos
+
+AUDIENCIA GENERAL:
+- Mensaje: Reassurance + commitment
+- Canal: Redes sociales, ads, TV
+- Vocero: Conductores + portavoces
+- Frecuencia: Según escalamiento
+
+GESTIÓN DE REDES SOCIALES
+-------------------------
+
+PROTOCOLO DIGITAL EN CRISIS:
+
+MONITOREO INTENSIVO:
+- Alertas cada 5 minutos
+- Análisis de sentiment real-time
+- Identificación de influencers clave
+- Tracking de hashtags relevantes
+- Escalamiento de amenazas
+
+RESPUESTA COORDINADA:
+- Mismo mensaje en todas las plataformas
+- Timing sincronizado
+- Tone apropiado por plataforma
+- Visual assets consistentes
+- Engagement guidelines claras
+
+GESTIÓN DE TROLLS Y ATAQUES:
+- No engagement con provocadores
+- Block/mute usuarios abusivos
+- Report content inapropiado
+- Amplificar voces positivas
+- Documentar evidencia de ataques organizados
+
+CRISIS ESPECÍFICAS EN DIGITAL:
+- Viral negative content
+- Hacking de cuentas oficiales
+- Deepfakes o contenido manipulado
+- Boicots organizados
+- Campañas de desinformación
+
+PLATAFORMAS PRIORITARIAS:
+1. Twitter: Breaking news + real-time updates
+2. Facebook: Declaraciones oficiales detalladas  
+3. Instagram: Visual storytelling + behind-scenes
+4. YouTube: Video statements + explicaciones
+5. LinkedIn: Comunicación B2B + stakeholders
+6. TikTok: Messaging para audiencia joven
+
+COMUNICACIÓN CON MEDIOS
+----------------------
+
+RELACIONES CON PRENSA EN CRISIS:
+
+PRINCIPIOS FUNDAMENTALS:
+- Accesibilidad de voceros
+- Respuestas rápidas a queries
+- Información precisa y actualizada
+- Off-the-record guidance cuando apropiado
+- Building long-term relationships
+
+HERRAMIENTAS DE COMUNICACIÓN:
+
+PRESS RELEASES:
+- Template pre-aprobado
+- Quotes del CEO/voceros
+- Datos de contacto
+- Background information
+- Distribución a lista completa
+
+PRESS CONFERENCES:
+- Para crisis Nivel 3 y 4
+- Ubicación: Instalaciones TV Azteca
+- A/V equipment professional
+- Q&A session structured
+- Live streaming disponible
+
+MEDIA INTERVIEWS:
+- Prepared talking points
+- Anticipated questions + answers
+- Message training para voceros
+- Support materials
+- Follow-up information
+
+RELACIONES ESTRATÉGICAS:
+- Reporteros especializados en medios
+- Editores de business/economía  
+- Productores de noticieros principales
+- Columnistas de opinión influyentes
+- Influencers de industria
+
+GESTIÓN POST-CRISIS
+-------------------
+
+EVALUACIÓN DE DAÑOS:
+
+IMPACTO REPUTACIONAL:
+- Encuestas de percepción
+- Análisis de sentiment
+- Share of voice analysis
+- Brand tracking studies
+- Stakeholder feedback
+
+IMPACTO FINANCIERO:
+- Pérdidas de ingresos publicitarios
+- Costos de resolución
+- Impacto en valuación
+- Claims de seguros
+- Costos legales
+
+IMPACTO OPERACIONAL:
+- Disrupción de operaciones
+- Rotación de personal
+- Productividad afectada
+- Relationships dañadas
+- Regulatory consequences
+
+PLAN DE RECUPERACIÓN:
+
+COMUNICACIÓN DE RECUPERACIÓN:
+- Demonstrar lessons learned
+- Showcase improvements
+- Rebuild confidence
+- Thought leadership
+- Positive news generation
+
+RELATIONSHIP REBUILDING:
+- One-on-one meetings con stakeholders clave
+- Community engagement
+- Employee engagement
+- Customer retention programs
+- Investor relations intensive
+
+PROCESO DE APRENDIZAJE:
+- Post-crisis review meeting
+- Documentation de lessons learned
+- Update crisis management plan
+- Training adicional
+- Simulation exercises
+
+HERRAMIENTAS Y RECURSOS
+-----------------------
+
+TECNOLOGÍA DE CRISIS:
+
+CRISIS MANAGEMENT SOFTWARE:
+- Platform: Critical Arc SafeZone
+- Features: Mass notifications, tracking, reporting
+- Users: CMT + emergency responders
+- Mobile apps: iOS y Android
+- Integration: Sistemas corporativos
+
+MONITORING TOOLS:
+- Brandwatch: Social media monitoring
+- Google Alerts: News mentions
+- Mention: Real-time brand monitoring
+- Hootsuite: Social media management
+- Critical Mention: Broadcast monitoring
+
+COMMUNICATION PLATFORMS:
+- Zoom: Virtual crisis meetings
+- Slack: Real-time team coordination
+- WhatsApp: Urgent communications
+- Email: Formal communications
+- Conference bridge: Audio meetings
+
+RECURSOS EXTERNOS:
+
+PUBLIC RELATIONS FIRMS:
+- Edelman Mexico: Reputation management
+- Weber Shandwick: Crisis communications
+- FleishmanHillard: Strategic communications
+- Burson Cohn & Wolfe: Corporate communications
+
+LEGAL COUNSEL:
+- Creel García-Cuéllar: Corporate law
+- Santamarina y Steta: Litigation
+- Baker McKenzie: International issues
+- White & Case: Regulatory matters
+
+RESEARCH FIRMS:
+- Ipsos: Reputation research
+- Kantar: Brand tracking
+- Nielsen: Media monitoring
+- Mitofsky: Public opinion
+
+MÉTRICAS Y EVALUACIÓN
+---------------------
+
+INDICADORES DE CRISIS:
+
+DETECCIÓN TEMPRANA:
+- Tiempo de detección: <15 minutos
+- Tiempo de escalamiento: <30 minutos
+- Tiempo primera respuesta: <2 horas
+- Accuracy de información inicial: >90%
+
+GESTIÓN DE CRISIS:
+- CMT activation time: <10 minutos
+- Stakeholder notification: 100% en 4 horas
+- Message consistency: >95% across channels
+- Media response rate: <1 hora promedio
+
+RESULTADOS POST-CRISIS:
+- Reputation recovery: Timeline y metrics
+- Financial impact: Minimización de pérdidas
+- Operational recovery: Return to normal
+- Stakeholder confidence: Retention rates
+
+SIMULACROS Y ENTRENAMIENTO:
+- Crisis simulations: 2 anuales
+- Media training: Annual para CMT
+- Digital crisis exercises: Quarterly
+- Lessons learned: Integration en plan
+
+CONTACTO CRISIS MANAGEMENT
+--------------------------
+Crisis Hotline 24/7: 55-1720-1313 ext. 911
+Crisis Management Team: crisis@tvazteca.com
+Media Relations: prensa@tvazteca.com
+Legal Affairs: legal.crisis@tvazteca.com
+Security Emergency: security.emergency@tvazteca.com
+
+Chief Communications Officer: Patricia Armendáriz
+Crisis Communications Manager: Lic. Roberto Mendoza
+Social Media Crisis Lead: Lic. Ana Patricia Ruiz
+
+

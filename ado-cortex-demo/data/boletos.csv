@@ -1,0 +1,23 @@
+ID,Corrida_ID,Pasajero_Nombre,Asiento,Fecha_Compra,Estatus
+1,1,Juan Pérez,12,2024-06-25 14:00,Vendido
+2,1,Ana Gómez,15,2024-06-25 15:00,Vendido
+3,2,Luis Martínez,5,2024-06-26 10:00,Cancelado
+4,2,María López,8,2024-06-26 11:00,Vendido
+5,3,Pedro Sánchez,20,2024-06-27 09:00,Vendido
+6,3,Lucía Torres,22,2024-06-27 10:00,Vendido
+7,4,José Ramírez,3,2024-06-28 12:00,Vendido
+8,4,Elena Ruiz,7,2024-06-28 13:00,Vendido
+9,5,Andrés Castro,18,2024-06-29 14:00,Vendido
+10,5,Paola Díaz,21,2024-06-29 15:00,Vendido
+11,6,Roberto Silva,2,2024-06-30 16:00,Vendido
+12,6,Carla Méndez,6,2024-06-30 17:00,Vendido
+13,7,Alberto Reyes,11,2024-07-01 08:00,Vendido
+14,7,Daniela Flores,14,2024-07-01 09:00,Vendido
+15,8,Raúl Ortega,19,2024-07-01 10:00,Vendido
+16,8,Patricia Vega,23,2024-07-01 11:00,Vendido
+17,9,Ernesto Ramos,4,2024-07-01 12:00,Vendido
+18,9,Silvia Morales,9,2024-07-01 13:00,Vendido
+19,10,Manuel Herrera,16,2024-07-01 14:00,Vendido
+20,10,Laura Jiménez,25,2024-07-01 15:00,Vendido
+
+

@@ -1,0 +1,25 @@
+# Requirements para TV Azteca Digital - Streamlit in Snowflake
+# ============================================================
+
+# Streamlit (ya incluido en Streamlit in Snowflake)
+# streamlit
+
+# Snowpark para Python (ya incluido en Streamlit in Snowflake)
+# snowflake-snowpark-python
+
+# Nota: snowflake.core puede no estar disponible en todos los entornos
+# La app usa snowflake.snowpark que está disponible por defecto
+# snowflake>=0.8.0
+
+# Visualización y análisis de datos
+pandas>=1.3.0
+plotly>=5.0.0
+
+# Utilidades para fechas y tiempo
+# datetime (built-in)
+
+# JSON para manejo de datos (built-in)
+# json
+
+# Logging y debugging (built-in)
+# time

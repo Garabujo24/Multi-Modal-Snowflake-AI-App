@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowflake Avanzado para Fenix Energia - Quickstart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --fenix-orange: #FF6B35;
+            --fenix-dark-orange: #E55722;
+            --fenix-red: #D2001C;
+            --fenix-dark-red: #B30000;
+            --fenix-gray: #F5F5F5;
+            --fenix-dark-gray: #333333;
+            --fenix-text: #2C2C2C;
+            --fenix-light-gray: #FAFAFA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--fenix-text);
+            background: linear-gradient(135deg, var(--fenix-light-gray) 0%, #FFFFFF 100%);
+        }
+
+        .codelab-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .codelab-header {
+            background: linear-gradient(135deg, var(--fenix-orange) 0%, var(--fenix-red) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .fenix-logo {
+            display: inline-block;
+            background: white;
+            color: var(--fenix-orange);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .codelab-header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .codelab-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .codelab-nav {
+            background: var(--fenix-gray);
+            padding: 1rem;
+            border-bottom: 3px solid var(--fenix-orange);
+        }
+
+        .nav-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .step-indicator:hover {
+            border-color: var(--fenix-orange);
+            transform: translateY(-2px);
+        }
+
+        .step-indicator.active {
+            background: var(--fenix-orange);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .step-number {
+            background: var(--fenix-red);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .step-indicator.active .step-number {
+            background: white;
+            color: var(--fenix-orange);
+        }
+
+        .codelab-content {
+            padding: 2rem;
+        }
+
+        .step-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-header {
+            border-bottom: 3px solid var(--fenix-orange);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-title {
+            font-size: 2rem;
+            color: var(--fenix-dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-duration {
+            display: inline-block;
+            background: var(--fenix-orange);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .content-section {
+            margin-bottom: 2rem;
+        }
+
+        .content-section h3 {
+            color: var(--fenix-red);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--fenix-orange);
+            padding-left: 1rem;
+        }
+
+        .code-block {
+            background: #2D3748;
+            color: #E2E8F0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 4px solid var(--fenix-orange);
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .info-box {
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+        }
+
+        .info-box.positive {
+            background: #F0FDF4;
+            border-color: #22C55E;
+            color: #15803D;
+        }
+
+        .info-box.negative {
+            background: #FEF2F2;
+            border-color: #EF4444;
+            color: #DC2626;
+        }
+
+        .info-box.warning {
+            background: #FFFBEB;
+            border-color: #F59E0B;
+            color: #D97706;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--fenix-gray);
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--fenix-orange) 0%, var(--fenix-red) 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--fenix-gray);
+            color: var(--fenix-dark-gray);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .fenix-footer {
+            background: var(--fenix-dark-gray);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .fenix-footer .address {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .fenix-footer .copyright {
+            font-weight: 500;
+        }
+
+        ul, ol {
+            padding-left: 2rem;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .codelab-header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-steps {
+                flex-direction: column;
+            }
+            
+            .step-indicator {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .codelab-content {
+                padding: 1rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="codelab-container">
+        <!-- Header -->
+        <div class="codelab-header">
+            <div class="fenix-logo">FÉNIX ENERGIA</div>
+            <h1>Snowflake Avanzado para Fénix Energia</h1>
+            <div class="subtitle">Time Travel, Control de Costos, JSON y Escalamiento</div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="codelab-nav">
+            <div class="nav-steps">
+                <div class="step-indicator active" data-step="0">
+                    <div class="step-number">1</div>
+                    <span>Introducción</span>
+                </div>
+                <div class="step-indicator" data-step="1">
+                    <div class="step-number">2</div>
+                    <span>Configuración</span>
+                </div>
+                <div class="step-indicator" data-step="2">
+                    <div class="step-number">3</div>
+                    <span>Time Travel</span>
+                </div>
+                <div class="step-indicator" data-step="3">
+                    <div class="step-number">4</div>
+                    <span>Control Costos</span>
+                </div>
+                <div class="step-indicator" data-step="4">
+                    <div class="step-number">5</div>
+                    <span>JSON IoT</span>
+                </div>
+                <div class="step-indicator" data-step="5">
+                    <div class="step-number">6</div>
+                    <span>Escalamiento</span>
+                </div>
+                <div class="step-indicator" data-step="6">
+                    <div class="step-number">7</div>
+                    <span>Conclusión</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="codelab-content">
+            <!-- Step 0: Introducción -->
+            <div class="step-content active" data-step="0">
+                <div class="step-header">
+                    <h2 class="step-title"><span class="emoji">🏢</span>Introducción</h2>
+                    <div class="step-duration">5 minutos</div>
+                </div>
+
+                <div class="content-section">
+                    <h3><span class="emoji">¡Bienvenidos a Fénix Energia!</span></h3>
+                    
+                    <p>En <strong>Fénix Energia</strong>, como líderes en generación, suministro y comercialización de energía en México, manejamos grandes volúmenes de datos críticos para nuestras operaciones. Este quickstart te guiará a través de las capacidades avanzadas de Snowflake que son esenciales para nuestro negocio energético.</p>
+
+                    <div class="info-box positive">
+                        <strong>Sobre Fénix Energia:</strong>
+                        Ubicados en Lago Zúrich 245, Edif. Carso, Piso 5, Col. Ampliación Granada, somos una empresa mexicana dedicada a la transformación del sector energético nacional.
+                    </div>
+
+                    <h3><span class="emoji">🎯</span>¿Qué aprenderás?</h3>
+                    <ul>
+                        <li><strong>Time Travel</strong> de Snowflake para recuperación de datos críticos</li>
+                        <li><strong>Control de Costos</strong> para optimizar nuestro presupuesto de datos</li>
+                        <li><strong>Análisis de JSON</strong> para datos de sensores y medidores</li>
+                        <li><strong>Escalamiento de Warehouses</strong> para manejar picos de demanda</li>
+                    </ul>
+
+                    <h3><span class="emoji">📋</span>¿Qué necesitas?</h3>
+                    <ul>
+                        <li>Acceso a una cuenta Snowflake</li>
+                        <li>Conocimientos básicos de SQL</li>
+                        <li>Experiencia con datos del sector energético</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 1: Configuración -->
+            <div class="step-content" data-step="1">
+                <div class="step-header">
+                    <h2 class="step-title"><span class="emoji">⚙️</span>Configuración del Entorno</h2>
+                    <div class="step-duration">10 minutos</div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Configuración Inicial para Fénix Energia</h3>
+                    <p>Primero, configuraremos nuestro entorno Snowflake con datos simulados del sector energético que manejamos en Fénix.</p>
+
+                    <div class="code-block">
+                        <pre>-- Crear database para datos de Fenix Energia
+CREATE DATABASE IF NOT EXISTS FENIX_ENERGIA_DB;
+USE DATABASE FENIX_ENERGIA_DB;
+
+-- Crear schema para datos operacionales
+CREATE SCHEMA IF NOT EXISTS OPERACIONES;
+USE SCHEMA OPERACIONES;
+
+-- Crear warehouse específico para análisis energético
+CREATE WAREHOUSE IF NOT EXISTS FENIX_ANALYTICS_WH 
+  WITH WAREHOUSE_SIZE = 'SMALL'
+  AUTO_SUSPEND = 60
+  AUTO_RESUME = TRUE
+  COMMENT = 'Warehouse principal para análisis de Fenix Energia';
+
+USE WAREHOUSE FENIX_ANALYTICS_WH;</pre>
+                    </div>
+
+                    <h3>Crear Tablas de Datos Energéticos</h3>
+                    
+                    <div class="code-block">
+                        <pre>-- Tabla de generación de energía
+CREATE TABLE generacion_energia (
+  id NUMBER AUTOINCREMENT PRIMARY KEY,
+  planta_id VARCHAR(50),
+  timestamp TIMESTAMP_NTZ,
+  megawatts_generados NUMBER(10,2),
+  tipo_energia VARCHAR(20), -- solar, eolica, termica
+  eficiencia NUMBER(5,2),
+  metadatos_sensores VARIANT -- JSON data
+);
+
+-- Tabla de consumo por clientes
+CREATE TABLE consumo_clientes (
+  id NUMBER AUTOINCREMENT PRIMARY KEY,
+  cliente_id VARCHAR(50),
+  fecha DATE,
+  kwh_consumidos NUMBER(12,2),
+  tarifa VARCHAR(20),
+  region VARCHAR(50),
+  facturado BOOLEAN DEFAULT FALSE
+);</pre>
+                    </div>
+
+                    <div class="info-box positive">
+                        <strong>¡Excelente!</strong>
+                        Has configurado tu entorno Snowflake con datos típicos del sector energético que manejamos en Fénix Energia.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Time Travel -->
+            <div class="step-content" data-step="2">
+                <div class="step-header">
+                    <h2 class="step-title"><span class="emoji">⏰</span>Time Travel para Datos Críticos</h2>
+                    <div class="step-duration">15 minutos</div>
+                </div>
+
+                <div class="content-section">
+                    <h3>¿Por qué Time Travel es Crucial en Fénix Energia?</h3>
+                    <p>En el sector energético, los datos son críticos para:</p>
+                    <ul>
+                        <li><strong>Auditorías regulatorias</strong> de la CRE (Comisión Reguladora de Energía)</li>
+                        <li><strong>Recuperación de datos</strong> tras actualizaciones erróneas</li>
+                        <li><strong>Análisis histórico</strong> de generación y consumo</li>
+                        <li><strong>Compliance</strong> con normativas energéticas mexicanas</li>
+                    </ul>
+
+                    <h3>Configurar Time Travel</h3>
+                    <div class="code-block">
+                        <pre>-- Verificar configuración actual de Time Travel
+SHOW PARAMETERS LIKE 'DATA_RETENTION_TIME_IN_DAYS' IN ACCOUNT;
+
+-- Configurar retención extendida para datos críticos (máximo 90 días)
+ALTER TABLE generacion_energia SET DATA_RETENTION_TIME_IN_DAYS = 90;
+ALTER TABLE consumo_clientes SET DATA_RETENTION_TIME_IN_DAYS = 90;</pre>
+                    </div>
+
+                    <h3>Simulando un Incidente: Actualización Errónea</h3>
+                    <div class="code-block">
+                        <pre>-- INCIDENTE: Actualización errónea que afecta todos los registros
+UPDATE generacion_energia 
+SET megawatts_generados = megawatts_generados * 0.1 -- Error: dividió por 10
+WHERE tipo_energia = 'solar';</pre>
+                    </div>
+
+                    <h3>Recuperación usando Time Travel</h3>
+                    <div class="code-block">
+                        <pre>-- Opción 1: Ver datos de hace 5 minutos
+SELECT planta_id, megawatts_generados, tipo_energia
+FROM generacion_energia AT(OFFSET => -300) -- 300 segundos = 5 minutos
+WHERE tipo_energia = 'solar';
+
+-- Crear tabla temporal con datos correctos
+CREATE TEMPORARY TABLE temp_generacion_correcta AS
+SELECT * FROM generacion_energia AT(OFFSET => -300);
+
+-- Restaurar datos usando MERGE
+MERGE INTO generacion_energia t
+USING temp_generacion_correcta s ON t.id = s.id
+WHEN MATCHED AND t.tipo_energia = 'solar' THEN
+  UPDATE SET megawatts_generados = s.megawatts_generados;</pre>
+                    </div>
+
+                    <div class="info-box positive">
+                        <strong>¡Perfecto!</strong>
+                        Has aprendido a usar Time Travel para proteger los datos críticos de Fénix Energia. Esta funcionalidad es esencial para cumplir con auditorías regulatorias.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Control de Costos -->
+            <div class="step-content" data-step="3">
+                <div class="step-header">
+                    <h2 class="step-title"><span class="emoji">💰</span>Control de Costos Inteligente</h2>
+                    <div class="step-duration">20 minutos</div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Optimización de Costos en Fénix Energia</h3>
+                    <p>Como empresa energética, optimizar costos es crucial para mantener tarifas competitivas. Snowflake nos permite controlar y optimizar nuestros gastos en datos.</p>
+
+                    <h3>Monitoreo de Uso Actual</h3>
+                    <div class="code-block">
+                        <pre>-- Ver uso de créditos por warehouse
+SELECT 
+  warehouse_name,
+  SUM(credits_used) as total_credits,
+  AVG(credits_used_compute) as avg_compute_credits,
+  COUNT(*) as queries_executed
+FROM table(information_schema.warehouse_metering_history(
+  dateadd('days', -7, current_date()),
+  current_date()
+))
+GROUP BY warehouse_name
+ORDER BY total_credits DESC;</pre>
+                    </div>
+
+                    <h3>Configurar Alertas de Costos</h3>
+                    <div class="code-block">
+                        <pre>-- Crear resource monitor para controlar costos
+CREATE RESOURCE MONITOR IF NOT EXISTS FENIX_COST_MONITOR
+  WITH CREDIT_QUOTA = 100 -- Límite mensual en créditos
+  FREQUENCY = MONTHLY
+  START_TIMESTAMP = CURRENT_DATE()
+  TRIGGERS
+    ON 75 PERCENT DO NOTIFY
+    ON 90 PERCENT DO SUSPEND
+    ON 100 PERCENT DO SUSPEND_IMMEDIATE;
+
+-- Asignar monitor a nuestro warehouse
+ALTER WAREHOUSE FENIX_ANALYTICS_WH 
+  SET RESOURCE_MONITOR = FENIX_COST_MONITOR;</pre>
+                    </div>
+
+                    <div class="info-box negative">
+                        <strong>¡Importante!</strong>
+                        El control de costos es fundamental para Fénix Energia. Estas técnicas nos permiten mantener operaciones eficientes mientras ofrecemos tarifas competitivas.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: JSON -->
+            <div class="step-content" data-step="4">
+                <div class="step-header">
+                    <h2 class="step-title"><span class="emoji">📡</span>Análisis de JSON para Sensores IoT</h2>
+                    <div class="step-duration">15 minutos</div>
+                </div>
+
+                <div class="content-section">
+                    <h3>JSON en el Sector Energético de Fénix</h3>
+                    <p>En Fénix Energia, nuestros sensores IoT y medidores inteligentes generan datos JSON complejos que incluyen:</p>
+                    <ul>
+                        <li><strong>Telemetría</strong> de plantas de generación</li>
+                        <li><strong>Estados</strong> de equipos críticos</li>
+                        <li><strong>Métricas</strong> ambientales y operacionales</li>
+                        <li><strong>Alertas</strong> de mantenimiento predictivo</li>
+                    </ul>
+
+                    <h3>Explorando Datos JSON de Sensores</h3>
+                    <div class="code-block">
+                        <pre>-- Extraer valores específicos del JSON
+SELECT 
+  planta_id,
+  tipo_energia,
+  metadatos_sensores:temperatura::NUMBER as temperatura,
+  metadatos_sensores:radiacion::NUMBER as radiacion_solar,
+  metadatos_sensores:viento_mps::NUMBER as velocidad_viento
+FROM generacion_energia;</pre>
+                    </div>
+
+                    <h3>Insertar Datos JSON Complejos</h3>
+                    <div class="code-block">
+                        <pre>-- Insertar datos complejos de plantas
+INSERT INTO generacion_energia 
+  (planta_id, timestamp, megawatts_generados, tipo_energia, eficiencia, metadatos_sensores)
+VALUES 
+  ('PLANTA_SOLAR_04', CURRENT_TIMESTAMP(), 67.8, 'solar',
+   PARSE_JSON('{
+     "ubicacion": {"latitud": 25.6866, "longitud": -100.3161, "estado": "Nuevo Leon"},
+     "paneles": {
+       "total": 150,
+       "activos": 148,
+       "eficiencia_individual": [98.5, 97.2, 99.1, 96.8, 98.9]
+     },
+     "alertas": [
+       {"nivel": "warning", "componente": "panel_A12", "mensaje": "Eficiencia baja"}
+     ]
+   }'));</pre>
+                    </div>
+
+                    <div class="info-box positive">
+                        <strong>¡Excelente!</strong>
+                        Ahora puedes manejar eficientemente los datos JSON complejos de nuestros sensores IoT en Fénix Energia.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Escalamiento -->
+            <div class="step-content" data-step="5">
+                <div class="step-header">
+                    <h2 class="step-title"><span class="emoji">📈</span>Escalamiento Dinámico de Warehouses</h2>
+                    <div class="step-duration">15 minutos</div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Escalamiento para Demanda Energética Variable</h3>
+                    <p>En Fénix Energia, la demanda de análisis varía según:</p>
+                    <ul>
+                        <li><strong>Picos de consumo</strong> eléctrico (mañana y noche)</li>
+                        <li><strong>Reportes regulatorios</strong> mensuales para la CRE</li>
+                        <li><strong>Análisis predictivos</strong> de generación</li>
+                        <li><strong>Emergencias</strong> operacionales</li>
+                    </ul>
+
+                    <h3>Configurar Warehouses Multi-Tamaño</h3>
+                    <div class="code-block">
+                        <pre>-- Warehouse para análisis ligeros
+CREATE WAREHOUSE IF NOT EXISTS FENIX_LIGHT_WH
+  WITH WAREHOUSE_SIZE = 'XSMALL'
+  AUTO_SUSPEND = 60
+  AUTO_RESUME = TRUE
+  COMMENT = 'Para consultas ligeras y monitoreo básico';
+
+-- Warehouse para análisis pesados
+CREATE WAREHOUSE IF NOT EXISTS FENIX_HEAVY_WH
+  WITH WAREHOUSE_SIZE = 'LARGE'
+  AUTO_SUSPEND = 300
+  AUTO_RESUME = TRUE
+  COMMENT = 'Para ETL pesado y machine learning';</pre>
+                    </div>
+
+                    <h3>Procedimiento de Escalamiento Automático</h3>
+                    <div class="code-block">
+                        <pre>-- Procedimiento para escalamiento dinámico
+CREATE OR REPLACE PROCEDURE escalar_warehouse_dinamico(
+  warehouse_name STRING,
+  nuevo_tamano STRING
+)
+RETURNS STRING
+LANGUAGE SQL
+AS $$
+BEGIN
+  LET sql_command := 'ALTER WAREHOUSE ' || warehouse_name || 
+                     ' SET WAREHOUSE_SIZE = ''' || nuevo_tamano || '''';
+  EXECUTE IMMEDIATE :sql_command;
+  RETURN 'Warehouse ' || warehouse_name || ' escalado a ' || nuevo_tamano;
+END;
+$$;</pre>
+                    </div>
+
+                    <div class="info-box negative">
+                        <strong>¡Crítico para Fénix!</strong>
+                        El escalamiento dinámico es esencial para manejar las fluctuaciones en la demanda de análisis de datos energéticos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Conclusión -->
+            <div class="step-content" data-step="6">
+                <div class="step-header">
+                    <h2 class="step-title"><span class="emoji">🎉</span>Conclusión y Próximos Pasos</h2>
+                    <div class="step-duration">5 minutos</div>
+                </div>
+
+                <div class="content-section">
+                    <h3>¡Felicitaciones!</h3>
+                    <p>Has completado exitosamente el quickstart de <strong>Snowflake Avanzado para Fénix Energia</strong>. Ahora tienes las herramientas necesarias para:</p>
+
+                    <h3><span class="emoji">✅</span>Lo que has aprendido:</h3>
+                    <ul>
+                        <li><strong>Time Travel</strong>: Proteger y recuperar datos críticos del sector energético</li>
+                        <li><strong>Control de Costos</strong>: Optimizar gastos manteniendo performance</li>
+                        <li><strong>Análisis JSON</strong>: Procesar datos IoT de plantas y sensores</li>
+                        <li><strong>Escalamiento</strong>: Manejar cargas variables eficientemente</li>
+                    </ul>
+
+                    <h3><span class="emoji">🚀</span>Próximos pasos para Fénix Energia:</h3>
+                    <ol>
+                        <li><strong>Implementar en Producción</strong>
+                            <ul>
+                                <li>Configurar estos patrones en tu entorno real</li>
+                                <li>Establecer monitoring proactivo</li>
+                                <li>Crear alertas automáticas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Expansión Avanzada</strong>
+                            <ul>
+                                <li>Machine Learning con Snowpark</li>
+                                <li>Integración con sistemas SCADA</li>
+                                <li>Análisis predictivo de demanda</li>
+                            </ul>
+                        </li>
+                        <li><strong>Compliance y Seguridad</strong>
+                            <ul>
+                                <li>Configurar auditorías para CRE</li>
+                                <li>Implementar data governance</li>
+                                <li>Establecer políticas de retención</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="info-box positive">
+                        <strong>¡Gracias!</strong>
+                        Has completado tu entrenamiento en Snowflake para Fénix Energia. Estás listo para optimizar nuestras operaciones de datos energéticos. ⚡
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" disabled>
+                    <span class="material-icons">arrow_back</span>
+                    Anterior
+                </button>
+                <div id="stepCounter">Paso 1 de 7</div>
+                <button class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
+                    Siguiente
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="fenix-footer">
+        <div class="address">
+            Lago Zúrich 245, Edif. Carso, Piso 5, Col. Ampliación Granada
+        </div>
+        <div class="copyright">
+            © 2025 Fénix Energia - Transformando el futuro energético de México 🇲🇽
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const totalSteps = 7;
+
+        function changeStep(direction) {
+            const newStep = currentStep + direction;
+            if (newStep >= 0 && newStep < totalSteps) {
+                showStep(newStep);
+            }
+        }
+
+        function showStep(stepIndex) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected step
+            document.querySelector(`[data-step="${stepIndex}"]`).classList.add('active');
+            
+            // Update navigation indicators
+            document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === stepIndex);
+            });
+            
+            // Update current step
+            currentStep = stepIndex;
+            
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentStep === 0;
+            document.getElementById('nextBtn').disabled = currentStep === totalSteps - 1;
+            
+            // Update step counter
+            document.getElementById('stepCounter').textContent = `Paso ${currentStep + 1} de ${totalSteps}`;
+            
+            // Update next button text
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentStep === totalSteps - 1) {
+                nextBtn.innerHTML = '<span class="material-icons">check_circle</span> Finalizar';
+            } else {
+                nextBtn.innerHTML = 'Siguiente <span class="material-icons">arrow_forward</span>';
+            }
+        }
+
+        // Add click handlers to step indicators
+        document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+            indicator.addEventListener('click', () => showStep(index));
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeStep(-1);
+            if (e.key === 'ArrowRight') changeStep(1);
+        });
+
+        // Initialize
+        showStep(0);
+    </script>
+</body>
+</html> 

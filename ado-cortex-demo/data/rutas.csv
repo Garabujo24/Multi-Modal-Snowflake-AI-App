@@ -1,0 +1,23 @@
+ID,Origen,Destino,Distancia_KM,Duracion_Estimada_Horas
+1,Ciudad de México,Puebla,130,2.5
+2,Ciudad de México,Veracruz,400,6.5
+3,Puebla,Veracruz,270,4.0
+4,Ciudad de México,Oaxaca,460,7.0
+5,Oaxaca,Tuxtla Gutiérrez,540,8.5
+6,Ciudad de México,Tuxtla Gutiérrez,970,15.0
+7,Veracruz,Tuxtla Gutiérrez,670,10.5
+8,Puebla,Oaxaca,340,5.5
+9,Veracruz,Oaxaca,420,7.0
+10,Ciudad de México,Acapulco,380,5.5
+11,Acapulco,Oaxaca,500,8.0
+12,Puebla,Acapulco,350,6.0
+13,Tuxtla Gutiérrez,Veracruz,670,10.5
+14,Oaxaca,Veracruz,420,7.0
+15,Acapulco,Ciudad de México,380,5.5
+16,Tuxtla Gutiérrez,Oaxaca,540,8.5
+17,Veracruz,Puebla,270,4.0
+18,Oaxaca,Puebla,340,5.5
+19,Acapulco,Veracruz,500,8.0
+20,Tuxtla Gutiérrez,Acapulco,900,14.0
+
+

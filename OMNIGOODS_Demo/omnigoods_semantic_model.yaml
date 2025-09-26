@@ -1,0 +1,160 @@
+name: omnigoods
+description: Modelo semántico para análisis de ventas, productos y clientes de OMNIGOODS.
+tables:
+  - name: customers
+    description: Tabla de clientes de OMNIGOODS.
+    base_table:
+      database: OMNIGOODS_DB
+      schema: RAW
+      table: CUSTOMERS
+    primary_key:
+      columns: [CUSTOMER_ID]
+    dimensions:
+      - name: customer_id
+        expr: CUSTOMER_ID
+        data_type: NUMBER
+      - name: customer_name
+        expr: CUSTOMER_NAME
+        data_type: STRING
+        description: Nombre del cliente.
+      - name: customer_email
+        expr: EMAIL
+        data_type: STRING
+      - name: customer_location
+        expr: LOCATION
+        data_type: STRING
+        description: Ubicación del cliente.
+
+  - name: products
+    description: Catálogo de productos de OMNIGOODS.
+    base_table:
+      database: OMNIGOODS_DB
+      schema: RAW
+      table: PRODUCTS
+    primary_key:
+      columns: [PRODUCT_ID]
+    dimensions:
+      - name: product_id
+        expr: PRODUCT_ID
+        data_type: NUMBER
+      - name: product_name
+        expr: PRODUCT_NAME
+        data_type: STRING
+      - name: product_category
+        expr: CATEGORY
+        data_type: STRING
+      - name: product_image_url
+        expr: IMAGE_URL
+        data_type: STRING
+    facts:
+      - name: product_price
+        expr: PRICE
+        data_type: NUMBER
+
+  - name: sales
+    description: Registros de ventas.
+    base_table:
+      database: OMNIGOODS_DB
+      schema: RAW
+      table: SALES
+    primary_key:
+      columns: [SALE_ID]
+    dimensions:
+      - name: sale_id
+        expr: SALE_ID
+        data_type: NUMBER
+      - name: customer_id
+        expr: CUSTOMER_ID
+        data_type: NUMBER
+      - name: product_id
+        expr: PRODUCT_ID
+        data_type: NUMBER
+    time_dimensions:
+      - name: sale_date
+        expr: SALE_DATE
+        data_type: DATE
+    facts:
+      - name: quantity_sold
+        expr: QUANTITY
+        data_type: NUMBER
+      - name: total_price
+        expr: TOTAL_PRICE
+        data_type: NUMBER
+
+  - name: customer_reviews
+    description: Reseñas de productos escritas por clientes.
+    base_table:
+      database: OMNIGOODS_DB
+      schema: RAW
+      table: CUSTOMER_REVIEWS
+    primary_key:
+      columns: [REVIEW_ID]
+    dimensions:
+      - name: review_id
+        expr: REVIEW_ID
+        data_type: NUMBER
+      - name: product_id
+        expr: PRODUCT_ID
+        data_type: NUMBER
+      - name: customer_id
+        expr: CUSTOMER_ID
+        data_type: NUMBER
+      - name: review_text
+        expr: REVIEW_TEXT
+        data_type: STRING
+    time_dimensions:
+      - name: review_date
+        expr: REVIEW_DATE
+        data_type: DATE
+
+metrics:
+  - name: total_sales_amount
+    description: Suma total de ingresos por ventas.
+    expr: SUM(sales.total_price)
+  - name: total_quantity_sold
+    description: Número total de unidades de productos vendidos.
+    expr: SUM(sales.quantity_sold)
+  - name: total_sales
+    description: Número total de transacciones de venta.
+    expr: COUNT(sales.sale_id)
+  - name: total_reviews
+    description: Número total de reseñas de clientes.
+    expr: COUNT(customer_reviews.review_id)
+
+relationships:
+  - name: sales_to_customers
+    leftTable: sales
+    rightTable: customers
+    relationshipColumns:
+      - left_column: CUSTOMER_ID
+        right_column: CUSTOMER_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: sales_to_products
+    leftTable: sales
+    rightTable: products
+    relationshipColumns:
+      - left_column: PRODUCT_ID
+        right_column: PRODUCT_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: reviews_to_customers
+    leftTable: customer_reviews
+    rightTable: customers
+    relationshipColumns:
+      - left_column: CUSTOMER_ID
+        right_column: CUSTOMER_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: reviews_to_products
+    leftTable: customer_reviews
+    rightTable: products
+    relationshipColumns:
+      - left_column: PRODUCT_ID
+        right_column: PRODUCT_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+

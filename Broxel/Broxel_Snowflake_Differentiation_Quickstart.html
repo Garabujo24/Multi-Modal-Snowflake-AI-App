@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Broxel + Snowflake: Quickstart - Ventajas Diferenciales de la Data Cloud</title>
+  <style>
+    :root {
+      --broxel-primary: #0046be;
+      --broxel-secondary: #003399;
+      --broxel-accent: #00d4ff;
+      --broxel-light: #f8fafc;
+      --broxel-gray: #64748b;
+      --snowflake-blue: #29b5e8;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --success-green: #10b981;
+      --warning-orange: #f59e0b;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, #ffffff 0%, var(--broxel-light) 100%);
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--broxel-primary) 0%, var(--broxel-secondary) 100%);
+      color: #ffffff;
+      padding: 3rem 1.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="90" cy="80" r="1.2" fill="rgba(255,255,255,0.09)"/></svg>') repeat;
+      opacity: 0.3;
+    }
+    
+    header .quickstart-header {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    
+    header .logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    header .logo-placeholder {
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+    
+    header h1 {
+      margin: 0 0 1rem 0;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+    
+    header .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--broxel-accent);
+      font-weight: 600;
+    }
+    
+    header .description {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    header .quickstart-meta {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    header .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    
+    /* Navigation Styles */
+    .navigation-bar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 70, 190, 0.1);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .navigation-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-brand {
+      font-weight: 700;
+      color: var(--broxel-primary);
+      font-size: 1.1rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--broxel-primary);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    
+    /* Layout Styles */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .layout {
+      display: flex;
+      gap: 3rem;
+      margin: 3rem 0;
+    }
+    
+    /* Sidebar Styles */
+    nav.sidebar {
+      flex: 0 0 300px;
+      position: sticky;
+      top: 100px;
+      align-self: flex-start;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 40px rgba(0, 70, 190, 0.08);
+      border: 1px solid rgba(0, 70, 190, 0.05);
+    }
+    
+    nav.sidebar h2 {
+      margin: 0 0 1.5rem 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--broxel-primary);
+      font-weight: 700;
+      border-bottom: 2px solid var(--broxel-accent);
+      padding-bottom: 0.5rem;
+    }
+    
+    nav.sidebar ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    nav.sidebar ol li {
+      counter-increment: section-counter;
+    }
+    
+    nav.sidebar ol li a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 600;
+      display: block;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      position: relative;
+    }
+    
+    nav.sidebar ol li a::before {
+      content: counter(section-counter, decimal-leading-zero);
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--broxel-accent);
+      color: var(--broxel-primary);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      margin-right: 0.75rem;
+    }
+    
+    nav.sidebar ol li a {
+      padding-left: 3.5rem;
+    }
+    
+    nav.sidebar a:hover {
+      background: linear-gradient(135deg, var(--broxel-primary), var(--broxel-secondary));
+      color: #ffffff;
+      transform: translateX(4px);
+      border-color: var(--broxel-primary);
+      box-shadow: 0 8px 25px rgba(0, 70, 190, 0.2);
+    }
+    
+    nav.sidebar a:hover::before {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+    
+    /* Section Counter Reset */
+    nav.sidebar ol {
+      counter-reset: section-counter;
+    }
+    
+    /* Main Content Styles */
+    main {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    section {
+      margin-bottom: 4rem;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(0, 70, 190, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--broxel-primary), var(--broxel-accent), var(--snowflake-blue));
+    }
+    
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--broxel-primary);
+      font-weight: 700;
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    section h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.75rem;
+      width: 10px;
+      height: 60%;
+      border-radius: 5px;
+      background: linear-gradient(135deg, var(--snowflake-blue), var(--broxel-accent));
+    }
+    
+    section h3 {
+      font-size: 1.5rem;
+      color: var(--broxel-secondary);
+      margin: 2.5rem 0 1.5rem 0;
+      font-weight: 600;
+      border-bottom: 2px solid var(--broxel-light);
+      padding-bottom: 0.5rem;
+    }
+    
+    section p, section li {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Highlight Boxes */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(41, 181, 232, 0.1));
+      border: 2px solid var(--broxel-accent);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+    
+    .highlight-box::before {
+      content: "💡";
+      position: absolute;
+      top: -15px;
+      left: 25px;
+      background: #ffffff;
+      padding: 0 10px;
+      font-size: 1.5rem;
+    }
+    
+    .highlight-box h4 {
+      margin: 0 0 1rem 0;
+      color: var(--broxel-primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 1rem;
+    }
+    
+    /* Advantage Cards */
+    .advantage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .advantage-card {
+      background: linear-gradient(135deg, #ffffff, var(--broxel-light));
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(0, 70, 190, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .advantage-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--broxel-primary), var(--broxel-accent));
+    }
+    
+    .advantage-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0, 70, 190, 0.15);
+    }
+    
+    .advantage-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .advantage-card h4 {
+      margin: 0 0 1rem 0;
+      color: var(--broxel-primary);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    
+    .advantage-card p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    
+    /* Code Blocks */
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+      font-family: "Fira Code", "Source Code Pro", monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border: 1px solid #334155;
+      position: relative;
+    }
+    
+    .code-block::before {
+      content: "SQL";
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--broxel-accent);
+      color: var(--broxel-primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    /* Comparison Tables */
+    .comparison-table {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 2rem 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 70, 190, 0.1);
+    }
+    
+    .comparison-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, var(--broxel-primary), var(--broxel-secondary));
+      color: #ffffff;
+      padding: 1.5rem 1rem;
+      text-align: left;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .comparison-table td {
+      padding: 1.5rem 1rem;
+      border-bottom: 1px solid var(--broxel-light);
+      vertical-align: top;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: rgba(248, 250, 252, 0.5);
+    }
+    
+    .comparison-table .check {
+      color: var(--success-green);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    
+    .comparison-table .warning {
+      color: var(--warning-orange);
+      font-weight: 700;
+    }
+    
+    /* Step Lists */
+    .step-list {
+      counter-reset: steps;
+      list-style: none;
+      padding: 0;
+      margin: 2.5rem 0;
+    }
+    
+    .step-list li {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      border-left: 6px solid var(--broxel-accent);
+      position: relative;
+    }
+    
+    .step-list li::before {
+      counter-increment: steps;
+      content: "PASO " counter(steps);
+      position: absolute;
+      top: -15px;
+      left: 25px;
+      background: var(--broxel-primary);
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    /* Metrics Dashboard */
+    .metrics-dashboard {
+      background: linear-gradient(135deg, var(--broxel-light), #ffffff);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 3rem 0;
+      border: 2px solid var(--broxel-accent);
+      position: relative;
+    }
+    
+    .metrics-dashboard::before {
+      content: "📊";
+      position: absolute;
+      top: -15px;
+      left: 25px;
+      background: #ffffff;
+      padding: 0 10px;
+      font-size: 1.5rem;
+    }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .metric-item {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(0, 70, 190, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .metric-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 70, 190, 0.1);
+    }
+    
+    .metric-number {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--broxel-primary);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--broxel-primary), var(--broxel-secondary));
+      color: #ffffff;
+      padding: 4rem 0 2rem;
+      margin-top: 5rem;
+    }
+    
+    footer .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    footer .footer-brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    
+    footer .footer-links {
+      display: flex;
+      gap: 2.5rem;
+      font-size: 1rem;
+    }
+    
+    footer a {
+      color: var(--broxel-accent);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .layout {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      nav.sidebar {
+        position: relative;
+        top: auto;
+        flex: none;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      section {
+        padding: 2rem;
+      }
+      
+      .navigation-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 2rem 1rem;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      header .logos {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      header .quickstart-meta {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
+      
+      .advantage-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      nav.sidebar ol li a {
+        padding-left: 1.25rem;
+      }
+      
+      nav.sidebar ol li a::before {
+        display: none;
+      }
+      
+      footer .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="quickstart-header">
+      <div class="logos">
+        <div class="logo-placeholder">BROXEL</div>
+        <div style="color: var(--broxel-accent); font-size: 2rem;">×</div>
+        <div class="logo-placeholder">SNOWFLAKE</div>
+      </div>
+      <h1>Data Cloud Superiority</h1>
+      <div class="subtitle">5 Ventajas Diferenciales que Revolucionan tu Arquitectura de Datos</div>
+      <p class="description">
+        Descubre por qué Snowflake representa la evolución natural de las plataformas de datos en la nube. 
+        Explora cinco características fundamentales que posicionan a Snowflake como la opción superior 
+        para empresas fintech que buscan maximizar el valor de sus datos con arquitecturas modernas y escalables.
+      </p>
+      <div class="quickstart-meta">
+        <div class="meta-item">
+          <span>⏱️</span>
+          <span>Duración: 25 minutos</span>
+        </div>
+        <div class="meta-item">
+          <span>🎯</span>
+          <span>Nivel: Intermedio</span>
+        </div>
+        <div class="meta-item">
+          <span>💼</span>
+          <span>Enfoque: Fintech & Enterprise</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="navigation-bar">
+    <div class="navigation-content">
+      <div class="nav-brand">Snowflake Quickstart</div>
+      <nav class="nav-links">
+        <a href="#overview">Visión General</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#escalabilidad">Escalabilidad</a>
+        <a href="#datos">Datos Flexibles</a>
+        <a href="#seguridad">Seguridad</a>
+        <a href="#multicloud">Multi-Cloud</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="layout">
+      <nav class="sidebar" aria-label="Tabla de contenidos">
+        <h2>Guía de Navegación</h2>
+        <ol>
+          <li><a href="#overview">Visión General y Contexto</a></li>
+          <li><a href="#arquitectura">Arquitectura Desacoplada Superior</a></li>
+          <li><a href="#escalabilidad">Escalabilidad Elástica Instantánea</a></li>
+          <li><a href="#datos">Flexibilidad de Datos Semiestructurados</a></li>
+          <li><a href="#seguridad">Seguridad y Gobernanza Avanzadas</a></li>
+          <li><a href="#multicloud">Libertad Multi-Cloud</a></li>
+        </ol>
+      </nav>
+
+      <main>
+        <section id="overview">
+          <h2>Visión General y Contexto</h2>
+          <p>
+            En el ecosistema de datos en la nube, diferentes plataformas compiten por ofrecer la mejor 
+            combinación de rendimiento, escalabilidad y facilidad de uso. Snowflake se distingue por 
+            su arquitectura innovadora y su enfoque cloud-native que elimina las limitaciones tradicionales 
+            de las plataformas de datos.
+          </p>
+          
+          <div class="highlight-box">
+            <h4>¿Por qué este Quickstart es Importante para Broxel?</h4>
+            <p>
+              Como empresa fintech líder, Broxel maneja volúmenes masivos de datos financieros críticos 
+              que requieren procesamiento en tiempo real, alta disponibilidad y cumplimiento regulatorio 
+              estricto. Las ventajas diferenciales de Snowflake pueden transformar fundamentalmente 
+              cómo Broxel gestiona, analiza y monetiza sus datos.
+            </p>
+          </div>
+
+          <div class="advantage-grid">
+            <div class="advantage-card">
+              <span class="icon">🏗️</span>
+              <h4>Arquitectura Revolucionaria</h4>
+              <p>Separación completa de almacenamiento y cómputo que permite optimizaciones imposibles en otras plataformas.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">⚡</span>
+              <h4>Escalabilidad Instantánea</h4>
+              <p>Escala recursos en segundos, no horas, adaptándose automáticamente a cargas de trabajo variables.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🔧</span>
+              <h4>Flexibilidad de Datos</h4>
+              <p>Procesa datos estructurados y semiestructurados nativamente sin transformaciones complejas.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🛡️</span>
+              <h4>Seguridad Empresarial</h4>
+              <p>Cifrado automático, control granular de acceso y cumplimiento regulatorio integrado.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">☁️</span>
+              <h4>Libertad Multi-Cloud</h4>
+              <p>Despliega en AWS, Azure o GCP sin cambios de código y evita el vendor lock-in.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">💡</span>
+              <h4>Innovación Continua</h4>
+              <p>Acceso inmediato a nuevas funcionalidades sin migraciones ni tiempo de inactividad.</p>
+            </div>
+          </div>
+
+          <div class="metrics-dashboard">
+            <h3>Impacto Esperado para Broxel</h3>
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <span class="metric-number">90%</span>
+                <div class="metric-label">Reducción en Tiempo de Setup</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">75%</span>
+                <div class="metric-label">Mejora en Performance</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">60%</span>
+                <div class="metric-label">Reducción de Costos</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">99.9%</span>
+                <div class="metric-label">Disponibilidad Garantizada</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="arquitectura">
+          <h2>1. Arquitectura Desacoplada Superior</h2>
+          <p>
+            La arquitectura de Snowflake representa una evolución fundamental en el diseño de 
+            plataformas de datos. Mientras que las soluciones tradicionales acoplan estrechamente 
+            el almacenamiento con el procesamiento, Snowflake los separa completamente, 
+            permitiendo optimizaciones y escalabilidad imposibles en arquitecturas monolíticas.
+          </p>
+
+          <h3>Componentes de la Arquitectura</h3>
+          <div class="advantage-grid">
+            <div class="advantage-card">
+              <span class="icon">💾</span>
+              <h4>Capa de Almacenamiento</h4>
+              <p>Almacenamiento ilimitado y distribuido que escala automáticamente sin intervención manual.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">⚙️</span>
+              <h4>Capa de Cómputo</h4>
+              <p>Warehouses virtuales que se dimensionan independientemente según la demanda real.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🧠</span>
+              <h4>Capa de Servicios</h4>
+              <p>Optimización automática de consultas, gestión de metadatos y coordinación global.</p>
+            </div>
+          </div>
+
+          <h3>Ventajas Prácticas para Broxel</h3>
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspecto</th>
+                  <th>Arquitectura Snowflake</th>
+                  <th>Arquitecturas Tradicionales</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Escalabilidad</strong></td>
+                  <td><span class="check">✓</span> Independiente para almacenamiento y cómputo</td>
+                  <td><span class="warning">⚠</span> Acoplada, requiere sobredimensionamiento</td>
+                </tr>
+                <tr>
+                  <td><strong>Concurrencia</strong></td>
+                  <td><span class="check">✓</span> Múltiples workloads sin interferencia</td>
+                  <td><span class="warning">⚠</span> Competencia por recursos compartidos</td>
+                </tr>
+                <tr>
+                  <td><strong>Costos</strong></td>
+                  <td><span class="check">✓</span> Pago por uso real de recursos</td>
+                  <td><span class="warning">⚠</span> Recursos ociosos permanentes</td>
+                </tr>
+                <tr>
+                  <td><strong>Mantenimiento</strong></td>
+                  <td><span class="check">✓</span> Automatizado y transparente</td>
+                  <td><span class="warning">⚠</span> Requiere administración manual</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Implementación Práctica</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Configuración de Warehouses Especializados</strong>
+              <p>Crea warehouses dedicados para diferentes tipos de cargas de trabajo:</p>
+              <div class="code-block">
+-- Warehouse para análisis en tiempo real
+CREATE WAREHOUSE BROXEL_REALTIME_WH 
+  WITH WAREHOUSE_SIZE = 'MEDIUM'
+  AUTO_SUSPEND = 60
+  AUTO_RESUME = TRUE
+  COMMENT = 'Warehouse optimizado para consultas de baja latencia';
+
+-- Warehouse para ETL y procesos batch
+CREATE WAREHOUSE BROXEL_ETL_WH
+  WITH WAREHOUSE_SIZE = 'LARGE'
+  AUTO_SUSPEND = 300
+  AUTO_RESUME = TRUE
+  COMMENT = 'Warehouse para procesamiento masivo de datos';</div>
+            </li>
+            <li>
+              <strong>Optimización Automática de Recursos</strong>
+              <p>Configura políticas de auto-escalado que se adapten a los patrones de uso de Broxel.</p>
+            </li>
+            <li>
+              <strong>Monitoreo de Performance</strong>
+              <p>Utiliza las vistas del sistema para analizar y optimizar el uso de recursos continuamente.</p>
+            </li>
+          </ol>
+
+          <div class="highlight-box">
+            <h4>Beneficio Clave para Broxel</h4>
+            <p>
+              Esta arquitectura permite a Broxel manejar picos de transacciones (Black Friday, eventos especiales) 
+              escalando automáticamente solo el cómputo necesario, mientras mantiene costos optimizados 
+              durante períodos de menor actividad.
+            </p>
+          </div>
+        </section>
+
+        <section id="escalabilidad">
+          <h2>2. Escalabilidad Elástica Instantánea</h2>
+          <p>
+            La escalabilidad de Snowflake va más allá de simplemente agregar más servidores. 
+            Su capacidad de escalar en múltiples dimensiones de forma instantánea y automática 
+            representa una ventaja competitiva crucial para empresas fintech como Broxel que 
+            enfrentan cargas de trabajo altamente variables e impredecibles.
+          </p>
+
+          <h3>Dimensiones de Escalabilidad</h3>
+          <div class="advantage-grid">
+            <div class="advantage-card">
+              <span class="icon">📈</span>
+              <h4>Escalado Vertical</h4>
+              <p>Aumenta la potencia computacional de XS a 6XL en segundos sin interrupciones.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">📊</span>
+              <h4>Escalado Horizontal</h4>
+              <p>Agrega clusters múltiples para manejar miles de consultas concurrentes.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🤖</span>
+              <h4>Auto-Escalado</h4>
+              <p>Ajuste automático basado en políticas definidas y patrones de carga.</p>
+            </div>
+          </div>
+
+          <h3>Casos de Uso Críticos para Fintech</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Procesamiento de Fin de Día</strong>
+              <p>Maneja millones de transacciones durante el cierre de mercados:</p>
+              <div class="code-block">
+-- Configuración de auto-escalado para batch nocturno
+ALTER WAREHOUSE BROXEL_BATCH_WH 
+  SET WAREHOUSE_SIZE = 'X-LARGE'
+  MIN_CLUSTER_COUNT = 2
+  MAX_CLUSTER_COUNT = 8
+  SCALING_POLICY = 'STANDARD';
+
+-- Procesamiento optimizado de transacciones
+SELECT 
+  date_trunc('hour', transaction_timestamp) as hour,
+  currency,
+  sum(amount) as total_volume,
+  count(*) as transaction_count,
+  avg(amount) as avg_transaction
+FROM broxel_transactions 
+WHERE transaction_timestamp >= current_date()
+GROUP BY 1, 2
+ORDER BY 1, 3 DESC;</div>
+            </li>
+            <li>
+              <strong>Análisis de Riesgo en Tiempo Real</strong>
+              <p>Responde instantáneamente a picos de demanda durante eventos de mercado críticos manteniendo latencias sub-segundo.</p>
+            </li>
+            <li>
+              <strong>Reportes Regulatorios</strong>
+              <p>Ejecuta cargas intensivas de cumplimiento sin afectar las operaciones comerciales diarias.</p>
+            </li>
+          </ol>
+
+          <div class="metrics-dashboard">
+            <h3>Métricas de Escalabilidad</h3>
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <span class="metric-number">&lt;10s</span>
+                <div class="metric-label">Tiempo de Escalado</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">1000+</span>
+                <div class="metric-label">Consultas Concurrentes</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">10TB+</span>
+                <div class="metric-label">Procesamiento por Hora</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">0</span>
+                <div class="metric-label">Tiempo de Inactividad</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4>Ventaja Financiera</h4>
+            <p>
+              El modelo de pago por segundo de uso significa que Broxel solo paga por los recursos que 
+              realmente consume. Durante picos de carga, escala automáticamente para mantener performance, 
+              y durante períodos lentos, reduce costos automáticamente sin intervención manual.
+            </p>
+          </div>
+        </section>
+
+        <section id="datos">
+          <h2>3. Flexibilidad de Datos Semiestructurados</h2>
+          <p>
+            El ecosistema fintech moderno genera datos en múltiples formatos: JSON de APIs de pago, 
+            XML de sistemas bancarios legacy, logs de aplicaciones móviles, y más. Snowflake maneja 
+            todos estos formatos nativamente, eliminando la necesidad de transformaciones ETL complejas 
+            y costosas que tradicionalmente consumen el 80% del tiempo de desarrollo de datos.
+          </p>
+
+          <h3>Soporte Nativo Multi-Formato</h3>
+          <div class="advantage-grid">
+            <div class="advantage-card">
+              <span class="icon">📄</span>
+              <h4>JSON Nativo</h4>
+              <p>Consulta directamente estructuras JSON complejas con sintaxis SQL estándar.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🔄</span>
+              <h4>Esquema Flexible</h4>
+              <p>Evoluciona estructuras de datos sin migraciones costosas o tiempo de inactividad.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🚀</span>
+              <h4>Indexación Automática</h4>
+              <p>Optimización transparente de consultas sobre datos semi-estructurados.</p>
+            </div>
+          </div>
+
+          <h3>Implementación con Datos Financieros Reales</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Ingesta Directa de Transacciones JSON</strong>
+              <div class="code-block">
+-- Crear tabla para datos JSON de transacciones
+CREATE TABLE broxel_transactions (
+  transaction_id STRING,
+  transaction_data VARIANT,
+  ingested_at TIMESTAMP_LTZ DEFAULT CURRENT_TIMESTAMP(),
+  source_system STRING
+);
+
+-- Consultar datos JSON directamente sin transformaciones
+SELECT 
+  transaction_data:user_id::string as user_id,
+  transaction_data:amount::number(15,2) as amount,
+  transaction_data:currency::string as currency,
+  transaction_data:payment_method::string as payment_method,
+  transaction_data:merchant.name::string as merchant_name,
+  transaction_data:merchant.category::string as merchant_category,
+  transaction_data:risk_score::number(3,2) as risk_score,
+  transaction_data:metadata.location.country::string as country
+FROM broxel_transactions
+WHERE transaction_data:amount::number > 1000
+  AND transaction_data:currency::string = 'USD'
+  AND transaction_data:created_at::timestamp > current_date() - 30;</div>
+            </li>
+            <li>
+              <strong>Análisis de Logs de Aplicación para Detección de Fraude</strong>
+              <p>Procesa logs de aplicaciones móviles en tiempo real para detectar patrones anómalos y optimizar la experiencia del usuario.</p>
+            </li>
+            <li>
+              <strong>Integración Seamless con APIs Externas</strong>
+              <p>Consume datos de proveedores financieros y servicios de terceros sin pipelines ETL complejos.</p>
+            </li>
+          </ol>
+
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspecto</th>
+                  <th>Con Snowflake</th>
+                  <th>Enfoques Tradicionales</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Tiempo de Desarrollo</strong></td>
+                  <td><span class="check">✓</span> Días (consulta directa)</td>
+                  <td><span class="warning">⚠</span> Semanas (ETL + esquema)</td>
+                </tr>
+                <tr>
+                  <td><strong>Flexibilidad de Esquema</strong></td>
+                  <td><span class="check">✓</span> Evolución automática</td>
+                  <td><span class="warning">⚠</span> Migraciones manuales</td>
+                </tr>
+                <tr>
+                  <td><strong>Performance</strong></td>
+                  <td><span class="check">✓</span> Optimización automática</td>
+                  <td><span class="warning">⚠</span> Tuning manual requerido</td>
+                </tr>
+                <tr>
+                  <td><strong>Costo de Mantenimiento</strong></td>
+                  <td><span class="check">✓</span> Mínimo</td>
+                  <td><span class="warning">⚠</span> Alto (pipelines complejos)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="highlight-box">
+            <h4>Aceleración de Time-to-Market</h4>
+            <p>
+              Los equipos de desarrollo de Broxel pueden trabajar directamente con datos tal como llegan 
+              de las fuentes, eliminando semanas de desarrollo de pipelines ETL y permitiendo 
+              prototipado rápido de nuevas funcionalidades y análisis.
+            </p>
+          </div>
+        </section>
+
+        <section id="seguridad">
+          <h2>4. Seguridad y Gobernanza Avanzadas</h2>
+          <p>
+            Para empresas fintech como Broxel, la seguridad no es una característica adicional, 
+            sino un requisito fundamental. Snowflake proporciona capacidades de seguridad de nivel 
+            bancario integradas nativamente en la plataforma, diseñadas desde el primer día para 
+            cumplir con los estándares más exigentes de la industria financiera.
+          </p>
+
+          <h3>Pilares de Seguridad Integrados</h3>
+          <div class="advantage-grid">
+            <div class="advantage-card">
+              <span class="icon">🔐</span>
+              <h4>Cifrado End-to-End</h4>
+              <p>Cifrado automático AES-256 en tránsito y en reposo con gestión transparente de claves.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">👥</span>
+              <h4>Control Granular de Acceso</h4>
+              <p>RBAC avanzado con políticas dinámicas a nivel de fila y columna.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">📋</span>
+              <h4>Auditoría Completa</h4>
+              <p>Trazabilidad detallada de todas las operaciones para cumplimiento regulatorio.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🛡️</span>
+              <h4>Protección de PII</h4>
+              <p>Enmascaramiento dinámico y tokenización automática de datos sensibles.</p>
+            </div>
+          </div>
+
+          <h3>Implementación de Políticas de Seguridad</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Enmascaramiento Dinámico de Datos Sensibles</strong>
+              <div class="code-block">
+-- Crear política de enmascaramiento para datos PII
+CREATE MASKING POLICY broxel_pii_mask AS (val string) RETURNS string ->
+  CASE 
+    WHEN CURRENT_ROLE() IN ('BROXEL_ADMIN', 'COMPLIANCE_OFFICER', 'SECURITY_ANALYST') 
+    THEN val
+    WHEN CURRENT_ROLE() IN ('BROXEL_ANALYST', 'BUSINESS_USER')
+    THEN CONCAT(LEFT(val, 2), REPEAT('*', LENGTH(val)-4), RIGHT(val, 2))
+    ELSE REPEAT('*', LENGTH(val))
+  END;
+
+-- Aplicar enmascaramiento a columnas críticas
+ALTER TABLE customer_data 
+  MODIFY COLUMN credit_card_number 
+  SET MASKING POLICY broxel_pii_mask;
+
+ALTER TABLE customer_data 
+  MODIFY COLUMN email_address 
+  SET MASKING POLICY broxel_pii_mask;</div>
+            </li>
+            <li>
+              <strong>Control de Acceso Basado en Atributos</strong>
+              <div class="code-block">
+-- Política de fila para acceso geográfico
+CREATE ROW ACCESS POLICY broxel_geo_policy AS (country string) RETURNS boolean ->
+  CASE 
+    WHEN CURRENT_ROLE() = 'GLOBAL_ADMIN' THEN TRUE
+    WHEN CURRENT_ROLE() = 'MEXICO_ANALYST' AND country = 'MX' THEN TRUE
+    WHEN CURRENT_ROLE() = 'US_ANALYST' AND country = 'US' THEN TRUE
+    ELSE FALSE
+  END;</div>
+            </li>
+            <li>
+              <strong>Monitoreo de Seguridad en Tiempo Real</strong>
+              <p>Configurar alertas automáticas para actividades sospechosas, accesos no autorizados y cambios de configuración críticos.</p>
+            </li>
+          </ol>
+
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Característica de Seguridad</th>
+                  <th>Snowflake</th>
+                  <th>Implementación Manual</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cifrado de Datos</strong></td>
+                  <td><span class="check">✓</span> Automático y transparente</td>
+                  <td><span class="warning">⚠</span> Configuración manual compleja</td>
+                </tr>
+                <tr>
+                  <td><strong>Gestión de Claves</strong></td>
+                  <td><span class="check">✓</span> Automática con rotación</td>
+                  <td><span class="warning">⚠</span> Administración manual</td>
+                </tr>
+                <tr>
+                  <td><strong>Auditoría</strong></td>
+                  <td><span class="check">✓</span> Logs detallados automáticos</td>
+                  <td><span class="warning">⚠</span> Desarrollo custom requerido</td>
+                </tr>
+                <tr>
+                  <td><strong>Cumplimiento</strong></td>
+                  <td><span class="check">✓</span> SOC2, PCI-DSS, HIPAA certificado</td>
+                  <td><span class="warning">⚠</span> Certificación propia requerida</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="highlight-box">
+            <h4>Cumplimiento Regulatorio Simplificado</h4>
+            <p>
+              Snowflake cuenta con certificaciones SOC 2 Type II, PCI DSS Level 1, HIPAA, ISO 27001, 
+              y cumple con regulaciones financieras globales incluyendo GDPR, CCPA, y marcos regulatorios 
+              bancarios. Esto simplifica drásticamente las auditorías y certificaciones para Broxel.
+            </p>
+          </div>
+        </section>
+
+        <section id="multicloud">
+          <h2>5. Libertad Multi-Cloud</h2>
+          <p>
+            Una de las ventajas más estratégicas de Snowflake es su capacidad de operar nativamente 
+            en múltiples proveedores de nube con la misma funcionalidad y rendimiento. Esta libertad 
+            multi-cloud permite a Broxel evitar el vendor lock-in, optimizar costos geográficamente 
+            y mantener flexibilidad estratégica a largo plazo.
+          </p>
+
+          <h3>Ventajas de la Arquitectura Multi-Cloud</h3>
+          <div class="advantage-grid">
+            <div class="advantage-card">
+              <span class="icon">🌍</span>
+              <h4>Presencia Global</h4>
+              <p>Despliega en AWS, Azure o GCP según proximidad geográfica a tus usuarios.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">💰</span>
+              <h4>Optimización de Costos</h4>
+              <p>Aprovecha las mejores ofertas de pricing de cada proveedor de nube.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">🔄</span>
+              <h4>Portabilidad Completa</h4>
+              <p>Migra entre clouds sin cambios de código ni reentrenamiento de equipos.</p>
+            </div>
+            <div class="advantage-card">
+              <span class="icon">⚡</span>
+              <h4>Redundancia Geográfica</h4>
+              <p>Implementa DR y alta disponibilidad across multiple cloud providers.</p>
+            </div>
+          </div>
+
+          <h3>Casos de Uso Estratégicos para Broxel</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Expansión Geográfica Optimizada</strong>
+              <p>Despliega instancias de Snowflake en diferentes regiones para minimizar latencia:</p>
+              <div class="code-block">
+-- Configuración multi-región para latencia óptima
+-- Instancia en AWS US-East para usuarios de Norteamérica
+-- Instancia en Azure Europe para usuarios europeos
+-- Replicación automática entre regiones
+
+-- Consulta con data sharing entre regiones
+SELECT r1.user_id, r1.transaction_count, r2.compliance_status
+FROM north_america_db.transactions r1
+JOIN europe_db.compliance r2 ON r1.user_id = r2.user_id
+WHERE r1.amount > 10000;</div>
+            </li>
+            <li>
+              <strong>Estrategia de Disaster Recovery</strong>
+              <p>Implementa backup automático y failover entre diferentes proveedores de nube para máxima resiliencia.</p>
+            </li>
+            <li>
+              <strong>Optimización de Costos por Workload</strong>
+              <p>Ejecuta diferentes tipos de cargas de trabajo en el proveedor de nube más cost-effective para cada caso.</p>
+            </li>
+          </ol>
+
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Proveedor</th>
+                  <th>Fortalezas</th>
+                  <th>Casos de Uso Óptimos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>AWS</strong></td>
+                  <td>Ecosistema maduro, servicios especializados</td>
+                  <td>ML avanzado, servicios financieros</td>
+                </tr>
+                <tr>
+                  <td><strong>Microsoft Azure</strong></td>
+                  <td>Integración enterprise, herramientas Microsoft</td>
+                  <td>Integración con Office 365, Power BI</td>
+                </tr>
+                <tr>
+                  <td><strong>Google Cloud</strong></td>
+                  <td>Analytics avanzados, AI/ML nativo</td>
+                  <td>Data science, análisis predictivo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="metrics-dashboard">
+            <h3>Beneficios Cuantificables Multi-Cloud</h3>
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <span class="metric-number">50%</span>
+                <div class="metric-label">Reducción Latencia Global</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">30%</span>
+                <div class="metric-label">Ahorro en Costos</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">99.99%</span>
+                <div class="metric-label">Disponibilidad Multi-Región</div>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number">0</span>
+                <div class="metric-label">Vendor Lock-in Risk</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4>Flexibilidad Estratégica a Largo Plazo</h4>
+            <p>
+              La capacidad multi-cloud de Snowflake permite a Broxel tomar decisiones estratégicas 
+              basadas en factores comerciales (costos, performance, cumplimiento) en lugar de 
+              limitaciones tecnológicas. Esta flexibilidad se vuelve crítica conforme Broxel 
+              expande globalmente y navega cambios en el landscape de cloud computing.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          © 2025 Broxel × Snowflake Strategic Partnership
+        </div>
+        <div class="footer-links">
+          <a href="mailto:partnerships@broxel.com">Contacto Estratégico</a>
+          <a href="https://snowflake.com/solutions/financial-services">Soluciones Fintech</a>
+          <a href="https://docs.snowflake.com">Documentación Técnica</a>
+          <a href="https://community.snowflake.com">Comunidad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling para navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Actualizar navegación activa
+          document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+          });
+          
+          // Buscar link correspondiente en nav-links
+          const targetId = this.getAttribute('href');
+          const navLink = document.querySelector(`.nav-links a[href="${targetId}"]`);
+          if (navLink) {
+            navLink.classList.add('active');
+          }
+        }
+      });
+    });
+
+    // Intersection Observer para navegación activa
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          
+          // Actualizar sidebar
+          const sidebarLinks = document.querySelectorAll('nav.sidebar a');
+          sidebarLinks.forEach(link => {
+            link.style.background = '';
+            link.style.color = '';
+            link.style.transform = '';
+          });
+          
+          const sidebarLink = document.querySelector(`nav.sidebar a[href="#${id}"]`);
+          if (sidebarLink) {
+            sidebarLink.style.background = 'linear-gradient(135deg, var(--broxel-primary), var(--broxel-secondary))';
+            sidebarLink.style.color = '#ffffff';
+            sidebarLink.style.transform = 'translateX(4px)';
+          }
+          
+          // Actualizar navegación superior
+          const navLinks = document.querySelectorAll('.nav-links a');
+          navLinks.forEach(link => link.classList.remove('active'));
+          
+          const navLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+          if (navLink) {
+            navLink.classList.add('active');
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar todas las secciones
+    document.querySelectorAll('section[id]').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Animación de números en métricas cuando entran en viewport
+    const animateNumbers = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const finalValue = target.textContent;
+          
+          // Solo animar números
+          if (/\d/.test(finalValue)) {
+            let startValue = 0;
+            const increment = parseInt(finalValue) / 50;
+            
+            const timer = setInterval(() => {
+              startValue += increment;
+              if (startValue >= parseInt(finalValue)) {
+                target.textContent = finalValue;
+                clearInterval(timer);
+              } else {
+                target.textContent = Math.floor(startValue) + (finalValue.includes('%') ? '%' : '');
+              }
+            }, 30);
+          }
+          
+          observer.unobserve(target);
+        }
+      });
+    };
+
+    const numberObserver = new IntersectionObserver(animateNumbers, {
+      threshold: 0.5
+    });
+
+    document.querySelectorAll('.metric-number').forEach(el => {
+      numberObserver.observe(el);
+    });
+
+    // Efecto parallax sutil en el header
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const header = document.querySelector('header');
+      if (header) {
+        header.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

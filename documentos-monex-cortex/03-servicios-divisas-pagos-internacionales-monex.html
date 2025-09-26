@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monex Grupo Financiero - 03 Servicios Divisas Pagos Internacionales Monex</title>
+    
+    <style>
+    @page {
+        margin: 2cm;
+        size: A4;
+    }
+    
+    @media print {
+        .page-break {
+            page-break-before: always;
+        }
+        
+        h1 {
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            page-break-after: avoid;
+        }
+        
+        table {
+            page-break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        pre {
+            page-break-inside: avoid;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-bottom: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-top: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        body {
+            margin-top: 1.5cm;
+            margin-bottom: 1.5cm;
+        }
+    }
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 1.6;
+        color: #333;
+        max-width: none;
+        margin: 0;
+        padding: 20px;
+        background: white;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+    }
+    
+    h1 {
+        color: #1e3a8a;
+        font-size: 24pt;
+        margin-top: 30pt;
+        margin-bottom: 15pt;
+        border-bottom: 3px solid #1e3a8a;
+        padding-bottom: 8pt;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    h2 {
+        color: #1e40af;
+        font-size: 18pt;
+        margin-top: 25pt;
+        margin-bottom: 12pt;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 5pt;
+        font-weight: bold;
+    }
+    
+    h3 {
+        color: #1e40af;
+        font-size: 16pt;
+        margin-top: 20pt;
+        margin-bottom: 10pt;
+        font-weight: bold;
+    }
+    
+    h4 {
+        color: #374151;
+        font-size: 14pt;
+        margin-top: 15pt;
+        margin-bottom: 8pt;
+        font-weight: bold;
+    }
+    
+    h5 {
+        color: #4b5563;
+        font-size: 12pt;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+        font-weight: bold;
+    }
+    
+    p {
+        margin: 8pt 0;
+        text-align: justify;
+        line-height: 1.6;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15pt 0;
+        font-size: 10pt;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    th, td {
+        border: 1px solid #d1d5db;
+        padding: 8pt 12pt;
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    th {
+        background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        font-weight: bold;
+        color: #1f2937;
+        text-align: center;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9fafb;
+    }
+    
+    tr:hover {
+        background-color: #f3f4f6;
+    }
+    
+    code {
+        background-color: #f1f5f9;
+        padding: 3pt 6pt;
+        border-radius: 3pt;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        color: #1f2937;
+        border: 1px solid #e5e7eb;
+    }
+    
+    pre {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        padding: 15pt;
+        border-radius: 6pt;
+        border-left: 4pt solid #3b82f6;
+        overflow-x: auto;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        margin: 15pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        color: #1f2937;
+        line-height: 1.4;
+    }
+    
+    pre code {
+        background: none;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+    }
+    
+    blockquote {
+        border-left: 4pt solid #3b82f6;
+        padding: 15pt 20pt;
+        margin: 15pt 0;
+        font-style: italic;
+        color: #4b5563;
+        background: linear-gradient(to right, #f8fafc, white);
+        border-radius: 0 6pt 6pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    blockquote p {
+        margin: 0;
+    }
+    
+    ul, ol {
+        padding-left: 25pt;
+        margin: 10pt 0;
+    }
+    
+    li {
+        margin-bottom: 6pt;
+        line-height: 1.5;
+    }
+    
+    ul li {
+        list-style-type: disc;
+    }
+    
+    ol li {
+        list-style-type: decimal;
+    }
+    
+    strong {
+        font-weight: bold;
+        color: #1f2937;
+    }
+    
+    em {
+        font-style: italic;
+        color: #4b5563;
+    }
+    
+    hr {
+        border: none;
+        border-top: 2px solid #e5e7eb;
+        margin: 25pt 0;
+        opacity: 0.7;
+    }
+    
+    .toc {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 20pt;
+        border-radius: 8pt;
+        margin: 20pt 0;
+        border: 1px solid #dee2e6;
+    }
+    
+    .toc h3 {
+        margin-top: 0;
+        color: #1e40af;
+        text-align: center;
+        border-bottom: 1px solid #1e40af;
+        padding-bottom: 8pt;
+    }
+    
+    .highlight {
+        background-color: #fef3c7;
+        padding: 2pt 4pt;
+        border-radius: 2pt;
+    }
+    
+    .monex-logo {
+        text-align: center;
+        font-size: 28pt;
+        font-weight: bold;
+        color: #1e3a8a;
+        margin: 30pt 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    .document-title {
+        text-align: center;
+        font-size: 20pt;
+        color: #1e40af;
+        margin: 20pt 0;
+        font-weight: normal;
+    }
+    
+    .subtitle {
+        text-align: center;
+        font-size: 14pt;
+        color: #6b7280;
+        margin-bottom: 30pt;
+        font-style: italic;
+    }
+    
+    .footer-info {
+        text-align: center;
+        font-size: 9pt;
+        color: #6b7280;
+        margin-top: 30pt;
+        padding-top: 15pt;
+        border-top: 1px solid #e5e7eb;
+        font-style: italic;
+    }
+    
+    @media screen {
+        body {
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="monex-logo">MONEX</div>
+        <div class="document-title">03 Servicios Divisas Pagos Internacionales Monex</div>
+        <div class="subtitle">Grupo Financiero</div>
+        
+        <div class="header" style="display: none;">MONEX GRUPO FINANCIERO - DOCUMENTO CONFIDENCIAL</div>
+        
+        <h1 id="servicios-de-divisas-y-pagos-internacionales-monex">SERVICIOS DE DIVISAS Y PAGOS INTERNACIONALES MONEX</h1>
+<h2 id="lider-en-mercados-cambiarios-y-transferencias-globales">Líder en Mercados Cambiarios y Transferencias Globales</h2>
+<hr />
+<h3 id="tabla-de-contenido">TABLA DE CONTENIDO</h3>
+<ol>
+<li><strong>Monex: Pionero en el Mercado de Divisas Mexicano</strong></li>
+<li><strong>Servicios de Cambio de Divisas</strong></li>
+<li><strong>Pagos y Transferencias Internacionales</strong></li>
+<li><strong>Plataformas Tecnológicas FX</strong></li>
+<li><strong>Presencia Internacional y Corresponsalías</strong></li>
+<li><strong>Análisis de Mercado y Tendencias Cambiarias</strong></li>
+</ol>
+<hr />
+<h2 id="1-monex-pionero-en-el-mercado-de-divisas-mexicano">1. MONEX: PIONERO EN EL MERCADO DE DIVISAS MEXICANO</h2>
+<h3 id="historia-y-liderazgo-en-el-mercado-fx">Historia y Liderazgo en el Mercado FX</h3>
+<p>Desde su fundación en 1985, Monex se ha consolidado como el líder indiscutible en el mercado mexicano de cambio de divisas. Con más de 35 años de experiencia, la institución ha construido una reputación de excelencia basada en la calidad del servicio, precios competitivos y soluciones innovadoras para el manejo de divisas.</p>
+<h3 id="cifras-de-liderazgo">Cifras de Liderazgo</h3>
+<p><strong>Volumen de Operaciones:</strong>
+- Transacciones anuales: Más de 5 millones
+- Volumen anual: USD $190,000 millones
+- Participación de mercado: 35% del mercado retail mexicano
+- Clientes activos: Más de 40,000 empresas e individuos</p>
+<p><strong>Reconocimientos de Mercado:</strong>
+- Institución cambiaria #1 en México por volumen
+- Premio "Mejor Casa de Cambio" por Global Finance (2020-2023)
+- Reconocimiento "FX Provider of the Year" por Finance Americas
+- Certificación ISO 9001 en procesos de cambio de divisas</p>
+<h3 id="propuesta-de-valor-diferenciada">Propuesta de Valor Diferenciada</h3>
+<p><strong>Ventajas Competitivas:</strong>
+- Spreads más competitivos del mercado mexicano
+- Ejecución inmediata de operaciones
+- Cobertura de más de 40 divisas internacionales
+- Acceso 24/7 a través de plataformas digitales
+- Asesoría especializada en gestión de riesgo cambiario</p>
+<p><strong>Segmentos de Mercado:</strong>
+- <strong>Corporate</strong>: Empresas con necesidades de hedging
+- <strong>Institucional</strong>: Bancos, fondos, tesorerías gubernamentales
+- <strong>Retail Premium</strong>: Individuos de alto patrimonio
+- <strong>SME</strong>: Pequeñas y medianas empresas exportadoras</p>
+<hr />
+<h2 id="2-servicios-de-cambio-de-divisas">2. SERVICIOS DE CAMBIO DE DIVISAS</h2>
+<h3 id="operaciones-spot-entrega-inmediata">Operaciones Spot (Entrega Inmediata)</h3>
+<h4 id="divisas-principales">Divisas Principales</h4>
+<p><strong>USD/MXN - Par Estrella:</strong>
+- Spread típico: 1-3 centavos (dependiendo del monto)
+- Monto mínimo: $1,000 USD
+- Liquidación: T+0 (mismo día)
+- Horarios: 8:00 - 17:00 hrs (horario México)
+- Cut-off diario: 16:30 hrs para liquidación misma fecha</p>
+<p><strong>EUR/MXN - Euro Peso:</strong>
+- Spread típico: 8-15 centavos
+- Monto mínimo: €500 EUR
+- Liquidación: T+1 (siguiente día hábil)
+- Referencia: Fix Banco de México + spread comercial</p>
+<p><strong>Otras Divisas Principales:</strong>
+- <strong>GBP/MXN</strong>: Libra esterlina - peso mexicano
+- <strong>CAD/MXN</strong>: Dólar canadiense - peso mexicano
+- <strong>JPY/MXN</strong>: Yen japonés - peso mexicano
+- <strong>CHF/MXN</strong>: Franco suizo - peso mexicano</p>
+<h4 id="divisas-emergentes-y-exoticas">Divisas Emergentes y Exóticas</h4>
+<p><strong>Latinoamericanas:</strong>
+- <strong>COP</strong> - Peso colombiano
+- <strong>BRL</strong> - Real brasileño
+- <strong>CLP</strong> - Peso chileno
+- <strong>PEN</strong> - Sol peruano
+- <strong>ARS</strong> - Peso argentino</p>
+<p><strong>Asiáticas:</strong>
+- <strong>CNY</strong> - Yuan chino
+- <strong>KRW</strong> - Won surcoreano
+- <strong>SGD</strong> - Dólar de Singapur
+- <strong>HKD</strong> - Dólar de Hong Kong</p>
+<p><strong>Europeas:</strong>
+- <strong>SEK</strong> - Corona sueca
+- <strong>NOK</strong> - Corona noruega
+- <strong>DKK</strong> - Corona danesa
+- <strong>PLN</strong> - Zloty polaco</p>
+<h3 id="operaciones-a-plazo-forward">Operaciones a Plazo (Forward)</h3>
+<h4 id="forward-outright">Forward Outright</h4>
+<p><strong>Características del Producto:</strong>
+- Plazos: 1 día a 12 meses
+- Divisas: Todas las principales y selectas emergentes
+- Monto mínimo: USD $10,000 equivalente
+- Garantías: Línea de crédito o colateral</p>
+<p><strong>Metodología de Pricing:</strong>
+- Tasa spot de referencia
+- Diferencial de tasas de interés (carry)
+- Puntos forward según mercado interbancario
+- Spread comercial según plazo y monto</p>
+<p><strong>Casos de Uso Típicos:</strong>
+- Exportadores: Venta anticipada de divisas por cobrar
+- Importadores: Compra anticipada para pagos futuros
+- Tesorerías: Cobertura de exposiciones proyectadas
+- Inversionistas: Especulación direccional controlada</p>
+<h4 id="non-deliverable-forwards-ndf">Non-Deliverable Forwards (NDF)</h4>
+<p>Para divisas con restricciones de convertibilidad:
+- <strong>ARS/USD</strong>: Peso argentino (liquidación cash)
+- <strong>BRL/USD</strong>: Real brasileño (para montos grandes)
+- <strong>COP/USD</strong>: Peso colombiano (mercado offshore)</p>
+<h3 id="opciones-de-divisas">Opciones de Divisas</h3>
+<h4 id="opciones-vanilla">Opciones Vanilla</h4>
+<p><strong>Calls y Puts Europeas:</strong>
+- Subyacentes: USD/MXN, EUR/USD, GBP/USD
+- Vencimientos: 1 semana a 12 meses
+- Estilo: Europea (ejercicio solo al vencimiento)
+- Premium: Pagadero al inicio de la operación</p>
+<p><strong>Parámetros de Pricing:</strong>
+- Volatilidad implícita de mercado
+- Tasa libre de riesgo (curva de rendimiento)
+- Dividendos/carry del subyacente
+- Tiempo al vencimiento</p>
+<h4 id="opciones-exoticas">Opciones Exóticas</h4>
+<p><strong>Opciones Barrera:</strong>
+- <strong>Knock-in</strong>: Se activa al tocar nivel específico
+- <strong>Knock-out</strong>: Se desactiva al tocar nivel específico
+- Barreras: Up-and-in, Up-and-out, Down-and-in, Down-and-out</p>
+<p><strong>Opciones Asiáticas:</strong>
+- Precio de ejercicio: Promedio de observaciones
+- Frecuencia: Diaria, semanal, mensual
+- Ventaja: Menor volatilidad que opciones vanilla</p>
+<hr />
+<h2 id="3-pagos-y-transferencias-internacionales">3. PAGOS Y TRANSFERENCIAS INTERNACIONALES</h2>
+<h3 id="monex-global-payments">Monex Global Payments</h3>
+<h4 id="red-de-corresponsalias-bancarias">Red de Corresponsalías Bancarias</h4>
+<p><strong>Estados Unidos:</strong>
+- <strong>Wells Fargo</strong>: Cuenta principal para USD
+- <strong>JPMorgan Chase</strong>: Backup y servicios especializados
+- <strong>Bank of America</strong>: Pagos retail y corporate
+- <strong>Citibank</strong>: Servicios de tesorería avanzados</p>
+<p><strong>Europa:</strong>
+- <strong>Deutsche Bank</strong> (Alemania): Hub para EUR
+- <strong>BNP Paribas</strong> (Francia): Servicios multi-divisa
+- <strong>Santander</strong> (España): Especialización iberoamericana
+- <strong>UBS</strong> (Suiza): Private banking y wealth management</p>
+<p><strong>Asia-Pacífico:</strong>
+- <strong>HSBC Hong Kong</strong>: Gateway asiático
+- <strong>Bank of Tokyo-Mitsubishi</strong>: Servicios JPY
+- <strong>DBS Singapore</strong>: Hub del sudeste asiático
+- <strong>ANZ Australia</strong>: Servicios AUD y NZD</p>
+<h4 id="tipos-de-transferencias">Tipos de Transferencias</h4>
+<p><strong>Wire Transfers Tradicionales:</strong>
+- <strong>SWIFT</strong>: Estándar global para transferencias bancarias
+- Tiempo de liquidación: 1-3 días hábiles
+- Trazabilidad completa: Códigos MT103, MT202
+- Comisiones: Transparentes y competitivas</p>
+<p><strong>Transferencias Express:</strong>
+- <strong>Same Day Value</strong>: Liquidación mismo día
+- <strong>Next Day Value</strong>: Liquidación siguiente día hábil
+- Cut-offs extendidos: Hasta 17:00 hrs México
+- Premium service: 15% adicional sobre comisión estándar</p>
+<p><strong>Bulk Payments (Pagos Masivos):</strong>
+- <strong>Nóminas internacionales</strong>: Hasta 10,000 beneficiarios
+- <strong>Pagos a proveedores</strong>: Archivo batch automatizado
+- <strong>Distribuciones</strong>: Dividendos, intereses, comisiones
+- <strong>Validación previa</strong>: AML y compliance automatizado</p>
+<h3 id="monex-remittances">Monex Remittances</h3>
+<h4 id="servicios-para-individuos">Servicios para Individuos</h4>
+<p><strong>Monex Express:</strong>
+- Transferencias a familiares en el extranjero
+- Montos: $1 USD a $50,000 USD por operación
+- Destinos: Estados Unidos, Canadá, Europa, Centroamérica
+- Entrega: Efectivo, depósito bancario, wallet digital</p>
+<p><strong>Costos Competitivos:</strong>
+- <strong>$1-500 USD</strong>: $5 USD de comisión
+- <strong>$501-2,000 USD</strong>: $8 USD de comisión
+- <strong>$2,001-5,000 USD</strong>: $12 USD de comisión
+- <strong>$5,001+</strong>: 0.25% del monto</p>
+<p><strong>Red de Entrega:</strong>
+- <strong>Estados Unidos</strong>: 15,000 puntos (Western Union partnership)
+- <strong>Centroamérica</strong>: 2,500 puntos propios
+- <strong>Europa</strong>: 8,000 puntos (MoneyGram alliance)</p>
+<h4 id="servicios-para-emigrantes">Servicios para Emigrantes</h4>
+<p><strong>Monex USA Services:</strong>
+- Oficinas en Houston, Los Ángeles, Chicago
+- Envíos desde Estados Unidos a México
+- Productos: Efectivo, depósito, tarjeta prepagada
+- Regulación: MSB license en todos los estados</p>
+<h3 id="comercio-electronico-internacional">Comercio Electrónico Internacional</h3>
+<h4 id="soluciones-para-e-commerce">Soluciones para E-commerce</h4>
+<p><strong>Payment Gateway Integration:</strong>
+- APIs RESTful para integración
+- Soporte: PHP, Java, .NET, Python
+- Métodos de pago: Tarjetas, ACH, SPEI, cryptos
+- Reconciliación automática</p>
+<p><strong>Multi-Currency Processing:</strong>
+- Aceptación en 15+ divisas
+- Conversión automática a MXN
+- Settlement: Diario, semanal, mensual
+- Reporting: Dashboard en tiempo real</p>
+<p><strong>Casos de Uso:</strong>
+- <strong>Marketplace</strong>: Comisiones en múltiples divisas
+- <strong>SaaS</strong>: Suscripciones recurrentes internacionales
+- <strong>Retail</strong>: Ventas cross-border
+- <strong>Digital goods</strong>: Descargas, licencias, membresías</p>
+<hr />
+<h2 id="4-plataformas-tecnologicas-fx">4. PLATAFORMAS TECNOLÓGICAS FX</h2>
+<h3 id="monex-fx-pro">Monex FX Pro</h3>
+<h4 id="plataforma-institucional">Plataforma Institucional</h4>
+<p><strong>Características Principales:</strong>
+- <strong>Trading Engine</strong>: Latencia sub-10ms
+- <strong>Price Feeds</strong>: Múltiples proveedores de liquidez
+- <strong>Risk Management</strong>: Límites automáticos en tiempo real
+- <strong>Reporting</strong>: Compliance y regulatorio automatizado</p>
+<p><strong>Módulos Disponibles:</strong>
+- <strong>Spot Trading</strong>: Ejecución inmediata
+- <strong>Forward Booking</strong>: Gestión de libro de forwards
+- <strong>Options Pricing</strong>: Calculadora de opciones
+- <strong>Portfolio Analytics</strong>: Análisis de riesgo integral</p>
+<p><strong>Conectividad:</strong>
+- <strong>FIX Protocol</strong>: Estándar institucional
+- <strong>REST APIs</strong>: Integración moderna
+- <strong>WebSocket</strong>: Streaming de precios
+- <strong>SFTP</strong>: Reportes batch automatizados</p>
+<h4 id="algoritmos-de-trading">Algoritmos de Trading</h4>
+<p><strong>TWAP (Time Weighted Average Price):</strong>
+- Ejecución distribuida en el tiempo
+- Minimización de impacto de mercado
+- Ideal para órdenes grandes (&gt;$10MM)</p>
+<p><strong>VWAP (Volume Weighted Average Price):</strong>
+- Ejecución basada en volúmenes históricos
+- Optimización contra benchmark de mercado
+- Transparencia total de ejecución</p>
+<p><strong>Implementation Shortfall:</strong>
+- Balance entre impacto de mercado y timing risk
+- Algoritmo adaptativo según condiciones
+- Minimización de costos totales de transacción</p>
+<h3 id="monex-fx-retail">Monex FX Retail</h3>
+<h4 id="plataforma-para-empresas">Plataforma para Empresas</h4>
+<p><strong>WebTrader:</strong>
+- Acceso desde cualquier navegador
+- Sin instalación de software
+- Interfaz intuitiva y personalizable
+- Módulos: Trading, reporting, analytics</p>
+<p><strong>Mobile App:</strong>
+- iOS y Android nativo
+- Biometric authentication
+- Push notifications para alertas
+- Trading básico y consultas</p>
+<p><strong>Funcionalidades Clave:</strong>
+- <strong>Deal Blotter</strong>: Historial completo de operaciones
+- <strong>Position Keeping</strong>: Control de exposiciones
+- <strong>Market Data</strong>: Precios en tiempo real
+- <strong>News Feed</strong>: Noticias económicas relevantes</p>
+<h4 id="herramientas-de-analisis">Herramientas de Análisis</h4>
+<p><strong>Gráficas Técnicas:</strong>
+- <strong>Timeframes</strong>: 1min a 1 mes
+- <strong>Indicadores</strong>: 50+ indicadores técnicos
+- <strong>Drawing Tools</strong>: Líneas, canales, fibonacci
+- <strong>Pattern Recognition</strong>: Detección automática</p>
+<p><strong>Análisis Fundamental:</strong>
+- <strong>Economic Calendar</strong>: Eventos macro relevantes
+- <strong>Consensus Estimates</strong>: Estimaciones de mercado
+- <strong>Surprise Index</strong>: Medición de desviaciones
+- <strong>Impact Assessment</strong>: Impacto esperado en FX</p>
+<h3 id="apis-y-integraciones">APIs y Integraciones</h3>
+<h4 id="restful-apis">RESTful APIs</h4>
+<p><strong>Authentication:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;client_id&quot;: &quot;your_client_id&quot;,
+  &quot;client_secret&quot;: &quot;your_secret&quot;,
+  &quot;grant_type&quot;: &quot;client_credentials&quot;
+}
+</code></pre>
+
+<p><strong>Get Quote:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;currency_pair&quot;: &quot;USDMXN&quot;,
+  &quot;amount&quot;: 10000,
+  &quot;side&quot;: &quot;buy&quot;,
+  &quot;value_date&quot;: &quot;spot&quot;
+}
+</code></pre>
+
+<p><strong>Execute Trade:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;quote_id&quot;: &quot;12345&quot;,
+  &quot;confirm&quot;: true,
+  &quot;client_reference&quot;: &quot;MY_REF_001&quot;
+}
+</code></pre>
+
+<h4 id="webhook-notifications">Webhook Notifications</h4>
+<p><strong>Trade Confirmations:</strong>
+- Confirmación inmediata post-ejecución
+- Detalles completos de la operación
+- Status updates (pending, confirmed, settled)</p>
+<p><strong>Market Alerts:</strong>
+- Price levels personalizados
+- Volatility alerts
+- Economic news impact</p>
+<hr />
+<h2 id="5-presencia-internacional-y-corresponsalias">5. PRESENCIA INTERNACIONAL Y CORRESPONSALÍAS</h2>
+<h3 id="monex-usa">Monex USA</h3>
+<h4 id="operaciones-en-estados-unidos">Operaciones en Estados Unidos</h4>
+<p><strong>Monex Securities Inc.</strong>
+- <strong>Ubicación</strong>: 440 Louisiana St, Suite 1240, Houston, TX 77002
+- <strong>Regulación</strong>: FINRA member, SIPC protected
+- <strong>Servicios</strong>: FX, international payments, securities trading
+- <strong>AUM</strong>: USD $379 millones</p>
+<p><strong>Tempus Inc. (Adquirida 2010)</strong>
+- <strong>Especialización</strong>: Corporate FX and payments
+- <strong>Clientes</strong>: 500+ empresas americanas
+- <strong>Volumen</strong>: USD $2.5 mil millones anuales
+- <strong>Oficinas</strong>: Los Ángeles, Chicago, Miami</p>
+<h4 id="servicios-especializados-usa">Servicios Especializados USA</h4>
+<p><strong>Cross-Border Payments:</strong>
+- <strong>Mexico Corridor</strong>: 40% de volume total
+- <strong>LatAm Corridor</strong>: 25% de volume total
+- <strong>Europe/Asia</strong>: 35% de volume total</p>
+<p><strong>Hedging Solutions:</strong>
+- <strong>Natural Hedging</strong>: Matching receivables/payables
+- <strong>Financial Hedging</strong>: Forwards, options, swaps
+- <strong>Netting</strong>: Consolidación de exposiciones</p>
+<h3 id="monex-europe">Monex Europe</h3>
+<h4 id="operaciones-europeas">Operaciones Europeas</h4>
+<p><strong>Monex Europe Limited (Ex-Schneider FX)</strong>
+- <strong>Adquisición</strong>: Julio 2012
+- <strong>Ubicación</strong>: Londres, Reino Unido
+- <strong>Regulación</strong>: FCA regulated
+- <strong>Especialización</strong>: European corporate FX</p>
+<p><strong>Monex España</strong>
+- <strong>Ubicación</strong>: Madrid
+- <strong>Servicios</strong>: FX, payments, remittances
+- <strong>Mercado objetivo</strong>: Empresas hispanas en Europa
+- <strong>Volumen</strong>: EUR 500 millones anuales</p>
+<h4 id="productos-europeos">Productos Europeos</h4>
+<p><strong>EUR Payments:</strong>
+- <strong>SEPA</strong>: Single Euro Payments Area
+- <strong>TARGET2</strong>: ECB real-time settlement
+- <strong>Instant Payments</strong>: Liquidación inmediata</p>
+<p><strong>Multi-Currency Accounts:</strong>
+- <strong>Currency</strong>: EUR, GBP, USD, CHF
+- <strong>Sweeping</strong>: Concentración automática
+- <strong>Interest</strong>: Tasas competitivas
+- <strong>Reporting</strong>: Consolidated statements</p>
+<h3 id="red-global-de-corresponsales">Red Global de Corresponsales</h3>
+<h4 id="clasificacion-por-region">Clasificación por Región</h4>
+<p><strong>Norteamérica:</strong>
+1. <strong>Wells Fargo</strong> (USA) - Tier 1
+2. <strong>Royal Bank of Canada</strong> (CAD) - Tier 1
+3. <strong>Bank of Montreal</strong> (CAD) - Tier 2</p>
+<p><strong>Europa:</strong>
+1. <strong>Deutsche Bank</strong> (EUR) - Tier 1
+2. <strong>BNP Paribas</strong> (EUR) - Tier 1
+3. <strong>UBS</strong> (CHF) - Tier 1
+4. <strong>Danske Bank</strong> (DKK/SEK/NOK) - Tier 2</p>
+<p><strong>Asia-Pacífico:</strong>
+1. <strong>HSBC Hong Kong</strong> (HKD/CNY) - Tier 1
+2. <strong>DBS Singapore</strong> (SGD) - Tier 1
+3. <strong>Bank of Tokyo-Mitsubishi</strong> (JPY) - Tier 1
+4. <strong>ANZ Australia</strong> (AUD) - Tier 2</p>
+<p><strong>Criterios de Selección:</strong>
+- <strong>Rating crediticio</strong>: A- o superior
+- <strong>Capacidad operativa</strong>: 24/7 processing
+- <strong>Technology</strong>: SWIFT gpi compatible
+- <strong>Relationship</strong>: Líneas recíprocas establecidas</p>
+<hr />
+<h2 id="6-analisis-de-mercado-y-tendencias-cambiarias">6. ANÁLISIS DE MERCADO Y TENDENCIAS CAMBIARIAS</h2>
+<h3 id="centro-de-analisis-monex">Centro de Análisis Monex</h3>
+<h4 id="equipo-de-research">Equipo de Research</h4>
+<p><strong>Analistas Senior:</strong>
+- <strong>Chief Economist</strong>: PhD en Economía, 20+ años experiencia
+- <strong>FX Strategist</strong>: CFA, especialista en mercados emergentes
+- <strong>Technical Analyst</strong>: CMT, experto en análisis técnico
+- <strong>Risk Analyst</strong>: FRM, especialista en derivatives</p>
+<p><strong>Cobertura de Mercados:</strong>
+- <strong>G10 Currencies</strong>: EUR, GBP, JPY, CHF, CAD, AUD, NZD, SEK, NOK
+- <strong>EM Americas</strong>: MXN, BRL, COP, CLP, PEN
+- <strong>EM Asia</strong>: CNY, KRW, INR, IDR, THB
+- <strong>EM EMEA</strong>: RUB, TRY, ZAR, PLN</p>
+<h4 id="publicaciones-de-research">Publicaciones de Research</h4>
+<p><strong>Daily FX Commentary:</strong>
+- Análisis de apertura de mercados
+- Eventos económicos del día
+- Niveles técnicos relevantes
+- Recomendaciones de trading</p>
+<p><strong>Weekly FX Outlook:</strong>
+- Revisión semanal de performance
+- Outlook para la siguiente semana
+- Análisis de posicionamiento de mercado
+- Event risk assessment</p>
+<p><strong>Monthly FX Strategy:</strong>
+- Análisis macroeconómico profundo
+- Forecasts de 3, 6 y 12 meses
+- Estrategias de hedging recomendadas
+- Sectorial FX impact analysis</p>
+<h3 id="analisis-tecnico-avanzado">Análisis Técnico Avanzado</h3>
+<h4 id="metodologias-empleadas">Metodologías Empleadas</h4>
+<p><strong>Elliott Wave Theory:</strong>
+- Identificación de ondas impulsivas y correctivas
+- Proyecciones de fibonacci
+- Confirmación con volumen e momentum
+- Aplicación en múltiples timeframes</p>
+<p><strong>Harmonic Patterns:</strong>
+- Gartley, Butterfly, Bat, Crab patterns
+- Automatic pattern recognition
+- Entry/exit optimization
+- Risk-reward assessment</p>
+<p><strong>Market Microstructure:</strong>
+- Order flow analysis
+- Bid-offer dynamics
+- Large option strikes impact
+- Central bank intervention levels</p>
+<h4 id="indicadores-propietarios">Indicadores Propietarios</h4>
+<p><strong>Monex FX Sentiment Index:</strong>
+- Combinación de 15 indicators
+- Contrarian signals identification
+- Real-time sentiment tracking
+- Historical backtesting: 78% accuracy</p>
+<p><strong>Volatility Forecast Model:</strong>
+- GARCH-based modeling
+- Implied vs realized vol spread
+- Event-driven vol spikes prediction
+- Options pricing optimization</p>
+<h3 id="factores-fundamentales-usdmxn">Factores Fundamentales USD/MXN</h3>
+<h4 id="variables-macroeconomicas">Variables Macroeconómicas</h4>
+<p><strong>México:</strong>
+- <strong>PIB</strong>: Crecimiento trimestral y anual
+- <strong>Inflación</strong>: INPC y core inflation
+- <strong>Política Monetaria</strong>: Decisiones Banxico
+- <strong>Cuenta Corriente</strong>: Balanza comercial y servicios
+- <strong>Reservas Internacionales</strong>: Nivel y variación
+- <strong>Precio del Petróleo</strong>: Correlación con MXN</p>
+<p><strong>Estados Unidos:</strong>
+- <strong>Fed Policy</strong>: Tasas de interés y QE
+- <strong>Employment</strong>: NFP, unemployment rate
+- <strong>Inflation</strong>: CPI, PCE, core measures
+- <strong>Growth</strong>: GDP, ISM manufacturing/services
+- <strong>Trade Balance</strong>: Déficit/superávit comercial</p>
+<h4 id="modelos-de-valoracion">Modelos de Valoración</h4>
+<p><strong>Purchasing Power Parity (PPP):</strong>
+- Big Mac Index: USD/MXN fair value 18.50
+- CPI-based PPP: USD/MXN fair value 19.20
+- Producer Price PPP: USD/MXN fair value 18.80</p>
+<p><strong>Interest Rate Differential:</strong>
+- Current spread: Banxico 11.00% vs Fed 5.25%
+- Historical average spread: 400 basis points
+- Carry trade attractiveness: High</p>
+<p><strong>Real Effective Exchange Rate (REER):</strong>
+- Current level: 15% above historical average
+- Competitiveness: Moderadamente sobrevaluado
+- Export impact: Negativo marginal</p>
+<h3 id="servicios-de-consultoria-fx">Servicios de Consultoría FX</h3>
+<h4 id="fx-advisory">FX Advisory</h4>
+<p><strong>Corporate Hedging Strategy:</strong>
+- <strong>Assessment</strong>: Análisis de exposiciones FX
+- <strong>Policy Design</strong>: Política de hedging corporativa
+- <strong>Implementation</strong>: Ejecución de estrategias
+- <strong>Monitoring</strong>: Seguimiento y ajustes</p>
+<p><strong>Portfolio Hedging:</strong>
+- <strong>Currency Overlay</strong>: Gestión separada de FX risk
+- <strong>Tactical Hedging</strong>: Ajustes por condiciones de mercado
+- <strong>Passive Hedging</strong>: Cobertura automática por reglas
+- <strong>Dynamic Hedging</strong>: Delta-hedging de opciones</p>
+<h4 id="training-y-educacion">Training y Educación</h4>
+<p><strong>FX Workshops:</strong>
+- <strong>Básico</strong>: Introducción a mercados FX
+- <strong>Intermedio</strong>: Productos derivados y hedging
+- <strong>Avanzado</strong>: Estrategias complejas y exóticas</p>
+<p><strong>Certification Programs:</strong>
+- <strong>Treasury Professional</strong>: Certificación interna
+- <strong>Risk Management</strong>: Especialización en riesgo FX
+- <strong>Trading</strong>: Programa para dealers corporativos</p>
+<hr />
+<h3 id="contacto-especializado-fx">Contacto Especializado FX</h3>
+<p><strong>Mesa de Cambios:</strong>
+- <strong>Dealing Room</strong>: +52 55 5231-4545
+- <strong>Institutional Sales</strong>: +52 55 5231-4550
+- <strong>Research Desk</strong>: +52 55 5231-4555
+- <strong>Operations</strong>: +52 55 5231-4560</p>
+<p><strong>Horarios de Operación:</strong>
+- <strong>Mercado México</strong>: 8:00 - 17:00 hrs
+- <strong>Mercado USA</strong>: 7:00 - 16:00 hrs (Chicago time)
+- <strong>Mercado Europa</strong>: 3:00 - 12:00 hrs (Londres time)
+- <strong>After Hours</strong>: Servicio limitado 17:00 - 8:00 hrs</p>
+<p><strong>Canales Digitales:</strong>
+- <strong>WebTrader</strong>: portal.monex.com.mx
+- <strong>Mobile App</strong>: iOS/Android
+- <strong>API Access</strong>: developers.monex.com.mx
+- <strong>WhatsApp Business</strong>: +52 55 9876-5432</p>
+<p><strong>Límites Operativos:</strong>
+- <strong>Spot FX</strong>: Sin límite con línea aprobada
+- <strong>Forwards</strong>: Hasta 12 meses, sujeto a línea
+- <strong>Options</strong>: Premium máximo 5% del notional
+- <strong>Estructura</strong>: Combinaciones sujetas a aprobación</p>
+<hr />
+<p><em>La información contenida en este documento tiene carácter informativo únicamente. Los tipos de cambio están sujetos a volatilidad de mercado. Operaciones en divisas conllevan riesgo de pérdida. Consulte con su asesor sobre la conveniencia de estos productos según su perfil de riesgo.</em></p>
+        
+        <div class="footer-info">
+            <p><strong>© 2024 Monex Grupo Financiero</strong></p>
+            <p>Este documento contiene información confidencial y propietaria. Todos los derechos reservados.</p>
+            <p>Para más información, visite: <strong>www.monex.com.mx</strong></p>
+        </div>
+        
+        <div class="footer" style="display: none;">© 2024 Monex Grupo Financiero - Página <span id="pageNumber"></span></div>
+    </div>
+    
+    <script>
+        // Show header and footer only when printing
+        window.addEventListener('beforeprint', function() {
+            document.querySelector('.header').style.display = 'block';
+            document.querySelector('.footer').style.display = 'block';
+        });
+        
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+MANUAL DE CUMPLIMIENTO REGULATORIO TV AZTECA
+==========================================
+
+Dirección de Asuntos Regulatorios y Compliance
+Marco Normativo de Telecomunicaciones 2025
+
+MARCO REGULATORIO GENERAL
+-------------------------
+
+MISIÓN DE COMPLIANCE:
+Asegurar el cumplimiento integral de todas las disposiciones legales, regulatorias y normativas aplicables a TV Azteca, manteniendo las concesiones vigentes y operando dentro del marco legal mexicano e internacional.
+
+AUTORIDADES REGULADORAS PRINCIPALES:
+
+INSTITUTO FEDERAL DE TELECOMUNICACIONES (IFT):
+- Concesiones de radiodifusión
+- Espectro radioeléctrico
+- Contenidos audiovisuales
+- Competencia económica
+- Interconexión y convergencia
+
+SECRETARÍA DE GOBERNACIÓN (SEGOB):
+- Clasificación de contenidos
+- Tiempo del Estado
+- Cadenas nacionales
+- Eventos de interés general
+- Programación infantil
+
+COMISIÓN FEDERAL DE COMPETENCIA ECONÓMICA (COFECE):
+- Concentraciones empresariales
+- Prácticas monopólicas
+- Barreras a la competencia
+- Investigaciones por competencia
+- Remedios estructurales
+
+SECRETARÍA DE HACIENDA Y CRÉDITO PÚBLICO (SHCP):
+- Aspectos fiscales
+- Inversión extranjera
+- Reportes financieros
+- Auditorías tributarias
+- Cumplimiento fiscal
+
+CONCESIONES Y TÍTULOS HABILITANTES
+----------------------------------
+
+CONCESIONES VIGENTES:
+
+TELEVISIÓN ABIERTA:
+- Azteca UNO: 92 concesiones
+- Azteca 7: 91 concesiones
+- a más+: 23 concesiones
+- adn40: 15 concesiones
+- Cobertura: 94.8% población nacional
+
+Obligaciones principales:
+- Transmisión mínima: 18 horas diarias
+- Programación nacional: 60% mínimo
+- Tiempo del Estado: 30 minutos diarios
+- Producción nacional: 10% programación
+- Programación infantil: Horarios específicos
+
+ESPECTRO RADIOELÉCTRICO:
+- Bandas asignadas: VHF y UHF
+- Potencia autorizada: Variable por estación
+- Área de cobertura: Definida por IFT
+- Interferencias: Control y coordinación
+- Renovación: Cada 20 años
+
+SERVICIOS ADICIONALES:
+- Señal digital terrestre
+- Servicios interactivos
+- Multiprogramación
+- Datos y servicios auxiliares
+- Accesibilidad para personas con discapacidad
+
+CONTENIDOS Y PROGRAMACIÓN
+-------------------------
+
+CLASIFICACIÓN DE CONTENIDOS:
+
+HORARIOS FAMILIARES:
+- 06:00 a 22:00 horas
+- Contenido: A (todo público) y B (adolescentes)
+- Restricciones: Violencia, sexualidad, lenguaje
+- Avisos: Clasificación visible
+- Supervisión: Comité interno de clasificación
+
+HORARIO ADULTO:
+- 22:00 a 06:00 horas
+- Contenido: C y D (adultos)
+- Avisos: Obligatorios antes y durante transmisión
+- Responsabilidad: Mayor discreción editorial
+- Documentación: Justificación de clasificación
+
+PROGRAMACIÓN INFANTIL:
+
+HORARIOS ESPECÍFICOS:
+- Lunes a viernes: 07:30-09:30 y 14:30-19:30
+- Sábados y domingos: 07:00-19:30
+- Contenido educativo: Mínimo 30%
+- Valores: Promoción de cultura mexicana
+- Restricciones: Publicidad específica
+
+OBLIGACIONES ESPECIALES:
+- Programa de convivencia familiar
+- Contenido de ciencia y tecnología
+- Promoción de actividad física
+- Prevención de obesidad infantil
+- Educación ambiental
+
+TIEMPO DEL ESTADO:
+- Duración: 30 minutos diarios
+- Distribución: 18 minutos continuos + 12 minutos
+- Horarios: Definidos por autoridad
+- Contenido: Campaigns de interés público
+- Cumplimiento: 100% obligatorio
+
+PUBLICIDAD Y COMERCIALIZACIÓN
+-----------------------------
+
+REGULACIÓN PUBLICITARIA:
+
+TIEMPO PUBLICITARIO:
+- Máximo permitido: 18% del tiempo total
+- Medición: Por hora de transmisión
+- Excepciones: Eventos deportivos especiales
+- Autopromoción: Incluida en cómputo
+- Monitoring: Sistema automatizado
+
+PUBLICIDAD INFANTIL:
+- Productos no permitidos: Comida chatarra en exceso
+- Horarios restringidos: Durante programación infantil
+- Mensajes obligatorios: Vida saludable
+- Celebrities: Restricciones en endorsements
+- Juguetes: Regulación específica
+
+ALCOHOL Y TABACO:
+- Horarios: 22:00 a 06:00 únicamente
+- Restricciones: No dirigida a menores
+- Avisos: Leyendas de advertencia
+- Deportes: Prohibida en eventos infantiles
+- Productos milagro: Totalmente prohibida
+
+TELECOMUNICACIONES:
+- Leyendas: Términos y condiciones
+- Precios: Incluir impuestos
+- Comparación: Información veraz
+- Promociones: Términos claros
+- Quejas: Proceso definido
+
+COMPETENCIA ECONÓMICA
+---------------------
+
+MARCO ANTIMONOPOLIOS:
+
+CONCENTRACIONES:
+- Notificación obligatoria: Transacciones relevantes
+- Umbrales: Según monto o participación de mercado
+- Plazos: 60 días hábiles para resolución
+- Condiciones: Posibles remedios estructurales
+- Seguimiento: Cumplimiento post-concentración
+
+PRÁCTICAS MONOPOLICAS:
+- Absolutas: Prohibidas categóricamente
+- Relativas: Análisis caso por caso
+- Precios predatorios: Monitoreo continuo
+- Ventas atadas: Evaluación de efectos
+- Negativa de trato: Justificación objetiva
+
+PREPONDERANCIA:
+- Declaratoria: No aplicable a TV Azteca
+- Medidas asimétricas: No sujetos
+- Must offer/must carry: Aplicación general
+- Interconexión: Términos regulados
+- Monitoreo: Participación de mercado
+
+MUST CARRY/MUST OFFER:
+- Señales públicas: Retransmisión obligatoria
+- Calidad: Misma que señal original
+- Gratuidad: Sin cobro a concesionarios
+- Negociación: Términos comerciales libres
+- Resolución: IFT en caso de controversia
+
+PROTECCIÓN DE DATOS
+-------------------
+
+LEY FEDERAL DE PROTECCIÓN DE DATOS (LFPDPPP):
+
+PRINCIPIOS FUNDAMENTALES:
+- Licitud: Base legal para tratamiento
+- Finalidad: Propósitos determinados
+- Lealtad: Información veraz al titular
+- Proporcionalidad: Datos necesarios únicamente
+- Calidad: Actualización y veracidad
+
+DERECHOS ARCO:
+- Acceso: Consulta de datos personales
+- Rectificación: Corrección de inexactitudes  
+- Cancelación: Eliminación de datos
+- Oposición: Cese del tratamiento
+- Portabilidad: Transferencia a otro responsable
+
+CONSENTIMIENTO:
+- Expreso: Para datos sensibles
+- Tácito: Para datos generales
+- Revocable: En cualquier momento
+- Informado: Aviso de privacidad
+- Libre: Sin coacción o engaño
+
+AVISOS DE PRIVACIDAD:
+- Identidad del responsable
+- Finalidades del tratamiento
+- Transferencias de datos
+- Medios para ejercer derechos ARCO
+- Cambios al aviso de privacidad
+
+MEDIDAS DE SEGURIDAD:
+- Administrativas: Políticas y procedimientos
+- Físicas: Control de acceso
+- Técnicas: Encriptación y respaldos
+- Evaluación: Análisis de riesgo
+- Incidentes: Protocol de notificación
+
+ASPECTOS LABORALES
+-----------------
+
+REGULACIÓN DE CONTENIDO LABORAL:
+
+LEY FEDERAL DEL TRABAJO:
+- Contratos: Individuales y colectivos
+- Jornadas: Respeto a límites legales
+- Salarios: Cumplimiento de mínimos
+- Prestaciones: Según ley y contrato
+- Seguridad: Comisiones mixtas
+
+SINDICATOS Y RELACIONES COLECTIVAS:
+- Libertad sindical: Respeto absoluto
+- Contratos colectivos: Negociación de buena fe
+- Huelgas: Proceso legal establecido
+- Capacitación: Programa anual
+- Participación de utilidades: Distribución legal
+
+IGUALDAD Y NO DISCRIMINACIÓN:
+- CONAPRED: Cumplimiento de lineamientos
+- Protocolo: Prevención de hostigamiento
+- Inclusión: Personas con discapacidad
+- Equidad: Igualdad salarial de género
+- Diversidad: Ambiente libre de discriminación
+
+SEGURIDAD E HIGIENE:
+- NOM-035: Factores psicosociales
+- Comisiones mixtas: Funcionamiento activo
+- Capacitación: Programas regulares
+- Equipo: Provision de elementos de seguridad
+- Reporting: Incidentes y accidentes
+
+ASPECTOS FISCALES
+----------------
+
+CUMPLIMIENTO TRIBUTARIO:
+
+IMPUESTOS FEDERALES:
+- ISR: Corporativo y retenciones
+- IVA: Causación y acreditamiento
+- IEPS: Servicios de telecomunicaciones
+- IDE: Depósitos en efectivo
+- Otros: Según actividad específica
+
+OBLIGACIONES FORMALES:
+- Declaraciones: Mensuales y anuales
+- Contabilidad: Sistema electrónico
+- CFDI: Facturación electrónica
+- DIOT: Declaración informativa
+- CFF: Cumplimiento del Código Fiscal
+
+PRECIOS DE TRANSFERENCIA:
+- Documentación: Expediente maestro y local
+- Estudios: Análisis económico
+- Declaración informativa: Anual
+- APA: Acuerdos anticipados
+- Benchmarking: Comparabilidad de operaciones
+
+RÉGIMEN ESPECIAL:
+- Concesionarios: Tratamiento específico
+- Inversión en contenidos: Deducción acelerada
+- Regalías: Tratamiento fiscal específico
+- Internacional: Convenios para evitar doble tributación
+
+COMERCIO EXTERIOR
+-----------------
+
+REGULACIÓN DE IMPORTACIONES:
+
+EQUIPOS DE TELECOMUNICACIONES:
+- Homologación: IFETEL requirements
+- Certificaciones: IFT y autoridades competentes
+- Permisos: Importación de equipos especializados
+- Aranceles: Tratamiento preferencial TLCAN/T-MEC
+- Origen: Certificación de país de origen
+
+CONTENIDOS AUDIOVISUALES:
+- Derechos de autor: Licencias internacionales
+- Cuotas de pantalla: Contenido nacional vs extranjero
+- Clasificación: Adaptación a normativa mexicana
+- Doblaje: Requisitos de versión en español
+- Distribución: Términos y condiciones
+
+SERVICIOS PROFESIONALES:
+- Visas: Personal técnico extranjero
+- Contratos: Servicios internacionales
+- Transferencia de tecnología: Registro ante IMPI
+- Regalías: Pago al extranjero
+- Withholding tax: Retenciones aplicables
+
+PROPIEDAD INTELECTUAL
+--------------------
+
+DERECHOS DE AUTOR:
+
+CONTENIDO ORIGINAL:
+- Registro: INDAUTOR protection
+- Titularidad: Obras por encargo
+- Duración: Vida del autor + 100 años (personas morales)
+- Explotación: Derechos patrimoniales
+- Moral rights: Derechos irrenunciables
+
+CONTENIDO LICENCIADO:
+- Contratos: Términos y territorios
+- Duración: Períodos de licencia
+- Exclusividad: Según negociación
+- Sublicensing: Autorizaciones específicas
+- Royalties: Esquemas de pago
+
+MARCAS Y SIGNOS DISTINTIVOS:
+- Registro: IMPI protecction
+- Clases: Cobertura de servicios
+- Renovación: Cada 10 años
+- Vigilancia: Infracciones y oposiciones
+- Enforcement: Procedimientos de defensa
+
+MUSIC LICENSING:
+- SACM: Sociedad de autores y compositores
+- SOMEXFON: Productores de fonogramas
+- ANDI: Intérpretes
+- Tarifas: Según uso y modalidad
+- Reporting: Planillas de ejecución
+
+CUMPLIMIENTO AMBIENTAL
+----------------------
+
+NORMATIVIDAD ECOLÓGICA:
+
+EMISIONES ATMOSFÉRICAS:
+- Fuentes fijas: Generadores y sistemas HVAC
+- Vehicles: Flota vehicular corporativa
+- Monitoring: Mediciones periódicas
+- Limits: Cumplimiento de NOMs
+- Reporting: Cédula de operación anual
+
+RESIDUOS PELIGROSOS:
+- Generación: Equipos electrónicos y baterías
+- Manejo: Almacenamiento temporal adecuado
+- Transporte: Empresas autorizadas
+- Disposición: Sitios autorizados por SEMARNAT
+- Manifests: Documentación completa
+
+AGUA Y DESCARGAS:
+- Uso: Concesiones CONAGUA
+- Calidad: Cumplimiento de parámetros
+- Descargas: Permisos municipales/federales
+- Monitoring: Análisis periódicos
+- Conservation: Programas de ahorro
+
+IMPACTO AMBIENTAL:
+- Evaluaciones: Proyectos nuevos significativos
+- Mitigation: Medidas preventivas y correctivas
+- Monitoring: Seguimiento de compromisos
+- Reporting: Informes semestrales
+- Compliance: Auditorías ambientales
+
+SISTEMA DE GESTIÓN DE COMPLIANCE
+--------------------------------
+
+ESTRUCTURA ORGANIZACIONAL:
+
+CHIEF COMPLIANCE OFFICER:
+- Reporte: Directo al CEO y Board
+- Responsabilidades: Oversight general del programa
+- Authority: Investigación y escalamiento
+- Resources: Equipo especializado y presupuesto
+- Independence: Libre de conflicts de interés
+
+COMPLIANCE COMMITTEE:
+- Membership: C-level executives
+- Meetings: Trimestrales mínimo
+- Functions: Policy approval y oversight
+- Reporting: Board de Directors
+- Decision making: Consensus-based
+
+COMPLIANCE OFFICERS POR ÁREA:
+- Legal: Regulatory compliance
+- Finance: Tax y financial reporting
+- HR: Labor law compliance  
+- Operations: Technical regulations
+- Content: Programming regulations
+
+PROGRAM ELEMENTS:
+
+RISK ASSESSMENT:
+- Regulatory mapping: Identificación de aplicables
+- Risk prioritization: Matriz de riesgo
+- Impact analysis: Consecuencias potenciales
+- Control gaps: Identificación de debilidades
+- Mitigation strategies: Planes de acción
+
+POLICIES AND PROCEDURES:
+- Comprehensive coverage: Todas las áreas
+- Regular updates: Revisión anual mínima
+- Training materials: Materiales educativos
+- Accessibility: Disponible para todos
+- Enforcement: Consecuencias por incumplimiento
+
+TRAINING AND AWARENESS:
+- Mandatory training: Todo el personal
+- Specialized training: Roles específicos
+- Regular updates: Cambios normativos
+- Assessment: Evaluación de conocimiento
+- Documentation: Registros de capacitación
+
+MONITORING AND TESTING:
+- Ongoing monitoring: Supervisión continua
+- Periodic testing: Auditorías internas
+- Key indicators: Métricas de cumplimiento
+- Exception reporting: Escalamiento de issues
+- Trend analysis: Análisis de patrones
+
+RESPONSE AND REMEDIATION:
+- Investigation procedures: Proceso formal
+- Corrective actions: Planes de remediación
+- Disciplinary measures: Consecuencias apropiadas
+- Regulatory reporting: Notificaciones requeridas
+- Lesson learned: Mejora continua
+
+MÉTRICAS Y REPORTING
+--------------------
+
+KEY PERFORMANCE INDICATORS:
+
+COMPLIANCE METRICS:
+- Regulatory violations: Número y severidad
+- Fines and penalties: Montos pagados
+- Corrective actions: Tiempo de implementación
+- Training completion: Porcentaje de personal
+- Risk mitigation: Effectiveness de controles
+
+OPERATIONAL METRICS:
+- License renewals: Timing y success rate
+- Regulatory filings: Timeliness y accuracy
+- Audit findings: Número y resolution time
+- Policy updates: Frequency y coverage
+- Stakeholder satisfaction: Regulatory relationships
+
+FINANCIAL METRICS:
+- Compliance costs: Total investment
+- Avoided penalties: Value of prevention
+- Process efficiency: Cost per transaction
+- ROI: Return on compliance investment
+- Budget variance: Actual vs planned
+
+REPORTING STRUCTURE:
+- Monthly: Operational metrics to management
+- Quarterly: Comprehensive report to Board
+- Annual: Full compliance assessment
+- Ad-hoc: Incident-based reporting
+- Regulatory: Required filings and submissions
+
+CONTACTO COMPLIANCE
+-------------------
+Dirección de Compliance: 55-1720-1313 ext. 1100
+Email: compliance@tvazteca.com
+Chief Compliance Officer: Lic. Alejandro Soberón
+Regulatory Affairs: regulatory@tvazteca.com
+Ethics Hotline: etica@tvazteca.com
+
+

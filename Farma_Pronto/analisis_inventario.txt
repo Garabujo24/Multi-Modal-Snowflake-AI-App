@@ -1,0 +1,62 @@
+**Análisis de Inventario y Stock - Q2 2024**
+
+**Periodo del Reporte:** 01 de Abril de 2024 - 30 de Junio de 2024
+**Autor:** Departamento de Logística y Operaciones
+
+---
+
+**1. Introducción y Objetivos**
+
+Este reporte presenta un análisis detallado de la rotación de inventario y los niveles de stock en toda la cadena de sucursales de Farmapronto durante el segundo trimestre de 2024. El objetivo es identificar productos de alta y baja rotación, detectar desequilibrios de stock (exceso o faltante) y emitir recomendaciones estratégicas para optimizar el capital de trabajo y asegurar la disponibilidad de productos clave.
+
+---
+
+**2. Productos de Alta Rotación (Top Movers)**
+
+Estos productos representan el 20% de nuestro catálogo pero generan aproximadamente el 75% de las ventas. Es crucial mantener niveles de stock óptimos para evitar pérdidas de ventas.
+
+| SKU      | Producto                    | Unidades Vendidas (Q2) | Rotación | Días de Inventario |
+|----------|-----------------------------|------------------------|----------|--------------------|
+| GEN-001  | Paracetamol 500mg           | 15,200                 | 12.5     | 7 días             |
+| GEN-002  | Ibuprofeno 400mg            | 11,500                 | 10.2     | 9 días             |
+| BAY-001  | Aspirina 100mg              | 9,800                  | 9.8      | 9 días             |
+| SAFE-001 | Cubrebocas Desechable (50pz)| 8,500                  | 15.1     | 6 días             |
+| RED-001  | Vitamina C 1g               | 7,900                  | 8.5      | 11 días            |
+
+**Análisis:** Los medicamentos genéricos para el dolor y la fiebre siguen siendo los líderes indiscutibles. La alta rotación de cubrebocas, aunque menor que en años anteriores, se mantiene constante. Se recomienda negociar compras por volumen para los genéricos y mantener un stock de seguridad de al menos 5 días para estos artículos.
+
+---
+
+**3. Productos de Baja Rotación (Slow Movers)**
+
+Estos productos tienen una rotación inferior a 2.0 en el trimestre, inmovilizando capital y ocupando espacio valioso en almacén.
+
+| SKU      | Producto                        | Unidades Vendidas (Q2) | Rotación | Días de Inventario |
+|----------|---------------------------------|------------------------|----------|--------------------|
+| ORT-050  | Rodillera Ortopédica Talla G    | 55                     | 1.2      | 75 días            |
+| SUP-112  | Suplemento de Algas Marinas     | 80                     | 1.5      | 60 días            |
+| INS-034  | Termómetro de Mercurio          | 110                    | 1.8      | 50 días            |
+
+**Acciones Recomendadas:**
+- **Promoción:** Crear un paquete promocional para los "slow movers" con un descuento del 30% para liquidar el inventario existente.
+- **Revisión de Catálogo:** Evaluar la descatalogación de productos con rotación inferior a 1.5 durante dos trimestres consecutivos.
+- **No Reordenar:** Poner una alerta en el sistema para no generar órdenes de compra automáticas para estos SKUs.
+
+---
+
+**4. Niveles de Stock por Sucursal y Recomendaciones**
+
+Se ha detectado un desequilibrio en la distribución del inventario.
+
+- **Exceso de Stock:**
+  - **Sucursal Satélite:** Presenta un exceso de inventario del 25% en productos de cuidado solar.
+  - **Sucursal Tlalpan:** Tiene un sobreinventario de fórmulas infantiles de etapa 3.
+
+- **Faltante de Stock (Quiebres):**
+  - **Sucursal Centro:** Registró 15 quiebres de stock en Paracetamol durante el trimestre.
+  - **Sucursal Polanco:** Reportó faltantes frecuentes de Jeringas BD de 3ml.
+
+**Recomendaciones de Rebalanceo:**
+1.  **Transferencia Interna:** Realizar una transferencia de 150 unidades de bloqueadores solares de la sucursal Satélite a la sucursal Polanco, donde la demanda es mayor.
+2.  **Ajuste de Máximos y Mínimos:** Incrementar el nivel mínimo de stock para Paracetamol en la sucursal Centro de 50 a 100 unidades en el sistema de reabastecimiento automático.
+3.  **Compra Centralizada:** Realizar una compra centralizada y urgente de 5,000 jeringas BD para redistribuir a las sucursales con mayor demanda, especialmente Polanco.

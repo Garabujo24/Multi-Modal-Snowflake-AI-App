@@ -1,0 +1,259 @@
+MANUAL DE TECNOLOGÍA Y TRANSMISIÓN TV AZTECA
+==========================================
+
+Dirección de Ingeniería y Tecnología
+Documento Técnico Operativo 2025
+
+INFRAESTRUCTURA DE TRANSMISIÓN
+------------------------------
+
+CENTRO DE TRANSMISIÓN PRINCIPAL:
+Ubicación: Ajusco, Ciudad de México
+- Torre de transmisión: 250 metros de altura
+- Potencia de transmisión: 500 kW ERP
+- Cobertura: 95% del Valle de México
+- Tecnología: ATSC 3.0 (Next Gen TV)
+- Respaldo energético: 48 horas de autonomía
+
+RED NACIONAL DE REPETIDORAS:
+- 340 estaciones repetidoras en todo México
+- Cobertura poblacional: 94.8%
+- Cobertura territorial: 78.2%
+- Tecnología digital terrestre TDT
+- Migración completa a HD: 100%
+
+ESTACIONES PRINCIPALES POR REGIÓN:
+- Centro: 85 repetidoras (CDMX, EdoMex, Hidalgo, Morelos)
+- Norte: 78 repetidoras (BC, Sonora, Chihuahua, Coahuila)
+- Occidente: 65 repetidoras (Jalisco, Michoacán, Nayarit)
+- Golfo: 45 repetidoras (Veracruz, Tamaulipas, Tabasco)
+- Sureste: 38 repetidoras (Yucatán, Q. Roo, Campeche)
+- Sur: 29 repetidoras (Oaxaca, Chiapas, Guerrero)
+
+ESPECIFICACIONES TÉCNICAS
+-------------------------
+
+FORMATOS DE TRANSMISIÓN:
+- Ultra Alta Definición (4K): Eventos especiales
+- Alta Definición (1080i): Programación regular
+- Definición Estándar (480i): Compatibilidad legacy
+- Audio: Dolby Digital 5.1 surround
+- Subtítulos: CEA-708 (inglés y español)
+
+CANALES VIRTUALES:
+- 1.1 Azteca UNO HD
+- 1.2 Azteca UNO SD
+- 7.1 Azteca 7 HD
+- 7.2 Azteca 7 SD
+- 40.1 adn40 HD
+- 40.2 adn40 SD
+- 1.3 a más+ HD
+- 7.3 Mundo Sorprendente TV
+- 1.4 Vida Plena TV
+
+COMPRESIÓN DE VIDEO:
+- Codec principal: HEVC (H.265)
+- Bitrate 4K: 25-35 Mbps
+- Bitrate HD: 8-12 Mbps
+- Bitrate SD: 3-5 Mbps
+- Compresión de audio: AAC-LC y Dolby AC-3
+
+CENTROS DE PRODUCCIÓN
+--------------------
+
+COMPLEJO AJUSCO:
+- 15 estudios de grabación
+- 8 estudios de televisión en vivo
+- 2 estudios de noticias 24/7
+- 1 estudio de deportes
+- Capacidad simultánea: 12 producciones
+
+ESPECIFICACIONES DE ESTUDIOS:
+- Cámaras: Sony FX9, Canon C300 Mark III, RED Komodo
+- Switchers: Grass Valley Kayenne K-Frame
+- Audio: Calrec Artemis Beam mixing console
+- Iluminación: LED Arri SkyPanel S360-C
+- Control remoto: Grass Valley Densité 3+
+
+FACILIDADES TÉCNICAS:
+- Salas de edición: 25 suites Avid Media Composer
+- Color grading: DaVinci Resolve Studio
+- Audio post: Pro Tools HDX systems
+- Gráficos: Adobe After Effects, Cinema 4D
+- Almacenamiento: 5 PB en sistemas Avid NEXIS
+
+SISTEMAS DE TRANSMISIÓN DIGITAL
+------------------------------
+
+PLATAFORMAS DE STREAMING:
+- CDN principal: Amazon CloudFront
+- CDN secundario: Akamai Technologies
+- Capacidad: 50 Tbps agregados
+- Latencia: <3 segundos en streaming en vivo
+- Formatos: HLS, DASH, WebRTC
+
+TRANSCODIFICACIÓN:
+- Encoding en tiempo real: AWS Elemental Live
+- Perfiles adaptativos: 6 calidades simultáneas
+- Resoluciones: 4K, 1080p, 720p, 480p, 360p, 240p
+- Codecs: H.264, H.265, AV1 (próximamente)
+
+DISTRIBUCIÓN DE CONTENIDO:
+- OTT: tvazteca.com, apps móviles
+- IPTV: partnerships con operadores
+- Satelital: SES-6, Eutelsat 117 West A
+- Fibra óptica: red nacional redundante
+
+INNOVACIONES TECNOLÓGICAS
+-------------------------
+
+REALIDAD AUMENTADA:
+- Sistema: Vizrt Trio
+- Aplicaciones: Noticias, deportes, entretenimiento
+- Tracking: OptiTrack motion capture
+- Rendering: Unreal Engine 4.27
+- Integración: Control de cámaras robotizadas
+
+INTELIGENCIA ARTIFICIAL:
+- Subtitulación automática: IBM Watson
+- Análisis de contenido: Google Cloud Video AI
+- Personalización: Amazon Personalize
+- Moderación: Azure Content Moderator
+- Chatbots: Microsoft Bot Framework
+
+AUTOMATIZACIÓN:
+- Master Control: Grass Valley iTX
+- Playout automatizado: 24/7 sin intervención humana
+- Gestión de archivos: Dalet Galaxy
+- Workflow de producción: Avid MediaCentral
+- Monitoreo: Tektronix Sentry
+
+SEGURIDAD Y RESPALDO
+-------------------
+
+SISTEMAS DE SEGURIDAD:
+- Encriptación: AES-256 end-to-end
+- Firewall: Fortinet FortiGate 6000F
+- DRM: Microsoft PlayReady, Google Widevine
+- Autenticación: Multi-factor authentication
+- Backup: Veeam Backup & Replication
+
+CENTROS DE RESPALDO:
+- Sitio primario: Ajusco, CDMX
+- Sitio secundario: Santa Fe, CDMX
+- Sitio terciario: Guadalajara, Jalisco
+- DR tiempo objetivo: 4 horas
+- RPO (Recovery Point Objective): 1 hora
+
+CONECTIVIDAD:
+- Fibra óptica principal: 100 Gbps
+- Enlace satelital de respaldo: 10 Gbps
+- Microondas: 5 GHz y 23 GHz
+- Redundancia: N+1 en todos los enlaces críticos
+
+MONITOREO Y CALIDAD
+------------------
+
+SISTEMA DE MONITOREO 24/7:
+- NOC (Network Operations Center): Personal especializado
+- Alertas automáticas: Slack, PagerDuty, SMS
+- Dashboards: Grafana con métricas en tiempo real
+- SLA objetivo: 99.9% de uptime
+- MTTR promedio: 8 minutos
+
+MÉTRICAS DE CALIDAD:
+- Video: Análisis de pixelación, freezing, blackout
+- Audio: Medición de niveles, distorsión, silencio
+- Sincronización: Lip-sync monitoring
+- Señal RF: MER, BER, nivel de señal
+- Experiencia usuario: Buffer ratio, startup time
+
+HERRAMIENTAS DE ANÁLISIS:
+- Tektronix MTS400 Media Test System
+- PHABRIX Qx 12G-SDI Rasterizer
+- Dolby LM100 Loudness Meter
+- Leader LV5490 Multi-SDI Monitor
+- Rohde & Schwarz DVS/DVMS
+
+PROYECTOS DE MODERNIZACIÓN
+--------------------------
+
+MIGRACIÓN A IP:
+- Timeline: 2025-2027
+- Estándar: SMPTE ST 2110
+- Switches: Arista 7280R3 Series
+- Control: Lawo VSM broadcast control system
+- Inversión: $50M USD
+
+NEXT GENERATION BROADCAST:
+- ATSC 3.0 deployment: Q4 2025
+- Servicios interactivos: 2026
+- Ultra HD regular: 2026
+- Personalización broadcast: 2027
+
+SOSTENIBILIDAD:
+- Reducción consumo energético: 30% para 2026
+- Energías renovables: 50% para 2027
+- Virtualización: Migración a cloud híbrida
+- Economía circular: Reciclaje de equipos
+
+PARTNERSHIPS TECNOLÓGICOS
+-------------------------
+
+PROVEEDORES PRINCIPALES:
+- Sony: Cámaras y equipos de producción
+- Grass Valley: Switchers y routing
+- Avid: Sistemas de edición y almacenamiento
+- AWS: Servicios de nube
+- Akamai: Content delivery network
+
+COLABORACIONES:
+- NAB (National Association of Broadcasters)
+- SMPTE (Society of Motion Picture & Television Engineers)
+- TVA (Televisión Azteca Internacional)
+- IEEE (Institute of Electrical and Electronics Engineers)
+- ITU (International Telecommunication Union)
+
+CAPACITACIÓN Y DESARROLLO
+-------------------------
+
+PROGRAMAS DE ENTRENAMIENTO:
+- Certificaciones técnicas anuales
+- Workshops de nuevas tecnologías
+- Intercambio con broadcasters internacionales
+- Cursos en línea especializados
+- Simuladores de operación
+
+PERSONAL TÉCNICO:
+- Ingenieros de transmisión: 45
+- Operadores de master control: 32
+- Técnicos de mantenimiento: 28
+- Especialistas en IT: 23
+- Supervisores de calidad: 18
+
+MÉTRICAS DE PERFORMANCE
+-----------------------
+
+INDICADORES CLAVE 2025:
+- Uptime promedio: 99.94%
+- Tiempo de respuesta NOC: 2.3 minutos
+- Incidentes críticos: 12 (anual)
+- Satisfacción técnica: 97%
+- Cumplimiento regulatorio: 100%
+
+INVERSIÓN TECNOLÓGICA:
+- Presupuesto anual: $25M USD
+- R&D: 15% del presupuesto
+- Mantenimiento: 40% del presupuesto
+- Expansión: 30% del presupuesto
+- Innovación: 15% del presupuesto
+
+CONTACTO TÉCNICO
+----------------
+Dirección de Ingeniería: 55-1720-1313 ext. 7000
+NOC 24/7: 55-7000-7000
+Email: ingenieria@tvazteca.com
+Director CTO: Ing. Roberto Alcántara
+Emergencias técnicas: emergencia.tecnica@tvazteca.com
+
+

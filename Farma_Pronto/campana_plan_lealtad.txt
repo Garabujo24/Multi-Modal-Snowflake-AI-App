@@ -1,0 +1,75 @@
+**Propuesta de Campaña de Marketing: "Club Farmapronto+"**
+
+**Fecha:** 10 de Julio de 2024
+**Departamento:** Marketing y Lealtad
+
+---
+
+**1. Objetivos de la Campaña**
+
+El objetivo principal de esta campaña es incrementar en un 20% el número de miembros activos en nuestro programa de lealtad "Club Farmapronto+" durante el próximo trimestre (Q3 2024).
+
+**Objetivos Secundarios:**
+- Aumentar la frecuencia de compra de los miembros actuales en un 15%.
+- Incrementar el ticket promedio de los miembros en un 10%.
+- Recopilar datos de preferencias de compra para personalizar futuras ofertas.
+
+---
+
+**2. Público Objetivo**
+
+La campaña se dirigirá a dos segmentos principales:
+
+- **Clientes No Miembros:** Clientes recurrentes que realizan compras pero aún no se han inscrito al programa. El enfoque será comunicar los beneficios inmediatos y el ahorro a largo plazo.
+- **Clientes Miembros Inactivos:** Miembros que no han realizado una compra en los últimos 90 días. El objetivo es reactivarlos con una oferta exclusiva.
+
+---
+
+**3. Estrategia y Canales de Comunicación**
+
+Se implementará una estrategia omnicanal para maximizar el alcance y la conversión.
+
+- **En Tienda (In-Store):**
+  - **Material POP:** Colocación de carteles, flyers y tótems en puntos estratégicos (entrada, mostrador, pasillos de alta afluencia) con un llamado a la acción claro: "Únete al Club y ahorra hoy mismo".
+  - **Capacitación del Personal:** Los cajeros y farmacéuticos serán la principal fuerza de inscripción. Se les incentivará con un bono por cada 50 nuevos miembros registrados. Deberán explicar proactivamente los beneficios al momento del pago.
+
+- **Digital:**
+  - **Campaña de Email Marketing:** Se enviará una secuencia de 3 correos a nuestra base de datos de clientes no miembros, destacando: 1) Beneficios del club, 2) Testimonios de ahorro, 3) Oferta de bienvenida.
+  - **Redes Sociales (Facebook e Instagram):** Creación de anuncios segmentados por geolocalización (cercanía a sucursales) y por intereses (salud, bienestar, familia). Se utilizarán videos cortos y gráficos atractivos.
+  - **Notificaciones Push en la App:** Se enviarán notificaciones a los usuarios de la app que no sean miembros, invitándolos a unirse con un solo clic.
+
+---
+
+**4. Mensajes Clave y Oferta de Bienvenida**
+
+**Mensaje Principal:** "En Farmapronto, tu lealtad te premia. Únete al Club Farmapronto+ y empieza a acumular puntos, recibir descuentos exclusivos y cuidar tu salud ahorrando."
+
+**Ofertas de Incentivo:**
+- **Para Nuevos Miembros:** Acumula puntos dobles en tu primera compra y recibe un cupón de 15% de descuento para tu segunda visita.
+- **Para Reactivación de Miembros:** "¡Te extrañamos! Usa este cupón de 20% de descuento en tu próxima compra de productos de marca propia."
+
+---
+
+**5. Presupuesto Estimado**
+
+| Partida                           | Costo Estimado (MXN) |
+|-----------------------------------|----------------------|
+| Impresión de Material POP         | $50,000              |
+| Pauta en Redes Sociales           | $150,000             |
+| Incentivos para Personal          | $40,000              |
+| Diseño Gráfico y Copywriting      | $30,000              |
+| **Total**                         | **$270,000**         |
+
+---
+
+**6. KPIs y Medición de Resultados**
+
+El éxito de la campaña se medirá a través de los siguientes indicadores clave de rendimiento (KPIs):
+
+- **Número de Nuevos Miembros Registrados:** Meta: 5,000 nuevos miembros.
+- **Tasa de Conversión (Anuncios Digitales):** Porcentaje de clics que resultan en un registro.
+- **Tasa de Reactivación:** Porcentaje de miembros inactivos que realizan una compra.
+- **Frecuencia de Compra (Miembros Activos):** Comparativa antes y después de la campaña.
+- **Retorno de Inversión (ROI):** (Ingreso incremental generado por miembros - Costo de la campaña) / Costo de la campaña.
+
+Se generará un reporte semanal para monitorear el avance hacia los objetivos.

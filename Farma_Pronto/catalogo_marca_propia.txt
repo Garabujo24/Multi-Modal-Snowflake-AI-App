@@ -1,0 +1,53 @@
+**Catálogo de Productos de Marca Propia "Bienestar Pronto" - Edición Verano 2024**
+
+**Lema:** "La misma calidad, a un precio que te hace sentir mejor."
+
+---
+
+**1. Introducción a la Marca Propia**
+
+"Bienestar Pronto" es nuestra línea exclusiva de productos, desarrollada para ofrecer a nuestros clientes la máxima calidad y confianza a un precio accesible. Cada producto cumple con los más altos estándares regulatorios y está formulado con los mismos principios activos que las marcas líderes, garantizando su eficacia y seguridad. Al elegir "Bienestar Pronto", apoyas la economía y obtienes un valor excepcional para el cuidado de tu salud y la de tu familia.
+
+---
+
+**2. Categoría: Medicamentos Genéricos (Libre Venta)**
+
+| SKU      | Nombre del Producto            | Principio Activo | Presentación      | Precio (MXN) |
+|----------|--------------------------------|------------------|-------------------|--------------|
+| BP-GEN-01| Analgésico Fuerte Pronto       | Paracetamol 500mg| Caja c/20 tabs    | $25.00       |
+| BP-GEN-02| Antigripal Noche Pronto        | Paracetamol, Clorfenamina, Cafeína| Caja c/12 tabs | $45.00       |
+| BP-GEN-03| Descongestionante Pronto       | Fenilefrina      | Solución 15ml     | $38.00       |
+| BP-GEN-04| Anti-inflamatorio Pronto       | Ibuprofeno 400mg | Caja c/10 tabs    | $30.00       |
+| BP-GEN-05| Antiácido Masticable Pronto    | Magaldrato/Dimeticona | Caja c/50 tabs | $65.00       |
+
+---
+
+**3. Categoría: Cuidado Personal e Higiene**
+
+| SKU      | Nombre del Producto            | Descripción                          | Presentación | Precio (MXN) |
+|----------|--------------------------------|--------------------------------------|--------------|--------------|
+| BP-CUP-01| Gel Antibacterial Pronto       | Elimina 99.9% de gérmenes, con Aloe  | Botella 250ml| $22.00       |
+| BP-CUP-02| Jabón Líquido Neutro Pronto    | Hipoalergénico, pH neutro            | Botella 500ml| $40.00       |
+| BP-CUP-03| Rastrillos Desechables Pronto  | Doble hoja con banda lubricante      | Paquete c/5 pz| $35.00       |
+| BP-CUP-04| Enjuague Bucal Menta Fresca    | Sin alcohol, previene la caries      | Botella 500ml| $55.00       |
+| BP-CUP-05| Toallitas Húmedas Pronto       | Con Aloe Vera y Manzanilla           | Paquete c/80 pz| $28.00       |
+
+---
+
+**4. Categoría: Material de Curación**
+
+| SKU      | Nombre del Producto            | Características                    | Presentación      | Precio (MXN) |
+|----------|--------------------------------|------------------------------------|-------------------|--------------|
+| BP-CUR-01| Gasas Estériles Pronto         | 100% Algodón, alta absorción       | Caja c/10 sobres  | $20.00       |
+| BP-CUR-02| Venda Elástica Pronto          | 5 cm de ancho                      | 1 pieza           | $18.00       |
+| BP-CUR-03| Alcohol Desnaturalizado Pronto | Antiséptico al 70%                 | Botella 250ml     | $25.00       |
+| BP-CUR-04| Curitas Adhesivas Pronto       | Flexibles y resistentes al agua     | Caja c/30 pz      | $22.00       |
+| BP-CUR-05| Agua Oxigenada Pronto          | Desinfectante de uso externo       | Botella 120ml     | $15.00       |
+
+---
+
+**5. Argumentos de Venta para el Personal**
+
+- **Calidad Garantizada:** "Este producto tiene el mismo compuesto activo que [Marca Líder], pero a un mejor precio. La calidad está garantizada por Farmapronto."
+- **Ahorro Inteligente:** "Si busca el mayor ahorro sin sacrificar calidad, le recomiendo nuestra línea Bienestar Pronto. Es una excelente opción."
+- **Disponibilidad:** "Siempre contamos con un excelente surtido de nuestra marca propia, es una alternativa confiable si el producto que busca no está disponible."

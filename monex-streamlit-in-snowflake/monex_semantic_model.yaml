@@ -1,0 +1,594 @@
+name: monex_financial_model
+description: Modelo semántico para análisis financiero de Monex Grupo Financiero. Incluye datos de clientes corporativos, inversiones, factoraje, cambio de divisas y transacciones bancarias.
+
+tables:
+  - name: CLIENTES
+    description: Información de clientes corporativos, private banking e individuales de Monex
+    base_table:
+      database: MONEX_DB
+      schema: CORE
+      table: CLIENTES
+    
+    dimensions:
+      - name: CLIENTE_ID
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: Identificador único del cliente
+        unique: true
+        synonyms:
+          - "id cliente"
+          - "número de cliente"
+          - "identificador cliente"
+      
+      - name: TIPO_CLIENTE
+        expr: TIPO_CLIENTE
+        data_type: VARCHAR
+        description: Tipo de cliente (CORPORATIVO, PRIVADO, INDIVIDUAL)
+        synonyms:
+          - "tipo de cliente"
+          - "segmento cliente"
+          - "categoría cliente"
+        sample_values:
+          - "CORPORATIVO"
+          - "PRIVADO" 
+          - "INDIVIDUAL"
+      
+      - name: SEGMENTO
+        expr: SEGMENTO
+        data_type: VARCHAR
+        description: Segmento de negocio del cliente (EMPRESARIAL, PYME, PREMIUM, MASIVO)
+        synonyms:
+          - "segmento"
+          - "segmento de negocio"
+          - "clasificación"
+        sample_values:
+          - "EMPRESARIAL"
+          - "PYME"
+          - "PREMIUM"
+          - "MASIVO"
+      
+      - name: ESTADO
+        expr: ESTADO
+        data_type: VARCHAR
+        description: Estado de la República donde se ubica el cliente
+        synonyms:
+          - "estado"
+          - "entidad federativa"
+          - "ubicación"
+        sample_values:
+          - "CDMX"
+          - "Nuevo León"
+          - "Jalisco"
+      
+      - name: ESTATUS
+        expr: ESTATUS
+        data_type: VARCHAR
+        description: Estatus del cliente (ACTIVO, INACTIVO, SUSPENDIDO)
+        synonyms:
+          - "estatus"
+          - "status"
+          - "estado del cliente"
+        sample_values:
+          - "ACTIVO"
+          - "INACTIVO"
+          - "SUSPENDIDO"
+    
+    time_dimensions:
+      - name: FECHA_ALTA
+        expr: FECHA_ALTA
+        data_type: DATE
+        description: Fecha de alta del cliente en Monex
+        synonyms:
+          - "fecha alta"
+          - "fecha registro"
+          - "fecha incorporación"
+    
+    primary_key:
+      columns:
+        - CLIENTE_ID
+
+  - name: TRANSACCIONES
+    description: Registro de todas las transacciones financieras realizadas por los clientes
+    base_table:
+      database: MONEX_DB
+      schema: CORE
+      table: TRANSACCIONES
+    
+    dimensions:
+      - name: TRANSACCION_ID
+        expr: TRANSACCION_ID
+        data_type: VARCHAR
+        description: Identificador único de la transacción
+        unique: true
+      
+      - name: CLIENTE_ID
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: Identificador del cliente que realizó la transacción
+        synonyms:
+          - "id cliente"
+          - "cliente"
+      
+      - name: TIPO_TRANSACCION
+        expr: TIPO_TRANSACCION
+        data_type: VARCHAR
+        description: Tipo de transacción realizada
+        synonyms:
+          - "tipo transacción"
+          - "tipo de operación"
+          - "operación"
+        sample_values:
+          - "DEPOSITO"
+          - "RETIRO"
+          - "TRANSFERENCIA"
+          - "INVERSION"
+          - "CAMBIO_FX"
+      
+      - name: MONEDA
+        expr: MONEDA
+        data_type: VARCHAR
+        description: Moneda de la transacción (MXN, USD)
+        synonyms:
+          - "divisa"
+          - "moneda"
+        sample_values:
+          - "MXN"
+          - "USD"
+      
+      - name: ESTADO
+        expr: ESTADO
+        data_type: VARCHAR
+        description: Estado de la transacción
+        synonyms:
+          - "estatus transacción"
+          - "estado operación"
+        sample_values:
+          - "COMPLETADA"
+          - "PENDIENTE"
+          - "CANCELADA"
+      
+      - name: CANAL
+        expr: CANAL
+        data_type: VARCHAR
+        description: Canal por el cual se realizó la transacción
+        synonyms:
+          - "canal"
+          - "medio"
+          - "forma"
+        sample_values:
+          - "DIGITAL"
+          - "SUCURSAL"
+          - "TELEFONO"
+    
+    time_dimensions:
+      - name: FECHA_TRANSACCION
+        expr: FECHA_TRANSACCION
+        data_type: TIMESTAMP
+        description: Fecha y hora de la transacción
+        synonyms:
+          - "fecha transacción"
+          - "fecha operación"
+          - "timestamp"
+    
+    facts:
+      - name: MONTO
+        expr: MONTO
+        data_type: NUMBER
+        description: Monto de la transacción en la moneda especificada
+        synonyms:
+          - "importe"
+          - "cantidad"
+          - "valor"
+      
+      - name: COMISION
+        expr: COMISION
+        data_type: NUMBER
+        description: Comisión cobrada por la transacción
+        synonyms:
+          - "comisión"
+          - "fee"
+          - "cargo"
+    
+    primary_key:
+      columns:
+        - TRANSACCION_ID
+
+  - name: INVERSIONES
+    description: Inversiones realizadas por clientes en estrategias USD de private banking
+    base_table:
+      database: MONEX_DB
+      schema: CORE
+      table: INVERSIONES
+    
+    dimensions:
+      - name: INVERSION_ID
+        expr: INVERSION_ID
+        data_type: VARCHAR
+        description: Identificador único de la inversión
+        unique: true
+      
+      - name: CLIENTE_ID
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: Cliente que realizó la inversión
+      
+      - name: FONDO_ESTRATEGIA
+        expr: FONDO_ESTRATEGIA
+        data_type: VARCHAR
+        description: Estrategia de inversión seleccionada
+        synonyms:
+          - "estrategia"
+          - "fondo"
+          - "tipo inversión"
+        sample_values:
+          - "USD_FIXED_INCOME"
+          - "GLOBAL_EQUITY"
+          - "CONSERVATIVE"
+          - "MODERATE"
+          - "AGGRESSIVE"
+      
+      - name: MONEDA
+        expr: MONEDA
+        data_type: VARCHAR
+        description: Moneda de la inversión
+        sample_values:
+          - "USD"
+          - "MXN"
+      
+      - name: ESTADO
+        expr: ESTADO
+        data_type: VARCHAR
+        description: Estado actual de la inversión
+        sample_values:
+          - "ACTIVA"
+          - "VENCIDA"
+          - "CANCELADA"
+    
+    time_dimensions:
+      - name: FECHA_INVERSION
+        expr: FECHA_INVERSION
+        data_type: DATE
+        description: Fecha de inicio de la inversión
+        synonyms:
+          - "fecha inversión"
+          - "fecha inicio"
+      
+      - name: FECHA_VENCIMIENTO
+        expr: FECHA_VENCIMIENTO
+        data_type: DATE
+        description: Fecha de vencimiento de la inversión
+        synonyms:
+          - "fecha vencimiento"
+          - "fecha fin"
+          - "maturity"
+    
+    facts:
+      - name: MONTO_INVERTIDO
+        expr: MONTO_INVERTIDO
+        data_type: NUMBER
+        description: Monto inicial invertido
+        synonyms:
+          - "capital inicial"
+          - "inversión inicial"
+          - "principal"
+      
+      - name: VALOR_ACTUAL
+        expr: VALOR_ACTUAL
+        data_type: NUMBER
+        description: Valor actual de la inversión
+        synonyms:
+          - "valor presente"
+          - "valor mercado"
+          - "valor actual"
+      
+      - name: RENDIMIENTO_ANUAL
+        expr: RENDIMIENTO_ANUAL
+        data_type: NUMBER
+        description: Rendimiento anual de la inversión en porcentaje
+        synonyms:
+          - "rendimiento"
+          - "return"
+          - "yield"
+          - "ganancia anual"
+    
+    primary_key:
+      columns:
+        - INVERSION_ID
+
+  - name: FACTORAJE
+    description: Operaciones de factoraje realizadas para clientes corporativos y PYME
+    base_table:
+      database: MONEX_DB
+      schema: CORE
+      table: FACTORAJE
+    
+    dimensions:
+      - name: FACTORAJE_ID
+        expr: FACTORAJE_ID
+        data_type: VARCHAR
+        description: Identificador único de la operación de factoraje
+        unique: true
+      
+      - name: CLIENTE_ID
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: Cliente cedente del factoraje
+      
+      - name: EMPRESA_DEUDORA
+        expr: EMPRESA_DEUDORA
+        data_type: VARCHAR
+        description: Empresa que debe pagar la factura
+        synonyms:
+          - "deudor"
+          - "empresa deudora"
+          - "pagador"
+      
+      - name: ESTADO
+        expr: ESTADO
+        data_type: VARCHAR
+        description: Estado actual de la operación
+        sample_values:
+          - "VIGENTE"
+          - "COBRADO"
+          - "VENCIDO"
+      
+      - name: TIPO_FACTORAJE
+        expr: TIPO_FACTORAJE
+        data_type: VARCHAR
+        description: Tipo de factoraje (con o sin recurso)
+        sample_values:
+          - "SIN_RECURSO"
+          - "CON_RECURSO"
+    
+    time_dimensions:
+      - name: FECHA_FACTURA
+        expr: FECHA_FACTURA
+        data_type: DATE
+        description: Fecha de emisión de la factura
+        synonyms:
+          - "fecha factura"
+          - "fecha emisión"
+      
+      - name: FECHA_VENCIMIENTO
+        expr: FECHA_VENCIMIENTO
+        data_type: DATE
+        description: Fecha de vencimiento de la factura
+        synonyms:
+          - "fecha vencimiento"
+          - "due date"
+      
+      - name: FECHA_OPERACION
+        expr: FECHA_OPERACION
+        data_type: DATE
+        description: Fecha de la operación de factoraje
+        synonyms:
+          - "fecha operación"
+          - "fecha factoraje"
+    
+    facts:
+      - name: MONTO_FACTURA
+        expr: MONTO_FACTURA
+        data_type: NUMBER
+        description: Monto nominal de la factura
+        synonyms:
+          - "valor factura"
+          - "importe factura"
+      
+      - name: MONTO_ADELANTO
+        expr: MONTO_ADELANTO
+        data_type: NUMBER
+        description: Monto adelantado al cliente (típicamente 85% del valor)
+        synonyms:
+          - "adelanto"
+          - "anticipo"
+          - "prepago"
+      
+      - name: TASA_DESCUENTO
+        expr: TASA_DESCUENTO
+        data_type: NUMBER
+        description: Tasa de descuento aplicada (porcentaje anual)
+        synonyms:
+          - "tasa"
+          - "rate"
+          - "descuento"
+      
+      - name: COMISION
+        expr: COMISION
+        data_type: NUMBER
+        description: Comisión cobrada por el servicio de factoraje
+        synonyms:
+          - "comisión"
+          - "fee"
+    
+    primary_key:
+      columns:
+        - FACTORAJE_ID
+
+  - name: TIPOS_CAMBIO
+    description: Tipos de cambio históricos USD/MXN utilizados en operaciones
+    base_table:
+      database: MONEX_DB
+      schema: CORE
+      table: TIPOS_CAMBIO
+    
+    dimensions:
+      - name: MONEDA_ORIGEN
+        expr: MONEDA_ORIGEN
+        data_type: VARCHAR
+        description: Moneda de origen en la operación de cambio
+        sample_values:
+          - "USD"
+          - "EUR"
+      
+      - name: MONEDA_DESTINO
+        expr: MONEDA_DESTINO
+        data_type: VARCHAR
+        description: Moneda de destino en la operación de cambio
+        sample_values:
+          - "MXN"
+          - "USD"
+    
+    time_dimensions:
+      - name: FECHA
+        expr: FECHA
+        data_type: DATE
+        description: Fecha del tipo de cambio
+        synonyms:
+          - "fecha"
+          - "date"
+    
+    facts:
+      - name: TIPO_CAMBIO_COMPRA
+        expr: TIPO_CAMBIO_COMPRA
+        data_type: NUMBER
+        description: Tipo de cambio para compra de divisas
+        synonyms:
+          - "compra"
+          - "buy rate"
+          - "tipo compra"
+      
+      - name: TIPO_CAMBIO_VENTA
+        expr: TIPO_CAMBIO_VENTA
+        data_type: NUMBER
+        description: Tipo de cambio para venta de divisas
+        synonyms:
+          - "venta"
+          - "sell rate"
+          - "tipo venta"
+      
+      - name: VOLUMEN_TRANSACCIONES
+        expr: VOLUMEN_TRANSACCIONES
+        data_type: NUMBER
+        description: Volumen total transaccionado en el día
+        synonyms:
+          - "volumen"
+          - "volume"
+          - "transacciones"
+    
+    primary_key:
+      columns:
+        - FECHA
+        - MONEDA_ORIGEN
+        - MONEDA_DESTINO
+
+# Relaciones entre tablas
+relationships:
+  - name: transacciones_clientes
+    left_table: TRANSACCIONES
+    right_table: CLIENTES
+    relationship_columns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: inversiones_clientes
+    left_table: INVERSIONES
+    right_table: CLIENTES
+    relationship_columns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: factoraje_clientes
+    left_table: FACTORAJE
+    right_table: CLIENTES
+    relationship_columns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+# Consultas verificadas para Cortex Analyst
+verified_queries:
+  - name: total_ingresos_por_mes
+    question: ¿Cuáles son los ingresos totales por mes?
+    sql: |
+      SELECT 
+        DATE_TRUNC('MONTH', FECHA_TRANSACCION) AS MES,
+        SUM(MONTO + COMISION) AS INGRESOS_TOTALES
+      FROM TRANSACCIONES 
+      WHERE ESTADO = 'COMPLETADA'
+      GROUP BY DATE_TRUNC('MONTH', FECHA_TRANSACCION)
+      ORDER BY MES DESC
+    verified_by: Sistema Monex
+    verified_at: 1703721600
+
+  - name: clientes_por_segmento
+    question: ¿Cuántos clientes tenemos por segmento?
+    sql: |
+      SELECT 
+        SEGMENTO,
+        COUNT(*) AS TOTAL_CLIENTES,
+        COUNT(CASE WHEN ESTATUS = 'ACTIVO' THEN 1 END) AS CLIENTES_ACTIVOS
+      FROM CLIENTES
+      GROUP BY SEGMENTO
+      ORDER BY TOTAL_CLIENTES DESC
+    verified_by: Sistema Monex
+    verified_at: 1703721600
+
+  - name: rendimiento_inversiones_usd
+    question: ¿Cuál es el rendimiento promedio de las inversiones USD por estrategia?
+    sql: |
+      SELECT 
+        FONDO_ESTRATEGIA,
+        COUNT(*) AS NUM_INVERSIONES,
+        AVG(RENDIMIENTO_ANUAL) AS RENDIMIENTO_PROMEDIO,
+        SUM(MONTO_INVERTIDO) AS CAPITAL_TOTAL,
+        SUM(VALOR_ACTUAL) AS VALOR_ACTUAL_TOTAL
+      FROM INVERSIONES
+      WHERE ESTADO = 'ACTIVA' AND MONEDA = 'USD'
+      GROUP BY FONDO_ESTRATEGIA
+      ORDER BY RENDIMIENTO_PROMEDIO DESC
+    verified_by: Sistema Monex
+    verified_at: 1703721600
+
+  - name: volumen_factoraje_por_deudor
+    question: ¿Cuál es el volumen de factoraje por empresa deudora?
+    sql: |
+      SELECT 
+        EMPRESA_DEUDORA,
+        COUNT(*) AS NUM_OPERACIONES,
+        SUM(MONTO_FACTURA) AS VOLUMEN_TOTAL,
+        AVG(TASA_DESCUENTO) AS TASA_PROMEDIO,
+        COUNT(CASE WHEN ESTADO = 'VIGENTE' THEN 1 END) AS OPERACIONES_VIGENTES
+      FROM FACTORAJE
+      GROUP BY EMPRESA_DEUDORA
+      ORDER BY VOLUMEN_TOTAL DESC
+    verified_by: Sistema Monex
+    verified_at: 1703721600
+
+  - name: tipos_cambio_ultimo_mes
+    question: ¿Cómo han variado los tipos de cambio USD/MXN en el último mes?
+    sql: |
+      SELECT 
+        FECHA,
+        TIPO_CAMBIO_COMPRA,
+        TIPO_CAMBIO_VENTA,
+        (TIPO_CAMBIO_VENTA - TIPO_CAMBIO_COMPRA) AS SPREAD,
+        VOLUMEN_TRANSACCIONES
+      FROM TIPOS_CAMBIO
+      WHERE MONEDA_ORIGEN = 'USD' AND MONEDA_DESTINO = 'MXN'
+        AND FECHA >= DATEADD(day, -30, CURRENT_DATE())
+      ORDER BY FECHA DESC
+    verified_by: Sistema Monex
+    verified_at: 1703721600
+
+# Instrucciones personalizadas para el contexto de Monex
+custom_instructions: |
+  Este modelo semántico está diseñado para analizar los datos financieros de Monex Grupo Financiero, 
+  una institución financiera mexicana especializada en:
+  - Banca Corporativa (créditos y servicios empresariales)
+  - Private Banking (gestión de patrimonio en USD)
+  - Factoraje (financiamiento de cuentas por cobrar)
+  - Cambio de Divisas (operaciones USD/MXN)
+  - Fondos de Inversión
+
+  Al responder preguntas:
+  - Siempre considerar el contexto del mercado financiero mexicano
+  - Las transacciones en USD generalmente corresponden a Private Banking
+  - El factoraje es principalmente para empresas mexicanas (PYME y corporativos)
+  - Los tipos de cambio se refieren principalmente a USD/MXN
+  - Las estrategias de inversión siguen estándares internacionales
+  - Incluir información sobre comisiones y rentabilidad cuando sea relevante

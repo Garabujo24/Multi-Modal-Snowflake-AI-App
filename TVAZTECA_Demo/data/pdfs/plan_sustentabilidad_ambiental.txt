@@ -1,0 +1,402 @@
+PLAN DE SUSTENTABILIDAD AMBIENTAL TV AZTECA
+==========================================
+
+Dirección de Sustentabilidad Corporativa
+Estrategia de Responsabilidad Ambiental 2025-2030
+
+COMPROMISO AMBIENTAL
+--------------------
+
+MISIÓN AMBIENTAL:
+TV Azteca se compromete a ser una empresa carbono neutral para 2030, implementando prácticas sustentables en todas sus operaciones y promoviendo la concientización ambiental a través de su programación y alcance mediático.
+
+OBJETIVOS DE SUSTENTABILIDAD (ODS UN):
+- ODS 7: Energía asequible y no contaminante
+- ODS 11: Ciudades y comunidades sostenibles  
+- ODS 12: Producción y consumo responsables
+- ODS 13: Acción por el clima
+- ODS 15: Vida de ecosistemas terrestres
+
+METAS AMBIENTALES 2030:
+- Carbono neutralidad total
+- 80% energías renovables
+- 90% reducción de residuos a rellenos sanitarios
+- 50% reducción en consumo de agua
+- 100% papel certificado FSC
+- Biodiversidad: Protección de 10,000 hectáreas
+
+HUELLA DE CARBONO ACTUAL
+------------------------
+
+EMISIONES TOTALES 2024: 45,678 toneladas CO2e
+Reducción vs 2023: -12.5%
+Meta 2025: -20% adicional
+
+EMISIONES POR ALCANCE:
+Alcance 1 (directas): 8,934 tCO2e (19.6%)
+- Combustión estacionaria: 5,123 tCO2e
+- Vehículos corporativos: 2,891 tCO2e  
+- Gases refrigerantes: 920 tCO2e
+
+Alcance 2 (electricidad): 28,456 tCO2e (62.3%)
+- Consumo eléctrico estudios: 18,234 tCO2e
+- Oficinas administrativas: 6,789 tCO2e
+- Repetidoras nacionales: 3,433 tCO2e
+
+Alcance 3 (indirectas): 8,288 tCO2e (18.1%)
+- Viajes de negocios: 3,456 tCO2e
+- Commuting empleados: 2,789 tCO2e
+- Cadena de suministro: 2,043 tCO2e
+
+CONSUMO ENERGÉTICO:
+- Consumo total: 89,456 MWh anuales
+- Intensidad energética: 18.5 MWh/M$ ingresos
+- Fuentes renovables actuales: 25%
+- Meta 2030: 80% renovables
+
+INICIATIVAS DE ENERGÍA RENOVABLE
+--------------------------------
+
+PROYECTO SOLAR AJUSCO:
+- Capacidad instalada: 5.2 MW
+- Generación anual: 8,900 MWh
+- Reducción CO2: 4,456 tCO2e/año
+- Inversión: $78 millones pesos
+- ROI: 7.2 años
+
+PARQUE EÓLICO PARTNERSHIP:
+- Contrato PPA: 15 MW por 15 años
+- Suministro: 40% del consumo total
+- Inicio operación: Q3 2025
+- Reducción CO2: 18,900 tCO2e/año
+
+EFICIENCIA ENERGÉTICA:
+- LED conversion: 100% completado
+- Smart building systems: 85% instalados
+- Sensores de movimiento: 100% oficinas
+- Optimización HVAC: 30% ahorro energético
+- Equipos Energy Star: 95% renovados
+
+CERTIFICACIONES VERDES:
+- LEED Gold: Edificio Santa Fe
+- LEED Silver: 3 edificios adicionales
+- ISO 50001: Gestión energética
+- Energy Star: Portfolio buildings
+
+GESTIÓN DE RESIDUOS
+------------------
+
+GENERACIÓN DE RESIDUOS 2024: 1,234 toneladas
+Reducción vs 2023: -18%
+Meta 2025: -25% adicional
+
+TIPOS DE RESIDUOS:
+- Papel y cartón: 456 ton (37%)
+- Electrónicos: 234 ton (19%)
+- Orgánicos: 198 ton (16%)
+- Plásticos: 167 ton (14%)
+- Metales: 89 ton (7%)
+- Otros: 90 ton (7%)
+
+TASAS DE RECICLAJE:
+- Papel: 95% reciclado
+- Electrónicos: 89% reciclado/reuso
+- Metales: 100% reciclado
+- Plásticos: 67% reciclado
+- Orgánicos: 78% composteo
+- TOTAL: 83% desviado de rellenos
+
+PROGRAMA CERO RESIDUOS:
+- Meta: 90% desviación para 2027
+- Composteo in-situ: 3 ubicaciones
+- Centros de reciclaje: 8 puntos
+- Educación empleados: 95% capacitados
+- Auditorías mensuales: 100% sitios
+
+ECONOMÍA CIRCULAR:
+- Reutilización equipos: 340 unidades/año
+- Refurbishment programa: $2.3M ahorro
+- Donación equipos: 50 escuelas beneficiadas
+- Venta materiales reciclables: $890K ingresos
+
+CONSERVACIÓN DEL AGUA
+---------------------
+
+CONSUMO DE AGUA 2024: 89,456 m³
+Reducción vs 2023: -15%
+Meta 2025: -25% adicional
+
+FUENTES DE CONSUMO:
+- Sistemas HVAC: 34,567 m³ (38.6%)
+- Servicios sanitarios: 23,123 m³ (25.9%)
+- Paisajismo: 18,945 m³ (21.2%)
+- Cafeterías/comedores: 8,734 m³ (9.8%)
+- Limpieza: 4,087 m³ (4.6%)
+
+TECNOLOGÍAS DE AHORRO:
+- Sistemas de captación pluvial: 4 instalados
+- Plantas tratamiento aguas grises: 2 activas
+- Mingitorios secos: 100% instalados
+- Sistemas de riego inteligente: 95% cobertura
+- Sensores automáticos: 100% grifería
+
+CALIDAD DEL AGUA:
+- Monitoreo continuo: 12 parámetros
+- Certificación COFEPRIS: 100% cumplimiento
+- Auditorías externas: Semestrales
+- Tratamiento in-situ: 3 plantas operando
+
+REUSO DE AGUA:
+- Agua tratada paisajismo: 67% del total
+- Sistemas de enfriamiento: 45% reuso
+- Limpieza instalaciones: 89% agua tratada
+- Meta 2030: 80% agua reutilizada
+
+BIODIVERSIDAD Y ECOSISTEMAS
+---------------------------
+
+PROGRAMA "BOSQUES AZTECA":
+- Hectáreas protegidas: 2,340 ha
+- Meta 2030: 10,000 ha
+- Especies protegidas: 78 catalogadas
+- Reforestación: 45,000 árboles plantados
+- Inversión anual: $12 millones
+
+CORREDORES ECOLÓGICOS:
+- Instalaciones Ajusco: 34 ha conservadas
+- Jardines polinizadores: 12 ubicaciones
+- Especies nativas: 95% flora utilizada
+- Certificación vida silvestre: 3 sitios
+
+ALIANZAS CONSERVACIÓN:
+- CONANP: 3 proyectos activos
+- SEMARNAT: Programa voluntario
+- WWF México: Partnership estratégico
+- Pronatura: Compensación carbono
+- FMCN: Fondos para conservación
+
+MONITOREO AMBIENTAL:
+- Estaciones meteorológicas: 5 instaladas
+- Calidad del aire: Monitoreo continuo
+- Ruido ambiental: 12 puntos medición
+- Biodiversidad: Censos anuales
+- Suelo: Análisis semestrales
+
+TRANSPORTE SOSTENIBLE
+---------------------
+
+FLOTA VEHICULAR: 234 vehículos
+Emisiones transporte: 2,891 tCO2e
+Reducción objetivo 2025: -30%
+
+ELECTRIFICACIÓN FLOTA:
+- Vehículos eléctricos: 45 unidades (19%)
+- Híbridos: 67 unidades (29%)
+- Meta 2030: 80% vehículos limpios
+- Estaciones de carga: 25 instaladas
+
+PROGRAMA MOVILIDAD SUSTENTABLE:
+- Transporte corporativo: 12 rutas
+- Subsidio transporte público: 89% empleados
+- Bicicletas corporativas: 50 unidades
+- Car sharing: 15 vehículos compartidos
+- Home office: 40% empleados elegibles
+
+VIAJES DE NEGOCIOS:
+- Política viajes sustentables: Implementada
+- Videoconferencias: +65% vs 2023
+- Compensación carbono: 100% viajes aéreos
+- Tren preferido: Rutas disponibles
+- Hoteles sustentables: 85% reservaciones
+
+CADENA DE SUMINISTRO VERDE
+--------------------------
+
+CRITERIOS AMBIENTALES PROVEEDORES:
+- Evaluación ambiental: 100% proveedores críticos
+- Certificaciones requeridas: ISO 14001
+- Auditorías sustentabilidad: 45 realizadas
+- Código conducta ambiental: Obligatorio
+- Training sustentabilidad: 234 proveedores
+
+COMPRAS SUSTENTABLES:
+- Papel certificado FSC: 100%
+- Productos reciclados: 67% office supplies
+- Cleaning products verdes: 89%
+- Equipos Energy Star: 95%
+- Local sourcing: 78% proveedores nacionales
+
+LOGÍSTICA VERDE:
+- Optimización rutas: -23% km recorridos
+- Consolidación envíos: +45% eficiencia
+- Empaques sustentables: 78% adoptados
+- Retorno packaging: 56% implementado
+- Digital documentation: 89% facturas
+
+HUELLA CARBONO PROVEEDORES:
+- Scope 3 mapping: 78% completado
+- Targets reducción: 50 proveedores
+- Colaboración proyectos: 23 activos
+- Compensación conjunta: 12 iniciativas
+
+COMUNICACIÓN Y CONCIENTIZACIÓN
+------------------------------
+
+PROGRAMACIÓN AMBIENTAL:
+- "Planeta Azteca": Programa semanal
+- Cápsulas ambientales: 156 transmitidas
+- Documentales naturaleza: 12 producidos
+- Cobertura COP events: Completa
+- PSA ambientales: 45 campañas
+
+CAMPAÑAS DIGITALES:
+- #AztecaVerde: 12M impresiones
+- Redes sociales: 156 posts mensuales
+- Influencers ambientales: 23 colaboraciones
+- Webinars sustentabilidad: 12 realizados
+- Newsletter verde: 45K suscriptores
+
+EDUCACIÓN INTERNA:
+- Capacitación ambiental: 95% empleados
+- Green teams: 12 equipos activos
+- Competencias sustentabilidad: 4 anuales
+- Newsletter interno: Semanal
+- Recognition program: 45 empleados premiados
+
+ENGAGEMENT AUDIENCIA:
+- Challenges ambientales: 8 lanzados
+- Concursos eco-friendly: 156K participaciones
+- Apps sustentabilidad: 234K descargas
+- Community engagement: 78% participación
+
+MEDICIÓN Y REPORTE
+------------------
+
+SISTEMA DE GESTIÓN AMBIENTAL:
+- ISO 14001: Certificación vigente
+- KPIs ambientales: 45 indicadores
+- Dashboard tiempo real: Implementado
+- Auditorías internas: Trimestrales
+- Auditorías externas: Anuales
+
+REPORTES DE SUSTENTABILIDAD:
+- Reporte anual: GRI Standards
+- CDP Climate: Nivel A-
+- DJSI Assessment: Top 10% industria
+- SASB Standards: Completo compliance
+- TCFD Reporting: Implementado
+
+VERIFICACIÓN EXTERNA:
+- Huella carbono: AENOR verificado
+- Inventario GEI: ISO 14064
+- Vida útil productos: LCA studies
+- Water footprint: Certificado
+- Biodiversity reporting: Verificado
+
+TECNOLOGÍA AMBIENTAL:
+- IoT sensors: 234 instalados
+- AI optimization: Energía y agua
+- Satellite monitoring: Bosques
+- Blockchain: Supply chain tracking
+- Digital twins: Facility management
+
+INVERSIÓN Y FINANCIAMIENTO
+--------------------------
+
+PRESUPUESTO SUSTENTABILIDAD 2025: $156 millones
+- Energías renovables: $67M (43%)
+- Eficiencia operacional: $34M (22%)
+- Gestión residuos: $23M (15%)
+- Conservación biodiversidad: $18M (12%)
+- Comunicación/educación: $14M (8%)
+
+RETORNO DE INVERSIÓN:
+- Ahorro energético: $23M anuales
+- Reducción residuos: $5.6M anuales
+- Ahorro agua: $3.4M anuales
+- Tax incentives: $8.9M anuales
+- Brand value: $45M estimado
+
+GREEN FINANCING:
+- Green bonds: $234M emitidos
+- Sustainability loans: $156M activos
+- Carbon credits: $12M generados
+- ESG investors: 67% ownership
+- Impact investment: $89M recibido
+
+RIESGOS CLIMÁTICOS:
+- Physical risks assessment: Completado
+- Transition risks mapping: Identificados
+- Climate scenario planning: 3 escenarios
+- Adaptation measures: 23 implementadas
+- Insurance coverage: 100% riesgos cubiertos
+
+RECONOCIMIENTOS Y CERTIFICACIONES
+---------------------------------
+
+PREMIOS Y RECONOCIMIENTOS 2024:
+- Premio Nacional de Responsabilidad Social
+- Distintivo ESR: 12vo año consecutivo
+- Green Business Award México
+- Top 10 Sustainable Companies (Forbes)
+- Climate Leadership Award
+
+CERTIFICACIONES VIGENTES:
+- ISO 14001: Environmental Management
+- ISO 50001: Energy Management
+- LEED: 4 edificios certificados
+- Energy Star: Portfolio certification
+- FSC Chain of Custody
+
+MEMBRESÍAS Y ALIANZAS:
+- UN Global Compact: Signatory
+- Mexico Climate Change Business Council
+- Green Building Council México
+- Carbon Disclosure Project
+- Science Based Targets initiative
+
+ÍNDICES DE SUSTENTABILIDAD:
+- S&P/BMV IPC Sustentable: Incluido
+- FTSE4Good Emerging Index: Miembro
+- DJSI MILA: Top performer
+- CDP Climate A-: Achieved
+- MSCI ESG Rating: A
+
+PRÓXIMOS PASOS 2025-2030
+------------------------
+
+ROADMAP CARBONO NEUTRAL:
+2025: -50% emisiones vs 2024
+2027: -75% emisiones vs 2024
+2030: Carbono neutral + compensaciones
+
+INNOVACIÓN TECNOLÓGICA:
+- Implementación blockchain supply chain
+- AI para optimización recursos
+- IoT avanzado facility management
+- Digital twins operaciones
+- Virtual/Augmented reality training
+
+NUEVOS PROYECTOS:
+- Planta tratamiento aguas residuales
+- Parque solar 10 MW adicionales
+- Centro de reciclaje corporativo
+- Laboratorio de innovación sustentable
+- Campus universitario sustentable
+
+EXPANSIÓN PROGRAMÁTICA:
+- Canal temático ambiental 24/7
+- Documentales cambio climático
+- Serie educativa niños
+- Podcast sustentabilidad
+- Plataforma streaming verde
+
+CONTACTO SUSTENTABILIDAD
+------------------------
+Dirección de Sustentabilidad: 55-1720-1313 ext. 3500
+Email: sustentabilidad@tvazteca.com
+Director Sustentabilidad: Ing. María Elena Vázquez
+Coordinador Ambiental: Biol. Carlos Mendoza
+Reporte sustentabilidad: sustainability.report@tvazteca.com
+
+

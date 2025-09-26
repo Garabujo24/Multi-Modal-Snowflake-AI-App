@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfficeMax México - Quickstart Snowflake Analytics</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --officemax-blue: #003366;
+            --officemax-red: #CC0000;
+            --officemax-light-blue: #0066CC;
+            --officemax-orange: #FF6600;
+            --background-light: #f8f9fa;
+            --text-dark: #333;
+            --border-light: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--officemax-blue), var(--officemax-red));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .quickstart-nav {
+            background: var(--background-light);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .duration-badge {
+            background: var(--officemax-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--officemax-blue), var(--officemax-red));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .content {
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: var(--officemax-blue);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-number {
+            background: var(--officemax-red);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section-duration {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .step {
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--officemax-light-blue);
+            padding-left: 1.5rem;
+        }
+
+        .step-title {
+            color: var(--officemax-blue);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            background: var(--officemax-blue);
+            color: white;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: var(--officemax-red);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: opacity 0.3s;
+        }
+
+        .copy-btn:hover {
+            opacity: 0.8;
+        }
+
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            background: #fff;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .info-box {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 5px solid;
+        }
+
+        .info-positive {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+
+        .info-negative {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+
+        .info-icon {
+            margin-right: 0.5rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .objective-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .objective-icon {
+            font-size: 2.5rem;
+            color: var(--officemax-blue);
+            margin-bottom: 1rem;
+        }
+
+        .objective-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--officemax-blue);
+        }
+
+        .prerequisites {
+            background: var(--background-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .prerequisites h4 {
+            color: var(--officemax-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .prerequisites ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .prerequisites li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .prerequisites li::before {
+            content: "✓";
+            color: var(--officemax-red);
+            font-weight: bold;
+        }
+
+        .table-of-contents {
+            background: var(--background-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .toc-title {
+            color: var(--officemax-blue);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+
+        .toc-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .toc-link:hover {
+            color: var(--officemax-blue);
+        }
+
+        .toc-duration {
+            background: var(--officemax-blue);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .footer {
+            background: var(--officemax-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--officemax-red);
+        }
+
+        .next-steps {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .next-steps h3 {
+            color: var(--officemax-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .step-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--officemax-red);
+        }
+
+        .step-card h4 {
+            color: var(--officemax-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .progress-bar {
+                width: 250px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .section-duration {
+                margin-left: 0;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--officemax-red);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-to-top:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-store"></i> OfficeMax México</h1>
+            <p>Quickstart Snowflake Analytics - Temporada Back-to-School</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="quickstart-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="duration-badge">
+                    <i class="fas fa-clock"></i> Duración Total: ~70 minutos
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <div>
+                    <span id="currentSection">Sección 1 de 8</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <div class="container">
+            
+            <!-- Resumen del Quickstart -->
+            <section class="section" id="overview">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <div class="section-title">Resumen del Quickstart</div>
+                    <div class="section-duration">5 min</div>
+                </div>
+                <div class="section-content">
+                    <p>¡Bienvenido al quickstart de <strong>OfficeMax México</strong>! En este tutorial aprenderás a utilizar las capacidades avanzadas de Snowflake para análisis de datos, control de costos y pronósticos de ventas utilizando Machine Learning.</p>
+                    
+                    <p>Este quickstart está diseñado específicamente para el equipo de Business Intelligence de OfficeMax México y se enfoca en productos de temporada <strong>Back-to-School</strong> con datos simulados realistas.</p>
+
+                    <div class="objectives-grid">
+                        <div class="objective-card">
+                            <div class="objective-icon"><i class="fas fa-history"></i></div>
+                            <div class="objective-title">Time Travel</div>
+                            <p>Recuperación de datos históricos</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon"><i class="fas fa-undo"></i></div>
+                            <div class="objective-title">Undrop</div>
+                            <p>Restauración de objetos eliminados</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon"><i class="fas fa-copy"></i></div>
+                            <div class="objective-title">Zero Copy Cloning</div>
+                            <p>Clonación eficiente de datos</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon"><i class="fas fa-code"></i></div>
+                            <div class="objective-title">Transformación JSON</div>
+                            <p>Procesamiento de datos semi-estructurados</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon"><i class="fas fa-dollar-sign"></i></div>
+                            <div class="objective-title">Control de Costos</div>
+                            <p>Monitoreo y optimización de gastos</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="objective-title">Desarrollo de Apps</div>
+                            <p>Integración con aplicaciones</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon"><i class="fas fa-brain"></i></div>
+                            <div class="objective-title">ML para Pronósticos</div>
+                            <p>Modelos predictivos con SQL</p>
+                        </div>
+                    </div>
+
+                    <div class="prerequisites">
+                        <h4><i class="fas fa-list-check"></i> Prerrequisitos</h4>
+                        <ul>
+                            <li>Cuenta de Snowflake activa</li>
+                            <li>Permisos de SYSADMIN o ACCOUNTADMIN</li>
+                            <li>Conocimientos básicos de SQL</li>
+                            <li>Familiaridad con conceptos de BI</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box info-positive">
+                        <i class="fas fa-info-circle info-icon"></i>
+                        Este quickstart utiliza el esquema de colores corporativo de OfficeMax (azul #003366 y rojo #CC0000) y datos simulados de productos de oficina y escolares.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabla de Contenidos -->
+            <div class="table-of-contents">
+                <h3 class="toc-title"><i class="fas fa-list"></i> Contenido del Quickstart</h3>
+                <ul class="toc-list">
+                    <li class="toc-item">
+                        <a href="#setup" class="toc-link">
+                            <span><i class="fas fa-cog"></i> Preparación del Entorno</span>
+                            <span class="toc-duration">8 min</span>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#timetravel" class="toc-link">
+                            <span><i class="fas fa-history"></i> Time Travel - Recuperación de Datos</span>
+                            <span class="toc-duration">10 min</span>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#undrop" class="toc-link">
+                            <span><i class="fas fa-undo"></i> Undrop - Restauración de Objetos</span>
+                            <span class="toc-duration">8 min</span>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#cloning" class="toc-link">
+                            <span><i class="fas fa-copy"></i> Zero Copy Cloning - Clonación Eficiente</span>
+                            <span class="toc-duration">8 min</span>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#json" class="toc-link">
+                            <span><i class="fas fa-code"></i> Transformación de Archivos JSON</span>
+                            <span class="toc-duration">12 min</span>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#costs" class="toc-link">
+                            <span><i class="fas fa-dollar-sign"></i> Control de Costos - Optimización Financiera</span>
+                            <span class="toc-duration">10 min</span>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#apps" class="toc-link">
+                            <span><i class="fas fa-mobile-alt"></i> Desarrollo de Aplicaciones - Integración</span>
+                            <span class="toc-duration">12 min</span>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#ml" class="toc-link">
+                            <span><i class="fas fa-brain"></i> Modelo de Pronóstico de Ventas - ML en SQL</span>
+                            <span class="toc-duration">15 min</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Preparación del Entorno -->
+            <section class="section" id="setup">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <div class="section-title">Preparación del Entorno</div>
+                    <div class="section-duration">8 min</div>
+                </div>
+                <div class="section-content">
+                    <p>Vamos a configurar nuestro entorno de trabajo con los datos necesarios para el análisis de OfficeMax.</p>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-database"></i> Paso 1: Configuración Inicial de Base de Datos</h3>
+                        <p>Ejecuta el siguiente código para crear la estructura básica:</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Configuración Inicial</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Crear base de datos principal
+CREATE OR REPLACE DATABASE OFFICEMAX_ANALYTICS;
+USE DATABASE OFFICEMAX_ANALYTICS;
+
+-- Crear esquemas organizacionales
+CREATE OR REPLACE SCHEMA RAW_DATA;
+CREATE OR REPLACE SCHEMA ANALYTICS;
+CREATE OR REPLACE SCHEMA ML_MODELS;
+
+-- Crear warehouse para análisis
+CREATE OR REPLACE WAREHOUSE OFFICEMAX_WH WITH
+    WAREHOUSE_SIZE = 'SMALL'
+    AUTO_SUSPEND = 60
+    AUTO_RESUME = TRUE
+    INITIALLY_SUSPENDED = TRUE;
+
+USE WAREHOUSE OFFICEMAX_WH;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-table"></i> Paso 2: Crear Tablas de Datos Base</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Estructura de Tablas</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Tabla de productos Back-to-School
+CREATE OR REPLACE TABLE RAW_DATA.PRODUCTOS (
+    PRODUCTO_ID INTEGER PRIMARY KEY,
+    NOMBRE_PRODUCTO VARCHAR(200),
+    CATEGORIA VARCHAR(100),
+    SUB_CATEGORIA VARCHAR(100),
+    PRECIO_UNITARIO DECIMAL(10,2),
+    COSTO_UNITARIO DECIMAL(10,2),
+    MARCA VARCHAR(100),
+    TEMPORADA VARCHAR(50),
+    FECHA_INGRESO TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- Tabla de ventas históricas
+CREATE OR REPLACE TABLE RAW_DATA.VENTAS (
+    VENTA_ID INTEGER AUTOINCREMENT PRIMARY KEY,
+    PRODUCTO_ID INTEGER,
+    FECHA_VENTA DATE,
+    CANTIDAD INTEGER,
+    PRECIO_VENTA DECIMAL(10,2),
+    DESCUENTO_APLICADO DECIMAL(5,2) DEFAULT 0,
+    SUCURSAL_ID INTEGER,
+    VENDEDOR_ID INTEGER,
+    METODO_PAGO VARCHAR(50),
+    CREATED_TIMESTAMP TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY (PRODUCTO_ID) REFERENCES RAW_DATA.PRODUCTOS(PRODUCTO_ID)
+);
+
+-- Tabla de clientes
+CREATE OR REPLACE TABLE RAW_DATA.CLIENTES (
+    CLIENTE_ID INTEGER PRIMARY KEY,
+    NOMBRE VARCHAR(100),
+    EMAIL VARCHAR(200),
+    TELEFONO VARCHAR(20),
+    FECHA_REGISTRO DATE,
+    TIPO_CLIENTE VARCHAR(50), -- Individual, Corporativo, Educativo
+    CIUDAD VARCHAR(100),
+    ESTADO VARCHAR(100)
+);</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-shopping-cart"></i> Paso 3: Insertar Datos Simulados Back-to-School</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Datos de Productos</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Insertar productos de temporada escolar
+INSERT INTO RAW_DATA.PRODUCTOS VALUES
+(1001, 'Mochila Escolar Premium', 'Mochilas', 'Primaria', 899.00, 450.00, 'Kipling', 'Back-to-School', CURRENT_TIMESTAMP()),
+(1002, 'Cuaderno Profesional 100 hojas', 'Papelería', 'Cuadernos', 45.00, 22.50, 'Scribe', 'Back-to-School', CURRENT_TIMESTAMP()),
+(1003, 'Set Plumas BIC 10 piezas', 'Papelería', 'Escritura', 85.00, 42.50, 'BIC', 'Back-to-School', CURRENT_TIMESTAMP()),
+(1004, 'Calculadora Científica', 'Tecnología', 'Calculadoras', 450.00, 225.00, 'Casio', 'Back-to-School', CURRENT_TIMESTAMP()),
+(1005, 'Pegamento en Barra', 'Papelería', 'Adhesivos', 25.00, 12.50, 'Resistol', 'Back-to-School', CURRENT_TIMESTAMP()),
+(1006, 'Folder Tamaño Carta', 'Organización', 'Folders', 15.00, 7.50, 'Wilson Jones', 'Back-to-School', CURRENT_TIMESTAMP()),
+(1007, 'Mochila con Ruedas', 'Mochilas', 'Secundaria', 1299.00, 650.00, 'Samsonite', 'Back-to-School', CURRENT_TIMESTAMP()),
+(1008, 'Lápices de Colores 24 pzs', 'Arte', 'Colores', 120.00, 60.00, 'Prismacolor', 'Back-to-School', CURRENT_TIMESTAMP());</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-positive">
+                        <i class="fas fa-check-circle info-icon"></i>
+                        ¡Excelente! Has configurado la base de datos con productos típicos de la temporada Back-to-School de OfficeMax México.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Time Travel -->
+            <section class="section" id="timetravel">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <div class="section-title">Time Travel - Recuperación de Datos</div>
+                    <div class="section-duration">10 min</div>
+                </div>
+                <div class="section-content">
+                    <p>El <strong>Time Travel</strong> de Snowflake te permite acceder a versiones anteriores de tus datos. Es especialmente útil para recuperar datos modificados o eliminados accidentalmente.</p>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-plus"></i> Paso 1: Generar Ventas Históricas</h3>
+                        <p>Primero, vamos a crear datos de ventas para luego simular un error:</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Insertar Ventas</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Insertar ventas del período Back-to-School 2024
+INSERT INTO RAW_DATA.VENTAS (PRODUCTO_ID, FECHA_VENTA, CANTIDAD, PRECIO_VENTA, SUCURSAL_ID, VENDEDOR_ID, METODO_PAGO) VALUES
+(1001, '2024-07-15', 15, 899.00, 101, 501, 'Tarjeta'),
+(1002, '2024-07-15', 50, 45.00, 101, 501, 'Efectivo'),
+(1003, '2024-07-16', 25, 85.00, 102, 502, 'Tarjeta'),
+(1004, '2024-07-16', 8, 450.00, 101, 503, 'Transferencia'),
+(1005, '2024-07-17', 100, 25.00, 103, 504, 'Efectivo'),
+(1001, '2024-07-18', 22, 799.00, 102, 502, 'Tarjeta'),
+(1007, '2024-07-19', 5, 1299.00, 101, 501, 'Transferencia'),
+(1008, '2024-07-20', 35, 120.00, 103, 505, 'Tarjeta');
+
+-- Verificar datos insertados
+SELECT COUNT(*) as TOTAL_VENTAS FROM RAW_DATA.VENTAS;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-exclamation-triangle"></i> Paso 2: Simular Error - Eliminación Accidental</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Simulación de Error</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- ¡OOPS! Eliminación accidental de ventas importantes
+DELETE FROM RAW_DATA.VENTAS 
+WHERE FECHA_VENTA = '2024-07-18' AND PRODUCTO_ID = 1001;
+
+-- Verificar el error - ya no aparecen las ventas del 18 de julio
+SELECT * FROM RAW_DATA.VENTAS 
+WHERE FECHA_VENTA = '2024-07-18' AND PRODUCTO_ID = 1001;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-history"></i> Paso 3: Recuperación con Time Travel</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Recuperación de Datos</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Recuperar datos de hace 5 minutos usando Time Travel
+SELECT * FROM RAW_DATA.VENTAS AT(OFFSET => -300) -- 300 segundos = 5 minutos
+WHERE FECHA_VENTA = '2024-07-18' AND PRODUCTO_ID = 1001;
+
+-- Recuperar usando timestamp específico
+SELECT * FROM RAW_DATA.VENTAS AT(TIMESTAMP => DATEADD(MINUTE, -10, CURRENT_TIMESTAMP()))
+WHERE FECHA_VENTA = '2024-07-18' AND PRODUCTO_ID = 1001;
+
+-- Restaurar los datos eliminados
+INSERT INTO RAW_DATA.VENTAS (PRODUCTO_ID, FECHA_VENTA, CANTIDAD, PRECIO_VENTA, SUCURSAL_ID, VENDEDOR_ID, METODO_PAGO)
+SELECT PRODUCTO_ID, FECHA_VENTA, CANTIDAD, PRECIO_VENTA, SUCURSAL_ID, VENDEDOR_ID, METODO_PAGO
+FROM RAW_DATA.VENTAS AT(OFFSET => -300)
+WHERE FECHA_VENTA = '2024-07-18' AND PRODUCTO_ID = 1001;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-positive">
+                        <i class="fas fa-bullseye info-icon"></i>
+                        <strong>Caso de Uso Real:</strong> En OfficeMax, Time Travel es crucial durante la temporada Back-to-School cuando hay muchas actualizaciones de inventario y precios. Permite recuperar datos sin impactar las operaciones.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Undrop -->
+            <section class="section" id="undrop">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <div class="section-title">Undrop - Restauración de Objetos</div>
+                    <div class="section-duration">8 min</div>
+                </div>
+                <div class="section-content">
+                    <p>La función <strong>Undrop</strong> permite restaurar objetos (tablas, esquemas, bases de datos) eliminados accidentalmente.</p>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-plus"></i> Paso 1: Crear Tabla de Inventario Temporal</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Crear Inventario</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Crear tabla de inventario para temporada escolar
+CREATE OR REPLACE TABLE RAW_DATA.INVENTARIO_BACK_TO_SCHOOL (
+    PRODUCTO_ID INTEGER,
+    SUCURSAL_ID INTEGER,
+    STOCK_ACTUAL INTEGER,
+    STOCK_MINIMO INTEGER,
+    STOCK_MAXIMO INTEGER,
+    ULTIMA_ACTUALIZACION TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- Poblar con datos de inventario
+INSERT INTO RAW_DATA.INVENTARIO_BACK_TO_SCHOOL VALUES
+(1001, 101, 45, 10, 100, CURRENT_TIMESTAMP()),
+(1001, 102, 32, 10, 100, CURRENT_TIMESTAMP()),
+(1001, 103, 28, 10, 100, CURRENT_TIMESTAMP()),
+(1002, 101, 150, 50, 500, CURRENT_TIMESTAMP()),
+(1002, 102, 200, 50, 500, CURRENT_TIMESTAMP()),
+(1003, 101, 75, 25, 200, CURRENT_TIMESTAMP()),
+(1004, 101, 12, 5, 50, CURRENT_TIMESTAMP()),
+(1005, 102, 300, 100, 1000, CURRENT_TIMESTAMP());
+
+-- Verificar datos
+SELECT * FROM RAW_DATA.INVENTARIO_BACK_TO_SCHOOL;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-trash"></i> Paso 2: Eliminación Accidental de Tabla</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Eliminación Accidental</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- ¡ERROR! Eliminación accidental de la tabla importante
+DROP TABLE RAW_DATA.INVENTARIO_BACK_TO_SCHOOL;
+
+-- Intentar consultar la tabla (esto dará error)
+-- SELECT * FROM RAW_DATA.INVENTARIO_BACK_TO_SCHOOL;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-undo"></i> Paso 3: Restauración con Undrop</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Restauración</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Restaurar la tabla eliminada
+UNDROP TABLE RAW_DATA.INVENTARIO_BACK_TO_SCHOOL;
+
+-- Verificar que los datos se recuperaron correctamente
+SELECT * FROM RAW_DATA.INVENTARIO_BACK_TO_SCHOOL;
+
+-- Verificar integridad de los datos
+SELECT 
+    COUNT(*) as TOTAL_REGISTROS,
+    COUNT(DISTINCT PRODUCTO_ID) as PRODUCTOS_UNICOS,
+    COUNT(DISTINCT SUCURSAL_ID) as SUCURSALES_UNICAS
+FROM RAW_DATA.INVENTARIO_BACK_TO_SCHOOL;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-negative">
+                        <i class="fas fa-exclamation-triangle info-icon"></i>
+                        <strong>Importante:</strong> Undrop solo funciona dentro del período de retención (por defecto 1 día para tables, 7 días para schemas/databases). ¡Actúa rápido!
+                    </div>
+                </div>
+            </section>
+
+            <!-- Zero Copy Cloning -->
+            <section class="section" id="cloning">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <div class="section-title">Zero Copy Cloning - Clonación Eficiente</div>
+                    <div class="section-duration">8 min</div>
+                </div>
+                <div class="section-content">
+                    <p><strong>Zero Copy Cloning</strong> permite crear copias instantáneas de objetos sin duplicar físicamente los datos, perfecto para testing y desarrollo.</p>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-code-branch"></i> Paso 1: Crear Entorno de Desarrollo</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Entorno Dev</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Crear esquema de desarrollo
+CREATE OR REPLACE SCHEMA DEV;
+
+-- Clonar tabla de productos para desarrollo
+CREATE TABLE DEV.PRODUCTOS_DEV 
+CLONE RAW_DATA.PRODUCTOS;
+
+-- Clonar tabla de ventas para testing
+CREATE TABLE DEV.VENTAS_TEST 
+CLONE RAW_DATA.VENTAS;
+
+-- Verificar que las tablas clonadas tienen los mismos datos
+SELECT COUNT(*) as PRODUCTOS_PROD FROM RAW_DATA.PRODUCTOS;
+SELECT COUNT(*) as PRODUCTOS_DEV FROM DEV.PRODUCTOS_DEV;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-flask"></i> Paso 2: Experimentos Sin Riesgo</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Testing Seguro</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Experimentar con nuevos precios en el clon (sin afectar producción)
+UPDATE DEV.PRODUCTOS_DEV 
+SET PRECIO_UNITARIO = PRECIO_UNITARIO * 0.9 
+WHERE CATEGORIA = 'Papelería';
+
+-- Verificar cambios solo en desarrollo
+SELECT 
+    'PRODUCCION' as AMBIENTE,
+    NOMBRE_PRODUCTO,
+    PRECIO_UNITARIO
+FROM RAW_DATA.PRODUCTOS 
+WHERE CATEGORIA = 'Papelería'
+UNION ALL
+SELECT 
+    'DESARROLLO' as AMBIENTE,
+    NOMBRE_PRODUCTO,
+    PRECIO_UNITARIO
+FROM DEV.PRODUCTOS_DEV 
+WHERE CATEGORIA = 'Papelería'
+ORDER BY NOMBRE_PRODUCTO, AMBIENTE;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-positive">
+                        <i class="fas fa-lightbulb info-icon"></i>
+                        <strong>Beneficio Clave:</strong> En OfficeMax, usar clones para testing de estrategias de precios Back-to-School permite experimentar sin riesgo antes de implementar cambios en producción.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transformación JSON -->
+            <section class="section" id="json">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <div class="section-title">Transformación de Archivos JSON</div>
+                    <div class="section-duration">12 min</div>
+                </div>
+                <div class="section-content">
+                    <p>Aprendamos a procesar datos semi-estructurados JSON, común en sistemas de e-commerce y logs de aplicaciones.</p>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-cloud"></i> Paso 1: Crear Stage para Archivos JSON</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Setup JSON</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Volver a base de datos principal
+USE DATABASE OFFICEMAX_ANALYTICS;
+
+-- Crear stage para archivos JSON
+CREATE OR REPLACE STAGE RAW_DATA.JSON_STAGE;
+
+-- Crear tabla para almacenar JSON raw
+CREATE OR REPLACE TABLE RAW_DATA.TRANSACCIONES_JSON (
+    ARCHIVO_ORIGEN VARCHAR(200),
+    CONTENIDO_JSON VARIANT,
+    FECHA_CARGA TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-shopping-cart"></i> Paso 2: Simular Datos JSON de E-commerce</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Datos JSON</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Insertar datos JSON simulados de transacciones online
+INSERT INTO RAW_DATA.TRANSACCIONES_JSON (ARCHIVO_ORIGEN, CONTENIDO_JSON) VALUES
+('ecommerce_2024_07_15.json', PARSE_JSON('{
+    "transaction_id": "TXN-001",
+    "timestamp": "2024-07-15T10:30:00Z",
+    "customer": {
+        "id": 2001,
+        "type": "registered",
+        "location": "CDMX"
+    },
+    "items": [
+        {"product_id": 1001, "name": "Mochila Escolar Premium", "quantity": 1, "unit_price": 899.00},
+        {"product_id": 1002, "name": "Cuaderno Profesional", "quantity": 3, "unit_price": 45.00}
+    ],
+    "payment": {
+        "method": "credit_card",
+        "total": 1034.00,
+        "currency": "MXN"
+    },
+    "shipping": {
+        "type": "standard",
+        "cost": 99.00,
+        "address": "Mexico DF"
+    }
+}'));</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-cogs"></i> Paso 3: Extraer y Transformar Datos JSON</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Transformación</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Crear vista estructurada de transacciones
+CREATE OR REPLACE VIEW ANALYTICS.TRANSACCIONES_ECOMMERCE AS
+SELECT 
+    CONTENIDO_JSON:transaction_id::STRING AS TRANSACTION_ID,
+    CONTENIDO_JSON:timestamp::TIMESTAMP_NTZ AS FECHA_TRANSACCION,
+    CONTENIDO_JSON:customer.id::INTEGER AS CLIENTE_ID,
+    CONTENIDO_JSON:customer.type::STRING AS TIPO_CLIENTE,
+    CONTENIDO_JSON:customer.location::STRING AS UBICACION_CLIENTE,
+    CONTENIDO_JSON:payment.method::STRING AS METODO_PAGO,
+    CONTENIDO_JSON:payment.total::DECIMAL(10,2) AS TOTAL_PAGO,
+    CONTENIDO_JSON:shipping.type::STRING AS TIPO_ENVIO,
+    CONTENIDO_JSON:shipping.cost::DECIMAL(10,2) AS COSTO_ENVIO,
+    FECHA_CARGA
+FROM RAW_DATA.TRANSACCIONES_JSON;
+
+-- Ver resultados transformados
+SELECT * FROM ANALYTICS.TRANSACCIONES_ECOMMERCE;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-positive">
+                        <i class="fas fa-chart-bar info-icon"></i>
+                        <strong>Aplicación Real:</strong> OfficeMax puede usar esta técnica para procesar logs de su e-commerce, datos de apps móviles, y feeds de sistemas externos como ERP o CRM.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control de Costos -->
+            <section class="section" id="costs">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <div class="section-title">Control de Costos - Optimización Financiera</div>
+                    <div class="section-duration">10 min</div>
+                </div>
+                <div class="section-content">
+                    <p>El control de costos es fundamental para maximizar el ROI de Snowflake. Aprenderemos a monitorear y optimizar el gasto.</p>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-chart-line"></i> Paso 1: Monitoreo de Uso de Warehouse</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Monitoreo</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Ver uso de créditos por warehouse en los últimos 7 días
+SELECT 
+    WAREHOUSE_NAME,
+    COUNT(*) AS TOTAL_CONSULTAS,
+    SUM(TOTAL_ELAPSED_TIME) / 1000 AS TIEMPO_TOTAL_SEGUNDOS,
+    SUM(CREDITS_USED_CLOUD_SERVICES) AS CREDITOS_SERVICIOS,
+    AVG(EXECUTION_TIME) / 1000 AS TIEMPO_PROMEDIO_SEGUNDOS
+FROM SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY
+WHERE START_TIME >= DATEADD('DAY', -7, CURRENT_TIMESTAMP())
+    AND WAREHOUSE_NAME IS NOT NULL
+GROUP BY WAREHOUSE_NAME
+ORDER BY CREDITOS_SERVICIOS DESC;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3 class="step-title"><i class="fas fa-shield-alt"></i> Paso 2: Resource Monitor para Control de Gastos</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fas fa-terminal"></i> SQL - Resource Monitor</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                            </div>
+                            <pre><code class="language-sql">-- Crear monitor de recursos para controlar gastos mensuales
+CREATE OR REPLACE RESOURCE MONITOR OFFICEMAX_MONTHLY_BUDGET WITH
+    CREDIT_QUOTA = 100          -- Límite de 100 créditos mensuales
+    FREQUENCY = MONTHLY         -- Reseteo mensual
+    START_TIMESTAMP = DATE_TRUNC('MONTH', CURRENT_DATE())
+    TRIGGERS 
+        ON 80 PERCENT DO NOTIFY    -- Notificar al 80%
+        ON 100 PERCENT DO SUSPEND  -- Suspender warehouses al 100%
+        ON 110 PERCENT DO SUSPEND_IMMEDIATE; -- Suspensión inmediata al 110%
+
+-- Asignar monitor al warehouse
+ALTER WAREHOUSE OFFICEMAX_WH SET RESOURCE_MONITOR = OFFICEMAX_MONTHLY_BUDGET;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-negative">
+                        <i class="fas fa-dollar-sign info-icon"></i>
+                        <strong>Importante:</strong> En temporadas altas como Back-to-School, el uso de Snowflake puede aumentar significativamente. El monitoreo proactivo evita sorpresas en la facturación.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Próximos Pasos -->
+            <div class="next-steps">
+                <h3><i class="fas fa-rocket"></i> Conclusión del Quickstart</h3>
+                <p>¡Felicidades! Has completado todas las secciones técnicas del quickstart de OfficeMax México:</p>
+                
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <div class="objective-icon" style="color: #28a745;"><i class="fas fa-check-circle"></i></div>
+                        <div class="objective-title">Time Travel</div>
+                        <p>Recuperación de datos históricos sin backups tradicionales</p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon" style="color: #28a745;"><i class="fas fa-check-circle"></i></div>
+                        <div class="objective-title">Undrop</div>
+                        <p>Restauración rápida de objetos eliminados accidentalmente</p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon" style="color: #28a745;"><i class="fas fa-check-circle"></i></div>
+                        <div class="objective-title">Zero Copy Cloning</div>
+                        <p>Creación de entornos de desarrollo sin costos adicionales</p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon" style="color: #28a745;"><i class="fas fa-check-circle"></i></div>
+                        <div class="objective-title">Transformación JSON</div>
+                        <p>Procesamiento eficiente de datos semi-estructurados</p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon" style="color: #28a745;"><i class="fas fa-check-circle"></i></div>
+                        <div class="objective-title">Control de Costos</div>
+                        <p>Monitoreo y optimización del gasto en Snowflake</p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon" style="color: var(--officemax-blue);"><i class="fas fa-info-circle"></i></div>
+                        <div class="objective-title">Secciones Adicionales</div>
+                        <p>Desarrollo de Apps y ML están disponibles en el archivo markdown completo</p>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 2rem; color: var(--officemax-blue);"><i class="fas fa-rocket"></i> Próximos Pasos Recomendados</h4>
+                
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <h4>Implementar en Producción</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Configurar entorno productivo con datos reales</li>
+                            <li>Establecer procesos de backup y recuperación</li>
+                            <li>Implementar monitoreo de costos automático</li>
+                        </ul>
+                    </div>
+                    <div class="step-card">
+                        <h4>Expandir Capacidades</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Desarrollar aplicaciones con Python/Streamlit</li>
+                            <li>Implementar modelos de Machine Learning</li>
+                            <li>Crear dashboards ejecutivos interactivos</li>
+                        </ul>
+                    </div>
+                    <div class="step-card">
+                        <h4>Optimización Avanzada</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Configurar clustering keys para mejor performance</li>
+                            <li>Implementar particionamiento inteligente</li>
+                            <li>Configurar materialised views para consultas frecuentes</li>
+                        </ul>
+                    </div>
+                    <div class="step-card">
+                        <h4>Integración Empresarial</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Conectar con sistemas ERP y CRM existentes</li>
+                            <li>Implementar pipelines de datos en tiempo real</li>
+                            <li>Crear alertas automáticas para operaciones</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box info-positive" style="margin-top: 2rem;">
+                    <i class="fas fa-file-code info-icon"></i>
+                    <strong>Recursos Adicionales:</strong> Para ver las secciones completas de Desarrollo de Aplicaciones y Machine Learning, consulta el archivo <code>officemax-snowflake-quickstart.md</code> que incluye ejemplos de Python, Streamlit y modelos predictivos con SQL.
+                </div>
+
+                <div class="info-box info-negative" style="margin-top: 1rem;">
+                    <i class="fas fa-exclamation-triangle info-icon"></i>
+                    <strong>Importante:</strong> Este quickstart usa datos simulados. Para implementación en producción, adapta las consultas y modelos a tus datos reales y requisitos específicos de negocio.
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3><i class="fas fa-graduation-cap"></i> ¡Felicidades por Completar el Quickstart!</h3>
+            <p>Has adquirido las habilidades fundamentales para aprovechar Snowflake en OfficeMax México.</p>
+            
+            <div class="footer-stats">
+                <div class="stat-item">
+                    <div class="stat-number">~70</div>
+                    <div>Minutos de contenido</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div>Secciones técnicas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div>Código funcional</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Back-to-School</div>
+                    <div>Enfoque temporal</div>
+                </div>
+            </div>
+
+            <div class="info-box info-negative" style="background: rgba(255,255,255,0.1); border-left-color: #ffc107; color: white;">
+                <i class="fas fa-exclamation-triangle info-icon"></i>
+                <strong>Importante:</strong> Este quickstart usa datos simulados. Para implementación en producción, adapta las consultas y modelos a tus datos reales y requisitos específicos de negocio.
+            </div>
+
+            <p style="margin-top: 2rem;">
+                <strong>Tiempo total invertido:</strong> ~70 minutos<br>
+                <strong>Nivel de competencia alcanzado:</strong> Intermedio-Avanzado<br>
+                <strong>Próximo objetivo:</strong> Implementación en producción
+            </p>
+
+            <h4 style="margin-top: 2rem;">¡Éxito en tus proyectos de analytics! 🚀</h4>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    
+    <script>
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.parentNode.parentNode.querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '¡Copiado!';
+                button.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'var(--officemax-red)';
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+                alert('Error al copiar el código');
+            });
+        }
+
+        // Progress bar and section tracking
+        let currentSectionIndex = 0;
+        const totalSections = 7; // Actualizado: Resumen, Setup, Time Travel, Undrop, Cloning, JSON, Costos
+
+        function updateProgress() {
+            const progress = ((currentSectionIndex + 1) / totalSections) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('currentSection').textContent = `Sección ${currentSectionIndex + 1} de ${totalSections}`;
+        }
+
+        // Scroll to top functionality
+        window.addEventListener('scroll', () => {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 100) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+
+            // Update progress based on scroll position
+            const sections = document.querySelectorAll('.section');
+            const scrollPosition = window.pageYOffset + 200;
+
+            sections.forEach((section, index) => {
+                if (scrollPosition >= section.offsetTop) {
+                    currentSectionIndex = index;
+                }
+            });
+            
+            updateProgress();
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize progress bar
+        updateProgress();
+
+        // Add syntax highlighting
+        document.addEventListener('DOMContentLoaded', () => {
+            Prism.highlightAll();
+        });
+    </script>
+</body>
+</html>

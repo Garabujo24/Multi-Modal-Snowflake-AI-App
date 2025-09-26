@@ -1,0 +1,26 @@
+Manual de Usuario - OMNIGOODS Smartwatch Pro
+
+## 1. Introducción
+Gracias por comprar el OMNIGOODS Smartwatch Pro. Esta guía le ayudará a configurar y utilizar su nuevo dispositivo.
+
+## 2. Configuración Inicial
+- Carga: Conecte el cable de carga magnético a la parte posterior del reloj. Una carga completa tarda aproximadamente 2 horas.
+- Encendido: Mantenga presionado el botón lateral durante 3 segundos.
+- Sincronización: Descargue la aplicación "OmniConnect" en su smartphone y siga las instrucciones para emparejar el reloj a través de Bluetooth.
+
+## 3. Funciones Principales
+- Monitor de Frecuencia Cardíaca: Mide su pulso en tiempo real.
+- GPS: Rastrea sus rutas de carrera y ciclismo.
+- Notificaciones: Reciba alertas de llamadas, mensajes y aplicaciones directamente en su muñeca.
+- Resistencia al Agua: El dispositivo es resistente al agua hasta 50 metros (5 ATM). No es adecuado para buceo.
+
+## 4. Solución de Problemas
+- Problema: El reloj no se sincroniza con el teléfono.
+- Solución: Asegúrese de que el Bluetooth esté activado en su teléfono y que el reloj esté a menos de 10 metros. Intente reiniciar ambos dispositivos.
+
+- Problema: La batería se agota rápidamente.
+- Solución: Reduzca el brillo de la pantalla y desactive las notificaciones de aplicaciones no esenciales a través de la app OmniConnect. La duración estándar es de 7 días con uso normal.
+
+## 5. Garantía
+Este producto tiene una garantía limitada de 1 año contra defectos de fabricación. La garantía no cubre daños por agua o mal uso. Para reclamaciones, contacte a support@omnigoods.com.
+

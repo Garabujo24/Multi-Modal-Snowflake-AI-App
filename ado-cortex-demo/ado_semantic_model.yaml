@@ -1,0 +1,247 @@
+name: ado_operaciones_model
+
+description: Modelo semántico para análisis de operaciones y ventas de ADO. Incluye rutas, corridas, autobuses, boletos y terminales.
+
+tables:
+  - name: Rutas
+    description: Información de rutas entre ciudades
+    base_table:
+      database: ADO_DEMO_DB
+      schema: PUBLIC
+      table: Rutas
+    dimensions:
+      - name: ID
+        expr: ID
+        data_type: NUMBER
+        description: Identificador único de la ruta
+      - name: Origen
+        expr: Origen
+        data_type: VARCHAR
+        description: Ciudad de origen de la ruta
+      - name: Destino
+        expr: Destino
+        data_type: VARCHAR
+        description: Ciudad de destino de la ruta
+    facts:
+      - name: Distancia_KM
+        expr: Distancia_KM
+        data_type: NUMBER
+        description: Distancia de la ruta en kilómetros
+      - name: Duracion_Estimada_Horas
+        expr: Duracion_Estimada_Horas
+        data_type: NUMBER
+        description: Duración estimada del viaje en horas
+    primary_key:
+      columns:
+        - ID
+
+  - name: Autobuses
+    description: Catálogo de autobuses
+    base_table:
+      database: ADO_DEMO_DB
+      schema: PUBLIC
+      table: Autobuses
+    dimensions:
+      - name: ID
+        expr: ID
+        data_type: NUMBER
+        description: Identificador único del autobús
+      - name: Numero_Economico
+        expr: Numero_Economico
+        data_type: VARCHAR
+        description: Número económico del autobús
+      - name: Tipo_Servicio
+        expr: Tipo_Servicio
+        data_type: VARCHAR
+        description: Tipo de servicio (Primera, GL, Platino)
+    facts:
+      - name: Capacidad_Asientos
+        expr: Capacidad_Asientos
+        data_type: NUMBER
+        description: Número de asientos
+    primary_key:
+      columns:
+        - ID
+
+  - name: Terminales
+    description: Terminales de autobuses
+    base_table:
+      database: ADO_DEMO_DB
+      schema: PUBLIC
+      table: Terminales
+    dimensions:
+      - name: ID
+        expr: ID
+        data_type: NUMBER
+        description: Identificador único de la terminal
+      - name: Nombre
+        expr: Nombre
+        data_type: VARCHAR
+        description: Nombre de la terminal
+      - name: Ciudad
+        expr: Ciudad
+        data_type: VARCHAR
+        description: Ciudad donde se ubica la terminal
+      - name: Estado
+        expr: Estado
+        data_type: VARCHAR
+        description: Estado donde se ubica la terminal
+    primary_key:
+      columns:
+        - ID
+
+  - name: Corridas
+    description: Corridas programadas de autobuses
+    base_table:
+      database: ADO_DEMO_DB
+      schema: PUBLIC
+      table: Corridas
+    dimensions:
+      - name: ID
+        expr: ID
+        data_type: NUMBER
+        description: Identificador único de la corrida
+      - name: Ruta_ID
+        expr: Ruta_ID
+        data_type: NUMBER
+        description: Identificador de la ruta asociada
+      - name: Autobus_ID
+        expr: Autobus_ID
+        data_type: NUMBER
+        description: Identificador del autobús asignado
+      - name: Fecha_Hora_Salida
+        expr: Fecha_Hora_Salida
+        data_type: TIMESTAMP
+        description: Fecha y hora de salida
+      - name: Fecha_Hora_Llegada
+        expr: Fecha_Hora_Llegada
+        data_type: TIMESTAMP
+        description: Fecha y hora de llegada
+    facts:
+      - name: Precio_Boleto
+        expr: Precio_Boleto
+        data_type: NUMBER
+        description: Precio del boleto para la corrida
+    primary_key:
+      columns:
+        - ID
+
+  - name: Boletos
+    description: Boletos vendidos o cancelados
+    base_table:
+      database: ADO_DEMO_DB
+      schema: PUBLIC
+      table: Boletos
+    dimensions:
+      - name: ID
+        expr: ID
+        data_type: NUMBER
+        description: Identificador único del boleto
+      - name: Corrida_ID
+        expr: Corrida_ID
+        data_type: NUMBER
+        description: Identificador de la corrida asociada
+      - name: Pasajero_Nombre
+        expr: Pasajero_Nombre
+        data_type: VARCHAR
+        description: Nombre del pasajero
+      - name: Asiento
+        expr: Asiento
+        data_type: NUMBER
+        description: Número de asiento
+      - name: Estatus
+        expr: Estatus
+        data_type: VARCHAR
+        description: Estatus del boleto (Vendido, Cancelado)
+    facts:
+      - name: Fecha_Compra
+        expr: Fecha_Compra
+        data_type: TIMESTAMP
+        description: Fecha de compra del boleto
+    primary_key:
+      columns:
+        - ID
+
+relationships:
+  - name: corridas_rutas
+    left_table: Corridas
+    right_table: Rutas
+    relationship_columns:
+      - left_column: Ruta_ID
+        right_column: ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: corridas_autobuses
+    left_table: Corridas
+    right_table: Autobuses
+    relationship_columns:
+      - left_column: Autobus_ID
+        right_column: ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+  - name: boletos_corridas
+    left_table: Boletos
+    right_table: Corridas
+    relationship_columns:
+      - left_column: Corrida_ID
+        right_column: ID
+    join_type: left_outer
+    relationship_type: many_to_one
+
+verified_queries:
+  - name: rutas_mas_largas
+    question: ¿Cuáles son las rutas más largas?
+    sql: |
+      SELECT Origen, Destino, Distancia_KM
+      FROM Rutas
+      ORDER BY Distancia_KM DESC
+      LIMIT 5;
+    verified_by: Sistema ADO
+    verified_at: 1710000000
+
+  - name: boletos_vendidos_por_ruta
+    question: ¿Cuántos boletos se han vendido por ruta?
+    sql: |
+      SELECT r.Origen, r.Destino, COUNT(b.ID) AS Boletos_Vendidos
+      FROM Boletos b
+      JOIN Corridas c ON b.Corrida_ID = c.ID
+      JOIN Rutas r ON c.Ruta_ID = r.ID
+      WHERE b.Estatus = 'Vendido'
+      GROUP BY r.Origen, r.Destino
+      ORDER BY Boletos_Vendidos DESC;
+    verified_by: Sistema ADO
+    verified_at: 1710000000
+
+  - name: horarios_disponibles
+    question: ¿Qué horarios hay disponibles para viajar de Puebla a Veracruz mañana?
+    sql: |
+      SELECT c.Fecha_Hora_Salida, c.Fecha_Hora_Llegada, a.Tipo_Servicio, c.Precio_Boleto
+      FROM Corridas c
+      JOIN Rutas r ON c.Ruta_ID = r.ID
+      JOIN Autobuses a ON c.Autobus_ID = a.ID
+      WHERE r.Origen = 'Puebla' AND r.Destino = 'Veracruz'
+        AND DATE(c.Fecha_Hora_Salida) = DATEADD(day, 1, CURRENT_DATE())
+      ORDER BY c.Fecha_Hora_Salida;
+    verified_by: Sistema ADO
+    verified_at: 1710000000
+
+  - name: ingresos_por_ciudad
+    question: ¿Cuáles son los ingresos totales por ciudad de origen?
+    sql: |
+      SELECT r.Origen, SUM(c.Precio_Boleto) AS Ingresos
+      FROM Corridas c
+      JOIN Rutas r ON c.Ruta_ID = r.ID
+      GROUP BY r.Origen
+      ORDER BY Ingresos DESC;
+    verified_by: Sistema ADO
+    verified_at: 1710000000
+
+custom_instructions: |
+  Este modelo semántico está diseñado para analizar datos operativos y de ventas de ADO.
+  - Considera siempre el contexto de transporte de pasajeros en México.
+  - Los servicios pueden ser Primera, GL o Platino.
+  - Los boletos pueden estar vendidos o cancelados.
+  - Las rutas conectan ciudades importantes del sureste y centro del país.
+  - Los análisis pueden incluir ingresos, ocupación, horarios y demanda por ruta.

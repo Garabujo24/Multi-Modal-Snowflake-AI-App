@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monex Grupo Financiero - 01 Servicios Banca Corporativa Monex</title>
+    
+    <style>
+    @page {
+        margin: 2cm;
+        size: A4;
+    }
+    
+    @media print {
+        .page-break {
+            page-break-before: always;
+        }
+        
+        h1 {
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            page-break-after: avoid;
+        }
+        
+        table {
+            page-break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        pre {
+            page-break-inside: avoid;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-bottom: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-top: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        body {
+            margin-top: 1.5cm;
+            margin-bottom: 1.5cm;
+        }
+    }
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 1.6;
+        color: #333;
+        max-width: none;
+        margin: 0;
+        padding: 20px;
+        background: white;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+    }
+    
+    h1 {
+        color: #1e3a8a;
+        font-size: 24pt;
+        margin-top: 30pt;
+        margin-bottom: 15pt;
+        border-bottom: 3px solid #1e3a8a;
+        padding-bottom: 8pt;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    h2 {
+        color: #1e40af;
+        font-size: 18pt;
+        margin-top: 25pt;
+        margin-bottom: 12pt;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 5pt;
+        font-weight: bold;
+    }
+    
+    h3 {
+        color: #1e40af;
+        font-size: 16pt;
+        margin-top: 20pt;
+        margin-bottom: 10pt;
+        font-weight: bold;
+    }
+    
+    h4 {
+        color: #374151;
+        font-size: 14pt;
+        margin-top: 15pt;
+        margin-bottom: 8pt;
+        font-weight: bold;
+    }
+    
+    h5 {
+        color: #4b5563;
+        font-size: 12pt;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+        font-weight: bold;
+    }
+    
+    p {
+        margin: 8pt 0;
+        text-align: justify;
+        line-height: 1.6;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15pt 0;
+        font-size: 10pt;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    th, td {
+        border: 1px solid #d1d5db;
+        padding: 8pt 12pt;
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    th {
+        background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        font-weight: bold;
+        color: #1f2937;
+        text-align: center;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9fafb;
+    }
+    
+    tr:hover {
+        background-color: #f3f4f6;
+    }
+    
+    code {
+        background-color: #f1f5f9;
+        padding: 3pt 6pt;
+        border-radius: 3pt;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        color: #1f2937;
+        border: 1px solid #e5e7eb;
+    }
+    
+    pre {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        padding: 15pt;
+        border-radius: 6pt;
+        border-left: 4pt solid #3b82f6;
+        overflow-x: auto;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        margin: 15pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        color: #1f2937;
+        line-height: 1.4;
+    }
+    
+    pre code {
+        background: none;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+    }
+    
+    blockquote {
+        border-left: 4pt solid #3b82f6;
+        padding: 15pt 20pt;
+        margin: 15pt 0;
+        font-style: italic;
+        color: #4b5563;
+        background: linear-gradient(to right, #f8fafc, white);
+        border-radius: 0 6pt 6pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    blockquote p {
+        margin: 0;
+    }
+    
+    ul, ol {
+        padding-left: 25pt;
+        margin: 10pt 0;
+    }
+    
+    li {
+        margin-bottom: 6pt;
+        line-height: 1.5;
+    }
+    
+    ul li {
+        list-style-type: disc;
+    }
+    
+    ol li {
+        list-style-type: decimal;
+    }
+    
+    strong {
+        font-weight: bold;
+        color: #1f2937;
+    }
+    
+    em {
+        font-style: italic;
+        color: #4b5563;
+    }
+    
+    hr {
+        border: none;
+        border-top: 2px solid #e5e7eb;
+        margin: 25pt 0;
+        opacity: 0.7;
+    }
+    
+    .toc {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 20pt;
+        border-radius: 8pt;
+        margin: 20pt 0;
+        border: 1px solid #dee2e6;
+    }
+    
+    .toc h3 {
+        margin-top: 0;
+        color: #1e40af;
+        text-align: center;
+        border-bottom: 1px solid #1e40af;
+        padding-bottom: 8pt;
+    }
+    
+    .highlight {
+        background-color: #fef3c7;
+        padding: 2pt 4pt;
+        border-radius: 2pt;
+    }
+    
+    .monex-logo {
+        text-align: center;
+        font-size: 28pt;
+        font-weight: bold;
+        color: #1e3a8a;
+        margin: 30pt 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    .document-title {
+        text-align: center;
+        font-size: 20pt;
+        color: #1e40af;
+        margin: 20pt 0;
+        font-weight: normal;
+    }
+    
+    .subtitle {
+        text-align: center;
+        font-size: 14pt;
+        color: #6b7280;
+        margin-bottom: 30pt;
+        font-style: italic;
+    }
+    
+    .footer-info {
+        text-align: center;
+        font-size: 9pt;
+        color: #6b7280;
+        margin-top: 30pt;
+        padding-top: 15pt;
+        border-top: 1px solid #e5e7eb;
+        font-style: italic;
+    }
+    
+    @media screen {
+        body {
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="monex-logo">MONEX</div>
+        <div class="document-title">01 Servicios Banca Corporativa Monex</div>
+        <div class="subtitle">Grupo Financiero</div>
+        
+        <div class="header" style="display: none;">MONEX GRUPO FINANCIERO - DOCUMENTO CONFIDENCIAL</div>
+        
+        <h1 id="servicios-de-banca-corporativa-monex">SERVICIOS DE BANCA CORPORATIVA MONEX</h1>
+<h2 id="soluciones-financieras-integrales-para-empresas">Soluciones Financieras Integrales para Empresas</h2>
+<hr />
+<h3 id="tabla-de-contenido">TABLA DE CONTENIDO</h3>
+<ol>
+<li><strong>Introducción a Monex Grupo Financiero</strong></li>
+<li><strong>Servicios de Captación Institucional</strong></li>
+<li><strong>Productos de Crédito Corporativo</strong></li>
+<li><strong>Servicios de Comercio Exterior</strong></li>
+<li><strong>Gestión de Efectivo y Tesorería</strong></li>
+<li><strong>Casos de Éxito y Testimonios</strong></li>
+</ol>
+<hr />
+<h2 id="1-introduccion-a-monex-grupo-financiero">1. INTRODUCCIÓN A MONEX GRUPO FINANCIERO</h2>
+<h3 id="quienes-somos">Quiénes Somos</h3>
+<p>Monex Grupo Financiero es una institución financiera mexicana especializada en servicios corporativos, con más de 35 años de experiencia en el mercado financiero nacional e internacional. Fundada en 1985 por Héctor Lagos Dondé, quien continúa como presidente de la compañía, Monex se ha consolidado como uno de los principales proveedores de servicios de cambio de divisas y soluciones financieras empresariales en México.</p>
+<h3 id="nuestra-estructura-organizacional">Nuestra Estructura Organizacional</h3>
+<p>El grupo está conformado por tres entidades financieras principales:</p>
+<ul>
+<li><strong>Banco Monex, S.A.</strong> - Institución de Banca Múltiple</li>
+<li><strong>Monex Casa de Bolsa, S.A. de C.V.</strong> - Intermediación bursátil</li>
+<li><strong>Monex Operadora de Fondos, S.A. de C.V.</strong> - Gestión de fondos de inversión</li>
+</ul>
+<h3 id="presencia-internacional">Presencia Internacional</h3>
+<p>Monex mantiene operaciones en múltiples países:
+- <strong>México</strong>: Oficinas corporativas en Ciudad de México y sucursales nacionales
+- <strong>Estados Unidos</strong>: Oficinas en Houston y Los Ángeles
+- <strong>Europa</strong>: Operaciones en España y Reino Unido (Monex Europe)</p>
+<h3 id="cifras-relevantes-del-negocio">Cifras Relevantes del Negocio</h3>
+<p><strong>Indicadores Financieros 2022:</strong>
+- Activos totales: $43,426 millones de pesos
+- Capital contable: $4,171 millones de pesos
+- Utilidad neta: $841 millones de pesos
+- Cartera de crédito: $4,577 millones de pesos
+- Más de 40,000 clientes atendidos
+- Volumen anual de transacciones: US$190 mil millones</p>
+<hr />
+<h2 id="2-servicios-de-captacion-institucional">2. SERVICIOS DE CAPTACIÓN INSTITUCIONAL</h2>
+<h3 id="cuentas-especializadas-para-empresas">Cuentas Especializadas para Empresas</h3>
+<h4 id="sistema-de-ahorro-institucional">Sistema de Ahorro Institucional</h4>
+<p>Monex ofrece soluciones de captación diseñadas específicamente para satisfacer las necesidades de liquidez y rendimiento de empresas e instituciones:</p>
+<p><strong>Características principales:</strong>
+- Tasas de rendimiento competitivas por encima del mercado
+- Acceso inmediato a fondos cuando sea necesario
+- Gestión eficiente a través de plataformas digitales
+- Asesoría personalizada para optimizar recursos</p>
+<h4 id="cuenta-digital-empresarial">Cuenta Digital Empresarial</h4>
+<p>Producto estrella de captación que permite:
+- Apertura 100% digital sin papeleos
+- Transferencias instantáneas 24/7
+- Consulta de saldos y movimientos en tiempo real
+- Integración con sistemas contables empresariales
+- Comisiones reducidas para operaciones frecuentes</p>
+<h4 id="certificados-de-deposito-a-plazo-corporativo">Certificados de Depósito a Plazo Corporativo</h4>
+<p>Instrumentos de inversión a plazos específicos que ofrecen:
+- Plazos desde 28 días hasta 360 días
+- Tasas fijas garantizadas
+- Posibilidad de renovación automática
+- Esquemas de capitalización de intereses
+- Montos desde $100,000 pesos</p>
+<h3 id="plan-de-pensiones-institucional">Plan de Pensiones Institucional</h3>
+<p>Monex administra planes de pensiones para empresas que buscan:
+- Cumplir con obligaciones laborales
+- Ofrecer beneficios competitivos a empleados
+- Gestión profesional de recursos de pensiones
+- Reportes detallados de performance
+- Asesoría actuarial especializada</p>
+<hr />
+<h2 id="3-productos-de-credito-corporativo">3. PRODUCTOS DE CRÉDITO CORPORATIVO</h2>
+<h3 id="creditos-comerciales-especializados">Créditos Comerciales Especializados</h3>
+<h4 id="financiamiento-para-actividad-empresarial">Financiamiento para Actividad Empresarial</h4>
+<p>Monex otorga créditos comerciales adaptados a las necesidades específicas de cada empresa:</p>
+<p><strong>Tipos de crédito disponibles:</strong>
+- Líneas de crédito revolventes
+- Créditos para capital de trabajo
+- Financiamiento de proyectos específicos
+- Créditos puente para operaciones especiales</p>
+<p><strong>Características competitivas:</strong>
+- Tasas preferenciales para clientes recurrentes
+- Plazos flexibles de 1 a 60 meses
+- Garantías adaptables al perfil del cliente
+- Procesos de autorización expeditos
+- Seguimiento personalizado post-desembolso</p>
+<h4 id="financiamiento-a-entidades-financieras">Financiamiento a Entidades Financieras</h4>
+<p>Servicios especializados para instituciones del sector financiero:
+- Líneas de crédito interbancarias
+- Financiamiento para carteras específicas
+- Créditos para expansión de operaciones
+- Facilidades de liquidez temporal</p>
+<h4 id="creditos-a-entidades-gubernamentales">Créditos a Entidades Gubernamentales</h4>
+<p>Productos diseñados para el sector público:
+- Financiamiento de obras de infraestructura
+- Créditos para programas sociales
+- Anticipos de participaciones federales
+- Reestructuración de pasivos gubernamentales</p>
+<h3 id="monex-leasing">Monex Leasing</h3>
+<h4 id="arrendamiento-financiero-especializado">Arrendamiento Financiero Especializado</h4>
+<p>Solución integral para la adquisición de activos fijos:</p>
+<p><strong>Ventajas del leasing con Monex:</strong>
+- Conservación del capital de trabajo
+- Beneficios fiscales por deducibilidad
+- Flexibilidad en estructuración de pagos
+- Opción de compra al final del contrato
+- Mantenimiento y seguros incluidos</p>
+<p><strong>Activos financiables:</strong>
+- Maquinaria industrial y equipos de producción
+- Flotillas vehiculares y equipo de transporte
+- Equipos de cómputo y tecnología
+- Inmuebles comerciales e industriales
+- Equipos médicos y hospitalarios</p>
+<h4 id="proceso-de-cotizacion-y-autorizacion">Proceso de Cotización y Autorización</h4>
+<ol>
+<li><strong>Solicitud inicial</strong>: Evaluación de necesidades del cliente</li>
+<li><strong>Cotización personalizada</strong>: Propuesta con términos específicos</li>
+<li><strong>Análisis crediticio</strong>: Evaluación integral del solicitante</li>
+<li><strong>Estructuración</strong>: Diseño del esquema de pagos óptimo</li>
+<li><strong>Autorización</strong>: Aprobación expedita del comité de crédito</li>
+<li><strong>Desembolso</strong>: Adquisición y entrega del activo</li>
+</ol>
+<hr />
+<h2 id="4-servicios-de-comercio-exterior">4. SERVICIOS DE COMERCIO EXTERIOR</h2>
+<h3 id="facilidades-para-operaciones-internacionales">Facilidades para Operaciones Internacionales</h3>
+<h4 id="cadenas-productivas-nafin">Cadenas Productivas NAFIN</h4>
+<p>Monex es socio estratégico del Nacional Financiera para:
+- Financiamiento de proveedores y compradores
+- Factoraje de cuentas por cobrar de exportación
+- Programas de desarrollo de proveedores
+- Capacitación en comercio exterior</p>
+<h4 id="cartas-de-credito-comerciales">Cartas de Crédito Comerciales</h4>
+<p>Instrumentos que garantizan el cumplimiento de operaciones:</p>
+<p><strong>Cartas de crédito de importación:</strong>
+- Garantía de pago a proveedores extranjeros
+- Reducción de riesgo en transacciones internacionales
+- Financiamiento del 100% de la operación
+- Plazos de hasta 180 días</p>
+<p><strong>Cartas de crédito de exportación:</strong>
+- Confirmación de cartas emitidas por bancos extranjeros
+- Garantía de cobro para exportadores mexicanos
+- Adelantos sobre cartas de crédito confirmadas
+- Asesoría en términos y condiciones</p>
+<h4 id="cartas-de-credito-stand-by-y-garantias">Cartas de Crédito Stand-by y Garantías</h4>
+<p>Instrumentos de respaldo para:
+- Garantías de cumplimiento de contratos
+- Fianzas de anticipo en licitaciones
+- Garantías de calidad y funcionamiento
+- Respaldo para participación en concursos</p>
+<h3 id="cobranza-documentaria">Cobranza Documentaria</h3>
+<p>Servicio de gestión de documentos comerciales:
+- Cobranza de documentos contra pago
+- Cobranza de documentos contra aceptación
+- Seguimiento de documentos en tránsito
+- Notificación automática de vencimientos</p>
+<h3 id="credito-digital-para-comercio-exterior">Crédito Digital para Comercio Exterior</h3>
+<p>Plataforma tecnológica que permite:
+- Solicitud en línea de facilidades crediticias
+- Seguimiento en tiempo real de operaciones
+- Documentación digital de transacciones
+- Reportes automáticos de compliance</p>
+<hr />
+<h2 id="5-gestion-de-efectivo-y-tesoreria">5. GESTIÓN DE EFECTIVO Y TESORERÍA</h2>
+<h3 id="cash-management-integral">Cash Management Integral</h3>
+<h4 id="servicios-de-administracion-de-efectivo">Servicios de Administración de Efectivo</h4>
+<p>Monex ofrece soluciones completas para optimizar la gestión de recursos:</p>
+<p><strong>Concentración de fondos:</strong>
+- Barrido automático de cuentas
+- Consolidación de saldos dispersos
+- Optimización de rendimientos
+- Reducción de costos operativos</p>
+<p><strong>Administración de pagos:</strong>
+- Dispersión masiva de nóminas
+- Pagos a proveedores automatizados
+- Programación de pagos recurrentes
+- Notificaciones automáticas de vencimientos</p>
+<h4 id="tipos-de-cobranza-especializada">Tipos de Cobranza Especializada</h4>
+<p><strong>Cobranza empresarial:</strong>
+- Referencias bancarias personalizadas
+- Conciliación automática de pagos
+- Reportes detallados de cobranza
+- Integración con sistemas ERP</p>
+<p><strong>Cobranza retail:</strong>
+- Convenios con establecimientos comerciales
+- Códigos de barras para identificación
+- Cobranza en sucursales y corresponsales
+- Notificaciones por múltiples canales</p>
+<h3 id="plataformas-electronicas-de-divisas">Plataformas Electrónicas de Divisas</h3>
+<h4 id="fx-trading-platform">FX Trading Platform</h4>
+<p>Sistema especializado para operaciones cambiarias:
+- Cotizaciones en tiempo real
+- Ejecución instantánea de operaciones
+- Históricos de tipos de cambio
+- Análisis técnico integrado
+- Alertas de mercado personalizadas</p>
+<p><strong>Beneficios para tesoreros corporativos:</strong>
+- Acceso 24/7 a mercados internacionales
+- Spreads competitivos en todas las divisas
+- Límites de crédito preautorizados
+- Confirmaciones automáticas de deals
+- Reportes regulatorios automatizados</p>
+<hr />
+<h2 id="6-casos-de-exito-y-testimonios">6. CASOS DE ÉXITO Y TESTIMONIOS</h2>
+<h3 id="sector-manufacturero">Sector Manufacturero</h3>
+<p><strong>Cliente:</strong> Empresa textil con operaciones en México y Centroamérica
+<strong>Desafío:</strong> Gestión compleja de múltiples divisas y pagos internacionales
+<strong>Solución Monex:</strong> 
+- Implementación de plataforma FX integrada
+- Líneas de crédito en USD para capital de trabajo
+- Cartas de crédito para importación de materias primas</p>
+<p><strong>Resultados:</strong>
+- Reducción del 35% en costos financieros
+- Automatización del 90% de operaciones cambiarias
+- Mejora en flujos de efectivo por optimización de pagos</p>
+<h3 id="sector-agroindustrial">Sector Agroindustrial</h3>
+<p><strong>Cliente:</strong> Exportador de productos agrícolas orgánicos
+<strong>Desafío:</strong> Financiamiento de ciclos productivos estacionales
+<strong>Solución Monex:</strong>
+- Crédito revolvente con garantía de inventarios
+- Factoraje de cuentas por cobrar de exportación
+- Cobertura cambiaria para ventas futuras</p>
+<p><strong>Resultados:</strong>
+- Incremento del 50% en volumen de exportaciones
+- Estabilización de márgenes por cobertura cambiaria
+- Reducción de 20 días en ciclo de conversión de efectivo</p>
+<h3 id="sector-servicios">Sector Servicios</h3>
+<p><strong>Cliente:</strong> Cadena hotelera con presencia nacional
+<strong>Desafío:</strong> Consolidación de tesorería y optimización de pagos
+<strong>Solución Monex:</strong>
+- Sistema de cash management multiubicación
+- Dispersión automatizada de nóminas
+- Concentración diaria de ingresos</p>
+<p><strong>Resultados:</strong>
+- Ahorro de $2.5 millones anuales en costos financieros
+- Reducción del 60% en tiempo de procesos administrativos
+- Visibilidad total de flujos de efectivo en tiempo real</p>
+<h3 id="testimonios-de-clientes">Testimonios de Clientes</h3>
+<blockquote>
+<p>"Monex ha sido nuestro socio estratégico durante más de 10 años. Su comprensión del negocio manufacturero y sus soluciones innovadoras nos han permitido crecer de manera sostenida en mercados internacionales."</p>
+<p><strong>- Director Financiero, Grupo Industrial del Norte</strong></p>
+<p>"La plataforma de divisas de Monex nos ha dado la flexibilidad y control que necesitábamos para manejar nuestras operaciones globales. El servicio personalizado marca la diferencia."</p>
+<p><strong>- Tesorero Corporativo, Exportadora Mexicana S.A.</strong></p>
+<p>"Migramos a Monex buscando un verdadero partner financiero, no solo un banco. Encontramos asesoría especializada y productos diseñados para nuestras necesidades específicas."</p>
+<p><strong>- CFO, Desarrolladora de Proyectos Inmobiliarios</strong></p>
+</blockquote>
+<hr />
+<h3 id="contacto-y-informacion-adicional">Contacto y Información Adicional</h3>
+<p><strong>Oficinas Corporativas:</strong>
+Av. Paseo de la Reforma 284, Piso 15
+Colonia Juárez, Delegación Cuauhtémoc
+06600 México, D.F.</p>
+<p><strong>Atención a Clientes:</strong>
+- Desde Ciudad de México: 55 5231-4500
+- Lada sin costo: 800-746-6639
+- Email: corporativo@monex.com.mx
+- Web: www.monex.com.mx</p>
+<p><strong>Certificaciones y Reconocimientos:</strong>
+- ISO 9001:2000 en Prevención de Lavado de Dinero
+- ISO 27001:2000 en Gestión de Seguridad de la Información
+- Empresa Socialmente Responsable (Centro Mexicano de Filantropía)
+- Calificación A+(mex) por Fitch Ratings
+- Calificación mxA+ por Standard &amp; Poor's</p>
+<hr />
+<p><em>Documento preparado con información pública obtenida de fuentes confiables. Monex Grupo Financiero no ofrece garantía alguna sobre su precisión. Los productos y servicios descritos están sujetos a términos y condiciones específicos que pueden variar según el perfil del cliente.</em></p>
+        
+        <div class="footer-info">
+            <p><strong>© 2024 Monex Grupo Financiero</strong></p>
+            <p>Este documento contiene información confidencial y propietaria. Todos los derechos reservados.</p>
+            <p>Para más información, visite: <strong>www.monex.com.mx</strong></p>
+        </div>
+        
+        <div class="footer" style="display: none;">© 2024 Monex Grupo Financiero - Página <span id="pageNumber"></span></div>
+    </div>
+    
+    <script>
+        // Show header and footer only when printing
+        window.addEventListener('beforeprint', function() {
+            document.querySelector('.header').style.display = 'block';
+            document.querySelector('.footer').style.display = 'block';
+        });
+        
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

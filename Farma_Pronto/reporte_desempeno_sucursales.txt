@@ -1,0 +1,63 @@
+**Reporte de Desempeño de Sucursales - Q2 2024**
+
+**Periodo:** 01 de Abril de 2024 - 30 de Junio de 2024
+**Autor:** Dirección de Operaciones
+
+---
+
+**1. Resumen Ejecutivo**
+
+El desempeño general de las sucursales durante el segundo trimestre ha sido positivo, con un incremento del 9% en los ingresos totales en comparación con el Q1 de 2024. El ticket promedio consolidado se mantuvo estable en $405 MXN. Se observa una marcada diferencia de rendimiento entre las sucursales urbanas y suburbanas, siendo las primeras las de mayor crecimiento. La implementación de incentivos locales y una gestión de inventario proactiva han sido factores clave en las sucursales de alto rendimiento. Este reporte detalla el ranking de sucursales y propone acciones específicas para las de menor desempeño.
+
+---
+
+**2. Ranking de Sucursales por Ingresos Totales (Q2 2024)**
+
+| Rango | Sucursal            | Ingresos (MXN) | Crecimiento vs. Q1 | Ticket Promedio (MXN) |
+|-------|---------------------|----------------|--------------------|-----------------------|
+| 1     | Farmapronto Polanco | $5,643,000     | +18%               | $480                  |
+| 2     | Farmapronto Centro  | $4,514,400     | +10%               | $395                  |
+| 3     | Farmapronto Satélite| $3,385,800     | +12%               | $420                  |
+| ...   | ...                 | ...            | ...                | ...                   |
+| 48    | Farmapronto Texcoco | $950,000       | +2%                | $350                  |
+| 49    | Farmapronto Tláhuac | $880,000       | -1%                | $340                  |
+| 50    | Farmapronto Chalco  | $790,000       | -3%                | $330                  |
+
+---
+
+**3. Análisis de Rentabilidad por Sucursal**
+
+Se analizaron las 5 sucursales con mayor y menor margen de utilidad neta.
+
+**Sucursales con Mayor Margen de Utilidad:**
+- **Polanco (22%):** Alta venta de productos de cuidado personal y dermocosméticos de alto margen.
+- **Satélite (20%):** Excelente control de mermas y gastos operativos. Mix de ventas equilibrado.
+- **Coyoacán (19%):** Fuerte impulso a la venta de marca propia "Bienestar Pronto".
+
+**Sucursales con Menor Margen de Utilidad:**
+- **Chalco (8%):** Altos costos de reparto a domicilio y baja venta de productos de alto margen.
+- **Tláhuac (9%):** Nivel de merma por caducidad superior al promedio (3%).
+- **Ecatepec (10%):** Fuerte competencia de farmacias locales que presiona los precios a la baja.
+
+---
+
+**4. Indicadores Clave de Desempeño (KPIs)**
+
+- **Tráfico de Clientes:** Las sucursales en centros comerciales (ej. Perisur, Santa Fe) muestran un 25% más de tráfico que las sucursales a pie de calle.
+- **Tasa de Conversión (Lealtad):** La sucursal "Roma" tiene la tasa más alta de inscripción al "Club Farmapronto+" (15 de cada 100 clientes no miembros se inscriben), gracias a la proactividad de su personal.
+- **Venta por Metro Cuadrado:** "Farmapronto Centro" lidera este indicador debido a su tamaño compacto y alta rotación.
+
+---
+
+**5. Planes de Acción para Sucursales de Bajo Desempeño**
+
+- **Para Farmapronto Chalco y Tláhuac:**
+  - **Acción 1:** Realizar una auditoría de inventario para identificar las causas de la merma y retirar productos de baja rotación.
+  - **Acción 2:** Implementar un programa de capacitación enfocado en técnicas de venta consultiva para incrementar la venta de productos de marca propia y de mayor margen.
+  - **Acción 3:** Revisar y optimizar las rutas de entrega a domicilio para reducir costos de combustible y tiempo.
+
+- **Para Farmapronto Texcoco:**
+  - **Acción 1:** Lanzar una campaña de marketing local (volanteo, anuncios en radios locales) enfocada en promociones exclusivas para esa sucursal.
+  - **Acción 2:** Organizar una "Feria de la Salud" en la explanada de la sucursal con toma de presión y glucosa gratuita para atraer tráfico.
+
+Se dará seguimiento a estos planes de acción en la próxima revisión mensual.

@@ -1,0 +1,493 @@
+# =====================================================================
+# TV AZTECA DIGITAL - CORTEX ANALYST SEMANTIC MODEL
+# =====================================================================
+# Cliente: TV Azteca Digital
+# Propósito: Modelo semántico para análisis de documentos corporativos
+# Herramienta: Cortex Analyst
+# Fecha: Septiembre 2025
+# =====================================================================
+
+name: "TV_AZTECA_DOCUMENT_INTELLIGENCE"
+description: |
+  Modelo semántico para análisis inteligente de documentos corporativos de TV Azteca.
+  Permite realizar consultas en lenguaje natural sobre la vasta biblioteca de información
+  corporativa incluyendo manuales operativos, informes financieros, estrategias de marketing,
+  análisis de audiencia y documentación técnica.
+
+# Configuración de la base de datos
+database: "TVAZTECA_DB"
+schema: "RAW_SCHEMA"
+
+# Definición de tablas y vistas principales
+tables:
+  # Tabla principal de documentos corporativos
+  - name: "CORPORATE_DOCUMENTS"
+    description: |
+      Tabla principal que contiene todos los documentos corporativos de TV Azteca
+      incluyendo manuales, informes, estrategias y documentación técnica.
+    
+    # Definición de columnas
+    columns:
+      - name: "DOCUMENT_ID"
+        data_type: "NUMBER"
+        description: "Identificador único del documento"
+        primary_key: true
+        
+      - name: "DOCUMENT_NAME"
+        data_type: "VARCHAR"
+        description: "Nombre descriptivo del archivo del documento"
+        
+      - name: "DOCUMENT_TYPE"
+        data_type: "VARCHAR"
+        description: |
+          Tipo de documento: Manual Operativo, Informe Financiero, Estrategia Marketing,
+          Análisis Audiencia, Manual RH, Manual Técnico, Compliance, etc.
+        
+      - name: "DEPARTMENT"
+        data_type: "VARCHAR"
+        description: |
+          Departamento responsable del documento: Programación, Noticias, Deportes,
+          Marketing Digital, Tecnología, Finanzas, Recursos Humanos, Legal, etc.
+        
+      - name: "UPLOAD_DATE"
+        data_type: "TIMESTAMP_NTZ"
+        description: "Fecha y hora de carga del documento al sistema"
+        
+      - name: "FILE_SIZE_BYTES"
+        data_type: "NUMBER"
+        description: "Tamaño del archivo en bytes"
+        
+      - name: "CONTENT_TEXT"
+        data_type: "TEXT"
+        description: "Contenido completo del documento en formato texto"
+        
+      - name: "DOCUMENT_SUMMARY"
+        data_type: "TEXT"
+        description: "Resumen ejecutivo del contenido del documento"
+        
+      - name: "KEYWORDS"
+        data_type: "ARRAY"
+        description: "Palabras clave y términos relevantes extraídos del documento"
+        
+      - name: "PRIORITY_LEVEL"
+        data_type: "VARCHAR"
+        description: |
+          Nivel de prioridad del documento: CRITICAL (crítico), HIGH (alto),
+          MEDIUM (medio), LOW (bajo)
+        
+      - name: "IS_CONFIDENTIAL"
+        data_type: "BOOLEAN"
+        description: "Indica si el documento contiene información confidencial"
+        
+      - name: "LAST_UPDATED"
+        data_type: "TIMESTAMP_NTZ"
+        description: "Fecha de última actualización del documento"
+        
+      - name: "METADATA"
+        data_type: "VARIANT"
+        description: |
+          Metadatos adicionales del documento en formato JSON incluyendo
+          versión, idioma, número de páginas, clasificación de seguridad
+
+  # Tabla de categorías de documentos
+  - name: "DOCUMENT_CATEGORIES"
+    description: "Catálogo de categorías para clasificación de documentos corporativos"
+    
+    columns:
+      - name: "CATEGORY_ID"
+        data_type: "NUMBER"
+        description: "Identificador único de la categoría"
+        primary_key: true
+        
+      - name: "CATEGORY_NAME"
+        data_type: "VARCHAR"
+        description: "Nombre de la categoría de documento"
+        
+      - name: "DESCRIPTION"
+        data_type: "TEXT"
+        description: "Descripción detallada de la categoría"
+        
+      - name: "DEPARTMENT"
+        data_type: "VARCHAR"
+        description: "Departamento asociado a la categoría"
+        
+      - name: "CREATED_DATE"
+        data_type: "TIMESTAMP_NTZ"
+        description: "Fecha de creación de la categoría"
+
+# Esquema de analytics para métricas
+analytics_schema: "ANALYTICS_SCHEMA"
+
+# Tabla de métricas de búsqueda
+analytics_tables:
+  - name: "SEARCH_METRICS"
+    description: |
+      Métricas de uso y performance del sistema de búsqueda semántica
+      incluyendo consultas, tiempos de respuesta y relevancia
+    
+    columns:
+      - name: "SEARCH_ID"
+        data_type: "NUMBER"
+        description: "Identificador único de la búsqueda"
+        primary_key: true
+        
+      - name: "SEARCH_QUERY"
+        data_type: "TEXT"
+        description: "Consulta realizada por el usuario"
+        
+      - name: "SEARCH_TIMESTAMP"
+        data_type: "TIMESTAMP_NTZ"
+        description: "Fecha y hora de la búsqueda"
+        
+      - name: "USER_ROLE"
+        data_type: "VARCHAR"
+        description: |
+          Rol del usuario que realizó la búsqueda: Analista de Medios,
+          Director de Programación, Gerente de Marketing, etc.
+        
+      - name: "RESULTS_COUNT"
+        data_type: "NUMBER"
+        description: "Número de resultados devueltos por la búsqueda"
+        
+      - name: "RESPONSE_TIME_MS"
+        data_type: "NUMBER"
+        description: "Tiempo de respuesta de la búsqueda en milisegundos"
+        
+      - name: "RELEVANCE_SCORE"
+        data_type: "FLOAT"
+        description: "Puntuación promedio de relevancia de los resultados (0-1)"
+        
+      - name: "CLICKED_DOCUMENT_ID"
+        data_type: "NUMBER"
+        description: "ID del documento seleccionado por el usuario"
+        
+      - name: "SESSION_ID"
+        data_type: "VARCHAR"
+        description: "Identificador de sesión del usuario"
+
+# Relaciones entre tablas
+relationships:
+  - name: "document_category_relationship"
+    type: "many_to_one"
+    from_table: "CORPORATE_DOCUMENTS"
+    from_column: "DOCUMENT_TYPE"
+    to_table: "DOCUMENT_CATEGORIES"
+    to_column: "CATEGORY_NAME"
+    description: "Relación entre documentos y sus categorías"
+
+# Métricas de negocio predefinidas
+metrics:
+  - name: "total_documents"
+    description: "Número total de documentos en la biblioteca corporativa"
+    definition: "COUNT(DOCUMENT_ID)"
+    table: "CORPORATE_DOCUMENTS"
+    
+  - name: "documents_by_department"
+    description: "Distribución de documentos por departamento"
+    definition: "COUNT(DOCUMENT_ID)"
+    table: "CORPORATE_DOCUMENTS"
+    group_by: ["DEPARTMENT"]
+    
+  - name: "critical_documents"
+    description: "Número de documentos marcados como críticos"
+    definition: "COUNT(DOCUMENT_ID)"
+    table: "CORPORATE_DOCUMENTS"
+    filter: "PRIORITY_LEVEL = 'CRITICAL'"
+    
+  - name: "confidential_documents"
+    description: "Número de documentos confidenciales"
+    definition: "COUNT(DOCUMENT_ID)"
+    table: "CORPORATE_DOCUMENTS"
+    filter: "IS_CONFIDENTIAL = TRUE"
+    
+  - name: "average_document_size"
+    description: "Tamaño promedio de documentos en KB"
+    definition: "AVG(FILE_SIZE_BYTES) / 1024"
+    table: "CORPORATE_DOCUMENTS"
+    
+  - name: "recent_documents"
+    description: "Documentos cargados en los últimos 30 días"
+    definition: "COUNT(DOCUMENT_ID)"
+    table: "CORPORATE_DOCUMENTS"
+    filter: "UPLOAD_DATE >= CURRENT_DATE - 30"
+    
+  - name: "search_volume"
+    description: "Volumen total de búsquedas realizadas"
+    definition: "COUNT(SEARCH_ID)"
+    table: "SEARCH_METRICS"
+    
+  - name: "average_response_time"
+    description: "Tiempo promedio de respuesta de búsquedas en milisegundos"
+    definition: "AVG(RESPONSE_TIME_MS)"
+    table: "SEARCH_METRICS"
+    
+  - name: "search_relevance"
+    description: "Relevancia promedio de resultados de búsqueda"
+    definition: "AVG(RELEVANCE_SCORE)"
+    table: "SEARCH_METRICS"
+    
+  - name: "unique_users"
+    description: "Número de usuarios únicos que han realizado búsquedas"
+    definition: "COUNT(DISTINCT USER_ROLE)"
+    table: "SEARCH_METRICS"
+
+# Dimensiones para análisis
+dimensions:
+  - name: "department"
+    description: "Departamento responsable del documento"
+    table: "CORPORATE_DOCUMENTS"
+    column: "DEPARTMENT"
+    type: "categorical"
+    
+  - name: "document_type"
+    description: "Tipo o categoría del documento"
+    table: "CORPORATE_DOCUMENTS"
+    column: "DOCUMENT_TYPE"
+    type: "categorical"
+    
+  - name: "priority_level"
+    description: "Nivel de prioridad del documento"
+    table: "CORPORATE_DOCUMENTS"
+    column: "PRIORITY_LEVEL"
+    type: "categorical"
+    values: ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+    
+  - name: "upload_date"
+    description: "Fecha de carga del documento"
+    table: "CORPORATE_DOCUMENTS"
+    column: "UPLOAD_DATE"
+    type: "temporal"
+    
+  - name: "confidentiality"
+    description: "Clasificación de confidencialidad"
+    table: "CORPORATE_DOCUMENTS"
+    column: "IS_CONFIDENTIAL"
+    type: "boolean"
+    
+  - name: "user_role"
+    description: "Rol del usuario que realizó la búsqueda"
+    table: "SEARCH_METRICS"
+    column: "USER_ROLE"
+    type: "categorical"
+    
+  - name: "search_date"
+    description: "Fecha de la búsqueda"
+    table: "SEARCH_METRICS"
+    column: "SEARCH_TIMESTAMP"
+    type: "temporal"
+
+# Consultas de ejemplo para guiar al modelo
+sample_queries:
+  - question: "¿Cuántos documentos tiene cada departamento?"
+    sql: |
+      SELECT 
+        DEPARTMENT,
+        COUNT(*) as document_count
+      FROM CORPORATE_DOCUMENTS
+      GROUP BY DEPARTMENT
+      ORDER BY document_count DESC
+    
+  - question: "¿Cuáles son los documentos más críticos?"
+    sql: |
+      SELECT 
+        DOCUMENT_NAME,
+        DOCUMENT_TYPE,
+        DEPARTMENT,
+        PRIORITY_LEVEL
+      FROM CORPORATE_DOCUMENTS
+      WHERE PRIORITY_LEVEL = 'CRITICAL'
+      ORDER BY UPLOAD_DATE DESC
+    
+  - question: "¿Cuál es el rendimiento del sistema de búsqueda?"
+    sql: |
+      SELECT 
+        COUNT(*) as total_searches,
+        AVG(RESPONSE_TIME_MS) as avg_response_time,
+        AVG(RELEVANCE_SCORE) as avg_relevance,
+        COUNT(DISTINCT USER_ROLE) as unique_users
+      FROM SEARCH_METRICS
+    
+  - question: "¿Qué documentos se han agregado recientemente?"
+    sql: |
+      SELECT 
+        DOCUMENT_NAME,
+        DOCUMENT_TYPE,
+        DEPARTMENT,
+        UPLOAD_DATE
+      FROM CORPORATE_DOCUMENTS
+      WHERE UPLOAD_DATE >= CURRENT_DATE - 30
+      ORDER BY UPLOAD_DATE DESC
+    
+  - question: "¿Cuáles son las búsquedas más frecuentes?"
+    sql: |
+      SELECT 
+        SEARCH_QUERY,
+        COUNT(*) as frequency,
+        AVG(RELEVANCE_SCORE) as avg_relevance
+      FROM SEARCH_METRICS
+      GROUP BY SEARCH_QUERY
+      ORDER BY frequency DESC
+      LIMIT 10
+
+# Sinónimos y términos alternativos
+synonyms:
+  - terms: ["rating", "audiencia", "share", "puntos"]
+    description: "Métricas de audiencia televisiva"
+    
+  - terms: ["programación", "contenido", "shows", "programas"]
+    description: "Contenido televisivo y programación"
+    
+  - terms: ["digital", "redes sociales", "online", "streaming"]
+    description: "Plataformas y medios digitales"
+    
+  - terms: ["finanzas", "ingresos", "EBITDA", "financiero"]
+    description: "Información financiera y económica"
+    
+  - terms: ["tecnología", "transmisión", "infraestructura", "técnico"]
+    description: "Aspectos técnicos y tecnológicos"
+    
+  - terms: ["compliance", "regulatorio", "legal", "cumplimiento"]
+    description: "Aspectos legales y regulatorios"
+    
+  - terms: ["marketing", "publicidad", "promoción", "campaña"]
+    description: "Marketing y publicidad"
+    
+  - terms: ["sustentabilidad", "ambiental", "social", "responsabilidad"]
+    description: "Responsabilidad social y ambiental"
+
+# Contexto de negocio específico de TV Azteca
+business_context:
+  company_name: "TV Azteca"
+  industry: "Medios de Comunicación y Entretenimiento"
+  country: "México"
+  
+  key_channels:
+    - name: "Azteca UNO"
+      description: "Canal principal con programación general"
+      
+    - name: "Azteca 7"
+      description: "Canal especializado en deportes"
+      
+    - name: "adn40"
+      description: "Canal de noticias 24/7"
+      
+    - name: "a más+"
+      description: "Canal de entretenimiento adicional"
+  
+  key_programs:
+    - "Ventaneando"
+    - "Venga la Alegría"
+    - "Hechos"
+    - "Las Bravo"
+    - "Al Extremo"
+  
+  key_metrics:
+    - "Rating points"
+    - "Share percentage"
+    - "Reach"
+    - "Engagement"
+    - "Revenue"
+  
+  departments:
+    - "Programación"
+    - "Noticias"
+    - "Deportes"
+    - "Entretenimiento"
+    - "Marketing Digital"
+    - "Tecnología"
+    - "Finanzas"
+    - "Recursos Humanos"
+    - "Legal"
+    - "Sustentabilidad"
+    - "Innovación"
+
+# Configuración de seguridad y acceso
+security:
+  confidential_fields:
+    - "IS_CONFIDENTIAL"
+    - "METADATA"
+  
+  restricted_departments:
+    - "Legal"
+    - "Finanzas"
+  
+  access_levels:
+    - level: "public"
+      description: "Información pública disponible para todos"
+      
+    - level: "internal"
+      description: "Información interna para empleados"
+      
+    - level: "confidential"
+      description: "Información confidencial con acceso restringido"
+      
+    - level: "restricted"
+      description: "Información altamente restringida"
+
+# Configuración de Cortex Search
+cortex_search:
+  service_name: "tv_azteca_search"
+  content_column: "CONTENT_TEXT"
+  
+  searchable_attributes:
+    - "DOCUMENT_NAME"
+    - "DOCUMENT_TYPE"
+    - "DEPARTMENT"
+    - "KEYWORDS"
+    - "PRIORITY_LEVEL"
+    - "DOCUMENT_SUMMARY"
+  
+  filters:
+    - field: "DEPARTMENT"
+      type: "categorical"
+      
+    - field: "PRIORITY_LEVEL"
+      type: "categorical"
+      
+    - field: "IS_CONFIDENTIAL"
+      type: "boolean"
+      
+    - field: "UPLOAD_DATE"
+      type: "temporal"
+
+# Configuración de calidad de datos
+data_quality:
+  required_fields:
+    - "DOCUMENT_NAME"
+    - "CONTENT_TEXT"
+    - "DEPARTMENT"
+    
+  validation_rules:
+    - field: "PRIORITY_LEVEL"
+      rule: "IN ('CRITICAL', 'HIGH', 'MEDIUM', 'LOW')"
+      
+    - field: "FILE_SIZE_BYTES"
+      rule: "> 0"
+      
+    - field: "UPLOAD_DATE"
+      rule: "<= CURRENT_DATE"
+
+# Metadatos del modelo
+model_metadata:
+  version: "1.0"
+  created_date: "2025-09-22"
+  last_updated: "2025-09-22"
+  owner: "TV Azteca Digital Team"
+  contact: "data.analytics@tvazteca.com"
+  
+  tags:
+    - "document_intelligence"
+    - "semantic_search"
+    - "corporate_knowledge"
+    - "media_company"
+    - "mexican_television"
+    
+  documentation_url: "https://docs.tvazteca.com/semantic-model"
+  
+  supported_languages:
+    - "Spanish"
+    - "English"
+  
+  refresh_frequency: "Daily"
+  
+  data_retention: "7 years"

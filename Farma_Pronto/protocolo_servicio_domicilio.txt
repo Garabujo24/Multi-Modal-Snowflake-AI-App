@@ -1,0 +1,58 @@
+**Protocolo Operativo Estándar: Servicio a Domicilio**
+
+**Versión:** 2.1
+**Fecha de última revisión:** 15 de Mayo de 2024
+**Área Responsable:** Gerencia de Operaciones
+
+---
+
+**1. Propósito**
+
+El propósito de este documento es estandarizar el proceso de servicio a domicilio para todas las sucursales de Farmapronto, garantizando una experiencia de cliente consistente, eficiente y segura, desde la recepción del pedido hasta la entrega final.
+
+---
+
+**2. Proceso de Recepción de Pedidos**
+
+Los pedidos pueden ser recibidos a través de tres canales autorizados:
+- **Llamada Telefónica:** El personal deberá tomar los datos del cliente (nombre, dirección, teléfono) y los productos solicitados de forma clara. Se debe confirmar el pedido leyendo la orden completa al cliente antes de finalizar la llamada.
+- **Aplicación Móvil:** Los pedidos llegan directamente al sistema de punto de venta (POS) de la sucursal asignada. El sistema emite una alerta sonora y visual.
+- **WhatsApp Business:** El encargado de sucursal monitorea el chat y debe responder a las solicitudes en un plazo no mayor a 10 minutos.
+
+**Paso Crítico:** El personal debe confirmar la disponibilidad de todos los productos en el sistema antes de confirmar el pedido al cliente. Si un producto no está disponible, se debe ofrecer un sustituto o informar al cliente.
+
+---
+
+**3. Verificación de Recetas Médicas**
+
+Para medicamentos que requieren receta médica (antibióticos, controlados):
+- **Pedido Telefónico/WhatsApp:** El cliente debe enviar una fotografía clara de la receta médica. El farmacéutico de turno debe validar su autenticidad (nombre del paciente, médico, cédula profesional, fecha).
+- **Pedido por App:** La app debe tener un campo obligatorio para adjuntar la imagen de la receta.
+- **Entrega:** El repartidor está **obligado** a recoger la receta física original al momento de la entrega del medicamento. **No se puede entregar medicamento controlado sin recoger la receta original.**
+
+---
+
+**4. Proceso de Cobro**
+
+- **Pre-Cobro:** Se dará preferencia al cobro mediante enlace de pago (Stripe/MercadoPago) enviado al cliente por WhatsApp o SMS para agilizar la entrega.
+- **Cobro en Entrega:** El repartidor deberá llevar una terminal bancaria móvil con suficiente batería y conexión. Se debe preguntar al cliente al momento de hacer el pedido si pagará con tarjeta o efectivo para preparar el cambio necesario.
+- **Facturación:** Si el cliente requiere factura, debe proporcionar sus datos fiscales durante la llamada o en la sección de comentarios de la app. La factura se enviará por correo electrónico en un plazo máximo de 24 horas.
+
+---
+
+**5. Preparación y Empaquetado (Picking & Packing)**
+
+- El responsable de surtir el pedido (picker) utilizará una canasta designada para cada orden.
+- Se debe realizar una doble verificación (double check) de los productos y cantidades contra la orden impresa antes de empacar.
+- Los productos se colocarán en una bolsa de papel sellada con una etiqueta de seguridad que incluye el número de pedido y el nombre del cliente.
+- Para productos que requieren refrigeración, se utilizará una bolsa térmica con un gel refrigerante. Esta debe ser la última parte del pedido en ser preparada.
+
+---
+
+**6. Logística de Entrega**
+
+- **Asignación de Ruta:** El gerente de sucursal asignará los pedidos a los repartidores disponibles, optimizando la ruta para cubrir múltiples entregas en una misma zona.
+- **Tiempos de Entrega:** El tiempo de entrega prometido desde la confirmación del pedido no debe exceder los 60 minutos para direcciones en un radio de 5 km.
+- **Comunicación con el Cliente:** El repartidor debe notificar al cliente vía llamada o WhatsApp cuando esté en camino.
+- **Protocolo de Entrega:** El repartidor debe identificarse, usar uniforme y mantener una actitud profesional. Debe entregar el producto, realizar el cobro (si aplica) y recoger la receta (si aplica).
+- **Confirmación:** Una vez entregado, el repartidor marcará el pedido como "Completado" en la aplicación móvil de repartidores, lo que actualizará el estado en el sistema POS central.

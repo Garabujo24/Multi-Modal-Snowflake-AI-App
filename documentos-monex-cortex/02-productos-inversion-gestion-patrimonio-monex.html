@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monex Grupo Financiero - 02 Productos Inversion Gestion Patrimonio Monex</title>
+    
+    <style>
+    @page {
+        margin: 2cm;
+        size: A4;
+    }
+    
+    @media print {
+        .page-break {
+            page-break-before: always;
+        }
+        
+        h1 {
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            page-break-after: avoid;
+        }
+        
+        table {
+            page-break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        pre {
+            page-break-inside: avoid;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-bottom: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1cm;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-top: 1px solid #e5e7eb;
+            background: white;
+            z-index: 1000;
+        }
+        
+        body {
+            margin-top: 1.5cm;
+            margin-bottom: 1.5cm;
+        }
+    }
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 1.6;
+        color: #333;
+        max-width: none;
+        margin: 0;
+        padding: 20px;
+        background: white;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+    }
+    
+    h1 {
+        color: #1e3a8a;
+        font-size: 24pt;
+        margin-top: 30pt;
+        margin-bottom: 15pt;
+        border-bottom: 3px solid #1e3a8a;
+        padding-bottom: 8pt;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    h2 {
+        color: #1e40af;
+        font-size: 18pt;
+        margin-top: 25pt;
+        margin-bottom: 12pt;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 5pt;
+        font-weight: bold;
+    }
+    
+    h3 {
+        color: #1e40af;
+        font-size: 16pt;
+        margin-top: 20pt;
+        margin-bottom: 10pt;
+        font-weight: bold;
+    }
+    
+    h4 {
+        color: #374151;
+        font-size: 14pt;
+        margin-top: 15pt;
+        margin-bottom: 8pt;
+        font-weight: bold;
+    }
+    
+    h5 {
+        color: #4b5563;
+        font-size: 12pt;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+        font-weight: bold;
+    }
+    
+    p {
+        margin: 8pt 0;
+        text-align: justify;
+        line-height: 1.6;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15pt 0;
+        font-size: 10pt;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    th, td {
+        border: 1px solid #d1d5db;
+        padding: 8pt 12pt;
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    th {
+        background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        font-weight: bold;
+        color: #1f2937;
+        text-align: center;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9fafb;
+    }
+    
+    tr:hover {
+        background-color: #f3f4f6;
+    }
+    
+    code {
+        background-color: #f1f5f9;
+        padding: 3pt 6pt;
+        border-radius: 3pt;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        color: #1f2937;
+        border: 1px solid #e5e7eb;
+    }
+    
+    pre {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        padding: 15pt;
+        border-radius: 6pt;
+        border-left: 4pt solid #3b82f6;
+        overflow-x: auto;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        font-size: 9pt;
+        margin: 15pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        color: #1f2937;
+        line-height: 1.4;
+    }
+    
+    pre code {
+        background: none;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+    }
+    
+    blockquote {
+        border-left: 4pt solid #3b82f6;
+        padding: 15pt 20pt;
+        margin: 15pt 0;
+        font-style: italic;
+        color: #4b5563;
+        background: linear-gradient(to right, #f8fafc, white);
+        border-radius: 0 6pt 6pt 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    blockquote p {
+        margin: 0;
+    }
+    
+    ul, ol {
+        padding-left: 25pt;
+        margin: 10pt 0;
+    }
+    
+    li {
+        margin-bottom: 6pt;
+        line-height: 1.5;
+    }
+    
+    ul li {
+        list-style-type: disc;
+    }
+    
+    ol li {
+        list-style-type: decimal;
+    }
+    
+    strong {
+        font-weight: bold;
+        color: #1f2937;
+    }
+    
+    em {
+        font-style: italic;
+        color: #4b5563;
+    }
+    
+    hr {
+        border: none;
+        border-top: 2px solid #e5e7eb;
+        margin: 25pt 0;
+        opacity: 0.7;
+    }
+    
+    .toc {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 20pt;
+        border-radius: 8pt;
+        margin: 20pt 0;
+        border: 1px solid #dee2e6;
+    }
+    
+    .toc h3 {
+        margin-top: 0;
+        color: #1e40af;
+        text-align: center;
+        border-bottom: 1px solid #1e40af;
+        padding-bottom: 8pt;
+    }
+    
+    .highlight {
+        background-color: #fef3c7;
+        padding: 2pt 4pt;
+        border-radius: 2pt;
+    }
+    
+    .monex-logo {
+        text-align: center;
+        font-size: 28pt;
+        font-weight: bold;
+        color: #1e3a8a;
+        margin: 30pt 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    .document-title {
+        text-align: center;
+        font-size: 20pt;
+        color: #1e40af;
+        margin: 20pt 0;
+        font-weight: normal;
+    }
+    
+    .subtitle {
+        text-align: center;
+        font-size: 14pt;
+        color: #6b7280;
+        margin-bottom: 30pt;
+        font-style: italic;
+    }
+    
+    .footer-info {
+        text-align: center;
+        font-size: 9pt;
+        color: #6b7280;
+        margin-top: 30pt;
+        padding-top: 15pt;
+        border-top: 1px solid #e5e7eb;
+        font-style: italic;
+    }
+    
+    @media screen {
+        body {
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="monex-logo">MONEX</div>
+        <div class="document-title">02 Productos Inversion Gestion Patrimonio Monex</div>
+        <div class="subtitle">Grupo Financiero</div>
+        
+        <div class="header" style="display: none;">MONEX GRUPO FINANCIERO - DOCUMENTO CONFIDENCIAL</div>
+        
+        <h1 id="productos-de-inversion-y-gestion-de-patrimonio-monex">PRODUCTOS DE INVERSIÓN Y GESTIÓN DE PATRIMONIO MONEX</h1>
+<h2 id="estrategias-de-inversion-y-banca-privada">Estrategias de Inversión y Banca Privada</h2>
+<hr />
+<h3 id="tabla-de-contenido">TABLA DE CONTENIDO</h3>
+<ol>
+<li><strong>Banca Privada Monex: Filosofía y Enfoque</strong></li>
+<li><strong>Estrategias de Inversión en USD</strong></li>
+<li><strong>Fondos de Inversión Especializados</strong></li>
+<li><strong>Productos del Mercado de Capitales</strong></li>
+<li><strong>Servicios Fiduciarios y Patrimoniales</strong></li>
+<li><strong>Análisis de Performance y Casos de Éxito</strong></li>
+</ol>
+<hr />
+<h2 id="1-banca-privada-monex-filosofia-y-enfoque">1. BANCA PRIVADA MONEX: FILOSOFÍA Y ENFOQUE</h2>
+<h3 id="nuestra-propuesta-de-valor">Nuestra Propuesta de Valor</h3>
+<p>Monex Banca Privada se dedica a la preservación y crecimiento del patrimonio de individuos y familias de alto patrimonio neto, así como instituciones que buscan soluciones de inversión sofisticadas. Con más de tres décadas de experiencia en mercados financieros, ofrecemos un enfoque personalizado que combina tradición, innovación y excelencia en el servicio.</p>
+<h3 id="perfil-de-nuestros-clientes">Perfil de Nuestros Clientes</h3>
+<p><strong>Individuos de Alto Patrimonio:</strong>
+- Empresarios y profesionistas exitosos
+- Patrimonio mínimo de USD $500,000
+- Necesidades de diversificación internacional
+- Objetivos de preservación y crecimiento a largo plazo</p>
+<p><strong>Clientes Institucionales:</strong>
+- Fundaciones y organizaciones no lucrativas
+- Fondos de pensiones corporativas
+- Endowments universitarios
+- Family offices y vehículos patrimoniales</p>
+<h3 id="modelo-de-asesoria-integral">Modelo de Asesoría Integral</h3>
+<p><strong>Proceso de Conocimiento del Cliente:</strong>
+1. <strong>Evaluación Patrimonial</strong>: Análisis completo de activos y pasivos
+2. <strong>Definición de Objetivos</strong>: Metas de corto, mediano y largo plazo
+3. <strong>Perfil de Riesgo</strong>: Determinación de tolerancia al riesgo
+4. <strong>Restricciones de Inversión</strong>: Consideraciones legales, fiscales y personales
+5. <strong>Política de Inversión</strong>: Estrategia personalizada documentada</p>
+<p><strong>Equipo Especializado:</strong>
+- Asesores de inversión certificados (CFA, FRM)
+- Especialistas en planificación patrimonial
+- Analistas de mercados internacionales
+- Expertos en estructuras fiduciarias
+- Asesores fiscales especializados</p>
+<hr />
+<h2 id="2-estrategias-de-inversion-en-usd">2. ESTRATEGIAS DE INVERSIÓN EN USD</h2>
+<h3 id="portafolios-modelo-globales">Portafolios Modelo Globales</h3>
+<p>Monex ha desarrollado cinco estrategias principales de inversión denominadas en dólares estadounidenses, cada una diseñada para diferentes perfiles de riesgo y horizontes de inversión.</p>
+<h4 id="usd-fixed-income-estrategia-conservadora">USD Fixed Income - Estrategia Conservadora</h4>
+<p><strong>Características de la Estrategia:</strong>
+- Inversión 100% en instrumentos de renta fija
+- Perfil ideal para clientes conservadores
+- Enfoque en preservación de capital con rendimiento estable
+- Inversión exclusiva en ETFs listados en México (SIC)
+- Riesgo de duración bajo
+- Riesgo crediticio mínimo</p>
+<p><strong>Composición del Portafolio:</strong>
+- Bonos del Tesoro Estadounidense: 40%
+- Bonos Corporativos Investment Grade: 30%
+- Bonos de Agencias Gubernamentales: 20%
+- Instrumentos de Mercado de Dinero: 10%</p>
+<p><strong>Performance Histórica:</strong>
+- Rendimiento Julio 2024: 3.43%
+- Rendimiento 12 meses: 4.70%
+- Rendimiento anualizado desde inicio: 2.72%
+- Fecha de inicio: 6 de diciembre de 2018</p>
+<h4 id="global-equity-estrategia-de-crecimiento">Global Equity - Estrategia de Crecimiento</h4>
+<p><strong>Características de la Estrategia:</strong>
+- Inversión hasta 100% en acciones
+- Mínimo 90% en renta variable (principalmente ETFs)
+- Máximo 10% en acciones individuales
+- Portafolio activamente gestionado
+- Excluye ETFs apalancados o inversos
+- Horizonte de inversión de largo plazo</p>
+<p><strong>Diversificación Geográfica:</strong>
+- Mercados Desarrollados (Estados Unidos): 60%
+- Mercados Desarrollados (Internacional): 25%
+- Mercados Emergentes: 15%</p>
+<p><strong>Diversificación Sectorial:</strong>
+- Tecnología: 25%
+- Servicios Financieros: 15%
+- Salud: 12%
+- Consumo Discrecional: 10%
+- Industriales: 8%
+- Otros sectores: 30%</p>
+<p><strong>Performance Histórica:</strong>
+- Rendimiento Julio 2024: 0.95%
+- Rendimiento 12 meses: 12.82%
+- Rendimiento anualizado desde inicio: 74.62%
+- Fecha de inicio: 13 de septiembre de 2019</p>
+<h4 id="conservative-global-strategy-estrategia-defensiva">Conservative Global Strategy - Estrategia Defensiva</h4>
+<p><strong>Características de la Estrategia:</strong>
+- 80% en USD Fixed Income
+- 20% en Global Equity
+- Orientada a protección de capital
+- Rendimientos superiores a deuda de corto plazo
+- Ideal para clientes que priorizan preservación con crecimiento moderado</p>
+<p><strong>Ventajas Competitivas:</strong>
+- Menor volatilidad que estrategias 100% equity
+- Participación controlada en mercados de riesgo
+- Rebalanceo automático entre asset classes
+- Protección en períodos de alta volatilidad</p>
+<p><strong>Performance Histórica:</strong>
+- Rendimiento Julio 2024: 5.22%
+- Rendimiento 12 meses: 6.68%
+- Rendimiento anualizado desde inicio: 4.53%
+- Fecha de inicio: 30 de noviembre de 2020</p>
+<h4 id="moderate-global-strategy-estrategia-balanceada">Moderate Global Strategy - Estrategia Balanceada</h4>
+<p><strong>Características de la Estrategia:</strong>
+- 60% en USD Fixed Income
+- 40% en Global Equity
+- Participación activa en activos de riesgo
+- Orientada a crecimiento de mediano y largo plazo
+- Diversificación optimizada entre asset classes</p>
+<p><strong>Perfil de Riesgo-Rendimiento:</strong>
+- Volatilidad moderada con potencial de crecimiento
+- Adaptada para horizontes de inversión de 5-10 años
+- Rebalanceo trimestral automático
+- Gestión activa de exposiciones sectoriales</p>
+<p><strong>Performance Histórica:</strong>
+- Rendimiento Julio 2024: 6.70%
+- Rendimiento 12 meses: 8.58%
+- Rendimiento anualizado desde inicio: 6.01%
+- Fecha de inicio: 15 de enero de 2020</p>
+<h4 id="aggressive-global-strategy-estrategia-de-crecimiento">Aggressive Global Strategy - Estrategia de Crecimiento</h4>
+<p><strong>Características de la Estrategia:</strong>
+- 40% en USD Fixed Income
+- 60% en Global Equity
+- Orientada a clientes con mayor tolerancia al riesgo
+- Búsqueda de rendimientos superiores de largo plazo
+- Mayor exposición a mercados de capital</p>
+<p><strong>Gestión de Riesgo:</strong>
+- Diversificación geográfica amplia
+- Límites por sector y región
+- Monitoring diario de exposiciones
+- Stop-loss automáticos en posiciones individuales</p>
+<p><strong>Performance Histórica:</strong>
+- Rendimiento Julio 2024: 8.12%
+- Rendimiento 12 meses: 10.63%
+- Rendimiento anualizado desde inicio: 8.36%
+- Fecha de inicio: 9 de diciembre de 2019</p>
+<hr />
+<h2 id="3-fondos-de-inversion-especializados">3. FONDOS DE INVERSIÓN ESPECIALIZADOS</h2>
+<h3 id="monex-operadora-de-fondos">Monex Operadora de Fondos</h3>
+<p>Como parte integral del Grupo Financiero, Monex Operadora de Fondos administra una amplia gama de vehículos de inversión colectiva diseñados para diferentes objetivos y perfiles de riesgo.</p>
+<h4 id="fondos-de-renta-fija">Fondos de Renta Fija</h4>
+<p><strong>Monex Deuda MX:</strong>
+- Estrategia: Instrumentos gubernamentales mexicanos
+- Duración promedio: 3-5 años
+- Calificación crediticia: AAA (Mex)
+- Rendimiento objetivo: TIIE + 150 pb
+- Monto mínimo: $100,000 MXN</p>
+<p><strong>Monex Global Bond USD:</strong>
+- Estrategia: Bonos globales denominados en USD
+- Diversificación: Soberanos y corporativos
+- Rating promedio: A- o superior
+- Rendimiento objetivo: US Treasury 10Y + 200 pb
+- Monto mínimo: USD $25,000</p>
+<h4 id="fondos-de-renta-variable">Fondos de Renta Variable</h4>
+<p><strong>Monex Equity Mexico:</strong>
+- Estrategia: Acciones del mercado mexicano
+- Benchmark: IPC (Índice de Precios y Cotizaciones)
+- Capitalización: Large y mid-cap
+- Sectores principales: Consumo, Financiero, Telecomunicaciones
+- Monto mínimo: $50,000 MXN</p>
+<p><strong>Monex Global Equity:</strong>
+- Estrategia: Acciones de mercados desarrollados
+- Benchmark: MSCI World Index
+- Exposición: 70% USA, 30% Internacional
+- Gestión: Pasiva con optimizaciones tácticas
+- Monto mínimo: USD $10,000</p>
+<h4 id="fondos-mixtos">Fondos Mixtos</h4>
+<p><strong>Monex Balanced Fund:</strong>
+- Estrategia: 60% Renta Fija, 40% Renta Variable
+- Rebalanceo: Mensual automático
+- Gestión: Activa con overlay táctico
+- Perfil: Moderado a agresivo
+- Monto mínimo: $25,000 MXN</p>
+<h3 id="calculadora-de-fondos-de-inversion">Calculadora de Fondos de Inversión</h3>
+<p>Monex ofrece herramientas digitales para la evaluación y selección de fondos:</p>
+<p><strong>Funcionalidades:</strong>
+- Simulación de rendimientos históricos
+- Análisis de riesgo-rendimiento
+- Comparación entre fondos
+- Proyección de valor futuro
+- Análisis de volatilidad</p>
+<p><strong>Métricas Disponibles:</strong>
+- Ratio de Sharpe
+- Máximo drawdown
+- Correlación entre activos
+- Value at Risk (VaR)
+- Tracking error vs benchmark</p>
+<hr />
+<h2 id="4-productos-del-mercado-de-capitales">4. PRODUCTOS DEL MERCADO DE CAPITALES</h2>
+<h3 id="trading-de-valores">Trading de Valores</h3>
+<p>Monex Casa de Bolsa ofrece servicios integrales de intermediación bursátil para clientes institucionales e individuos de alto patrimonio.</p>
+<h4 id="mercado-de-acciones">Mercado de Acciones</h4>
+<p><strong>Acciones Nacionales:</strong>
+- Acceso a todas las empresas listadas en BMV
+- Ejecución en tiempo real
+- Análisis fundamental y técnico
+- Recomendaciones de analistas certificados
+- Préstamo de valores para estrategias sofisticadas</p>
+<p><strong>Acciones Internacionales:</strong>
+- Acceso directo a NYSE, NASDAQ, LSE
+- Más de 15,000 instrumentos disponibles
+- Ejecución multi-mercado
+- Liquidación DVP (Delivery vs Payment)
+- Custodia internacional especializada</p>
+<h4 id="instrumentos-de-deuda">Instrumentos de Deuda</h4>
+<p><strong>Mercado Gubernamental:</strong>
+- CETES, BONOS, BONDES, UDIBONOS
+- Subastas primarias semanales
+- Mercado secundario activo
+- Estrategias de duration matching
+- Análisis de curva de rendimientos</p>
+<p><strong>Mercado Corporativo:</strong>
+- Certificados Bursátiles
+- Papel Comercial
+- Bonos Corporativos Internacionales
+- Credit research especializado
+- Estructuración de emisiones</p>
+<h3 id="notas-estructuradas">Notas Estructuradas</h3>
+<p>Monex ha emergido como líder en el mercado mexicano de productos estructurados, con más de 1,700 notas emitidas en 2022 por un nocional de $41,216 millones de pesos.</p>
+<h4 id="certificados-de-deposito-estructurados">Certificados de Depósito Estructurados</h4>
+<p><strong>Características:</strong>
+- Protección total o parcial de capital
+- Rendimiento ligado a subyacentes diversos
+- Plazos de 1 mes a 5 años
+- Denominación en MXN, USD, EUR</p>
+<p><strong>Subyacentes Disponibles:</strong>
+- Índices bursátiles (S&amp;P 500, IPC, EuroStoxx)
+- Acciones individuales
+- Commodities (oro, petróleo, cobre)
+- Divisas (EUR/USD, USD/MXN)
+- Tasas de interés</p>
+<h4 id="bonos-bancarios-estructurados">Bonos Bancarios Estructurados</h4>
+<p><strong>Estructura Típica:</strong>
+- Principal protegido al 100%
+- Cupón variable ligado a performance
+- Barreras de protección configurables
+- Opciones de call anticipado</p>
+<p><strong>Estrategias Populares:</strong>
+- Memory Coupon: Acumulación de cupones no pagados
+- Autocall: Redención anticipada automática
+- Range Accrual: Cupón por días dentro de rango
+- Worst-of: Basket de múltiples subyacentes</p>
+<hr />
+<h2 id="5-servicios-fiduciarios-y-patrimoniales">5. SERVICIOS FIDUCIARIOS Y PATRIMONIALES</h2>
+<h3 id="fideicomisos-especializados">Fideicomisos Especializados</h3>
+<p>Monex ofrece una amplia gama de servicios fiduciarios para la estructuración y administración de patrimonios familiares e institucionales.</p>
+<h4 id="fideicomisos-de-administracion">Fideicomisos de Administración</h4>
+<p><strong>Fideicomiso de Inversión:</strong>
+- Administración profesional de carteras
+- Diversificación internacional
+- Reportes detallados de performance
+- Optimización fiscal continua</p>
+<p><strong>Fideicomiso Inmobiliario:</strong>
+- Adquisición y desarrollo de propiedades
+- Administración de rentas
+- Mantenimiento y mejoras
+- Estrategias de exit planificadas</p>
+<h4 id="fideicomisos-de-garantia">Fideicomisos de Garantía</h4>
+<p><strong>Fideicomiso de Emisión:</strong>
+- Respaldo para emisiones bursátiles
+- Administración de flujos de pago
+- Reporting a inversionistas
+- Cumplimiento regulatorio</p>
+<p><strong>Fideicomiso de Construcción:</strong>
+- Administración de recursos de obra
+- Control de avances físicos
+- Liberación de recursos por etapas
+- Supervisión técnica especializada</p>
+<h3 id="cuenta-personal-especial-de-ahorro-cpea">Cuenta Personal Especial de Ahorro (CPEA)</h3>
+<p>Producto exclusivo para la optimización fiscal del ahorro personal:</p>
+<p><strong>Beneficios Fiscales:</strong>
+- Deducción anual hasta $152,000 MXN
+- Exención de impuestos sobre rendimientos
+- Retiro libre de impuestos después de 5 años
+- Portabilidad entre instituciones</p>
+<p><strong>Opciones de Inversión:</strong>
+- Fondos de renta fija gubernamental
+- Fondos de renta variable nacional
+- Portafolios balanceados
+- Estrategias target-date</p>
+<h3 id="plan-personal-de-retiro-ppr">Plan Personal de Retiro (PPR)</h3>
+<p>Sistema complementario de pensiones para empleados y profesionistas independientes:</p>
+<p><strong>Características del Producto:</strong>
+- Aportaciones voluntarias deducibles
+- Cobertura de seguros incluida
+- Múltiples opciones de inversión
+- Portabilidad total del plan</p>
+<p><strong>Estrategias de Inversión por Edad:</strong>
+- 20-35 años: 80% Renta Variable, 20% Renta Fija
+- 35-50 años: 60% Renta Variable, 40% Renta Fija
+- 50-65 años: 40% Renta Variable, 60% Renta Fija
+- +65 años: 20% Renta Variable, 80% Renta Fija</p>
+<hr />
+<h2 id="6-analisis-de-performance-y-casos-de-exito">6. ANÁLISIS DE PERFORMANCE Y CASOS DE ÉXITO</h2>
+<h3 id="analisis-comparativo-de-estrategias">Análisis Comparativo de Estrategias</h3>
+<h4 id="performance-acumulada-5-anos">Performance Acumulada (5 años)</h4>
+<table>
+<thead>
+<tr>
+<th>Estrategia</th>
+<th>Rendimiento Anualizado</th>
+<th>Volatilidad</th>
+<th>Ratio Sharpe</th>
+<th>Max Drawdown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>USD Fixed Income</td>
+<td>4.2%</td>
+<td>2.8%</td>
+<td>1.15</td>
+<td>-1.8%</td>
+</tr>
+<tr>
+<td>Conservative Global</td>
+<td>6.8%</td>
+<td>5.1%</td>
+<td>1.08</td>
+<td>-4.2%</td>
+</tr>
+<tr>
+<td>Moderate Global</td>
+<td>8.9%</td>
+<td>8.7%</td>
+<td>0.89</td>
+<td>-8.9%</td>
+</tr>
+<tr>
+<td>Aggressive Global</td>
+<td>11.2%</td>
+<td>12.3%</td>
+<td>0.78</td>
+<td>-15.6%</td>
+</tr>
+<tr>
+<td>Global Equity</td>
+<td>13.8%</td>
+<td>16.8%</td>
+<td>0.72</td>
+<td>-22.1%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="analisis-de-correlaciones">Análisis de Correlaciones</h4>
+<p><strong>Correlación con Mercados Principales:</strong>
+- S&amp;P 500: 0.65 (Global Equity) a 0.15 (USD Fixed Income)
+- IPC México: 0.25 (Global Equity) a 0.05 (USD Fixed Income)
+- USD/MXN: -0.30 (USD Fixed Income) a -0.45 (Global Equity)</p>
+<h3 id="casos-de-exito-patrimoniales">Casos de Éxito Patrimoniales</h3>
+<h4 id="caso-1-empresario-manufacturero">Caso 1: Empresario Manufacturero</h4>
+<p><strong>Perfil del Cliente:</strong>
+- Patrimonio inicial: USD $2.5 millones
+- Edad: 45 años
+- Objetivos: Diversificación internacional y retirement planning</p>
+<p><strong>Estrategia Implementada:</strong>
+- 70% Moderate Global Strategy
+- 20% Mexican Real Estate Fund
+- 10% Private Equity (co-inversiones)</p>
+<p><strong>Resultados (3 años):</strong>
+- Rendimiento anualizado: 9.8%
+- Reducción de volatilidad: 25% vs portafolio concentrado inicial
+- Ahorro fiscal anual: $180,000 MXN (estructura de PPR)</p>
+<h4 id="caso-2-family-office-generacional">Caso 2: Family Office Generacional</h4>
+<p><strong>Perfil del Cliente:</strong>
+- Patrimonio familiar: USD $15 millones
+- Generaciones: 2da y 3ra generación
+- Objetivos: Preservación multi-generacional</p>
+<p><strong>Estrategia Implementada:</strong>
+- Fideicomiso de administración principal
+- 50% Conservative Global Strategy
+- 30% Alternative investments (REITs, Commodities)
+- 20% Education endowment fund</p>
+<p><strong>Resultados (5 años):</strong>
+- Rendimiento anualizado: 7.2%
+- Distribuciones anuales: 3.5% del patrimonio
+- Crecimiento real (post-inflación): 4.8%
+- Satisfacción familiar: 95% (encuesta anual)</p>
+<h4 id="caso-3-institucion-educativa">Caso 3: Institución Educativa</h4>
+<p><strong>Perfil del Cliente:</strong>
+- Endowment universitario: USD $5 millones
+- Horizonte: Perpetuo
+- Objetivo: Funding de becas</p>
+<p><strong>Estrategia Implementada:</strong>
+- 60% Aggressive Global Strategy
+- 25% Fixed Income laddering
+- 15% ESG focused investments</p>
+<p><strong>Resultados (4 años):</strong>
+- Rendimiento anualizado: 10.1%
+- Becas financiadas: 150 estudiantes/año
+- Crecimiento del endowment: USD $7.2 millones
+- Rating de sostenibilidad: AA (MSCI ESG)</p>
+<h3 id="testimonios-de-clientes-de-banca-privada">Testimonios de Clientes de Banca Privada</h3>
+<blockquote>
+<p>"La sofisticación de los productos de Monex, combinada con el servicio personalizado de mi asesor, me ha permitido diversificar mi patrimonio de manera eficiente. Los rendimientos han superado consistentemente mis expectativas."</p>
+<p><strong>- Empresario del Sector Tecnológico</strong></p>
+<p>"Buscábamos una institución que entendiera las necesidades específicas de nuestro family office. Monex no solo nos ofreció productos innovadores, sino una verdadera asociación estratégica para preservar nuestro patrimonio familiar."</p>
+<p><strong>- Representante de Family Office, 3ra Generación</strong></p>
+<p>"Como institución educativa, necesitábamos balancear crecimiento con estabilidad. La estrategia de endowment de Monex nos ha permitido cumplir nuestra misión social mientras preservamos recursos para futuras generaciones."</p>
+<p><strong>- Director Financiero, Universidad Privada</strong></p>
+</blockquote>
+<hr />
+<h3 id="metodologia-de-analisis-de-riesgo">Metodología de Análisis de Riesgo</h3>
+<h4 id="value-at-risk-var-diario">Value at Risk (VaR) Diario</h4>
+<p>Monex utiliza múltiples metodologías para el cálculo de VaR:
+- <strong>Simulación Histórica</strong>: 250 días de historia de mercado
+- <strong>Simulación Monte Carlo</strong>: 10,000 escenarios diarios
+- <strong>Modelos Paramétricos</strong>: GARCH multivariado</p>
+<h4 id="stress-testing">Stress Testing</h4>
+<p><strong>Escenarios Macroeconómicos:</strong>
+- Crisis de mercados emergentes
+- Shock de tasas de interés (+/- 200 pb)
+- Depreciación extrema MXN/USD (25%)
+- Volatilidad de equity (+50% vs promedio histórico)</p>
+<h4 id="esg-integration">ESG Integration</h4>
+<p><strong>Criterios de Evaluación:</strong>
+- Environmental: Huella de carbono, gestión de recursos
+- Social: Relaciones laborales, impacto comunitario
+- Governance: Estructura de board, transparencia</p>
+<p><strong>Métricas ESG:</strong>
+- ESG Score promedio de portafolios: 7.2/10
+- Exclusiones: Tabaco, armas controvertidas
+- Engagement: Voting proxy en 100% de posiciones</p>
+<hr />
+<h3 id="informacion-de-contacto-especializada">Información de Contacto Especializada</h3>
+<p><strong>Banca Privada Monex:</strong>
+Paseo de la Reforma 284, Piso 12
+Col. Juárez, CDMX 06600</p>
+<p><strong>Atención Personalizada:</strong>
+- Teléfono: 55 5231-4530
+- Email: bancaprivada@monex.com.mx
+- Whatsapp Business: +52 55 1234-5678</p>
+<p><strong>Horarios de Atención:</strong>
+- Lunes a Viernes: 8:00 - 18:00 hrs
+- Sábados: 9:00 - 14:00 hrs (cita previa)
+- Atención 24/7: Emergencias y mercados internacionales</p>
+<p><strong>Mínimos de Inversión:</strong>
+- Banca Privada: USD $500,000
+- Fondos de Inversión: $25,000 MXN / USD $10,000
+- Productos Estructurados: $100,000 MXN / USD $25,000
+- Servicios Fiduciarios: $500,000 MXN / USD $150,000</p>
+<hr />
+<p><em>Las cifras de rendimiento son netas de comisiones de administración pero antes de impuestos. Rendimientos pasados no garantizan resultados futuros. Todas las inversiones conllevan riesgo, incluyendo la posible pérdida del principal. Los inversionistas deben leer cuidadosamente los prospectos antes de invertir.</em></p>
+        
+        <div class="footer-info">
+            <p><strong>© 2024 Monex Grupo Financiero</strong></p>
+            <p>Este documento contiene información confidencial y propietaria. Todos los derechos reservados.</p>
+            <p>Para más información, visite: <strong>www.monex.com.mx</strong></p>
+        </div>
+        
+        <div class="footer" style="display: none;">© 2024 Monex Grupo Financiero - Página <span id="pageNumber"></span></div>
+    </div>
+    
+    <script>
+        // Show header and footer only when printing
+        window.addEventListener('beforeprint', function() {
+            document.querySelector('.header').style.display = 'block';
+            document.querySelector('.footer').style.display = 'block';
+        });
+        
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

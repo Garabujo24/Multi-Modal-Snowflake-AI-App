@@ -1,0 +1,249 @@
+name: fenix_energia_model
+description: "Modelo semántico para análisis energético de Fénix Energía en México"
+
+tables:
+  - name: dim_clientes
+    description: "Dimensión de clientes de Fénix Energía"
+    base_table:
+      database: FENIX_DB
+      schema: FENIX_ENERGY_SCHEMA
+      table: DIM_CLIENTES
+    primary_key:
+      columns: [ID_CLIENTE]
+    dimensions:
+      - name: id_cliente
+        expr: ID_CLIENTE
+        data_type: STRING
+        description: "Identificador único del cliente"
+      
+      - name: estado
+        expr: ESTADO
+        data_type: STRING
+        description: "Estado de la República Mexicana donde se ubica el cliente"
+      
+      - name: industria
+        expr: INDUSTRIA
+        data_type: STRING
+        description: "Sector industrial al que pertenece el cliente"
+      
+      - name: nombre_cliente
+        expr: NOMBRE_CLIENTE
+        data_type: STRING
+        description: "Nombre comercial del cliente"
+
+  - name: dim_condiciones_hidroclimaticas
+    description: "Condiciones hidroclimáticas que afectan la generación de energía"
+    base_table:
+      database: FENIX_DB
+      schema: FENIX_ENERGY_SCHEMA
+      table: DIM_CONDICIONES_HIDROCLIMATICAS
+    primary_key:
+      columns: [FECHA]
+    dimensions:
+      - name: id_presa
+        expr: ID_PRESA
+        data_type: STRING
+        description: "Identificador de la presa hidroeléctrica"
+    
+    time_dimensions:
+      - name: fecha
+        expr: FECHA
+        data_type: DATE
+        description: "Fecha de registro de las condiciones hidroclimáticas"
+    
+    facts:
+      - name: nivel_presa_porcentaje
+        expr: NIVEL_PRESA_PORCENTAJE
+        data_type: NUMBER
+        description: "Nivel del agua en la presa expresado en porcentaje"
+      
+      - name: precipitacion_mensual_mm
+        expr: PRECIPITACION_MENSUAL_MM
+        data_type: NUMBER
+        description: "Precipitación pluvial mensual en milímetros"
+      
+      - name: temperatura_promedio_c
+        expr: TEMPERATURA_PROMEDIO_C
+        data_type: NUMBER
+        description: "Temperatura promedio en grados Celsius"
+
+  - name: dim_condiciones_mercado
+    description: "Condiciones del mercado energético mexicano"
+    base_table:
+      database: FENIX_DB
+      schema: FENIX_ENERGY_SCHEMA
+      table: DIM_CONDICIONES_MERCADO
+    primary_key:
+      columns: [FECHA]
+    time_dimensions:
+      - name: fecha
+        expr: FECHA
+        data_type: DATE
+        description: "Fecha de registro de las condiciones de mercado"
+    
+    facts:
+      - name: inpc_general
+        expr: INPC_GENERAL
+        data_type: NUMBER
+        description: "Índice Nacional de Precios al Consumidor General"
+      
+      - name: precio_gas_natural_hhm
+        expr: PRECIO_GAS_NATURAL_HHm
+        data_type: NUMBER
+        description: "Precio del gas natural por unidad de medida Henry Hub"
+      
+      - name: tipo_de_cambio_fix
+        expr: TIPO_DE_CAMBIO_FIX
+        data_type: NUMBER
+        description: "Tipo de cambio peso mexicano - dólar estadounidense"
+
+  - name: fact_consumo_diario
+    description: "Tabla de hechos con el consumo diario de energía"
+    base_table:
+      database: FENIX_DB
+      schema: FENIX_ENERGY_SCHEMA
+      table: FACT_CONSUMO_DIARIO
+    primary_key:
+      columns: [ID_CONSUMO]
+    dimensions:
+      - name: id_consumo
+        expr: ID_CONSUMO
+        data_type: STRING
+        description: "Identificador único del registro de consumo"
+      
+      - name: id_cliente
+        expr: ID_CLIENTE
+        data_type: STRING
+        description: "Identificador del cliente que consumió la energía"
+    
+    time_dimensions:
+      - name: fecha
+        expr: FECHA
+        data_type: DATE
+        description: "Fecha del consumo de energía"
+    
+    facts:
+      - name: consumo_mwh
+        expr: CONSUMO_MWH
+        data_type: NUMBER
+        description: "Consumo de energía en megavatios hora"
+      
+      - name: precio_monomico_mxn
+        expr: PRECIO_MONOMICO_MXN
+        data_type: NUMBER
+        description: "Precio monómico de la energía en pesos mexicanos"
+      
+      - name: ingresos_mxn
+        expr: CONSUMO_MWH * PRECIO_MONOMICO_MXN
+        data_type: NUMBER
+        description: "Ingresos totales calculados como consumo por precio"
+
+metrics:
+  - name: consumo_total
+    description: "Consumo total de energía en MWh"
+    expr: SUM(fact_consumo_diario.consumo_mwh)
+  
+  - name: ingresos_totales
+    description: "Ingresos totales en pesos mexicanos"
+    expr: SUM(fact_consumo_diario.ingresos_mxn)
+  
+  - name: precio_promedio
+    description: "Precio promedio por MWh"
+    expr: AVG(fact_consumo_diario.precio_monomico_mxn)
+  
+  - name: total_clientes
+    description: "Número total de clientes únicos"
+    expr: COUNT(DISTINCT fact_consumo_diario.id_cliente)
+  
+  - name: total_registros_consumo
+    description: "Número total de registros de consumo"
+    expr: COUNT(fact_consumo_diario.id_consumo)
+  
+  - name: consumo_promedio_diario
+    description: "Consumo promedio diario"
+    expr: AVG(fact_consumo_diario.consumo_mwh)
+
+relationships:
+  - name: consumo_to_clientes
+    leftTable: fact_consumo_diario
+    rightTable: dim_clientes
+    relationshipColumns:
+      - left_column: ID_CLIENTE
+        right_column: ID_CLIENTE
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: consumo_to_clima
+    leftTable: fact_consumo_diario
+    rightTable: dim_condiciones_hidroclimaticas
+    relationshipColumns:
+      - left_column: FECHA
+        right_column: FECHA
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: consumo_to_mercado
+    leftTable: fact_consumo_diario
+    rightTable: dim_condiciones_mercado
+    relationshipColumns:
+      - left_column: FECHA
+        right_column: FECHA
+    joinType: left_outer
+    relationshipType: many_to_one
+
+verified_queries:
+  - name: consumo_mensual_por_estado
+    question: ¿Cuál es el consumo energético mensual por estado de México en los últimos 12 meses?
+    use_as_onboarding_question: true
+    sql: SELECT c.ESTADO, DATE_TRUNC('MONTH', f.FECHA) as MES, SUM(f.CONSUMO_MWH) as CONSUMO_TOTAL_MWH, AVG(f.PRECIO_MONOMICO_MXN) as PRECIO_PROMEDIO_MXN, COUNT(DISTINCT f.ID_CLIENTE) as CLIENTES_ACTIVOS, SUM(f.CONSUMO_MWH * f.PRECIO_MONOMICO_MXN) as INGRESOS_TOTALES_MXN FROM FACT_CONSUMO_DIARIO f JOIN DIM_CLIENTES c ON f.ID_CLIENTE = c.ID_CLIENTE WHERE f.FECHA >= DATEADD('MONTH', -12, CURRENT_DATE()) GROUP BY c.ESTADO, DATE_TRUNC('MONTH', f.FECHA) ORDER BY MES DESC, CONSUMO_TOTAL_MWH DESC
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
+
+  - name: top_clientes_industriales
+    question: ¿Cuáles son los 10 clientes industriales con mayor consumo energético?
+    use_as_onboarding_question: true
+    sql: SELECT c.INDUSTRIA, c.NOMBRE_CLIENTE, c.ESTADO, SUM(f.CONSUMO_MWH) as CONSUMO_TOTAL_MWH, AVG(f.PRECIO_MONOMICO_MXN) as PRECIO_PROMEDIO_MXN, SUM(f.CONSUMO_MWH * f.PRECIO_MONOMICO_MXN) as INGRESOS_TOTALES_MXN, COUNT(*) as DIAS_CONSUMO FROM FACT_CONSUMO_DIARIO f JOIN DIM_CLIENTES c ON f.ID_CLIENTE = c.ID_CLIENTE WHERE f.FECHA >= DATEADD('YEAR', -1, CURRENT_DATE()) GROUP BY c.INDUSTRIA, c.NOMBRE_CLIENTE, c.ESTADO ORDER BY CONSUMO_TOTAL_MWH DESC LIMIT 10
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
+
+  - name: impacto_temperatura_consumo
+    question: ¿Cómo afecta la temperatura al consumo de energía?
+    use_as_onboarding_question: true
+    sql: SELECT CASE WHEN h.TEMPERATURA_PROMEDIO_C > 30 THEN 'Muy Caliente (>30°C)' WHEN h.TEMPERATURA_PROMEDIO_C > 25 THEN 'Caliente (25-30°C)' WHEN h.TEMPERATURA_PROMEDIO_C > 15 THEN 'Templado (15-25°C)' ELSE 'Frío (<15°C)' END as CATEGORIA_TEMPERATURA, COUNT(*) as DIAS_REGISTRADOS, AVG(f.CONSUMO_MWH) as CONSUMO_PROMEDIO_MWH, AVG(h.TEMPERATURA_PROMEDIO_C) as TEMPERATURA_PROMEDIO, SUM(f.CONSUMO_MWH) as CONSUMO_TOTAL_MWH FROM FACT_CONSUMO_DIARIO f JOIN DIM_CONDICIONES_HIDROCLIMATICAS h ON f.FECHA = h.FECHA WHERE f.FECHA >= DATEADD('MONTH', -6, CURRENT_DATE()) GROUP BY CASE WHEN h.TEMPERATURA_PROMEDIO_C > 30 THEN 'Muy Caliente (>30°C)' WHEN h.TEMPERATURA_PROMEDIO_C > 25 THEN 'Caliente (25-30°C)' WHEN h.TEMPERATURA_PROMEDIO_C > 15 THEN 'Templado (15-25°C)' ELSE 'Frío (<15°C)' END ORDER BY CONSUMO_PROMEDIO_MWH DESC
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
+
+  - name: correlacion_precios_gas_energia
+    question: ¿Cómo se correlacionan los precios del gas natural con las tarifas energéticas?
+    use_as_onboarding_question: false
+    sql: SELECT DATE_TRUNC('MONTH', f.FECHA) as MES, AVG(m.PRECIO_GAS_NATURAL_HHm) as PRECIO_GAS_PROMEDIO, AVG(f.PRECIO_MONOMICO_MXN) as PRECIO_ENERGIA_PROMEDIO, AVG(m.TIPO_DE_CAMBIO_FIX) as TIPO_CAMBIO_PROMEDIO, AVG(m.INPC_GENERAL) as INPC_PROMEDIO, SUM(f.CONSUMO_MWH) as CONSUMO_TOTAL_MWH, SUM(f.CONSUMO_MWH * f.PRECIO_MONOMICO_MXN) as INGRESOS_TOTALES_MXN FROM FACT_CONSUMO_DIARIO f JOIN DIM_CONDICIONES_MERCADO m ON f.FECHA = m.FECHA WHERE f.FECHA >= DATEADD('YEAR', -2, CURRENT_DATE()) GROUP BY DATE_TRUNC('MONTH', f.FECHA) ORDER BY MES DESC
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
+
+  - name: eficiencia_hidrica_presas
+    question: ¿Cuál es el estado de eficiencia hídrica de las presas hidroeléctricas?
+    use_as_onboarding_question: false
+    sql: SELECT h.ID_PRESA, AVG(h.NIVEL_PRESA_PORCENTAJE) as NIVEL_PROMEDIO_PRESA, AVG(h.PRECIPITACION_MENSUAL_MM) as PRECIPITACION_PROMEDIO, AVG(h.TEMPERATURA_PROMEDIO_C) as TEMPERATURA_PROMEDIO, COUNT(DISTINCT f.ID_CLIENTE) as CLIENTES_IMPACTADOS, SUM(f.CONSUMO_MWH) as CONSUMO_TOTAL_ASOCIADO, CASE WHEN AVG(h.NIVEL_PRESA_PORCENTAJE) > 80 THEN 'Óptimo' WHEN AVG(h.NIVEL_PRESA_PORCENTAJE) > 60 THEN 'Bueno' WHEN AVG(h.NIVEL_PRESA_PORCENTAJE) > 40 THEN 'Regular' ELSE 'Crítico' END as ESTADO_HIDRICO FROM DIM_CONDICIONES_HIDROCLIMATICAS h LEFT JOIN FACT_CONSUMO_DIARIO f ON h.FECHA = f.FECHA WHERE h.FECHA >= DATEADD('QUARTER', -4, CURRENT_DATE()) GROUP BY h.ID_PRESA ORDER BY NIVEL_PROMEDIO_PRESA DESC
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
+
+  - name: demanda_semanal
+    question: ¿Cuál es el patrón de demanda energética por día de la semana?
+    use_as_onboarding_question: false
+    sql: SELECT DAYOFWEEK(f.FECHA) as DIA_SEMANA, CASE WHEN DAYOFWEEK(f.FECHA) = 1 THEN 'Domingo' WHEN DAYOFWEEK(f.FECHA) = 2 THEN 'Lunes' WHEN DAYOFWEEK(f.FECHA) = 3 THEN 'Martes' WHEN DAYOFWEEK(f.FECHA) = 4 THEN 'Miércoles' WHEN DAYOFWEEK(f.FECHA) = 5 THEN 'Jueves' WHEN DAYOFWEEK(f.FECHA) = 6 THEN 'Viernes' WHEN DAYOFWEEK(f.FECHA) = 7 THEN 'Sábado' END as NOMBRE_DIA, AVG(f.CONSUMO_MWH) as CONSUMO_PROMEDIO_MWH, COUNT(*) as TOTAL_REGISTROS, AVG(f.PRECIO_MONOMICO_MXN) as PRECIO_PROMEDIO_MXN, SUM(f.CONSUMO_MWH) as CONSUMO_TOTAL_MWH FROM FACT_CONSUMO_DIARIO f WHERE f.FECHA >= DATEADD('MONTH', -3, CURRENT_DATE()) GROUP BY DAYOFWEEK(f.FECHA) ORDER BY DIA_SEMANA
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
+
+  - name: rentabilidad_estados_industrias
+    question: ¿Cuál es la rentabilidad por estado e industria en México?
+    use_as_onboarding_question: false
+    sql: SELECT c.ESTADO, c.INDUSTRIA, COUNT(DISTINCT c.ID_CLIENTE) as TOTAL_CLIENTES, SUM(f.CONSUMO_MWH) as CONSUMO_TOTAL_MWH, SUM(f.CONSUMO_MWH * f.PRECIO_MONOMICO_MXN) as INGRESOS_TOTALES_MXN, AVG(f.PRECIO_MONOMICO_MXN) as PRECIO_PROMEDIO_MXN, SUM(f.CONSUMO_MWH) / COUNT(DISTINCT c.ID_CLIENTE) as MWH_POR_CLIENTE, SUM(f.CONSUMO_MWH * f.PRECIO_MONOMICO_MXN) / COUNT(DISTINCT c.ID_CLIENTE) as INGRESOS_POR_CLIENTE FROM FACT_CONSUMO_DIARIO f JOIN DIM_CLIENTES c ON f.ID_CLIENTE = c.ID_CLIENTE WHERE f.FECHA >= DATEADD('QUARTER', -4, CURRENT_DATE()) GROUP BY c.ESTADO, c.INDUSTRIA HAVING COUNT(DISTINCT c.ID_CLIENTE) >= 2 ORDER BY INGRESOS_TOTALES_MXN DESC
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
+
+  - name: consumos_anomalos
+    question: ¿Qué clientes tienen consumos anómalos por encima del promedio?
+    use_as_onboarding_question: false
+    sql: WITH consumo_stats AS (SELECT c.ESTADO, c.INDUSTRIA, AVG(f.CONSUMO_MWH) as CONSUMO_PROMEDIO, STDDEV(f.CONSUMO_MWH) as DESVIACION_CONSUMO FROM FACT_CONSUMO_DIARIO f JOIN DIM_CLIENTES c ON f.ID_CLIENTE = c.ID_CLIENTE WHERE f.FECHA >= DATEADD('MONTH', -6, CURRENT_DATE()) GROUP BY c.ESTADO, c.INDUSTRIA) SELECT f.FECHA, c.ESTADO, c.INDUSTRIA, c.NOMBRE_CLIENTE, f.CONSUMO_MWH, s.CONSUMO_PROMEDIO, f.PRECIO_MONOMICO_MXN, CASE WHEN f.CONSUMO_MWH > (s.CONSUMO_PROMEDIO + 2 * s.DESVIACION_CONSUMO) THEN 'Consumo Crítico Alto' WHEN f.CONSUMO_MWH > (s.CONSUMO_PROMEDIO + s.DESVIACION_CONSUMO) THEN 'Consumo Alto' WHEN f.CONSUMO_MWH < (s.CONSUMO_PROMEDIO - 2 * s.DESVIACION_CONSUMO) THEN 'Consumo Crítico Bajo' ELSE 'Normal' END as TIPO_ALERTA FROM FACT_CONSUMO_DIARIO f JOIN DIM_CLIENTES c ON f.ID_CLIENTE = c.ID_CLIENTE JOIN consumo_stats s ON c.ESTADO = s.ESTADO AND c.INDUSTRIA = s.INDUSTRIA WHERE f.FECHA >= DATEADD('WEEK', -2, CURRENT_DATE()) AND f.CONSUMO_MWH > (s.CONSUMO_PROMEDIO + s.DESVIACION_CONSUMO) ORDER BY f.FECHA DESC, f.CONSUMO_MWH DESC
+    verified_by: Fénix Energía Analytics Team
+    verified_at: 1704067200
