@@ -1,0 +1,356 @@
+name: techflow_solutions_model
+description: Modelo semántico para análisis empresarial de TechFlow Solutions - Snowflake Cortex Demo
+
+tables:
+  - name: productos
+    description: Tabla de productos y servicios de TechFlow Solutions
+    base_table:
+      database: TECHFLOW_DEMO
+      schema: CORTEX_DEMO
+      table: PRODUCTOS
+    primary_key:
+      columns: [PRODUCTO_ID]
+    dimensions:
+      - name: producto_id
+        expr: PRODUCTO_ID
+        data_type: STRING
+      - name: producto_nombre
+        expr: NOMBRE
+        data_type: STRING
+        description: Nombre comercial del producto
+      - name: producto_categoria
+        expr: CATEGORIA
+        data_type: STRING
+        description: Categoría del producto
+      - name: producto_estado
+        expr: ESTADO
+        data_type: STRING
+        description: Estado del producto
+    time_dimensions:
+      - name: producto_fecha_lanzamiento
+        expr: FECHA_LANZAMIENTO
+        data_type: DATE
+    facts:
+      - name: producto_costo_unitario
+        expr: COSTO_UNITARIO
+        data_type: NUMBER
+      - name: producto_precio_lista
+        expr: PRECIO_LISTA
+        data_type: NUMBER
+      - name: producto_margen_bruto
+        expr: PRECIO_LISTA - COSTO_UNITARIO
+        data_type: NUMBER
+
+  - name: clientes
+    description: Tabla de clientes de TechFlow Solutions
+    base_table:
+      database: TECHFLOW_DEMO
+      schema: CORTEX_DEMO
+      table: CLIENTES
+    primary_key:
+      columns: [CLIENTE_ID]
+    dimensions:
+      - name: cliente_id
+        expr: CLIENTE_ID
+        data_type: STRING
+      - name: cliente_nombre
+        expr: NOMBRE
+        data_type: STRING
+        description: Nombre comercial del cliente
+      - name: cliente_segmento
+        expr: SEGMENTO
+        data_type: STRING
+        description: Segmento de cliente
+      - name: cliente_region
+        expr: REGION_GEOGRAFICA
+        data_type: STRING
+        description: Región geográfica
+      - name: cliente_industria
+        expr: INDUSTRIA
+        data_type: STRING
+        description: Industria del cliente
+      - name: cliente_tamano_empresa
+        expr: TAMAÑO_EMPRESA
+        data_type: STRING
+        description: Tamaño de la empresa
+      - name: cliente_estado
+        expr: ESTADO_CLIENTE
+        data_type: STRING
+        description: Estado del cliente
+    time_dimensions:
+      - name: cliente_fecha_registro
+        expr: FECHA_REGISTRO
+        data_type: DATE
+    facts:
+      - name: cliente_cltv_estimado
+        expr: CLTV_ESTIMADO
+        data_type: NUMBER
+
+  - name: transacciones
+    description: Tabla de transacciones de venta
+    base_table:
+      database: TECHFLOW_DEMO
+      schema: CORTEX_DEMO
+      table: TRANSACCIONES
+    primary_key:
+      columns: [TRANSACCION_ID]
+    dimensions:
+      - name: transaccion_id
+        expr: TRANSACCION_ID
+        data_type: STRING
+      - name: cliente_id
+        expr: CLIENTE_ID
+        data_type: STRING
+      - name: producto_id
+        expr: PRODUCTO_ID
+        data_type: STRING
+      - name: transaccion_canal_venta
+        expr: CANAL_VENTA
+        data_type: STRING
+      - name: transaccion_region
+        expr: REGION
+        data_type: STRING
+      - name: transaccion_metodo_pago
+        expr: METODO_PAGO
+        data_type: STRING
+      - name: transaccion_estado
+        expr: ESTADO_PEDIDO
+        data_type: STRING
+      - name: transaccion_vendedor_id
+        expr: VENDEDOR_ID
+        data_type: STRING
+    time_dimensions:
+      - name: transaccion_fecha
+        expr: FECHA_TRANSACCION
+        data_type: TIMESTAMP
+    facts:
+      - name: transaccion_cantidad
+        expr: CANTIDAD
+        data_type: NUMBER
+      - name: transaccion_precio_unitario
+        expr: PRECIO_UNITARIO
+        data_type: NUMBER
+      - name: transaccion_descuento
+        expr: DESCUENTO_APLICADO
+        data_type: NUMBER
+      - name: transaccion_ingresos_brutos
+        expr: CANTIDAD * PRECIO_UNITARIO
+        data_type: NUMBER
+      - name: transaccion_ingresos_netos
+        expr: CANTIDAD * PRECIO_UNITARIO * (1 - DESCUENTO_APLICADO/100)
+        data_type: NUMBER
+
+  - name: campanas_marketing
+    description: Tabla de campañas de marketing
+    base_table:
+      database: TECHFLOW_DEMO
+      schema: CORTEX_DEMO
+      table: CAMPANAS_MARKETING
+    primary_key:
+      columns: [CAMPANA_ID]
+    dimensions:
+      - name: campana_id
+        expr: CAMPANA_ID
+        data_type: STRING
+      - name: campana_nombre
+        expr: NOMBRE
+        data_type: STRING
+      - name: campana_canal
+        expr: CANAL_MARKETING
+        data_type: STRING
+      - name: campana_region_objetivo
+        expr: REGION_OBJETIVO
+        data_type: STRING
+      - name: campana_estado
+        expr: ESTADO_CAMPANA
+        data_type: STRING
+    time_dimensions:
+      - name: campana_fecha_inicio
+        expr: FECHA_INICIO
+        data_type: DATE
+      - name: campana_fecha_fin
+        expr: FECHA_FIN
+        data_type: DATE
+    facts:
+      - name: campana_presupuesto
+        expr: PRESUPUESTO
+        data_type: NUMBER
+      - name: campana_leads_generados
+        expr: LEADS_GENERADOS
+        data_type: NUMBER
+      - name: campana_conversiones
+        expr: CONVERSIONES
+        data_type: NUMBER
+      - name: campana_roi
+        expr: ROI_CALCULADO
+        data_type: NUMBER
+      - name: campana_tasa_conversion
+        expr: CASE WHEN LEADS_GENERADOS > 0 THEN (CONVERSIONES::FLOAT / LEADS_GENERADOS) * 100 ELSE 0 END
+        data_type: NUMBER
+      - name: campana_costo_por_lead
+        expr: CASE WHEN LEADS_GENERADOS > 0 THEN PRESUPUESTO / LEADS_GENERADOS ELSE 0 END
+        data_type: NUMBER
+
+  - name: tickets_soporte
+    description: Tabla de tickets de soporte al cliente
+    base_table:
+      database: TECHFLOW_DEMO
+      schema: CORTEX_DEMO
+      table: TICKETS_SOPORTE
+    primary_key:
+      columns: [TICKET_ID]
+    dimensions:
+      - name: ticket_id
+        expr: TICKET_ID
+        data_type: STRING
+      - name: cliente_id
+        expr: CLIENTE_ID
+        data_type: STRING
+      - name: producto_id
+        expr: PRODUCTO_ID
+        data_type: STRING
+      - name: ticket_tipo_problema
+        expr: TIPO_PROBLEMA
+        data_type: STRING
+      - name: ticket_prioridad
+        expr: PRIORIDAD
+        data_type: STRING
+      - name: ticket_estado
+        expr: ESTADO
+        data_type: STRING
+      - name: ticket_sentimiento
+        expr: SENTIMIENTO
+        data_type: STRING
+      - name: ticket_agente_asignado
+        expr: AGENTE_ASIGNADO
+        data_type: STRING
+    time_dimensions:
+      - name: ticket_fecha_creacion
+        expr: FECHA_CREACION
+        data_type: TIMESTAMP
+    facts:
+      - name: ticket_tiempo_resolucion_horas
+        expr: TIEMPO_RESOLUCION_HORAS
+        data_type: NUMBER
+      - name: ticket_satisfaccion_cliente
+        expr: SATISFACCION_CLIENTE
+        data_type: NUMBER
+
+metrics:
+  - name: ingresos_totales
+    description: Ingresos totales de ventas
+    expr: SUM(transacciones.transaccion_ingresos_netos)
+  - name: ingresos_brutos_totales
+    description: Ingresos brutos totales antes de descuentos
+    expr: SUM(transacciones.transaccion_ingresos_brutos)
+  - name: numero_transacciones
+    description: Número total de transacciones
+    expr: COUNT(transacciones.transaccion_id)
+  - name: ticket_promedio
+    description: Valor promedio por transacción
+    expr: AVG(transacciones.transaccion_ingresos_netos)
+  - name: clientes_unicos
+    description: Número de clientes únicos que compraron
+    expr: COUNT(DISTINCT transacciones.cliente_id)
+  - name: productos_vendidos_total
+    description: Cantidad total de productos vendidos
+    expr: SUM(transacciones.transaccion_cantidad)
+  - name: satisfaccion_promedio
+    description: Satisfacción promedio del cliente
+    expr: AVG(tickets_soporte.ticket_satisfaccion_cliente)
+  - name: tiempo_resolucion_promedio
+    description: Tiempo promedio de resolución de tickets en horas
+    expr: AVG(tickets_soporte.ticket_tiempo_resolucion_horas)
+  - name: total_tickets
+    description: Número total de tickets de soporte
+    expr: COUNT(tickets_soporte.ticket_id)
+  - name: roi_marketing_promedio
+    description: ROI promedio de campañas de marketing
+    expr: AVG(campanas_marketing.campana_roi)
+  - name: leads_totales
+    description: Total de leads generados por marketing
+    expr: SUM(campanas_marketing.campana_leads_generados)
+  - name: conversiones_totales
+    description: Total de conversiones logradas
+    expr: SUM(campanas_marketing.campana_conversiones)
+
+relationships:
+  - name: transacciones_productos
+    leftTable: transacciones
+    rightTable: productos
+    relationshipColumns:
+      - left_column: PRODUCTO_ID
+        right_column: PRODUCTO_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: transacciones_clientes
+    leftTable: transacciones
+    rightTable: clientes
+    relationshipColumns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: tickets_productos
+    leftTable: tickets_soporte
+    rightTable: productos
+    relationshipColumns:
+      - left_column: PRODUCTO_ID
+        right_column: PRODUCTO_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+  - name: tickets_clientes
+    leftTable: tickets_soporte
+    rightTable: clientes
+    relationshipColumns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+verified_queries:
+  - name: ingresos_mensuales_por_region
+    question: ¿Cuáles fueron nuestros ingresos mensuales por región en los últimos 12 meses?
+    use_as_onboarding_question: true
+    sql: SELECT t.transaccion_region, DATE_TRUNC('MONTH', t.transaccion_fecha) AS mes, SUM(t.transaccion_ingresos_netos) AS ingresos_totales, COUNT(*) AS numero_transacciones, COUNT(DISTINCT t.cliente_id) AS clientes_unicos FROM transacciones t WHERE t.transaccion_estado = 'COMPLETADO' AND t.transaccion_fecha >= DATEADD(MONTH, -12, CURRENT_DATE()) GROUP BY t.transaccion_region, DATE_TRUNC('MONTH', t.transaccion_fecha) ORDER BY mes DESC, ingresos_totales DESC
+    verified_by: TechFlow Analytics Team
+    verified_at: 1704067200
+
+  - name: top_productos_por_ingresos
+    question: ¿Cuáles son los productos con mejor desempeño por ingresos este año?
+    use_as_onboarding_question: true
+    sql: SELECT p.producto_nombre, p.producto_categoria, SUM(t.transaccion_ingresos_netos) AS ingresos_totales, SUM(t.transaccion_cantidad) AS unidades_vendidas, COUNT(DISTINCT t.cliente_id) AS clientes_unicos FROM transacciones t JOIN productos p ON t.producto_id = p.producto_id WHERE t.transaccion_estado = 'COMPLETADO' AND t.transaccion_fecha >= DATEADD(YEAR, -1, CURRENT_DATE()) GROUP BY p.producto_nombre, p.producto_categoria ORDER BY ingresos_totales DESC
+    verified_by: TechFlow Analytics Team
+    verified_at: 1704067200
+
+  - name: analisis_segmento_clientes
+    question: ¿Cómo se distribuyen nuestros ingresos por segmento de cliente?
+    use_as_onboarding_question: true
+    sql: SELECT c.cliente_segmento, c.cliente_region, COUNT(DISTINCT c.cliente_id) AS total_clientes, SUM(t.transaccion_ingresos_netos) AS ingresos_totales, AVG(t.transaccion_ingresos_netos) AS valor_promedio_transaccion FROM transacciones t JOIN clientes c ON t.cliente_id = c.cliente_id WHERE t.transaccion_estado = 'COMPLETADO' AND t.transaccion_fecha >= DATEADD(QUARTER, -4, CURRENT_DATE()) GROUP BY c.cliente_segmento, c.cliente_region ORDER BY ingresos_totales DESC
+    verified_by: TechFlow Analytics Team
+    verified_at: 1704067200
+
+  - name: satisfaccion_por_producto
+    question: ¿Cuál es la satisfacción del cliente por producto?
+    use_as_onboarding_question: true
+    sql: SELECT p.producto_nombre, p.producto_categoria, COUNT(ts.ticket_id) AS total_tickets, AVG(ts.ticket_satisfaccion_cliente) AS satisfaccion_promedio, AVG(ts.ticket_tiempo_resolucion_horas) AS tiempo_resolucion_promedio FROM tickets_soporte ts JOIN productos p ON ts.producto_id = p.producto_id WHERE ts.ticket_fecha_creacion >= DATEADD(QUARTER, -2, CURRENT_DATE()) GROUP BY p.producto_nombre, p.producto_categoria HAVING COUNT(ts.ticket_id) >= 3 ORDER BY satisfaccion_promedio DESC
+    verified_by: TechFlow Analytics Team
+    verified_at: 1704067200
+
+  - name: rendimiento_canales_venta
+    question: ¿Cuál es el rendimiento de cada canal de venta?
+    use_as_onboarding_question: true
+    sql: SELECT t.transaccion_canal_venta, COUNT(*) AS numero_transacciones, SUM(t.transaccion_ingresos_netos) AS ingresos_totales, AVG(t.transaccion_ingresos_netos) AS ticket_promedio, COUNT(DISTINCT t.cliente_id) AS clientes_unicos FROM transacciones t WHERE t.transaccion_estado = 'COMPLETADO' AND t.transaccion_fecha >= DATEADD(QUARTER, -4, CURRENT_DATE()) GROUP BY t.transaccion_canal_venta ORDER BY ingresos_totales DESC
+    verified_by: TechFlow Analytics Team
+    verified_at: 1704067200
+
+  - name: tendencias_trimestrales
+    question: ¿Cuáles son las tendencias de crecimiento trimestral?
+    use_as_onboarding_question: false
+    sql: SELECT DATE_TRUNC('QUARTER', t.transaccion_fecha) AS trimestre, SUM(t.transaccion_ingresos_netos) AS ingresos_trimestre, COUNT(*) AS transacciones_trimestre, COUNT(DISTINCT t.cliente_id) AS clientes_activos FROM transacciones t WHERE t.transaccion_estado = 'COMPLETADO' AND t.transaccion_fecha >= DATEADD(YEAR, -2, CURRENT_DATE()) GROUP BY DATE_TRUNC('QUARTER', t.transaccion_fecha) ORDER BY trimestre DESC
+    verified_by: TechFlow Analytics Team
+    verified_at: 1704067200
+
