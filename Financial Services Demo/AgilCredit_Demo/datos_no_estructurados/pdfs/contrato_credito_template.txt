@@ -1,0 +1,367 @@
+================================================================================
+                              AGILCREDIT S.A.P.I. DE C.V.
+                           SOFOM E.N.R. (Sociedad Financiera
+                       de Objeto Múltiple, Entidad No Regulada)
+================================================================================
+
+                        CONTRATO DE CRÉDITO SIMPLE CON INTERÉS
+                                  NÚMERO: CRE000XXX
+
+================================================================================
+PARTE I: IDENTIFICACIÓN DE LAS PARTES
+================================================================================
+
+EL ACREDITANTE:
+
+    Razón Social:        AGILCREDIT S.A.P.I. DE C.V. SOFOM E.N.R.
+    RFC:                 AGC201020AB1
+    Domicilio:           Paseo de la Reforma 505, Piso 15
+                         Colonia Cuauhtémoc, C.P. 06500
+                         Ciudad de México, CDMX
+    Teléfono:            55-5678-9000
+    Correo electrónico:  contratos@agilcredit.mx
+    Representante Legal: Lic. Fernando Martínez Gutiérrez
+    
+En lo sucesivo denominado como "EL ACREDITANTE"
+
+EL ACREDITADO:
+
+    Nombre Completo:     [NOMBRE_CLIENTE]
+    RFC:                 [RFC_CLIENTE]
+    CURP:                [CURP_CLIENTE]
+    Fecha de Nacimiento: [FECHA_NACIMIENTO]
+    Domicilio:           [DOMICILIO_COMPLETO_CLIENTE]
+    Teléfono:            [TELEFONO_CLIENTE]
+    Correo electrónico:  [EMAIL_CLIENTE]
+    
+En lo sucesivo denominado como "EL ACREDITADO"
+
+================================================================================
+PARTE II: DECLARACIONES
+================================================================================
+
+DECLARA "EL ACREDITANTE":
+
+I.    Que es una Sociedad Anónima Promotora de Inversión de Capital Variable,
+      Sociedad Financiera de Objeto Múltiple, Entidad No Regulada, constituida
+      conforme a las leyes mexicanas, según consta en escritura pública número
+      45,678 de fecha 20 de octubre de 2020, otorgada ante la fe del Lic.
+      Roberto Sánchez Méndez, Notario Público número 123 de la Ciudad de México.
+
+II.   Que dentro de su objeto social se encuentra el otorgamiento de créditos,
+      préstamos o financiamientos.
+
+III.  Que cuenta con la capacidad jurídica y los recursos necesarios para
+      celebrar el presente contrato.
+
+IV.   Que su Representante Legal cuenta con las facultades suficientes para
+      suscribir el presente contrato, mismas que no le han sido revocadas,
+      modificadas o limitadas en forma alguna.
+
+DECLARA "EL ACREDITADO":
+
+I.    Que es una persona física, mayor de edad, en pleno uso de sus facultades
+      mentales y con capacidad legal para contratar y obligarse.
+
+II.   Que los datos proporcionados en su solicitud de crédito son veraces y
+      correctos, y que cuenta con la capacidad económica para cumplir las
+      obligaciones derivadas del presente contrato.
+
+III.  Que conoce y acepta las condiciones del crédito que se le otorga mediante
+      el presente contrato.
+
+IV.   Que ha leído y comprendido íntegramente el presente contrato, la Carátula
+      del Contrato, el Anexo de Comisiones y la Declaración de Costo Anual Total
+      (CAT), y manifiesta su conformidad con los mismos.
+
+V.    Que no se encuentra en proceso de quiebra, suspensión de pagos, concurso
+      mercantil o cualquier otro procedimiento que afecte su patrimonio.
+
+VI.   Que autoriza a "EL ACREDITANTE" para consultar su historial crediticio en
+      las Sociedades de Información Crediticia que considere conveniente.
+
+================================================================================
+PARTE III: CONDICIONES DEL CRÉDITO
+================================================================================
+
+CLÁUSULA PRIMERA - OBJETO DEL CONTRATO
+
+"EL ACREDITANTE" otorga a "EL ACREDITADO" un crédito simple con interés, en los
+términos y condiciones establecidos en el presente contrato y su Carátula.
+
+CLÁUSULA SEGUNDA - MONTO DEL CRÉDITO
+
+El monto del crédito otorgado es de:
+
+    Cantidad en Número:   $[MONTO_CREDITO] MXN
+    Cantidad en Letra:    [MONTO_LETRA] PESOS 00/100 MONEDA NACIONAL
+
+CLÁUSULA TERCERA - DESTINO DEL CRÉDITO
+
+El crédito será destinado exclusivamente para: [PROPOSITO_CREDITO]
+
+"EL ACREDITADO" se compromete a destinar el crédito únicamente al fin declarado.
+"EL ACREDITANTE" se reserva el derecho de solicitar comprobantes del destino
+del crédito.
+
+CLÁUSULA CUARTA - PLAZO
+
+El plazo del crédito es de [PLAZO_MESES] meses, contados a partir de la fecha
+de desembolso.
+
+    Fecha de desembolso:       [FECHA_DESEMBOLSO]
+    Fecha de vencimiento:      [FECHA_VENCIMIENTO]
+
+CLÁUSULA QUINTA - TASA DE INTERÉS
+
+"EL ACREDITADO" pagará intereses ordinarios sobre el saldo insoluto del crédito
+a una tasa de interés anual FIJA de:
+
+    Tasa de Interés Ordinaria:  [TASA_INTERES]% anual
+    
+La tasa de interés ordinaria permanecerá fija durante toda la vigencia del
+crédito y se calculará sobre saldos insolutos.
+
+CLÁUSULA SEXTA - INTERESES MORATORIOS
+
+En caso de mora o incumplimiento en cualquier pago, "EL ACREDITADO" pagará
+intereses moratorios sobre las cantidades vencidas y no pagadas, calculados a
+una tasa equivalente al 1.5 veces la tasa de interés ordinaria, sin que dicha
+tasa pueda exceder el límite establecido por la legislación aplicable.
+
+    Tasa de Interés Moratoria:  [TASA_MORATORIA]% anual
+
+CLÁUSULA SÉPTIMA - PAGOS
+
+"EL ACREDITADO" se obliga a realizar pagos mensuales conforme a la tabla de
+amortización proporcionada, mediante el sistema de amortización francés
+(pagos iguales).
+
+    Monto de Pago Mensual:      $[PAGO_MENSUAL] MXN
+    Fecha de Pago:              Día [DIA_PAGO] de cada mes
+    Número de Pagos:            [NUMERO_PAGOS] pagos mensuales
+
+El primer pago deberá realizarse el día [FECHA_PRIMER_PAGO].
+
+CLÁUSULA OCTAVA - FORMA DE PAGO
+
+Los pagos podrán realizarse mediante:
+
+a) Transferencia electrónica SPEI
+b) Depósito bancario
+c) Cargo automático a tarjeta de débito
+d) Domiciliación bancaria
+e) Cualquier otro medio que "EL ACREDITANTE" ponga a disposición
+
+Los pagos se aplicarán en el siguiente orden:
+1) Gastos de cobranza
+2) Intereses moratorios
+3) Intereses ordinarios vencidos
+4) Capital vencido
+5) Comisiones
+
+CLÁUSULA NOVENA - COMISIONES
+
+"EL ACREDITADO" pagará las siguientes comisiones:
+
+    Comisión por Apertura:      [COMISION_APERTURA]% sobre el monto del crédito
+    Monto de Comisión:          $[MONTO_COMISION_APERTURA] MXN + IVA
+    
+    Otras comisiones aplicables se detallan en el Anexo de Comisiones.
+
+La comisión por apertura será descontada del monto del crédito al momento del
+desembolso.
+
+CLÁUSULA DÉCIMA - COSTO ANUAL TOTAL (CAT)
+
+El Costo Anual Total (CAT) para fines informativos y de comparación es:
+
+    CAT (sin IVA):              [CAT_SIN_IVA]%
+    CAT PROMEDIO:               [CAT_PROMEDIO]%
+    
+Fecha de cálculo: [FECHA_CALCULO_CAT]
+
+El CAT es una medida estandarizada del costo de financiamiento, expresado en
+términos porcentuales anuales que, para fines informativos y de comparación,
+incorpora la totalidad de los costos y gastos inherentes a los créditos.
+
+CLÁUSULA DÉCIMA PRIMERA - DESEMBOLSO
+
+El desembolso del crédito se realizará mediante transferencia electrónica a la
+cuenta bancaria proporcionada por "EL ACREDITADO":
+
+    Banco:                      [BANCO_CLIENTE]
+    CLABE:                      [CLABE_CLIENTE]
+    Nombre del Titular:         [NOMBRE_TITULAR]
+
+El desembolso se realizará dentro de las 24 a 48 horas hábiles siguientes a la
+firma del presente contrato, previo cumplimiento de todos los requisitos.
+
+CLÁUSULA DÉCIMA SEGUNDA - PAGO ANTICIPADO
+
+"EL ACREDITADO" podrá realizar pagos anticipados totales o parciales sin
+penalización alguna, con el consecuente descuento de intereses no devengados.
+
+Para realizar un pago anticipado, "EL ACREDITADO" deberá notificar a
+"EL ACREDITANTE" con al menos 3 días hábiles de anticipación.
+
+================================================================================
+PARTE IV: OBLIGACIONES Y DERECHOS
+================================================================================
+
+CLÁUSULA DÉCIMA TERCERA - OBLIGACIONES DEL ACREDITADO
+
+"EL ACREDITADO" se obliga a:
+
+I.    Utilizar el crédito exclusivamente para el destino declarado.
+
+II.   Realizar puntualmente todos los pagos en las fechas convenidas.
+
+III.  Proporcionar información veraz, completa y actualizada sobre su situación
+      patrimonial y capacidad de pago cuando "EL ACREDITANTE" lo solicite.
+
+IV.   Notificar por escrito cualquier cambio en sus datos personales (domicilio,
+      teléfono, correo electrónico, situación laboral) dentro de los 5 días
+      hábiles siguientes al cambio.
+
+V.    Permitir a "EL ACREDITANTE" verificar la información proporcionada y el
+      destino del crédito.
+
+VI.   Autorizar a "EL ACREDITANTE" para consultar su información crediticia en
+      las Sociedades de Información Crediticia.
+
+VII.  Mantener en vigor, durante la vigencia del crédito, los seguros que en su
+      caso se hayan contratado.
+
+CLÁUSULA DÉCIMA CUARTA - DERECHOS DEL ACREDITADO
+
+"EL ACREDITADO" tiene derecho a:
+
+I.    Recibir el monto del crédito en las condiciones pactadas.
+
+II.   Recibir una copia del presente contrato y todos sus anexos.
+
+III.  Recibir estados de cuenta mensuales con el detalle de su crédito.
+
+IV.   Realizar pagos anticipados sin penalización.
+
+V.    Recibir trato digno y respetuoso por parte de "EL ACREDITANTE".
+
+VI.   Presentar reclamaciones ante la Unidad Especializada de Atención a
+      Usuarios (UNE) de "EL ACREDITANTE" o ante la CONDUSEF.
+
+================================================================================
+PARTE V: CAUSAS DE VENCIMIENTO ANTICIPADO
+================================================================================
+
+CLÁUSULA DÉCIMA QUINTA - VENCIMIENTO ANTICIPADO
+
+"EL ACREDITANTE" podrá dar por vencido anticipadamente el plazo del crédito y
+exigir el pago inmediato del saldo total adeudado, en los siguientes casos:
+
+I.    Incumplimiento en el pago de dos o más amortizaciones consecutivas.
+
+II.   Comprobarse que la información proporcionada por "EL ACREDITADO" es falsa
+      o inexacta.
+
+III.  Si "EL ACREDITADO" es declarado en quiebra, suspensión de pagos o
+      concurso mercantil.
+
+IV.   Si el crédito fue destinado a un fin distinto del declarado.
+
+V.    Fallecimiento de "EL ACREDITADO".
+
+VI.   Cualquier otra causa establecida por la legislación aplicable.
+
+================================================================================
+PARTE VI: DISPOSICIONES GENERALES
+================================================================================
+
+CLÁUSULA DÉCIMA SEXTA - AVISOS Y NOTIFICACIONES
+
+Todas las notificaciones entre las partes deberán realizarse por escrito a los
+domicilios señalados en el presente contrato, por correo electrónico, o por
+cualquier otro medio que "EL ACREDITANTE" determine.
+
+CLÁUSULA DÉCIMA SÉPTIMA - CESIÓN DE DERECHOS
+
+"EL ACREDITANTE" podrá ceder, transmitir o transferir, total o parcialmente,
+los derechos de cobro derivados del presente contrato, sin necesidad de
+consentimiento de "EL ACREDITADO", quien desde este momento acepta dicha cesión.
+
+CLÁUSULA DÉCIMA OCTAVA - PROTECCIÓN DE DATOS PERSONALES
+
+"EL ACREDITADO" autoriza expresamente a "EL ACREDITANTE" para que, directamente
+o a través de terceros, lleve a cabo investigaciones sobre su comportamiento
+crediticio en las Sociedades de Información Crediticia que estime conveniente.
+
+"EL ACREDITANTE" se compromete a proteger los datos personales de "EL ACREDITADO"
+conforme a la Ley Federal de Protección de Datos Personales en Posesión de
+Particulares. El Aviso de Privacidad se encuentra disponible en:
+www.agilcredit.mx/privacidad
+
+CLÁUSULA DÉCIMA NOVENA - UNIDAD ESPECIALIZADA Y CONDUSEF
+
+Para cualquier aclaración, consulta o reclamación, "EL ACREDITADO" puede
+contactar a nuestra Unidad Especializada de Atención a Usuarios (UNE):
+
+    Teléfono:            55-5678-9090
+    Correo electrónico:  une@agilcredit.mx
+    Horario:             Lunes a Viernes de 9:00 a 18:00 horas
+
+En caso de no obtener respuesta satisfactoria, puede acudir a la Comisión
+Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros
+(CONDUSEF):
+
+    Teléfono:            55-5340-0999 / 01-800-999-8080
+    Página web:          www.condusef.gob.mx
+
+CLÁUSULA VIGÉSIMA - JURISDICCIÓN Y LEGISLACIÓN APLICABLE
+
+Para la interpretación y cumplimiento del presente contrato, las partes se
+someten expresamente a la jurisdicción de los Tribunales competentes de la
+Ciudad de México, renunciando a cualquier otro fuero que pudiera corresponderles
+por razón de su domicilio presente o futuro.
+
+El presente contrato se regirá por las leyes aplicables de los Estados Unidos
+Mexicanos.
+
+================================================================================
+FIRMAS
+================================================================================
+
+Leído que fue el presente contrato por las partes y enteradas de su contenido,
+valor y consecuencias legales, lo firman de conformidad en la Ciudad de México,
+el día [DIA] de [MES] de [AÑO].
+
+
+POR "EL ACREDITANTE"
+
+
+_________________________________
+Lic. Fernando Martínez Gutiérrez
+Representante Legal
+AGILCREDIT S.A.P.I. DE C.V. SOFOM E.N.R.
+
+
+POR "EL ACREDITADO"
+
+
+_________________________________
+[NOMBRE_COMPLETO_CLIENTE]
+
+
+================================================================================
+ANEXOS:
+- Anexo I:   Carátula del Contrato
+- Anexo II:  Tabla de Amortización
+- Anexo III: Anexo de Comisiones
+- Anexo IV:  Declaración de Costo Anual Total (CAT)
+- Anexo V:   Aviso de Privacidad
+================================================================================
+
+                        Este documento consta de 8 páginas
+================================================================================
+
+
+

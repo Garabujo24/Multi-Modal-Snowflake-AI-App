@@ -1,0 +1,251 @@
+═══════════════════════════════════════════════════════════════════════════════
+                            AGILCREDIT SOFOM E.N.R.
+               TÉRMINOS Y CONDICIONES DE USO - APLICACIÓN MÓVIL
+═══════════════════════════════════════════════════════════════════════════════
+
+Versión: 3.2.1
+Fecha de Actualización: 1 de Septiembre de 2025
+Vigencia: A partir de la aceptación del usuario
+
+IMPORTANTE: Lea cuidadosamente estos términos antes de usar la aplicación.
+Al descargar, instalar o usar la aplicación AgilCredit, usted acepta estar
+sujeto a estos términos y condiciones.
+
+═══════════════════════════════════════════════════════════════════════════════
+1. DEFINICIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+AGILCREDIT: AgilCredit SOFOM E.N.R., con RFC AGC150720AB3
+APLICACIÓN: La aplicación móvil "AgilCredit" disponible para iOS y Android
+USUARIO: Persona que descarga y usa la aplicación
+CUENTA: Perfil del usuario dentro de la aplicación
+SERVICIOS: Funcionalidades disponibles en la aplicación
+
+═══════════════════════════════════════════════════════════════════════════════
+2. DESCRIPCIÓN DE LOS SERVICIOS
+═══════════════════════════════════════════════════════════════════════════════
+
+La aplicación AgilCredit permite:
+
+✓ Consultar saldos y estados de cuenta de créditos
+✓ Realizar pagos de créditos mediante SPEI o tarjeta
+✓ Solicitar nuevos créditos
+✓ Subir documentación requerida
+✓ Recibir notificaciones de vencimientos
+✓ Chatear con ejecutivos de atención al cliente
+✓ Consultar historial de pagos y transacciones
+✓ Actualizar datos personales
+✓ Descargar estados de cuenta y comprobantes
+✓ Calcular simulaciones de crédito
+
+═══════════════════════════════════════════════════════════════════════════════
+3. REQUISITOS PARA USO
+═══════════════════════════════════════════════════════════════════════════════
+
+TÉCNICOS:
+• Dispositivo iOS 13.0 o superior / Android 8.0 o superior
+• Conexión a Internet (WiFi o datos móviles)
+• Espacio de almacenamiento: Mínimo 50 MB
+• Cámara (para escaneo de documentos)
+
+USUARIO:
+• Ser cliente activo de AgilCredit
+• Tener un crédito vigente o solicitud aprobada
+• Ser mayor de 18 años
+• Proporcionar email y número telefónico válidos
+• Crear contraseña segura
+
+═══════════════════════════════════════════════════════════════════════════════
+4. REGISTRO Y ACCESO A LA CUENTA
+═══════════════════════════════════════════════════════════════════════════════
+
+4.1 REGISTRO
+Para registrarse necesita:
+- Número de cliente (proporcionado por AgilCredit)
+- RFC registrado
+- Correo electrónico
+- Número de teléfono móvil
+
+4.2 AUTENTICACIÓN
+La aplicación ofrece múltiples métodos de autenticación:
+- Contraseña (mínimo 8 caracteres, letras y números)
+- Biometría (huella digital o Face ID)
+- PIN de 6 dígitos
+- OTP (código temporal por SMS)
+
+4.3 RESPONSABILIDAD DEL USUARIO
+El usuario es responsable de:
+• Mantener la confidencialidad de sus credenciales
+• No compartir su acceso con terceros
+• Notificar inmediatamente cualquier uso no autorizado
+• Cerrar sesión después de cada uso
+
+═══════════════════════════════════════════════════════════════════════════════
+5. PRIVACIDAD Y PROTECCIÓN DE DATOS
+═══════════════════════════════════════════════════════════════════════════════
+
+5.1 DATOS RECOPILADOS
+La aplicación recopila:
+- Datos de identificación (nombre, RFC, CURP)
+- Información de contacto (email, teléfono, dirección)
+- Información financiera (ingresos, cuentas bancarias)
+- Datos de uso de la aplicación
+- Información del dispositivo (modelo, sistema operativo, UUID)
+- Ubicación geográfica (con su consentimiento)
+- Fotografías de documentos
+
+5.2 USO DE LA INFORMACIÓN
+Los datos se utilizan para:
+✓ Procesar solicitudes de crédito
+✓ Gestionar pagos y transacciones
+✓ Mejorar la experiencia del usuario
+✓ Enviar notificaciones relevantes
+✓ Prevenir fraudes
+✓ Cumplir con obligaciones regulatorias
+
+5.3 COMPARTIR INFORMACIÓN
+AgilCredit NO vende sus datos personales. Podemos compartir información con:
+• Sociedades de Información Crediticia (Buró, Círculo)
+• Autoridades regulatorias (CNBV, SHCP, UIF)
+• Proveedores de servicios (procesadores de pago, SMS)
+• Terceros con su consentimiento explícito
+
+Consulte nuestro Aviso de Privacidad completo en: www.agilcredit.mx/privacidad
+
+═══════════════════════════════════════════════════════════════════════════════
+6. SEGURIDAD
+═══════════════════════════════════════════════════════════════════════════════
+
+6.1 MEDIDAS DE SEGURIDAD
+• Encriptación SSL/TLS en todas las comunicaciones
+• Almacenamiento seguro de datos en servidores certificados
+• Autenticación de dos factores
+• Monitoreo continuo de actividad sospechosa
+• Cierre automático de sesión por inactividad (5 minutos)
+
+6.2 OBLIGACIONES DEL USUARIO
+• No usar redes WiFi públicas para operaciones sensibles
+• Mantener actualizado el sistema operativo del dispositivo
+• Instalar únicamente desde tiendas oficiales (App Store, Google Play)
+• Reportar inmediatamente dispositivos perdidos o robados
+
+═══════════════════════════════════════════════════════════════════════════════
+7. PAGOS Y TRANSACCIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+7.1 MÉTODOS DE PAGO
+- Transferencia SPEI
+- Tarjeta de débito
+- Tarjeta de crédito
+
+7.2 PROCESAMIENTO
+• Los pagos se procesan en tiempo real o máximo 24 horas hábiles
+• Se enviará confirmación por email y push notification
+• El pago se verá reflejado en su estado de cuenta en 24-48 horas
+
+7.3 COMISIONES
+• AgilCredit no cobra por el uso de la aplicación
+• Las comisiones bancarias de terceros aplican según su institución
+
+7.4 RESPONSABILIDAD
+• El usuario es responsable de verificar los datos antes de confirmar
+• AgilCredit no se hace responsable por errores del usuario en captura
+• Los pagos son irreversibles una vez procesados
+
+═══════════════════════════════════════════════════════════════════════════════
+8. PROPIEDAD INTELECTUAL
+═══════════════════════════════════════════════════════════════════════════════
+
+Todo el contenido de la aplicación (diseño, código, logos, textos, imágenes)
+es propiedad de AgilCredit o sus licenciantes y está protegido por leyes de
+propiedad intelectual.
+
+ESTÁ PROHIBIDO:
+✗ Copiar, modificar o distribuir el contenido
+✗ Realizar ingeniería inversa de la aplicación
+✗ Usar la aplicación para fines comerciales no autorizados
+✗ Extraer datos mediante técnicas automatizadas (scraping)
+
+═══════════════════════════════════════════════════════════════════════════════
+9. LIMITACIONES Y EXCLUSIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+LA APLICACIÓN SE PROPORCIONA "TAL CUAL" SIN GARANTÍAS DE NINGÚN TIPO.
+
+AgilCredit no se responsabiliza por:
+• Interrupciones del servicio por mantenimiento o fallas técnicas
+• Pérdida de datos por problemas del dispositivo del usuario
+• Incompatibilidad con dispositivos o sistemas operativos antiguos
+• Acceso de terceros por negligencia del usuario
+• Decisiones tomadas basándose en información de la aplicación
+
+═══════════════════════════════════════════════════════════════════════════════
+10. SUSPENSIÓN Y TERMINACIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+AgilCredit puede suspender o terminar su acceso si:
+• Viola estos términos y condiciones
+• Proporciona información falsa
+• Realiza actividades fraudulentas
+• Usa la aplicación para fines ilegales
+• Liquida o cancela todos sus créditos
+
+═══════════════════════════════════════════════════════════════════════════════
+11. MODIFICACIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+AgilCredit se reserva el derecho de modificar estos términos en cualquier
+momento. Las modificaciones entrarán en vigor al publicarse en la aplicación.
+
+Se notificará a los usuarios sobre cambios significativos mediante:
+• Notificación push
+• Email
+• Aviso al iniciar sesión
+
+El uso continuado de la aplicación después de cambios constituye aceptación.
+
+═══════════════════════════════════════════════════════════════════════════════
+12. SOPORTE Y CONTACTO
+═══════════════════════════════════════════════════════════════════════════════
+
+Para soporte técnico o dudas:
+
+Email: soporte.app@agilcredit.mx
+Teléfono: 800-123-4567
+WhatsApp: 55-1234-5678
+Horario: Lunes a Sábado 8:00 - 20:00 hrs
+
+Chat en la app: Disponible 24/7
+
+═══════════════════════════════════════════════════════════════════════════════
+13. LEGISLACIÓN APLICABLE
+═══════════════════════════════════════════════════════════════════════════════
+
+Estos términos se rigen por las leyes de México. Cualquier controversia será
+resuelta en los tribunales de la Ciudad de México.
+
+═══════════════════════════════════════════════════════════════════════════════
+ACEPTACIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+Al hacer clic en "Aceptar" o al usar la aplicación, confirmo que:
+
+☑ He leído y entendido estos términos y condiciones
+☑ Acepto estar sujeto a estos términos
+☑ He leído el Aviso de Privacidad de AgilCredit
+☑ Autorizo el uso de mis datos conforme al Aviso de Privacidad
+☑ Tengo capacidad legal para aceptar estos términos
+
+═══════════════════════════════════════════════════════════════════════════════
+
+AgilCredit SOFOM E.N.R.
+RFC: AGC150720AB3
+Av. Paseo de la Reforma 505, Piso 15
+Ciudad de México, CDMX, C.P. 06500
+www.agilcredit.mx
+
+Última actualización: 1 de Septiembre de 2025
+
+═══════════════════════════════════════════════════════════════════════════════
+
+

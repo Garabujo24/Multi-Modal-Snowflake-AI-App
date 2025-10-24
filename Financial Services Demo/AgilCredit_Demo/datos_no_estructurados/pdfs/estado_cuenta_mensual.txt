@@ -1,0 +1,158 @@
+═══════════════════════════════════════════════════════════════════════════════
+                            AGILCREDIT SOFOM E.N.R.
+                         ESTADO DE CUENTA MENSUAL
+═══════════════════════════════════════════════════════════════════════════════
+
+PERIODO: Septiembre 2025
+FECHA DE EMISIÓN: 30 de Septiembre de 2025
+NÚMERO DE ESTADO: EDO-2025-09-000234
+
+───────────────────────────────────────────────────────────────────────────────
+DATOS DEL CLIENTE
+───────────────────────────────────────────────────────────────────────────────
+Cliente ID:          CLI000234
+Nombre:              María Elena Rodríguez García
+RFC:                 ROGM851215AB4
+CURP:                ROGM851215MDFDRR08
+Dirección:           Av. Insurgentes Sur 1234, Col. Del Valle
+                     Ciudad de México, CDMX, C.P. 03100
+Teléfono:            55-1234-5678
+Email:               maria.rodriguez@email.com
+
+───────────────────────────────────────────────────────────────────────────────
+RESUMEN DE CRÉDITO
+───────────────────────────────────────────────────────────────────────────────
+Número de Crédito:   CRE000234
+Producto:            Crédito Personal Express
+Fecha de Apertura:   15 de Marzo de 2024
+Monto Original:      $85,000.00 MXN
+Tasa Anual:          24.50%
+CAT Promedio:        32.8% (sin IVA)
+Plazo Total:         36 meses
+Pago Mensual:        $3,250.00 MXN
+
+───────────────────────────────────────────────────────────────────────────────
+SALDO Y ESTADO ACTUAL
+───────────────────────────────────────────────────────────────────────────────
+Saldo Anterior (31/Ago/2025):        $68,450.00
+Pagos Realizados en el Periodo:      $3,250.00
+Intereses del Periodo:               $1,395.42
+Otros Cargos:                        $0.00
+SALDO ACTUAL (30/Sep/2025):          $66,595.42
+
+Pago Mínimo Requerido:               $3,250.00
+Fecha Límite de Pago:                20 de Octubre de 2025
+Días de Gracia:                      5 días
+Cargo por Mora (después de gracia):  0.05% diario
+
+───────────────────────────────────────────────────────────────────────────────
+MOVIMIENTOS DEL PERIODO
+───────────────────────────────────────────────────────────────────────────────
+Fecha       Descripción                      Cargo       Abono       Saldo
+───────────────────────────────────────────────────────────────────────────────
+01/Sep/2025 Saldo Inicial                      -           -      68,450.00
+05/Sep/2025 Intereses del Mes             1,395.42        -      69,845.42
+15/Sep/2025 Pago Recibido - SPEI              -      3,250.00   66,595.42
+                Ref: PAY-2025-ABC123
+30/Sep/2025 Saldo Final                       -           -      66,595.42
+
+───────────────────────────────────────────────────────────────────────────────
+DETALLE DE AMORTIZACIÓN
+───────────────────────────────────────────────────────────────────────────────
+Pago del Mes:                $3,250.00
+    Capital:                 $1,854.58
+    Intereses:               $1,395.42
+    Seguro:                  $0.00
+    Comisiones:              $0.00
+
+Pagos Realizados:            18 de 36
+Pagos Pendientes:            18
+Saldo Capital Restante:      $66,595.42
+
+───────────────────────────────────────────────────────────────────────────────
+PRÓXIMOS PAGOS PROGRAMADOS
+───────────────────────────────────────────────────────────────────────────────
+Octubre 2025:    $3,250.00    (Fecha límite: 20/Oct/2025)
+Noviembre 2025:  $3,250.00    (Fecha límite: 20/Nov/2025)
+Diciembre 2025:  $3,250.00    (Fecha límite: 20/Dic/2025)
+
+───────────────────────────────────────────────────────────────────────────────
+OPCIONES DE PAGO
+───────────────────────────────────────────────────────────────────────────────
+
+1. TRANSFERENCIA SPEI
+   Banco:           BBVA México
+   CLABE:           012180001234567890
+   Beneficiario:    AgilCredit SOFOM ENR
+   Referencia:      CRE000234
+
+2. DOMICILIACIÓN
+   Tu pago se cargará automáticamente el día 15 de cada mes
+
+3. APLICACIÓN MÓVIL
+   Paga desde nuestra app con tu tarjeta o cuenta bancaria
+
+4. VENTANILLA BANCARIA
+   En cualquier sucursal de BBVA, Santander, Banorte o OXXO
+   Referencia: CRE000234
+
+5. PAGO EN LÍNEA
+   www.agilcredit.mx/pagos
+
+───────────────────────────────────────────────────────────────────────────────
+INFORMACIÓN IMPORTANTE
+───────────────────────────────────────────────────────────────────────────────
+
+• Tu puntualidad en los pagos ayuda a mantener tu historial crediticio positivo
+• Puedes realizar pagos anticipados sin penalización en cualquier momento
+• Para aclaraciones: atencion@agilcredit.mx o 800-123-4567
+• Si tienes problemas para pagar, contáctanos antes de la fecha límite
+
+───────────────────────────────────────────────────────────────────────────────
+COMISIONES Y GASTOS
+───────────────────────────────────────────────────────────────────────────────
+
+No se cobraron comisiones durante este periodo.
+
+Comisiones Aplicables (ver contrato):
+- Por pago tardío: $350.00 + intereses moratorios
+- Por emisión de estado de cuenta físico: $50.00
+- Por reposición de contrato: $200.00
+
+───────────────────────────────────────────────────────────────────────────────
+DATOS DE LA INSTITUCIÓN
+───────────────────────────────────────────────────────────────────────────────
+
+AgilCredit SOFOM E.N.R.
+RFC: AGC150720AB3
+Registro CONDUSEF: CONDUSEF-12345
+
+Domicilio:
+Av. Paseo de la Reforma 505, Piso 15
+Colonia Cuauhtémoc, Ciudad de México, CDMX
+C.P. 06500
+
+Atención a Clientes: 800-123-4567
+UNE (Unidad Especializada): une@agilcredit.mx
+Horario: Lunes a Viernes 9:00 - 18:00 hrs
+
+───────────────────────────────────────────────────────────────────────────────
+UNIDAD ESPECIALIZADA DE ATENCIÓN A USUARIOS (UNE)
+───────────────────────────────────────────────────────────────────────────────
+
+En caso de alguna aclaración, queja o reclamación:
+
+Teléfono: 55-5000-4500
+Email: une@agilcredit.mx
+Horario: Lunes a Viernes 9:00 - 17:00 hrs
+
+CONDUSEF: 800-999-8080 | www.condusef.gob.mx
+
+═══════════════════════════════════════════════════════════════════════════════
+                    CONSERVE ESTE DOCUMENTO PARA SUS REGISTROS
+═══════════════════════════════════════════════════════════════════════════════
+
+Documento generado electrónicamente. Válido sin firma autógrafa.
+Página 1 de 1
+
+

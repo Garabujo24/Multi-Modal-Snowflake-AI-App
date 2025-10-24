@@ -1,0 +1,71 @@
+═══════════════════════════════════════════════════════════════════════════════
+                            AGILCREDIT SOFOM E.N.R.
+                        COMPROBANTE DE PAGO
+═══════════════════════════════════════════════════════════════════════════════
+
+FOLIO: PAY-2025-ABC-123456
+FECHA: 15 de Octubre de 2025, 14:32:18 hrs
+ESTATUS: ✓ PAGADO
+
+───────────────────────────────────────────────────────────────────────────────
+DATOS DEL CLIENTE
+───────────────────────────────────────────────────────────────────────────────
+Nombre:              María Elena Rodríguez García
+Cliente ID:          CLI000234
+RFC:                 ROGM851215AB4
+Crédito:             CRE000234
+
+───────────────────────────────────────────────────────────────────────────────
+DETALLE DEL PAGO
+───────────────────────────────────────────────────────────────────────────────
+Tipo de Pago:        Pago Mensual Regular
+Monto Pagado:        $3,250.00 MXN
+Aplicado a Capital:  $1,854.58
+Aplicado a Interés:  $1,395.42
+Comisiones:          $0.00
+
+───────────────────────────────────────────────────────────────────────────────
+INFORMACIÓN DE LA TRANSACCIÓN
+───────────────────────────────────────────────────────────────────────────────
+Método de Pago:      Transferencia SPEI
+Banco Origen:        BBVA México
+Cuenta:              ****5678
+Referencia SPEI:     091520251432180123456
+Autorización:        AUTH-782934
+
+───────────────────────────────────────────────────────────────────────────────
+RESUMEN DE CRÉDITO DESPUÉS DEL PAGO
+───────────────────────────────────────────────────────────────────────────────
+Saldo Anterior:      $68,450.00
+Pago Realizado:      -$3,250.00
+SALDO ACTUAL:        $65,200.00
+
+Pagos Realizados:    18 de 36
+Próximo Pago:        20 de Noviembre de 2025
+Monto Próximo Pago:  $3,250.00
+
+───────────────────────────────────────────────────────────────────────────────
+INFORMACIÓN FISCAL
+───────────────────────────────────────────────────────────────────────────────
+AgilCredit SOFOM E.N.R.
+RFC: AGC150720AB3
+Av. Paseo de la Reforma 505, Piso 15
+Ciudad de México, CDMX, C.P. 06500
+
+Este comprobante no constituye comprobante fiscal.
+Para solicitar su factura: facturacion@agilcredit.mx
+
+═══════════════════════════════════════════════════════════════════════════════
+¡GRACIAS POR SU PAGO PUNTUAL!
+═══════════════════════════════════════════════════════════════════════════════
+
+Atención al Cliente: 800-123-4567
+WhatsApp: 55-1234-5678
+www.agilcredit.mx
+
+Conserve este comprobante para sus registros.
+Documento generado electrónicamente.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+
