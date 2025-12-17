@@ -1,0 +1,11 @@
+# Seguros Centinela - Dependencias Python
+# ========================================
+
+# Generación de PDFs
+reportlab>=4.0.0
+
+# Opcional: Para procesamiento de datos
+# pandas>=2.0.0
+# faker>=18.0.0
+
+

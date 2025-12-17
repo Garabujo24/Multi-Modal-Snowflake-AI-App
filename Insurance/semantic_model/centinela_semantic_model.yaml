@@ -1,0 +1,1029 @@
+# ============================================================================
+# SEGUROS CENTINELA - MODELO SEMÁNTICO PARA CORTEX ANALYST
+# ============================================================================
+# Descripción: Modelo semántico para análisis de pólizas de seguros
+# Versión: 1.0
+# ============================================================================
+
+name: centinela_seguros
+description: |
+  Modelo semántico de Seguros Centinela para análisis de pólizas de automóviles
+  y gastos médicos mayores (GMM). Incluye información de clientes, agentes,
+  vehículos, coberturas, primas y siniestros.
+
+# ============================================================================
+# TABLAS BASE
+# ============================================================================
+tables:
+
+  # --------------------------------------------------------------------------
+  # TABLA: AGENTES
+  # --------------------------------------------------------------------------
+  - name: agentes
+    description: Catálogo de agentes de ventas de la aseguradora
+    base_table:
+      database: CENTINELA_DB
+      schema: CORE
+      table: AGENTES
+    primary_key:
+      columns:
+        - agente_id
+    
+    dimensions:
+      - name: agente_id
+        description: Identificador único del agente
+        expr: agente_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: nombre_agente
+        description: Nombre completo del agente
+        expr: nombre || ' ' || apellido_paterno || ' ' || COALESCE(apellido_materno, '')
+        data_type: VARCHAR
+        
+      - name: sucursal
+        description: Sucursal donde trabaja el agente
+        expr: sucursal
+        data_type: VARCHAR
+        sample_values: ["CDMX Centro", "CDMX Sur", "Guadalajara", "Monterrey", "Puebla", "Querétaro", "León"]
+        
+      - name: region
+        description: Región geográfica del agente
+        expr: region
+        data_type: VARCHAR
+        sample_values: ["Centro", "Occidente", "Norte", "Bajío"]
+        
+      - name: nivel_agente
+        description: Nivel jerárquico del agente
+        expr: nivel
+        data_type: VARCHAR
+        sample_values: ["Junior", "Senior", "Ejecutivo"]
+        
+      - name: email_agente
+        description: Correo electrónico del agente
+        expr: email
+        data_type: VARCHAR
+        
+      - name: activo
+        description: Indica si el agente está activo
+        expr: activo
+        data_type: BOOLEAN
+
+    time_dimensions:
+      - name: fecha_ingreso
+        description: Fecha de ingreso del agente a la empresa
+        expr: fecha_ingreso
+        data_type: DATE
+
+    measures:
+      - name: comision_porcentaje
+        description: Porcentaje de comisión del agente
+        expr: comision_porcentaje
+        data_type: NUMBER
+        default_aggregation: avg
+
+  # --------------------------------------------------------------------------
+  # TABLA: CLIENTES
+  # --------------------------------------------------------------------------
+  - name: clientes
+    description: Catálogo maestro de clientes y asegurados
+    base_table:
+      database: CENTINELA_DB
+      schema: CORE
+      table: CLIENTES
+    primary_key:
+      columns:
+        - cliente_id
+    
+    dimensions:
+      - name: cliente_id
+        description: Identificador único del cliente
+        expr: cliente_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: nombre_cliente
+        description: Nombre completo del cliente
+        expr: |
+          CASE 
+            WHEN tipo_persona = 'Fisica' THEN nombre || ' ' || apellido_paterno || ' ' || COALESCE(apellido_materno, '')
+            ELSE razon_social
+          END
+        data_type: VARCHAR
+        
+      - name: tipo_persona
+        description: Tipo de persona (Física o Moral)
+        expr: tipo_persona
+        data_type: VARCHAR
+        sample_values: ["Fisica", "Moral"]
+        
+      - name: rfc
+        description: Registro Federal de Contribuyentes
+        expr: rfc
+        data_type: VARCHAR
+        
+      - name: genero
+        description: Género del cliente
+        expr: genero
+        data_type: VARCHAR
+        sample_values: ["M", "F"]
+        
+      - name: estado_civil
+        description: Estado civil del cliente
+        expr: estado_civil
+        data_type: VARCHAR
+        sample_values: ["Soltero", "Soltera", "Casado", "Casada", "Divorciado", "Divorciada"]
+        
+      - name: email_cliente
+        description: Correo electrónico del cliente
+        expr: email
+        data_type: VARCHAR
+        
+      - name: telefono_cliente
+        description: Teléfono celular del cliente
+        expr: telefono_celular
+        data_type: VARCHAR
+        
+      - name: estado
+        description: Estado de la República donde vive el cliente
+        expr: estado
+        data_type: VARCHAR
+        sample_values: ["Ciudad de México", "Jalisco", "Nuevo León", "Puebla", "Querétaro", "Guanajuato"]
+        
+      - name: municipio
+        description: Municipio o alcaldía del cliente
+        expr: municipio
+        data_type: VARCHAR
+        
+      - name: codigo_postal
+        description: Código postal del cliente
+        expr: codigo_postal
+        data_type: VARCHAR
+        
+      - name: cliente_activo
+        description: Indica si el cliente está activo
+        expr: activo
+        data_type: BOOLEAN
+
+    time_dimensions:
+      - name: fecha_nacimiento
+        description: Fecha de nacimiento del cliente
+        expr: fecha_nacimiento
+        data_type: DATE
+        
+      - name: fecha_alta_cliente
+        description: Fecha de alta del cliente en el sistema
+        expr: fecha_alta
+        data_type: DATE
+
+  # --------------------------------------------------------------------------
+  # TABLA: POLIZAS
+  # --------------------------------------------------------------------------
+  - name: polizas
+    description: Tabla maestra de todas las pólizas emitidas (auto y GMM)
+    base_table:
+      database: CENTINELA_DB
+      schema: CORE
+      table: POLIZAS
+    primary_key:
+      columns:
+        - poliza_id
+    
+    dimensions:
+      - name: poliza_id
+        description: Identificador único de la póliza
+        expr: poliza_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: numero_poliza
+        description: Número de póliza visible para el cliente
+        expr: numero_poliza
+        data_type: VARCHAR
+        
+      - name: tipo_seguro
+        description: Tipo de seguro (AUTO o GMM)
+        expr: tipo_seguro
+        data_type: VARCHAR
+        sample_values: ["AUTO", "GMM"]
+        
+      - name: estatus_poliza
+        description: Estado actual de la póliza
+        expr: estatus
+        data_type: VARCHAR
+        sample_values: ["Vigente", "Cancelada", "Vencida", "Suspendida"]
+        
+      - name: forma_pago
+        description: Forma de pago de la póliza
+        expr: forma_pago
+        data_type: VARCHAR
+        sample_values: ["Anual", "Semestral", "Trimestral", "Mensual"]
+        
+      - name: conducto_cobro
+        description: Medio de cobro de la prima
+        expr: conducto_cobro
+        data_type: VARCHAR
+        sample_values: ["Tarjeta", "Domiciliación", "Transferencia", "Efectivo"]
+        
+      - name: moneda
+        description: Moneda de la póliza
+        expr: moneda
+        data_type: VARCHAR
+        sample_values: ["MXN", "USD"]
+        
+      - name: cliente_id
+        description: Identificador del cliente (FK)
+        expr: cliente_id
+        data_type: VARCHAR
+        
+      - name: agente_id
+        description: Identificador del agente (FK)
+        expr: agente_id
+        data_type: VARCHAR
+
+    time_dimensions:
+      - name: fecha_emision
+        description: Fecha de emisión de la póliza
+        expr: fecha_emision
+        data_type: DATE
+        
+      - name: fecha_inicio_vigencia
+        description: Fecha de inicio de vigencia de la póliza
+        expr: fecha_inicio_vigencia
+        data_type: DATE
+        
+      - name: fecha_fin_vigencia
+        description: Fecha de fin de vigencia de la póliza
+        expr: fecha_fin_vigencia
+        data_type: DATE
+
+    measures:
+      - name: prima_neta
+        description: Prima neta de la póliza sin recargos ni IVA
+        expr: prima_neta
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["prima base", "prima sin iva"]
+        
+      - name: derecho_poliza
+        description: Derecho de póliza cobrado
+        expr: derecho_poliza
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: recargo_pago_fraccionado
+        description: Recargo por pago fraccionado
+        expr: recargo_pago_fraccionado
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: iva
+        description: IVA de la prima
+        expr: iva
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: prima_total
+        description: Prima total de la póliza incluyendo todos los cargos e IVA
+        expr: prima_total
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["prima", "costo de la poliza", "precio"]
+        
+      - name: cantidad_polizas
+        description: Conteo de pólizas
+        expr: "1"
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["numero de polizas", "total polizas", "polizas emitidas"]
+
+  # --------------------------------------------------------------------------
+  # TABLA: VEHICULOS
+  # --------------------------------------------------------------------------
+  - name: vehiculos
+    description: Catálogo de vehículos asegurados
+    base_table:
+      database: CENTINELA_DB
+      schema: AUTOS
+      table: VEHICULOS
+    primary_key:
+      columns:
+        - vehiculo_id
+    
+    dimensions:
+      - name: vehiculo_id
+        description: Identificador único del vehículo
+        expr: vehiculo_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: marca
+        description: Marca del vehículo
+        expr: marca
+        data_type: VARCHAR
+        sample_values: ["Nissan", "Volkswagen", "Toyota", "Honda", "Mazda", "Chevrolet", "Ford", "BMW", "Mercedes-Benz", "Audi"]
+        
+      - name: submarca
+        description: Submarca o modelo del vehículo
+        expr: submarca
+        data_type: VARCHAR
+        synonyms: ["modelo del auto", "modelo del carro"]
+        
+      - name: modelo_vehiculo
+        description: Nombre completo del modelo
+        expr: modelo
+        data_type: VARCHAR
+        
+      - name: anio_vehiculo
+        description: Año del vehículo
+        expr: anio
+        data_type: NUMBER
+        
+      - name: numero_serie
+        description: Número de serie (VIN) del vehículo
+        expr: numero_serie
+        data_type: VARCHAR
+        synonyms: ["VIN", "serie"]
+        
+      - name: placas
+        description: Placas del vehículo
+        expr: placas
+        data_type: VARCHAR
+        
+      - name: color
+        description: Color del vehículo
+        expr: color
+        data_type: VARCHAR
+        
+      - name: tipo_vehiculo
+        description: Tipo de vehículo
+        expr: tipo_vehiculo
+        data_type: VARCHAR
+        sample_values: ["Sedan", "SUV", "Pickup", "Deportivo"]
+        
+      - name: transmision
+        description: Tipo de transmisión
+        expr: transmision
+        data_type: VARCHAR
+        sample_values: ["Manual", "Automatica"]
+        
+      - name: combustible
+        description: Tipo de combustible
+        expr: combustible
+        data_type: VARCHAR
+        sample_values: ["Gasolina", "Diesel", "Hibrido", "Electrico"]
+        
+      - name: uso_vehiculo
+        description: Uso del vehículo
+        expr: uso_vehiculo
+        data_type: VARCHAR
+        sample_values: ["Particular", "Comercial", "Servicio Publico"]
+        
+      - name: cliente_id
+        description: Identificador del cliente propietario (FK)
+        expr: cliente_id
+        data_type: VARCHAR
+
+    measures:
+      - name: valor_factura
+        description: Valor de factura del vehículo
+        expr: valor_factura
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["valor original", "precio de lista"]
+        
+      - name: valor_comercial
+        description: Valor comercial actual del vehículo
+        expr: valor_comercial
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["valor actual", "valor de mercado"]
+        
+      - name: cantidad_vehiculos
+        description: Conteo de vehículos
+        expr: "1"
+        data_type: NUMBER
+        default_aggregation: sum
+
+  # --------------------------------------------------------------------------
+  # TABLA: POLIZAS_AUTO
+  # --------------------------------------------------------------------------
+  - name: polizas_auto
+    description: Detalle específico de pólizas de automóviles
+    base_table:
+      database: CENTINELA_DB
+      schema: AUTOS
+      table: POLIZAS_AUTO
+    
+    dimensions:
+      - name: poliza_auto_id
+        description: Identificador de la póliza de auto
+        expr: poliza_auto_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: paquete_cobertura
+        description: Paquete de cobertura contratado
+        expr: paquete_cobertura
+        data_type: VARCHAR
+        sample_values: ["Amplia", "Limitada", "Premium", "RC"]
+        synonyms: ["tipo de cobertura", "plan de seguro"]
+        
+      - name: conductor_habitual
+        description: Nombre del conductor habitual
+        expr: conductor_habitual
+        data_type: VARCHAR
+        
+      - name: zona_circulacion
+        description: Zona principal de circulación
+        expr: zona_circulacion
+        data_type: VARCHAR
+        sample_values: ["CDMX", "Guadalajara", "Monterrey", "Puebla", "Querétaro", "León"]
+        
+      - name: poliza_id
+        description: Identificador de la póliza maestra (FK)
+        expr: poliza_id
+        data_type: VARCHAR
+        
+      - name: vehiculo_id
+        description: Identificador del vehículo (FK)
+        expr: vehiculo_id
+        data_type: VARCHAR
+
+    measures:
+      - name: suma_asegurada_auto
+        description: Suma asegurada del vehículo
+        expr: suma_asegurada
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: deducible_danios_materiales
+        description: Porcentaje de deducible por daños materiales
+        expr: deducible_dm
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: deducible_robo
+        description: Porcentaje de deducible por robo
+        expr: deducible_robo
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: cobertura_responsabilidad_civil
+        description: Límite de cobertura de responsabilidad civil
+        expr: cobertura_rc
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["RC", "responsabilidad civil"]
+        
+      - name: cobertura_gastos_medicos
+        description: Límite de cobertura de gastos médicos ocupantes
+        expr: cobertura_gm
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: edad_conductor
+        description: Edad del conductor habitual
+        expr: edad_conductor
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: anios_experiencia
+        description: Años de experiencia del conductor
+        expr: anios_experiencia
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: historial_siniestros
+        description: Número de siniestros en el historial
+        expr: historial_siniestros
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: descuento_aplicado
+        description: Porcentaje de descuento aplicado
+        expr: descuento_aplicado
+        data_type: NUMBER
+        default_aggregation: avg
+
+  # --------------------------------------------------------------------------
+  # TABLA: PLANES_GMM
+  # --------------------------------------------------------------------------
+  - name: planes_gmm
+    description: Catálogo de planes de Gastos Médicos Mayores
+    base_table:
+      database: CENTINELA_DB
+      schema: GMM
+      table: PLANES_GMM
+    primary_key:
+      columns:
+        - plan_id
+    
+    dimensions:
+      - name: plan_id
+        description: Identificador del plan
+        expr: plan_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: nombre_plan
+        description: Nombre del plan de GMM
+        expr: nombre_plan
+        data_type: VARCHAR
+        sample_values: ["Centinela Básico", "Centinela Esencial", "Centinela Plus", "Centinela Elite", "Centinela Familiar"]
+        
+      - name: descripcion_plan
+        description: Descripción del plan
+        expr: descripcion
+        data_type: VARCHAR
+        
+      - name: nivel_hospital
+        description: Nivel de hospitales incluidos
+        expr: nivel_hospital
+        data_type: VARCHAR
+        sample_values: ["Estandar", "Ejecutivo", "Premium"]
+        
+      - name: cobertura_internacional
+        description: Indica si incluye cobertura internacional
+        expr: cobertura_internacional
+        data_type: BOOLEAN
+
+    measures:
+      - name: suma_asegurada_plan
+        description: Suma asegurada del plan
+        expr: suma_asegurada
+        data_type: NUMBER
+        default_aggregation: max
+        
+      - name: deducible_plan
+        description: Deducible del plan
+        expr: deducible
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: coaseguro_plan
+        description: Porcentaje de coaseguro
+        expr: coaseguro_porcentaje
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: tope_coaseguro_plan
+        description: Tope máximo de coaseguro
+        expr: tope_coaseguro
+        data_type: NUMBER
+        default_aggregation: max
+
+  # --------------------------------------------------------------------------
+  # TABLA: POLIZAS_GMM
+  # --------------------------------------------------------------------------
+  - name: polizas_gmm
+    description: Detalle específico de pólizas de Gastos Médicos Mayores
+    base_table:
+      database: CENTINELA_DB
+      schema: GMM
+      table: POLIZAS_GMM
+    
+    dimensions:
+      - name: poliza_gmm_id
+        description: Identificador de la póliza GMM
+        expr: poliza_gmm_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: tipo_poliza_gmm
+        description: Tipo de póliza (Individual o Familiar)
+        expr: tipo_poliza
+        data_type: VARCHAR
+        sample_values: ["Individual", "Familiar"]
+        
+      - name: nivel_hospitalario
+        description: Nivel de hospitales
+        expr: nivel_hospitalario
+        data_type: VARCHAR
+        sample_values: ["Estandar", "Ejecutivo", "Premium"]
+        
+      - name: red_medica
+        description: Red médica contratada
+        expr: red_medica
+        data_type: VARCHAR
+        sample_values: ["Red Amplia", "Red Selecta"]
+        
+      - name: zona_cobertura
+        description: Zona de cobertura geográfica
+        expr: zona_cobertura
+        data_type: VARCHAR
+        sample_values: ["Nacional", "Internacional"]
+        
+      - name: incluye_cobertura_internacional
+        description: Tiene cobertura internacional
+        expr: cobertura_internacional
+        data_type: BOOLEAN
+        
+      - name: incluye_cobertura_dental
+        description: Tiene cobertura dental
+        expr: cobertura_dental
+        data_type: BOOLEAN
+        
+      - name: incluye_cobertura_vision
+        description: Tiene cobertura de visión
+        expr: cobertura_vision
+        data_type: BOOLEAN
+        
+      - name: incluye_cobertura_maternidad
+        description: Tiene cobertura de maternidad
+        expr: cobertura_maternidad
+        data_type: BOOLEAN
+        
+      - name: poliza_id
+        description: Identificador de la póliza maestra (FK)
+        expr: poliza_id
+        data_type: VARCHAR
+        
+      - name: plan_id
+        description: Identificador del plan GMM (FK)
+        expr: plan_id
+        data_type: VARCHAR
+
+    measures:
+      - name: suma_asegurada_gmm
+        description: Suma asegurada de la póliza GMM
+        expr: suma_asegurada
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: deducible_gmm
+        description: Deducible de la póliza
+        expr: deducible
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: coaseguro_gmm
+        description: Porcentaje de coaseguro
+        expr: coaseguro_porcentaje
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: tope_coaseguro_gmm
+        description: Tope de coaseguro
+        expr: tope_coaseguro
+        data_type: NUMBER
+        default_aggregation: avg
+        
+      - name: numero_asegurados
+        description: Número de personas aseguradas en la póliza
+        expr: numero_asegurados
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["vidas aseguradas", "asegurados", "personas cubiertas"]
+        
+      - name: edad_promedio_asegurados
+        description: Edad promedio de los asegurados
+        expr: edad_promedio
+        data_type: NUMBER
+        default_aggregation: avg
+
+  # --------------------------------------------------------------------------
+  # TABLA: SINIESTROS
+  # --------------------------------------------------------------------------
+  - name: siniestros
+    description: Registro de siniestros y reclamaciones
+    base_table:
+      database: CENTINELA_DB
+      schema: OPERACIONES
+      table: SINIESTROS
+    
+    dimensions:
+      - name: siniestro_id
+        description: Identificador único del siniestro
+        expr: siniestro_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: numero_siniestro
+        description: Número de siniestro visible
+        expr: numero_siniestro
+        data_type: VARCHAR
+        
+      - name: tipo_seguro_siniestro
+        description: Tipo de seguro del siniestro
+        expr: tipo_seguro
+        data_type: VARCHAR
+        sample_values: ["AUTO", "GMM"]
+        
+      - name: estatus_siniestro
+        description: Estado del siniestro
+        expr: estatus
+        data_type: VARCHAR
+        sample_values: ["Reportado", "En Proceso", "Dictaminado", "Pagado", "Rechazado"]
+        
+      - name: descripcion_siniestro
+        description: Descripción del siniestro
+        expr: descripcion
+        data_type: VARCHAR
+        
+      - name: lugar_siniestro
+        description: Lugar donde ocurrió el siniestro
+        expr: lugar_siniestro
+        data_type: VARCHAR
+        
+      - name: poliza_id
+        description: Identificador de la póliza (FK)
+        expr: poliza_id
+        data_type: VARCHAR
+
+    time_dimensions:
+      - name: fecha_siniestro
+        description: Fecha y hora del siniestro
+        expr: fecha_siniestro
+        data_type: TIMESTAMP
+        
+      - name: fecha_reporte
+        description: Fecha y hora del reporte
+        expr: fecha_reporte
+        data_type: TIMESTAMP
+        
+      - name: fecha_dictamen
+        description: Fecha del dictamen
+        expr: fecha_dictamen
+        data_type: DATE
+        
+      - name: fecha_pago_siniestro
+        description: Fecha de pago del siniestro
+        expr: fecha_pago
+        data_type: DATE
+
+    measures:
+      - name: monto_reclamado
+        description: Monto reclamado por el asegurado
+        expr: monto_reclamado
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: monto_dictaminado
+        description: Monto dictaminado por la aseguradora
+        expr: monto_dictaminado
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: monto_pagado
+        description: Monto pagado al asegurado
+        expr: monto_pagado
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["indemnizacion", "pago de siniestro"]
+        
+      - name: deducible_aplicado
+        description: Deducible aplicado al siniestro
+        expr: deducible_aplicado
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: cantidad_siniestros
+        description: Conteo de siniestros
+        expr: "1"
+        data_type: NUMBER
+        default_aggregation: sum
+        synonyms: ["numero de siniestros", "total siniestros"]
+
+  # --------------------------------------------------------------------------
+  # TABLA: PAGOS
+  # --------------------------------------------------------------------------
+  - name: pagos
+    description: Historial de pagos de primas de pólizas
+    base_table:
+      database: CENTINELA_DB
+      schema: OPERACIONES
+      table: PAGOS
+    
+    dimensions:
+      - name: pago_id
+        description: Identificador único del pago
+        expr: pago_id
+        data_type: VARCHAR
+        unique: true
+        
+      - name: numero_recibo
+        description: Número de recibo
+        expr: numero_recibo
+        data_type: VARCHAR
+        
+      - name: estatus_pago
+        description: Estado del pago
+        expr: estatus
+        data_type: VARCHAR
+        sample_values: ["Pendiente", "Pagado", "Vencido", "Cancelado"]
+        
+      - name: forma_pago
+        description: Forma de pago utilizada
+        expr: forma_pago
+        data_type: VARCHAR
+        sample_values: ["Tarjeta", "Transferencia", "Efectivo", "Domiciliacion"]
+        
+      - name: referencia_pago
+        description: Referencia del pago
+        expr: referencia_pago
+        data_type: VARCHAR
+        
+      - name: poliza_id
+        description: Identificador de la póliza (FK)
+        expr: poliza_id
+        data_type: VARCHAR
+
+    time_dimensions:
+      - name: fecha_vencimiento_pago
+        description: Fecha de vencimiento del pago
+        expr: fecha_vencimiento
+        data_type: DATE
+        
+      - name: fecha_pago
+        description: Fecha en que se realizó el pago
+        expr: fecha_pago
+        data_type: DATE
+
+    measures:
+      - name: numero_pago
+        description: Número de pago en la secuencia
+        expr: numero_pago
+        data_type: NUMBER
+        default_aggregation: max
+        
+      - name: total_pagos_poliza
+        description: Total de pagos programados
+        expr: total_pagos
+        data_type: NUMBER
+        default_aggregation: max
+        
+      - name: monto_pago
+        description: Monto a pagar
+        expr: monto_pago
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: monto_pagado
+        description: Monto efectivamente pagado
+        expr: monto_pagado
+        data_type: NUMBER
+        default_aggregation: sum
+        
+      - name: cantidad_pagos
+        description: Conteo de pagos
+        expr: "1"
+        data_type: NUMBER
+        default_aggregation: sum
+
+# ============================================================================
+# RELACIONES ENTRE TABLAS
+# ============================================================================
+relationships:
+
+  - name: poliza_cliente
+    left_table: polizas
+    right_table: clientes
+    relationship_type: many_to_one
+    join_type: left_outer
+    relationship_columns:
+      - left_column: cliente_id
+        right_column: cliente_id
+
+  - name: poliza_agente
+    left_table: polizas
+    right_table: agentes
+    relationship_type: many_to_one
+    join_type: left_outer
+    relationship_columns:
+      - left_column: agente_id
+        right_column: agente_id
+
+  - name: poliza_auto_poliza
+    left_table: polizas_auto
+    right_table: polizas
+    relationship_type: many_to_one
+    join_type: inner
+    relationship_columns:
+      - left_column: poliza_id
+        right_column: poliza_id
+
+  - name: poliza_auto_vehiculo
+    left_table: polizas_auto
+    right_table: vehiculos
+    relationship_type: many_to_one
+    join_type: inner
+    relationship_columns:
+      - left_column: vehiculo_id
+        right_column: vehiculo_id
+
+  - name: vehiculo_cliente
+    left_table: vehiculos
+    right_table: clientes
+    relationship_type: many_to_one
+    join_type: left_outer
+    relationship_columns:
+      - left_column: cliente_id
+        right_column: cliente_id
+
+  - name: poliza_gmm_poliza
+    left_table: polizas_gmm
+    right_table: polizas
+    relationship_type: many_to_one
+    join_type: inner
+    relationship_columns:
+      - left_column: poliza_id
+        right_column: poliza_id
+
+  - name: poliza_gmm_plan
+    left_table: polizas_gmm
+    right_table: planes_gmm
+    relationship_type: many_to_one
+    join_type: left_outer
+    relationship_columns:
+      - left_column: plan_id
+        right_column: plan_id
+
+  - name: siniestro_poliza
+    left_table: siniestros
+    right_table: polizas
+    relationship_type: many_to_one
+    join_type: left_outer
+    relationship_columns:
+      - left_column: poliza_id
+        right_column: poliza_id
+
+  - name: pago_poliza
+    left_table: pagos
+    right_table: polizas
+    relationship_type: many_to_one
+    join_type: left_outer
+    relationship_columns:
+      - left_column: poliza_id
+        right_column: poliza_id
+
+# ============================================================================
+# CONSULTAS VERIFICADAS (Ejemplos para Cortex Analyst)
+# Nota: Usar tablas físicas completas con esquema
+# ============================================================================
+verified_queries:
+
+  - name: total_primas_por_tipo
+    question: ¿Cuál es el total de primas por tipo de seguro?
+    sql: |
+      SELECT 
+        TIPO_SEGURO, 
+        SUM(PRIMA_TOTAL) AS PRIMA_TOTAL 
+      FROM CENTINELA_DB.CORE.POLIZAS 
+      WHERE ESTATUS = 'Vigente' 
+      GROUP BY TIPO_SEGURO 
+      ORDER BY PRIMA_TOTAL DESC
+
+  - name: polizas_por_agente
+    question: ¿Cuántas pólizas ha vendido cada agente?
+    sql: |
+      SELECT 
+        A.NOMBRE || ' ' || A.APELLIDO_PATERNO AS AGENTE, 
+        COUNT(*) AS TOTAL_POLIZAS, 
+        SUM(P.PRIMA_TOTAL) AS PRIMA_TOTAL 
+      FROM CENTINELA_DB.CORE.POLIZAS P 
+      JOIN CENTINELA_DB.CORE.AGENTES A ON P.AGENTE_ID = A.AGENTE_ID 
+      WHERE P.ESTATUS = 'Vigente' 
+      GROUP BY A.NOMBRE, A.APELLIDO_PATERNO 
+      ORDER BY TOTAL_POLIZAS DESC
+
+  - name: vehiculos_por_marca
+    question: ¿Cuáles son las marcas de vehículos más aseguradas?
+    sql: |
+      SELECT 
+        V.MARCA, 
+        COUNT(*) AS CANTIDAD, 
+        SUM(V.VALOR_COMERCIAL) AS VALOR_TOTAL 
+      FROM CENTINELA_DB.AUTOS.VEHICULOS V 
+      JOIN CENTINELA_DB.AUTOS.POLIZAS_AUTO PA ON V.VEHICULO_ID = PA.VEHICULO_ID 
+      JOIN CENTINELA_DB.CORE.POLIZAS P ON PA.POLIZA_ID = P.POLIZA_ID 
+      WHERE P.ESTATUS = 'Vigente' 
+      GROUP BY V.MARCA 
+      ORDER BY CANTIDAD DESC
+
+  - name: clientes_por_estado
+    question: ¿Cuántos clientes hay por estado?
+    sql: |
+      SELECT 
+        ESTADO, 
+        COUNT(*) AS TOTAL_CLIENTES 
+      FROM CENTINELA_DB.CORE.CLIENTES 
+      WHERE ACTIVO = TRUE 
+      GROUP BY ESTADO 
+      ORDER BY TOTAL_CLIENTES DESC
+
+  - name: planes_gmm_populares
+    question: ¿Cuáles son los planes de GMM más contratados?
+    sql: |
+      SELECT 
+        PL.NOMBRE_PLAN, 
+        COUNT(*) AS CANTIDAD_POLIZAS, 
+        SUM(PG.NUMERO_ASEGURADOS) AS VIDAS_ASEGURADAS, 
+        SUM(P.PRIMA_TOTAL) AS PRIMA_TOTAL 
+      FROM CENTINELA_DB.GMM.POLIZAS_GMM PG 
+      JOIN CENTINELA_DB.GMM.PLANES_GMM PL ON PG.PLAN_ID = PL.PLAN_ID 
+      JOIN CENTINELA_DB.CORE.POLIZAS P ON PG.POLIZA_ID = P.POLIZA_ID 
+      WHERE P.ESTATUS = 'Vigente' 
+      GROUP BY PL.NOMBRE_PLAN 
+      ORDER BY CANTIDAD_POLIZAS DESC
+
