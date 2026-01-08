@@ -78,8 +78,8 @@ Cada proyecto incluye su propio README con:
 
 1. **Clonar el repositorio**
 ```bash
-git clone git@github.com:Garabujo24/Multi-Modal-Snowflake-AI-App.git
-cd Multi-Modal-Snowflake-AI-App
+git clone git@github.com:Garabujo24/snowflake-labs.git
+cd snowflake-labs
 ```
 
 2. **Navegar al proyecto deseado**
@@ -145,7 +145,7 @@ Los proyectos en este repositorio son demos educativas y de referencia. Consulta
 ## 📬 Contacto
 
 **GitHub:** [@Garabujo24](https://github.com/Garabujo24)  
-**Repositorio:** [Multi-Modal-Snowflake-AI-App](https://github.com/Garabujo24/Multi-Modal-Snowflake-AI-App)
+**Repositorio:** [snowflake-labs](https://github.com/Garabujo24/snowflake-labs)
 
 ---
 
