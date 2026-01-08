@@ -1,0 +1,27 @@
+# ================================================================================
+# DEPENDENCIAS - Dashboard de Detección de Anomalías
+# Cliente: Grupo Comercial Control
+# ================================================================================
+
+# Framework web
+streamlit==1.31.0
+
+# Conexión a Snowflake
+snowflake-connector-python==3.7.0
+snowflake-snowpark-python==1.12.1
+
+# Manipulación de datos
+pandas==2.1.4
+numpy==1.26.3
+
+# Visualización
+plotly==5.18.0
+
+# Utilidades
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Opcional: Para análisis adicional
+scikit-learn==1.4.0
+scipy==1.11.4
+

@@ -1,0 +1,175 @@
+# ================================================================================
+# .gitignore - Proyecto Detección de Anomalías C Control
+# ================================================================================
+
+# ============================================================================
+# CREDENCIALES Y SECRETS (NUNCA COMMITEAR)
+# ============================================================================
+.streamlit/secrets.toml
+secrets.toml
+*.env
+.env
+.env.local
+credentials.json
+snowflake_credentials.txt
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+*.virtualenv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# pyenv
+.python-version
+
+# ============================================================================
+# DATOS EXPORTADOS Y TEMPORALES
+# ============================================================================
+*.csv
+*.xlsx
+*.parquet
+*.json
+exports/
+data/
+temp/
+tmp/
+
+# Excepciones (archivos de ejemplo)
+!example_data.csv
+
+# ============================================================================
+# LOGS
+# ============================================================================
+*.log
+logs/
+*.out
+
+# ============================================================================
+# SISTEMA OPERATIVO
+# ============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ============================================================================
+# IDEs y EDITORES
+# ============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================================================
+# STREAMLIT
+# ============================================================================
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# ============================================================================
+# NOTEBOOKS Y ANÁLISIS TEMPORAL
+# ============================================================================
+notebooks/scratch/
+analysis/temp/
+exploratory/
+
+# ============================================================================
+# BACKUPS
+# ============================================================================
+*.bak
+*.backup
+*.old
+*_backup.*
+
+# ============================================================================
+# OTROS
+# ============================================================================
+# Archivos comprimidos temporales
+*.zip
+*.tar.gz
+*.rar
+
+# Archivos de cache
+.cache/
+*.cache
+

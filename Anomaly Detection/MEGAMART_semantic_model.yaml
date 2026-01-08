@@ -1,0 +1,202 @@
+# ================================================================================
+# MODELO SEMÁNTICO SIMPLIFICADO - DETECCIÓN DE ANOMALÍAS
+# Cliente: Grupo Comercial Control (C Control)
+# Nota: Modelo ultra-simple para garantizar funcionamiento
+# ================================================================================
+
+name: ccontrol_ventas_anomalias
+description: |
+  Modelo semántico para análisis de anomalías en ventas retail de C Control.
+  Incluye series de tiempo múltiples (región, tipo_tienda, sucursal) con 
+  variables exógenas (clima, eventos).
+
+tables:
+  # Tabla principal de ventas con dimensiones
+  - name: ventas_multiseries
+    description: Vista de ventas diarias con todas las dimensiones para análisis de anomalías
+    base_table: 
+      database: CCONTROL_DB
+      schema: CCONTROL_SCHEMA
+      table: VW_VENTAS_MULTISERIES
+    
+    columns:
+      # Dimensión Temporal (REQUERIDA para series de tiempo)
+      - name: fecha
+        description: Fecha de la venta diaria
+        kind: time_dimension
+        data_type: date
+        unique: false
+      
+      # Dimensiones Categóricas - Segmentación de Series
+      - name: tipo_tienda
+        description: Tipo de tienda (Del Sol, Woolworth, Noreste Grill)
+        kind: dimension
+        data_type: text
+        unique: false
+      
+      - name: region
+        description: Región geográfica (Norte, Centro, Sur)
+        kind: dimension
+        data_type: text
+        unique: false
+      
+      - name: nombre_sucursal
+        description: Nombre completo de la sucursal
+        kind: dimension
+        data_type: text
+        unique: false
+      
+      - name: estado
+        description: Estado de la República Mexicana
+        kind: dimension
+        data_type: text
+        unique: false
+      
+      # Dimensiones Numéricas - Métricas de Negocio
+      - name: ventas_totales
+        description: Ventas totales del día en pesos mexicanos
+        kind: dimension
+        data_type: number
+        unique: false
+      
+      - name: ticket_promedio
+        description: Ticket promedio de compra
+        kind: dimension
+        data_type: number
+        unique: false
+      
+      - name: num_transacciones
+        description: Número de transacciones realizadas
+        kind: dimension
+        data_type: number
+        unique: false
+      
+      - name: num_clientes
+        description: Número de clientes atendidos
+        kind: dimension
+        data_type: number
+        unique: false
+      
+      # Dimensiones - Variables Exógenas: Clima
+      - name: temperatura_c
+        description: Temperatura en grados Celsius
+        kind: dimension
+        data_type: number
+        unique: false
+      
+      - name: precipitacion_mm
+        description: Precipitación en milímetros
+        kind: dimension
+        data_type: number
+        unique: false
+      
+      # Dimensiones Booleanas - Variables Exógenas: Eventos
+      - name: es_dia_festivo
+        description: Indica si es día festivo mexicano
+        kind: dimension
+        data_type: boolean
+        unique: false
+      
+      - name: es_quincena
+        description: Indica si es día de quincena (día 15 o 30)
+        kind: dimension
+        data_type: boolean
+        unique: false
+      
+      - name: es_fin_semana
+        description: Indica si es fin de semana (sábado o domingo)
+        kind: dimension
+        data_type: boolean
+        unique: false
+      
+      - name: hay_promocion
+        description: Indica si hay promoción activa
+        kind: dimension
+        data_type: boolean
+        unique: false
+      
+      - name: evento_adverso
+        description: Descripción del evento adverso si existe
+        kind: dimension
+        data_type: text
+        unique: false
+      
+      # Dimensiones Adicionales - Metadata Temporal
+      - name: dia_semana
+        description: Nombre del día de la semana
+        kind: dimension
+        data_type: text
+        unique: false
+      
+      - name: nombre_mes
+        description: Nombre del mes
+        kind: dimension
+        data_type: text
+        unique: false
+
+# ================================================================================
+# CONSULTAS VERIFICADAS (3-5 consultas ultra-simples)
+# ================================================================================
+verified_queries:
+  # Query 1: Ventas por tipo de tienda
+  - name: ventas_por_tipo_tienda
+    description: Total de registros y ventas promedio por tipo de tienda
+    query: |
+      SELECT 
+        tipo_tienda,
+        COUNT(*) as total_registros,
+        AVG(ventas_totales) as promedio_ventas
+      FROM {{ table('ventas_multiseries') }}
+      GROUP BY tipo_tienda
+      ORDER BY tipo_tienda
+  
+  # Query 2: Ventas por región
+  - name: ventas_por_region
+    description: Total de registros por región geográfica
+    query: |
+      SELECT 
+        region,
+        COUNT(*) as total_registros,
+        AVG(ventas_totales) as promedio_ventas
+      FROM {{ table('ventas_multiseries') }}
+      GROUP BY region
+      ORDER BY region
+  
+  # Query 3: Ventas en días festivos vs normales
+  - name: ventas_dias_festivos
+    description: Comparación de ventas en días festivos vs días normales
+    query: |
+      SELECT 
+        es_dia_festivo,
+        COUNT(*) as total_dias,
+        AVG(ventas_totales) as promedio_ventas
+      FROM {{ table('ventas_multiseries') }}
+      GROUP BY es_dia_festivo
+      ORDER BY es_dia_festivo
+  
+  # Query 4: Ventas con eventos adversos
+  - name: ventas_eventos_adversos
+    description: Registros con eventos adversos identificados
+    query: |
+      SELECT 
+        evento_adverso,
+        COUNT(*) as total_ocurrencias
+      FROM {{ table('ventas_multiseries') }}
+      WHERE evento_adverso IS NOT NULL
+      GROUP BY evento_adverso
+      ORDER BY total_ocurrencias DESC
+  
+  # Query 5: Ventas recientes por sucursal
+  - name: ventas_ultimos_30_dias
+    description: Ventas de los últimos 30 días agrupadas por sucursal
+    query: |
+      SELECT 
+        nombre_sucursal,
+        tipo_tienda,
+        region,
+        COUNT(*) as dias_registrados
+      FROM {{ table('ventas_multiseries') }}
+      WHERE fecha >= DATEADD(DAY, -30, CURRENT_DATE())
+      GROUP BY nombre_sucursal, tipo_tienda, region
+      ORDER BY tipo_tienda, region
+
