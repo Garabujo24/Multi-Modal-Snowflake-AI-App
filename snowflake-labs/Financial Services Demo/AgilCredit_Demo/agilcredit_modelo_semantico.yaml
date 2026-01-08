@@ -1,0 +1,758 @@
+name: AgilCredit_Modelo_Analitico
+description: |
+  AgilCredit es una fintech mexicana (Sociedad Financiera de Objeto Múltiple - SOFOM) 
+  fundada en 2020 que democratiza el acceso al crédito en México. Especializada en 
+  créditos personales, empresariales (PyME), de nómina y automotrices.
+  
+  Este modelo semántico proporciona análisis integral en cuatro pilares fundamentales:
+  
+  1. ANÁLISIS DE RIESGO CREDITICIO:
+     - Evaluación de capacidad de pago de solicitantes
+     - Score de riesgo interno (0-100, mayor es mejor)
+     - Calificación de Buró de Crédito (550-850)
+     - Segmentación: Premium (>750), Oro (680-750), Plata (620-679), Bronce (<620)
+     - IMOR: Índice de Morosidad = Cartera Vencida / Cartera Total
+     - Estados de crédito: Vigente, Mora (1-89 días), Vencido (90+ días), Liquidado
+  
+  2. DETECCIÓN DE FRAUDE:
+     - Sistema automatizado de alertas con score de fraude (0-100)
+     - Niveles de riesgo: Alto (>80), Medio (50-80), Bajo (<50)
+     - Patrones detectados: ubicación sospechosa, dispositivos no reconocidos, 
+       montos inusuales, múltiples intentos fallidos
+     - Estados: Nueva, En Revisión, Confirmado Fraude, Falso Positivo, Cerrada
+  
+  3. RENTABILIDAD DE CLIENTES:
+     - LTV (Lifetime Value): Valor estimado del cliente durante su vida útil
+     - CAC (Customer Acquisition Cost): Costo de adquisición del cliente
+     - Ratio LTV/CAC óptimo: > 3.0 (bueno), 1.0-3.0 (aceptable), <1.0 (preocupante)
+     - Segmentos: Alto Valor, Medio Valor, Valor Estándar, Bajo Valor
+     - Margen de rentabilidad: (Utilidad Neta / Ingresos Totales) * 100
+  
+  4. CUMPLIMIENTO REGULATORIO (KYC/PLD):
+     - KYC (Know Your Customer): Conoce a tu Cliente
+     - PLD (Prevención de Lavado de Dinero)
+     - Autoridades: CNBV (Comisión Nacional Bancaria), CONDUSEF
+     - Listas de verificación: OFAC, PEP (Personas Políticamente Expuestas), 
+       Lista de Bloqueados CNBV
+     - Actualización requerida: Cada 12 meses para clientes activos
+  
+  PRODUCTOS CREDITICIOS:
+  - Crédito Personal Express: $5K-$50K, 6-24 meses, tasa 18-35%
+  - Crédito PyME Crecimiento: $50K-$500K, 12-48 meses, tasa 15-28%
+  - Crédito Nómina Plus: $10K-$100K, 12-36 meses, tasa 12-22%
+  - Crédito Auto Fácil: $80K-$800K, 24-60 meses, tasa 14-24%
+  - Línea de Crédito Flexible: $3K-$30K, 1-12 meses, tasa 25-45%
+  
+  GEOGRAFÍA:
+  Opera en todo México con mayor presencia en: CDMX, Guadalajara, Monterrey, 
+  Puebla, Tijuana, León, Querétaro, Mérida.
+  
+  MÉTRICAS DE VOLUMEN:
+  - 1,000 clientes activos
+  - 1,200 créditos vigentes
+  - $148 millones MXN en cartera total
+  - 10,000 transacciones mensuales
+  - Tasa de morosidad objetivo: < 5%
+
+tables:
+  - name: clientes
+    description: Información demográfica y de perfil de todos los clientes de AgilCredit
+    base_table:
+      database: AGILCREDIT_DB
+      schema: CORE
+      table: CLIENTES
+    primary_key:
+      columns:
+        - CLIENTE_ID
+    columns:
+      - name: CLIENTE_ID
+        kind: dimension
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: Identificador único del cliente
+      
+      - name: NOMBRE_COMPLETO
+        kind: dimension
+        expr: "NOMBRE || ' ' || APELLIDO_PATERNO || ' ' || APELLIDO_MATERNO"
+        data_type: VARCHAR
+        description: Nombre completo del cliente concatenado
+      
+      - name: EDAD
+        kind: dimension
+        expr: EDAD
+        data_type: NUMBER
+        description: Edad actual del cliente en años
+      
+      - name: GENERO
+        kind: dimension
+        expr: GENERO
+        data_type: VARCHAR
+        description: Género del cliente (Masculino/Femenino)
+      
+      - name: ESTADO_CIVIL
+        kind: dimension
+        expr: ESTADO_CIVIL
+        data_type: VARCHAR
+        description: Estado civil del cliente
+      
+      - name: NIVEL_EDUCACION
+        kind: dimension
+        expr: NIVEL_EDUCACION
+        data_type: VARCHAR
+        description: Nivel máximo de educación alcanzado
+      
+      - name: OCUPACION
+        kind: dimension
+        expr: OCUPACION
+        data_type: VARCHAR
+        description: Ocupación o profesión del cliente
+      
+      - name: INGRESO_MENSUAL
+        kind: dimension
+        expr: INGRESO_MENSUAL
+        data_type: NUMBER
+        description: Ingreso mensual del cliente
+      
+      - name: ESTADO
+        kind: dimension
+        expr: ESTADO
+        data_type: VARCHAR
+        description: Estado de la República donde reside el cliente
+      
+      - name: CIUDAD
+        kind: dimension
+        expr: CIUDAD
+        data_type: VARCHAR
+        description: Ciudad donde reside el cliente
+      
+      - name: FECHA_REGISTRO
+        kind: time_dimension
+        expr: FECHA_REGISTRO
+        data_type: TIMESTAMP_NTZ
+        description: Fecha y hora de registro del cliente en AgilCredit
+      
+      - name: CANAL_ADQUISICION
+        kind: dimension
+        expr: CANAL_ADQUISICION
+        data_type: VARCHAR
+        description: Canal por el cual el cliente se registró (Web, App, Referido, etc.)
+      
+      - name: CALIFICACION_BURO
+        kind: dimension
+        expr: CALIFICACION_BURO
+        data_type: NUMBER
+        description: Calificación de buró de crédito del cliente
+      
+      - name: SCORE_RIESGO
+        kind: dimension
+        expr: SCORE_RIESGO
+        data_type: NUMBER
+        description: Score de riesgo interno de AgilCredit
+      
+      - name: SEGMENTO_CLIENTE
+        kind: dimension
+        expr: SEGMENTO_CLIENTE
+        data_type: VARCHAR
+        description: Segmentación del cliente (Premium, Oro, Plata, Bronce)
+      
+      - name: ESTATUS
+        kind: dimension
+        expr: ESTATUS
+        data_type: VARCHAR
+        description: Estatus actual del cliente (Activo/Inactivo)
+
+  - name: productos
+    description: Catálogo de productos crediticios ofrecidos por AgilCredit
+    base_table:
+      database: AGILCREDIT_DB
+      schema: CORE
+      table: PRODUCTOS
+    primary_key:
+      columns:
+        - PRODUCTO_ID
+    columns:
+      - name: PRODUCTO_ID
+        kind: dimension
+        expr: PRODUCTO_ID
+        data_type: VARCHAR
+        description: Identificador único del producto crediticio
+      
+      - name: NOMBRE_PRODUCTO
+        kind: dimension
+        expr: NOMBRE_PRODUCTO
+        data_type: VARCHAR
+        description: Nombre comercial del producto
+      
+      - name: TIPO_CREDITO
+        kind: dimension
+        expr: TIPO_CREDITO
+        data_type: VARCHAR
+        description: Tipo de crédito (Personal, Empresarial, Nómina, etc.)
+      
+      - name: MONTO_MINIMO
+        kind: dimension
+        expr: MONTO_MINIMO
+        data_type: NUMBER
+        description: Monto mínimo que se puede solicitar
+      
+      - name: MONTO_MAXIMO
+        kind: dimension
+        expr: MONTO_MAXIMO
+        data_type: NUMBER
+        description: Monto máximo que se puede solicitar
+      
+      - name: TASA_INTERES_MIN
+        kind: dimension
+        expr: TASA_INTERES_MIN
+        data_type: NUMBER
+        description: Tasa de interés mínima del producto
+      
+      - name: TASA_INTERES_MAX
+        kind: dimension
+        expr: TASA_INTERES_MAX
+        data_type: NUMBER
+        description: Tasa de interés máxima del producto
+      
+      - name: CAT_PROMEDIO
+        kind: dimension
+        expr: CAT_PROMEDIO
+        data_type: NUMBER
+        description: Costo Anual Total promedio del producto
+
+  - name: creditos
+    description: Créditos activos y su información principal
+    base_table:
+      database: AGILCREDIT_DB
+      schema: CORE
+      table: CREDITOS
+    primary_key:
+      columns:
+        - CREDITO_ID
+    columns:
+      - name: CREDITO_ID
+        kind: dimension
+        expr: CREDITO_ID
+        data_type: VARCHAR
+        description: Identificador único del crédito
+      
+      - name: CLIENTE_ID
+        kind: dimension
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: ID del cliente asociado al crédito
+      
+      - name: PRODUCTO_ID
+        kind: dimension
+        expr: PRODUCTO_ID
+        data_type: VARCHAR
+        description: ID del producto crediticio
+      
+      - name: FECHA_DESEMBOLSO
+        kind: time_dimension
+        expr: FECHA_DESEMBOLSO
+        data_type: TIMESTAMP_NTZ
+        description: Fecha y hora del desembolso del crédito
+      
+      - name: MONTO_CREDITO
+        kind: dimension
+        expr: MONTO_CREDITO
+        data_type: NUMBER
+        description: Suma total de montos desembolsados
+      
+      - name: PLAZO_MESES
+        kind: dimension
+        expr: PLAZO_MESES
+        data_type: NUMBER
+        description: Promedio de plazo en meses
+      
+      - name: TASA_INTERES
+        kind: dimension
+        expr: TASA_INTERES
+        data_type: NUMBER
+        description: Promedio de tasa de interés aplicada
+      
+      - name: PAGO_MENSUAL
+        kind: dimension
+        expr: PAGO_MENSUAL
+        data_type: NUMBER
+        description: Suma de pagos mensuales esperados
+      
+      - name: SALDO_ACTUAL
+        kind: dimension
+        expr: SALDO_ACTUAL
+        data_type: NUMBER
+        description: Suma de saldos actuales pendientes (Cartera Total)
+      
+      - name: PAGOS_REALIZADOS
+        kind: dimension
+        expr: PAGOS_REALIZADOS
+        data_type: NUMBER
+        description: Total de pagos realizados
+      
+      - name: PAGOS_ATRASADOS
+        kind: dimension
+        expr: PAGOS_ATRASADOS
+        data_type: NUMBER
+        description: Total de pagos con atraso
+      
+      - name: DIAS_MORA
+        kind: dimension
+        expr: DIAS_MORA
+        data_type: NUMBER
+        description: Promedio de días en mora
+      
+      - name: ESTATUS_CREDITO
+        kind: dimension
+        expr: ESTATUS_CREDITO
+        data_type: VARCHAR
+        description: Estatus actual del crédito (Vigente, Mora, Vencido, Liquidado)
+
+  - name: transacciones
+    description: Registro de todas las transacciones realizadas (pagos, desembolsos, etc.)
+    base_table:
+      database: AGILCREDIT_DB
+      schema: CORE
+      table: TRANSACCIONES
+    primary_key:
+      columns:
+        - TRANSACCION_ID
+    columns:
+      - name: TRANSACCION_ID
+        kind: dimension
+        expr: TRANSACCION_ID
+        data_type: VARCHAR
+        description: Identificador único de la transacción
+      
+      - name: CREDITO_ID
+        kind: dimension
+        expr: CREDITO_ID
+        data_type: VARCHAR
+        description: ID del crédito asociado
+      
+      - name: CLIENTE_ID
+        kind: dimension
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: ID del cliente que realizó la transacción
+      
+      - name: FECHA_TRANSACCION
+        kind: time_dimension
+        expr: FECHA_TRANSACCION
+        data_type: TIMESTAMP_NTZ
+        description: Fecha y hora de la transacción
+      
+      - name: TIPO_TRANSACCION
+        kind: dimension
+        expr: TIPO_TRANSACCION
+        data_type: VARCHAR
+        description: Tipo de transacción (Pago, Desembolso, Cargo, etc.)
+      
+      - name: MONTO
+        kind: dimension
+        expr: MONTO
+        data_type: NUMBER
+        description: Suma total de montos transaccionados
+      
+      - name: METODO_PAGO
+        kind: dimension
+        expr: METODO_PAGO
+        data_type: VARCHAR
+        description: Método de pago utilizado (SPEI, Tarjeta, Domiciliación, etc.)
+      
+      - name: BANCO_ORIGEN
+        kind: dimension
+        expr: BANCO_ORIGEN
+        data_type: VARCHAR
+        description: Banco desde donde se originó la transacción
+      
+      - name: DISPOSITIVO
+        kind: dimension
+        expr: DISPOSITIVO
+        data_type: VARCHAR
+        description: Dispositivo usado para la transacción
+      
+      - name: ESTATUS_TRANSACCION
+        kind: dimension
+        expr: ESTATUS_TRANSACCION
+        data_type: VARCHAR
+        description: Estatus de la transacción (Exitosa, Fallida, Pendiente)
+
+  - name: alertas_fraude
+    description: Alertas generadas por el sistema de detección de fraude
+    base_table:
+      database: AGILCREDIT_DB
+      schema: CORE
+      table: ALERTAS_FRAUDE
+    primary_key:
+      columns:
+        - ALERTA_ID
+    columns:
+      - name: ALERTA_ID
+        kind: dimension
+        expr: ALERTA_ID
+        data_type: VARCHAR
+        description: Identificador único de la alerta
+      
+      - name: TRANSACCION_ID
+        kind: dimension
+        expr: TRANSACCION_ID
+        data_type: VARCHAR
+        description: ID de la transacción que generó la alerta
+      
+      - name: CLIENTE_ID
+        kind: dimension
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: ID del cliente involucrado
+      
+      - name: FECHA_ALERTA
+        kind: time_dimension
+        expr: FECHA_ALERTA
+        data_type: TIMESTAMP_NTZ
+        description: Fecha y hora en que se generó la alerta
+      
+      - name: TIPO_ALERTA
+        kind: dimension
+        expr: TIPO_ALERTA
+        data_type: VARCHAR
+        description: Clasificación del tipo de alerta de fraude
+      
+      - name: NIVEL_RIESGO
+        kind: dimension
+        expr: NIVEL_RIESGO
+        data_type: VARCHAR
+        description: Nivel de riesgo (Alto, Medio, Bajo)
+      
+      - name: SCORE_FRAUDE
+        kind: dimension
+        expr: SCORE_FRAUDE
+        data_type: NUMBER
+        description: Promedio del score de fraude (0-100)
+      
+      - name: ESTATUS_ALERTA
+        kind: dimension
+        expr: ESTATUS_ALERTA
+        data_type: VARCHAR
+        description: Estatus de la alerta (Nueva, En Revisión, Confirmado Fraude, Falso Positivo)
+
+  - name: rentabilidad_clientes
+    description: Métricas de rentabilidad y valor del cliente (LTV, CAC, utilidad)
+    base_table:
+      database: AGILCREDIT_DB
+      schema: ANALYTICS
+      table: RENTABILIDAD_CLIENTES
+    primary_key:
+      columns:
+        - CLIENTE_ID
+    columns:
+      - name: CLIENTE_ID
+        kind: dimension
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: ID del cliente
+      
+      - name: FECHA_CALCULO
+        kind: time_dimension
+        expr: FECHA_CALCULO
+        data_type: DATE
+        description: Fecha del cálculo de rentabilidad
+      
+      - name: INGRESOS_TOTALES
+        kind: dimension
+        expr: INGRESOS_TOTALES
+        data_type: NUMBER
+        description: Suma de ingresos totales generados por clientes
+      
+      - name: INTERESES_COBRADOS
+        kind: dimension
+        expr: INTERESES_COBRADOS
+        data_type: NUMBER
+        description: Suma de intereses cobrados
+      
+      - name: COMISIONES_COBRADAS
+        kind: dimension
+        expr: COMISIONES_COBRADAS
+        data_type: NUMBER
+        description: Suma de comisiones cobradas
+      
+      - name: COSTOS_OPERATIVOS
+        kind: dimension
+        expr: COSTOS_OPERATIVOS
+        data_type: NUMBER
+        description: Suma de costos operativos
+      
+      - name: COSTOS_RIESGO
+        kind: dimension
+        expr: COSTOS_RIESGO
+        data_type: NUMBER
+        description: Suma de costos por riesgo
+      
+      - name: UTILIDAD_NETA
+        kind: dimension
+        expr: UTILIDAD_NETA
+        data_type: NUMBER
+        description: Suma de utilidad neta generada
+      
+      - name: MARGEN_RENTABILIDAD
+        kind: dimension
+        expr: MARGEN_RENTABILIDAD
+        data_type: NUMBER
+        description: Promedio del margen de rentabilidad en porcentaje
+      
+      - name: LTV_ESTIMADO
+        kind: dimension
+        expr: LTV_ESTIMADO
+        data_type: NUMBER
+        description: Promedio del Lifetime Value estimado por cliente
+      
+      - name: CAC
+        kind: dimension
+        expr: CAC
+        data_type: NUMBER
+        description: Promedio del Costo de Adquisición de Cliente
+      
+      - name: RATIO_LTV_CAC
+        kind: dimension
+        expr: RATIO_LTV_CAC
+        data_type: NUMBER
+        description: Promedio del ratio LTV/CAC
+      
+      - name: SEGMENTO_RENTABILIDAD
+        kind: dimension
+        expr: SEGMENTO_RENTABILIDAD
+        data_type: VARCHAR
+        description: Segmento de rentabilidad (Alto Valor, Medio Valor, etc.)
+
+  - name: eventos_cumplimiento
+    description: Eventos relacionados con cumplimiento regulatorio (KYC/PLD)
+    base_table:
+      database: AGILCREDIT_DB
+      schema: COMPLIANCE
+      table: EVENTOS_CUMPLIMIENTO
+    primary_key:
+      columns:
+        - EVENTO_ID
+    columns:
+      - name: EVENTO_ID
+        kind: dimension
+        expr: EVENTO_ID
+        data_type: VARCHAR
+        description: Identificador único del evento de cumplimiento
+      
+      - name: CLIENTE_ID
+        kind: dimension
+        expr: CLIENTE_ID
+        data_type: VARCHAR
+        description: ID del cliente sujeto a verificación
+      
+      - name: FECHA_EVENTO
+        kind: time_dimension
+        expr: FECHA_EVENTO
+        data_type: TIMESTAMP_NTZ
+        description: Fecha y hora del evento de cumplimiento
+      
+      - name: TIPO_EVENTO
+        kind: dimension
+        expr: TIPO_EVENTO
+        data_type: VARCHAR
+        description: Tipo de evento de cumplimiento (KYC inicial, Actualización, Revisión PLD, etc.)
+      
+      - name: RESULTADO
+        kind: dimension
+        expr: RESULTADO
+        data_type: VARCHAR
+        description: Resultado del evento (Aprobado, Rechazado, Pendiente)
+      
+      - name: OFICIAL_CUMPLIMIENTO
+        kind: dimension
+        expr: OFICIAL_CUMPLIMIENTO
+        data_type: VARCHAR
+        description: Oficial responsable de la verificación
+
+relationships:
+  - name: creditos_to_clientes
+    leftTable: creditos
+    rightTable: clientes
+    relationshipColumns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+  
+  - name: creditos_to_productos
+    leftTable: creditos
+    rightTable: productos
+    relationshipColumns:
+      - left_column: PRODUCTO_ID
+        right_column: PRODUCTO_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+  
+  - name: transacciones_to_creditos
+    leftTable: transacciones
+    rightTable: creditos
+    relationshipColumns:
+      - left_column: CREDITO_ID
+        right_column: CREDITO_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+  
+  - name: alertas_fraude_to_transacciones
+    leftTable: alertas_fraude
+    rightTable: transacciones
+    relationshipColumns:
+      - left_column: TRANSACCION_ID
+        right_column: TRANSACCION_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+  
+  - name: rentabilidad_to_clientes
+    leftTable: rentabilidad_clientes
+    rightTable: clientes
+    relationshipColumns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    joinType: left_outer
+    relationshipType: one_to_one
+  
+  - name: cumplimiento_to_clientes
+    leftTable: eventos_cumplimiento
+    rightTable: clientes
+    relationshipColumns:
+      - left_column: CLIENTE_ID
+        right_column: CLIENTE_ID
+    joinType: left_outer
+    relationshipType: many_to_one
+
+verifiedQueries:
+  - name: total_clientes
+    question: "¿Cuántos clientes tenemos en total?"
+    sql: |
+      SELECT COUNT(*) as total_clientes
+      FROM __clientes
+  
+  - name: top_clientes_rentables
+    question: "¿Quiénes son los 10 clientes más rentables?"
+    sql: |
+      SELECT 
+        __rentabilidad_clientes.CLIENTE_ID,
+        __rentabilidad_clientes.UTILIDAD_NETA,
+        __rentabilidad_clientes.LTV_ESTIMADO
+      FROM __rentabilidad_clientes
+      ORDER BY __rentabilidad_clientes.UTILIDAD_NETA DESC
+      LIMIT 10
+  
+  - name: resumen_productos
+    question: "¿Cuáles son nuestros productos crediticios?"
+    sql: |
+      SELECT 
+        __productos.NOMBRE_PRODUCTO,
+        __productos.TIPO_CREDITO
+      FROM __productos
+      ORDER BY __productos.NOMBRE_PRODUCTO
+
+customInstructions: |
+  
+  ROL Y CONTEXTO:
+  Eres un analista financiero senior especializado en servicios financieros y fintech en México.
+  Tu objetivo es ayudar a ejecutivos de AgilCredit a tomar decisiones informadas basadas en datos.
+  
+  GUÍAS DE ANÁLISIS:
+  
+  1. PRIORIZACIÓN DE CONSULTAS:
+     - Riesgo/morosidad → usar tablas 'creditos' y 'clientes'
+     - Fraude/seguridad → usar 'alertas_fraude' y 'transacciones'
+     - Rentabilidad → usar 'rentabilidad_clientes'
+     - Cumplimiento/KYC → usar 'eventos_cumplimiento'
+  
+  2. CÁLCULOS CLAVE:
+     - IMOR = (Cartera Vencida / Cartera Total) * 100
+       donde Vencida = SUM(saldo_actual) WHERE estatus IN ('MORA', 'VENCIDO')
+     - Tasa Aprobación = (Aprobadas / Total Solicitudes) * 100
+     - Ratio LTV/CAC = LTV_ESTIMADO / CAC (>3.0 excelente, <1.0 problemático)
+     - % Cumplimiento KYC = (Clientes con KYC vigente / Total) * 100
+  
+  3. FILTROS Y SEGMENTACIÓN:
+     - Excluir 'LIQUIDADO' para análisis de cartera activa
+     - Segmentar por: SEGMENTO_CLIENTE, ESTADO, OCUPACION, CANAL_ADQUISICION
+     - Temporal: FECHA_DESEMBOLSO, FECHA_TRANSACCION, FECHA_ALERTA
+     - Riesgo: CALIFICACION_BURO, SCORE_RIESGO, DIAS_MORA
+  
+  4. AGREGACIONES:
+     - SUM() para montos/saldos, AVG() para tasas/scores
+     - COUNT(DISTINCT id) para conteos únicos
+     - NULLIF() para evitar división por cero
+     - ROUND(valor, 2) para montos, ROUND(valor, 1) para %
+  
+  5. FORMATO DE RESPUESTA:
+     - Resumen ejecutivo (1-2 oraciones)
+     - Métricas clave primero
+     - Contexto e interpretación
+     - Recomendaciones accionables
+     - Montos: "$123,456.78 MXN" o "$123.4M MXN"
+     - Porcentajes: "45.67%" con 2 decimales
+     - Usar términos en español, explicar acrónimos
+  
+  6. INTERPRETACIÓN DE MÉTRICAS:
+     - IMOR: <3% excelente, 3-5% bueno, 5-8% aceptable, >8% problemático
+     - LTV/CAC: >5.0 excelente, 3.0-5.0 bueno, 1.0-3.0 aceptable, <1.0 crítico
+     - Score Riesgo: 80-100 muy bajo, 60-79 bajo, 40-59 medio, 20-39 alto, 0-19 muy alto
+     - Score Fraude: >80 muy alta probabilidad, 60-79 alta, 40-59 sospechoso, <40 bajo
+  
+  7. ALERTAS Y UMBRALES:
+     - IMOR > 5%: Preocupante, atención inmediata
+     - Fraude NIVEL_RIESGO='ALTO': Prioridad máxima
+     - LTV/CAC < 1.0: Modelo insostenible
+     - KYC > 365 días: Renovación urgente
+     - Concentración cliente > 10%: Riesgo alto
+  
+  8. RELACIONES DE TABLAS:
+     - clientes → creditos (one-to-many)
+     - productos → creditos (one-to-many)
+     - creditos → transacciones (one-to-many)
+     - transacciones → alertas_fraude (one-to-many, nullable)
+     - clientes → rentabilidad_clientes (one-to-one)
+     - clientes → eventos_cumplimiento (one-to-many)
+  
+  ═══════════════════════════════════════════════════════════════════════════
+  
+  GLOSARIO DE TÉRMINOS FINANCIEROS:
+  
+  MÉTRICAS CLAVE:
+  - CAT: Costo Anual Total (incluye todos los costos del crédito)
+  - IMOR: Índice de Morosidad (cartera vencida / cartera total)
+  - LTV: Lifetime Value (valor del cliente en su vida útil)
+  - CAC: Customer Acquisition Cost (costo de adquisición)
+  - CURP: Clave Única de Registro de Población
+  - RFC: Registro Federal de Contribuyentes
+  
+  REGULACIÓN MEXICANA:
+  - CNBV: Comisión Nacional Bancaria y de Valores
+  - CONDUSEF: Comisión Nacional para Protección de Usuarios Financieros
+  - SOFOM: Sociedad Financiera de Objeto Múltiple
+  - KYC: Know Your Customer (Conoce a tu Cliente)
+  - PLD: Prevención de Lavado de Dinero
+  - PEP: Personas Políticamente Expuestas
+  - OFAC: Office of Foreign Assets Control (lista de sanciones)
+  
+  ESTADOS DE CRÉDITO:
+  - VIGENTE: Crédito al corriente, sin atrasos
+  - MORA: Crédito con 1-89 días de atraso
+  - VENCIDO: Crédito con 90 o más días de atraso
+  - LIQUIDADO: Crédito pagado en su totalidad
+  
+  SEGMENTOS DE CLIENTE:
+  - Premium: Score buró > 750, muy bajo riesgo
+  - Oro: Score buró 680-750, bajo riesgo
+  - Plata: Score buró 620-679, riesgo medio
+  - Bronce: Score buró < 620, riesgo alto
+  
+  CONSIDERACIONES IMPORTANTES:
+  - Siempre excluir créditos LIQUIDADOS al calcular cartera activa
+  - Cartera vencida solo incluye MORA y VENCIDO
+  - Para cumplimiento, verificar última actualización KYC < 365 días
+  - Alertas de fraude ALTO requieren acción en < 24 horas
+  - Concentración por cliente no debe exceder 10% de cartera total
+  - Ratio LTV/CAC saludable debe ser > 3.0
+  - IMOR objetivo de la industria fintech en México: 3-5%
+

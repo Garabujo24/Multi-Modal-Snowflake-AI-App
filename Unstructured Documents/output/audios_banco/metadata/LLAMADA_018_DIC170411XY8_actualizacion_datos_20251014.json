@@ -1,0 +1,28 @@
+{
+  "id_llamada": 18,
+  "cliente": {
+    "nombre": "DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV",
+    "rfc": "DIC170411XY8",
+    "tipo": "Persona Moral",
+    "estado": "Quintana Roo"
+  },
+  "llamada": {
+    "tipo": "actualizacion_datos",
+    "titulo": "Actualización de Datos",
+    "categoria": "Administración",
+    "fecha": "2025-10-14T15:42:36.548392",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_018_DIC170411XY8_actualizacion_datos_20251014.mp3",
+    "transcripcion": "LLAMADA_018_DIC170411XY8_actualizacion_datos_20251014.txt",
+    "metadata": "LLAMADA_018_DIC170411XY8_actualizacion_datos_20251014.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****2325",
+    "ultimos_rfc": "1XY8"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

@@ -1,0 +1,61 @@
+LLAMADA BANCARIA - Solicitud de Transferencia
+======================================================================
+
+Cliente: DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV
+RFC: DIC170411XY8
+Fecha: 03/11/2025 15:53
+Duración estimada: 3-4 minutos
+Categoría: Operaciones
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenos días, le atiende Patricia Gutiérrez del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenos días. Necesito hacer una transferencia.
+
+Ejecutivo: Con gusto le ayudo. ¿Me puede proporcionar su número de cuenta?
+
+Cliente: Sí, es ****7525.
+
+Ejecutivo: Gracias. ¿Y su nombre completo?
+
+Cliente: DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV.
+
+Ejecutivo: Perfecto. ¿Tiene la CLABE del beneficiario?
+
+Cliente: Sí, es 0121809462491185.
+
+Ejecutivo: Déjeme verificar. El beneficiario es Ana Cristina González Díaz. ¿Es correcto?
+
+Cliente: Sí, es correcto.
+
+Ejecutivo: ¿Qué monto desea transferir?
+
+Cliente: 48,938 pesos.
+
+Ejecutivo: Entiendo. Por seguridad, ¿me puede confirmar el concepto de la transferencia?
+
+Cliente: Es por préstamo familiar.
+
+Ejecutivo: Perfecto. La transferencia tiene un costo de 15 pesos. El beneficiario recibirá 48,923 pesos. ¿Desea continuar?
+
+Cliente: Sí, adelante.
+
+Ejecutivo: Excelente. Le voy a enviar un código de verificación a su celular registrado. ¿Me puede proporcionar el código cuando lo reciba?
+
+Cliente: Sí, el código es 634628.
+
+Ejecutivo: Gracias. La transferencia ha sido procesada exitosamente. El número de referencia es TR56044348. El beneficiario recibirá el dinero en un plazo máximo de 24 horas.
+
+Cliente: Perfecto, muchas gracias.
+
+Ejecutivo: A sus órdenes. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo.
+
+Ejecutivo: Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

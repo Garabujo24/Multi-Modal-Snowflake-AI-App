@@ -1,0 +1,490 @@
+Guía de Entrenamiento y Fitness - OMNIGOODS
+
+Maximice el Potencial de sus Productos OMNIGOODS para Alcanzar sus Objetivos de Fitness
+
+---
+
+## INTRODUCCIÓN
+
+Esta guía le ayudará a aprovechar al máximo su ecosistema OMNIGOODS para fitness, incluyendo el Smartwatch Pro, las Zapatillas Runner Pro, y la aplicación OmniConnect.
+
+**Importante:** Consulte con un médico antes de comenzar cualquier programa de ejercicio nuevo, especialmente si tiene condiciones de salud preexistentes.
+
+---
+
+## PARTE 1: CONFIGURACIÓN DE SU ECOSISTEMA FITNESS
+
+### Paso 1: Configurar su Smartwatch Pro
+
+**Perfil de Usuario Preciso:**
+Para métricas exactas, complete en la app OmniConnect:
+- Edad (afecta cálculos de frecuencia cardíaca)
+- Altura (afecta cálculo de pasos y distancia)
+- Peso (afecta cálculo de calorías)
+- Género (afecta cálculos metabólicos)
+- Nivel de actividad actual (sedentario, moderado, activo)
+
+**Configurar Zonas de Frecuencia Cardíaca:**
+El smartwatch calcula automáticamente sus zonas según edad, pero puede personalizarlas:
+
+| Zona | % FC Max | Beneficio | Color en Watch |
+|------|----------|-----------|----------------|
+| Zona 1: Recuperación | 50-60% | Calentamiento, recuperación | Azul |
+| Zona 2: Quema de Grasa | 60-70% | Resistencia base, quema grasa | Verde |
+| Zona 3: Aeróbica | 70-80% | Mejora cardiovascular | Amarillo |
+| Zona 4: Anaeróbica | 80-90% | Mejora rendimiento, velocidad | Naranja |
+| Zona 5: Máximo | 90-100% | Sprints cortos, potencia | Rojo |
+
+**Fórmula aproximada FC Máxima:** 220 - su edad
+
+**Ejemplo:**
+- Persona de 35 años: FC Máx = 185 bpm
+- Zona 2 (quema grasa): 111-130 bpm
+- Zona 3 (aeróbica): 130-148 bpm
+
+### Paso 2: Ajustar sus Zapatillas Runner Pro
+
+**Primera Salida:**
+- Use calcetines técnicos de running
+- Ajuste cordones: firmes pero no apretados
+- Camine 10 minutos para adaptación
+- Verifique que no haya puntos de presión
+
+**Técnica de Atado para Diferentes Necesidades:**
+
+1. **Atado Estándar:** Para la mayoría de corredores
+2. **Runner's Loop** (talón que se desliza): Use el último ojete para crear un "ojal de bloqueo"
+3. **Atado Ancho** (pies anchos): Sáltese algunos ojetes para reducir presión lateral
+4. **Atado Paralelo** (presión en empeine): Evite cruzar cordones en el empeine
+
+---
+
+## PARTE 2: PROGRAMAS DE ENTRENAMIENTO
+
+### Programa 1: INICIACIÓN AL RUNNING (0 a 5K en 8 semanas)
+
+**Perfil:** Sedentario o principiante absoluto
+**Objetivo:** Correr 5 km sin parar
+**Frecuencia:** 3 días/semana, con día de descanso entre sesiones
+**Equipamiento:** Smartwatch Pro, Zapatillas Runner Pro
+
+#### Semana 1-2: Bases
+- **Sesión:** 5 min caminar + 8x (1 min trotar + 2 min caminar) + 5 min caminar
+- **Total:** 30 minutos
+- **Zona objetivo:** Zona 1-2
+- **Nota:** Trote muy suave, debe poder mantener conversación
+
+#### Semana 3-4: Progresión
+- **Sesión:** 5 min caminar + 6x (2 min trotar + 2 min caminar) + 5 min caminar
+- **Total:** 30 minutos
+- **Zona objetivo:** Zona 2
+
+#### Semana 5-6: Consolidación
+- **Sesión:** 5 min caminar + 4x (4 min trotar + 2 min caminar) + 5 min caminar
+- **Total:** 33 minutos
+- **Zona objetivo:** Zona 2-3
+
+#### Semana 7-8: Objetivo
+- **Sesión 1 y 2:** 5 min caminar + 20 min trotar + 5 min caminar
+- **Sesión 3:** 5 min caminar + 30 min trotar continuo (5K) + 5 min caminar
+- **Zona objetivo:** Zona 2-3
+
+**Usar Smartwatch:**
+- Active modo "Running" antes de empezar
+- Configure alertas de intervalo para cambios trotar/caminar
+- Revise FC durante intervalos de caminar
+- Sincronice con app OmniConnect después
+
+**Consejos:**
+✓ No acelere demasiado pronto
+✓ Si siente dolor (no molestia), descanse
+✓ Manténgase hidratado
+✓ No corra dos días seguidos al principio
+
+---
+
+### Programa 2: MEJORAR 10K (de 5K a 10K en 6 semanas)
+
+**Perfil:** Puede correr 5K cómodamente
+**Objetivo:** Completar 10K
+**Frecuencia:** 4 días/semana
+
+#### Estructura Semanal:
+- **Lunes:** Descanso o yoga/estiramiento
+- **Martes:** Carrera ritmo constante (Zona 2-3)
+- **Miércoles:** Descanso activo (caminar o bici suave)
+- **Jueves:** Intervalos o fartlek (Zona 3-4)
+- **Viernes:** Descanso
+- **Sábado:** Carrera larga (Zona 2)
+- **Domingo:** Carrera recuperación corta (Zona 1-2) o descanso
+
+#### Progresión Semanal:
+
+**Semana 1:**
+- Martes: 5K ritmo cómodo
+- Jueves: 6x (2 min rápido + 2 min recuperación)
+- Sábado: 7K ritmo lento
+
+**Semana 2:**
+- Martes: 6K ritmo cómodo
+- Jueves: 5x (3 min rápido + 2 min recuperación)
+- Sábado: 8K ritmo lento
+
+**Semana 3:**
+- Martes: 6K ritmo cómodo
+- Jueves: 8x (1 min rápido + 1 min recuperación)
+- Sábado: 9K ritmo lento
+
+**Semana 4:** (Semana de descarga)
+- Martes: 4K ritmo muy cómodo
+- Jueves: Descanso o 3K muy suave
+- Sábado: 6K ritmo cómodo
+
+**Semana 5:**
+- Martes: 7K ritmo cómodo
+- Jueves: 6x (3 min rápido + 2 min recuperación)
+- Sábado: 10K ritmo lento
+
+**Semana 6:** (Semana de objetivo)
+- Martes: 5K ritmo cómodo
+- Jueves: 4K con 3x (1 min rápido + 2 min recuperación)
+- Sábado: ¡10K OBJETIVO!
+- Domingo: 3K recuperación muy suave
+
+**Usar Smartwatch:**
+- Active GPS para rutas precisas
+- Configure alertas cada kilómetro
+- Monitoree FC en intervalos rápidos (no exceda Zona 4)
+- Use función "Auto Lap" cada 1km
+
+---
+
+### Programa 3: ENTRENAMIENTO DE FUERZA PARA CORREDORES
+
+**Objetivo:** Prevenir lesiones y mejorar rendimiento
+**Frecuencia:** 2 días/semana (no consecutivos)
+**Duración:** 30-40 minutos
+**Equipamiento:** Solo peso corporal
+
+#### Circuito (3 rondas, 45 seg cada ejercicio, 15 seg descanso):
+
+1. **Sentadillas:** Fortalece cuádriceps y glúteos
+2. **Zancadas alternas:** Simula movimiento de correr
+3. **Elevaciones de talón (gemelos):** Potencia en impulso
+4. **Plancha:** Core estable = mejor economía de carrera
+5. **Puente de glúteos:** Fortalece cadena posterior
+6. **Mountain climbers:** Resistencia y coordinación
+7. **Sentadilla a una pierna (asistida):** Balance y fuerza unilateral
+8. **Bird dog:** Core y estabilidad
+
+**Usar Smartwatch:**
+- Active modo "Strength Training"
+- Use temporizador de intervalos: 45/15
+- Monitoree FC (objetivo: Zona 2-3)
+
+**Cuándo hacer:**
+- Después de carrera fácil (mismo día)
+- Día no consecutivo a entrenamiento intenso
+- Nunca el día antes de carrera larga o intervalos
+
+---
+
+## PARTE 3: MÉTRICAS Y ANÁLISIS
+
+### Entender las Métricas del Smartwatch
+
+**Pasos Diarios:**
+- **Objetivo general:** 10,000 pasos/día
+- **Principiantes:** Comience con 6,000-7,000
+- **Activos:** 12,000-15,000
+- **Nota:** Calidad > cantidad
+
+**Frecuencia Cardíaca en Reposo (FCR):**
+- Medida: Al despertar, antes de levantarse
+- **Excelente:** <60 bpm (hombres), <65 bpm (mujeres)
+- **Bueno:** 60-70 bpm
+- **Promedio:** 70-80 bpm
+- **Mejorar:** >80 bpm
+- **Progreso:** FCR baja indica mejor condición cardiovascular
+
+**VO2 Max (Estimado):**
+Máximo oxígeno que su cuerpo puede utilizar durante ejercicio
+- **<30:** Malo
+- **30-40:** Promedio
+- **40-50:** Bueno
+- **50-60:** Muy bueno
+- **>60:** Excelente (atleta)
+
+**Calorías Quemadas:**
+- Incluye metabolismo basal + actividad
+- Use como guía, no número exacto
+- Para perder peso: déficit de 300-500 cal/día
+
+**Calidad de Sueño:**
+- **Objetivo:** 7-9 horas por noche
+- **Sueño profundo:** 15-25% del total
+- **Sueño REM:** 20-25% del total
+- Mejor recuperación = mejores entrenamientos
+
+**Minutos de Actividad Intensa:**
+- **OMS recomienda:** 150 min moderada O 75 min intensa por semana
+- **Objetivo Smartwatch:** 30 min/día zona 3+
+- Incluye: correr, ciclismo intenso, natación, deportes
+
+---
+
+## PARTE 4: NUTRICIÓN PARA RUNNERS
+
+### Antes del Entrenamiento
+
+**2-3 horas antes (comida completa):**
+- Carbohidratos complejos: Arroz, pasta, pan integral
+- Proteína magra: Pollo, pescado, tofu
+- Poca grasa y fibra (digestión más lenta)
+- Ejemplo: Pasta con pollo y verduras
+
+**30-60 min antes (snack):**
+- Plátano + mantequilla de almendra
+- Tostada con mermelada
+- Barra energética
+- Yogur con miel
+
+**Hidratación:**
+- 400-600ml de agua 2-3 horas antes
+- 200-300ml justo antes de empezar
+
+### Durante el Entrenamiento
+
+**Menos de 60 minutos:** Solo agua
+
+**60-90 minutos:**
+- Agua: 150-200ml cada 15-20 min
+- Opcional: Bebida isotónica
+
+**Más de 90 minutos:**
+- Agua + electrolitos
+- 30-60g carbohidratos/hora: Geles, gomitas, plátano
+- Configure alarma en Smartwatch cada 20 min para recordar hidratación
+
+### Después del Entrenamiento
+
+**Ventana de recuperación: 30-60 min post-ejercicio**
+
+**Objetivo:**
+- Reponer glucógeno (carbohidratos)
+- Reparar músculo (proteína)
+- Rehidratar
+
+**Ratio ideal:** 3:1 o 4:1 (carbohidratos:proteína)
+
+**Ejemplos:**
+- Batido: Plátano + proteína whey + leche + avena
+- Sándwich: Pan integral + jamón de pavo + queso + plátano
+- Yogur griego + granola + frutas
+- Arroz + pollo + verduras
+
+**Hidratación:**
+- Pese antes y después de entrenar (si es posible)
+- Por cada kg perdido: 1.5L de agua en siguientes 2-4 horas
+
+---
+
+## PARTE 5: PREVENCIÓN DE LESIONES
+
+### Lesiones Comunes y Prevención
+
+**1. Fascitis Plantar (dolor en planta del pie)**
+- **Prevención:** Estiramiento de pantorrillas, rodar planta con pelota
+- **Señal de alerta:** Dolor al levantarse por la mañana
+
+**2. Síndrome de la Cintilla Iliotibial (dolor lateral rodilla)**
+- **Prevención:** Fortalecimiento de glúteos, foam rolling lateral muslo
+- **Señal de alerta:** Dolor punzante lado externo rodilla
+
+**3. Shin Splints (dolor en espinilla)**
+- **Prevención:** Incremento gradual de kilometraje, fortalecer tibiales
+- **Señal de alerta:** Dolor en parte frontal interna de espinilla
+
+**4. Tendinitis Aquiles (dolor en talón)**
+- **Prevención:** Estiramiento de gemelos, no aumentar kilometraje bruscamente
+- **Señal de alerta:** Rigidez matutina en talón
+
+### Regla de Oro: Incremento del 10%
+No aumente su kilometraje semanal más del 10% respecto a la semana anterior.
+
+Ejemplo:
+- Semana 1: 15 km
+- Semana 2: 16.5 km (10% más)
+- Semana 3: 18 km
+- Semana 4: 14 km (semana de descarga)
+
+### Semanas de Descarga
+Cada 3-4 semanas de incremento, reduzca volumen 30-40% para permitir recuperación.
+
+### Escuchar a su Cuerpo
+
+**Dolor bueno vs. malo:**
+- **Molestia muscular:** Normal, mejora con calentamiento
+- **Dolor articular agudo:** Pare inmediatamente
+- **Dolor que empeora durante carrera:** Pare y descanse
+
+**Usar Smartwatch:**
+- Monitoree variabilidad de FC (HRV)
+- HRV baja = necesita recuperación
+- FC en reposo alta = posible sobreentrenamiento o enfermedad
+
+---
+
+## PARTE 6: PROGRAMAS AVANZADOS
+
+### Plan de Media Maratón (21K)
+
+**Prerequisitos:** Haber corrido 10K cómodamente
+
+**Duración:** 12 semanas
+**Frecuencia:** 4-5 días/semana
+**Kilometraje pico:** 50-60 km/semana
+
+**Estructura tipo (semana en mesociclo):**
+- **Lunes:** Descanso
+- **Martes:** Carrera tempo (8-12 km zona 3)
+- **Miércoles:** Carrera fácil (6-8 km zona 2)
+- **Jueves:** Intervalos (8-10 km total, con series zona 4)
+- **Viernes:** Descanso o cross-training
+- **Sábado:** Carrera larga (incrementando hasta 18-20 km)
+- **Domingo:** Carrera recuperación (5-6 km muy suave)
+
+**Semanas clave:**
+- Semana 8: Carrera larga 16 km
+- Semana 10: Carrera larga 18-20 km (pico)
+- Semana 11: Taper (reducir volumen 50%)
+- Semana 12: ¡CARRERA!
+
+**Descargue plan detallado:** www.omnigoods.com/planes-entrenamiento
+
+---
+
+## PARTE 7: CONSEJOS DE LA APP OMNICONNECT
+
+### Funciones Útiles
+
+**1. Análisis de Tendencias:**
+- Vea progreso de FCR semanal
+- Compare ritmos en misma ruta
+- Identifique patrones de sueño vs. rendimiento
+
+**2. Desafíos Personales:**
+- Configure objetivos mensuales
+- Compita consigo mismo
+- Gane insignias virtuales
+
+**3. Planes de Entrenamiento Adaptativos:**
+- Seleccione objetivo (5K, 10K, media maratón)
+- La app ajusta según su progreso
+- Avisos si está sobreentrenando
+
+**4. Integración con Otras Apps:**
+- Sincronice con Strava, Nike Run Club, etc.
+- Exporte datos en formato GPX
+- Comparta logros en redes sociales
+
+---
+
+## PARTE 8: MOTIVACIÓN Y PSICOLOGÍA
+
+### Establecer Objetivos SMART
+
+**S**pecíficos: "Correr 5K" no "Ponerme en forma"
+**M**edibles: "Bajar de 30 minutos en 5K"
+**A**lcanzables: Realista según su nivel
+**R**elevantes: Importantes para usted personalmente
+**T**emporales: "En 8 semanas"
+
+**Ejemplo SMART:**
+"Completar mi primera carrera de 10K en menos de 65 minutos antes del 31 de diciembre"
+
+### Mantener la Motivación
+
+**1. Varíe las Rutas:**
+- Explore nuevos parques o barrios
+- Use función "Explorar rutas" del Smartwatch
+
+**2. Encuentre un Compañero:**
+- Un amigo hace entrenamientos menos monótonos
+- Compromiso mutuo mejora constancia
+
+**3. Música o Podcasts:**
+- Los Auriculares Elite son perfectos
+- Cree listas de reproducción por ritmo
+- Aprenda algo nuevo mientras entrena
+
+**4. Registre su Progreso:**
+- Use función diario en app OmniConnect
+- Tome selfies mensuales
+- Celebre pequeñas victorias
+
+**5. Inscríbase a una Carrera:**
+- Tener fecha límite ayuda a mantener disciplina
+- La energía de carrera es incomparable
+
+### Superar la Falta de Motivación
+
+**Normal tener días malos:**
+- Báje intensidad, no suspenda
+- 20 min de carrera fácil > nada
+- Algunas veces descanso es lo mejor
+
+**Truco:** "Solo salgo 10 minutos"
+- Usualmente continuará una vez empiece
+- Si realmente se siente mal, pare sin culpa
+
+---
+
+## PARTE 9: PREGUNTAS FRECUENTES
+
+**P: ¿Debo correr todos los días?**
+R: No. Días de descanso son cuando su cuerpo se adapta y fortalece. Principiantes: 3-4 días/semana. Avanzados: 5-6 días/semana máximo.
+
+**P: ¿Cuándo debo reemplazar mis zapatillas?**
+R: Cada 600-800 km. El Smartwatch lleva registro de kilometraje de sus zapatillas.
+
+**P: ¿Es mejor correr por la mañana o tarde?**
+R: Cuando mejor le funcione. Mañana: más disciplina, estómago vacío. Tarde: músculos más calientes, mejor rendimiento.
+
+**P: ¿Debo estirar antes de correr?**
+R: Estiramiento estático (mantener posición) antes NO. Mejor calentamiento dinámico. Estiramiento estático después SÍ.
+
+**P: Mi FC parece muy alta, ¿es normal?**
+R: Las primeras semanas es normal. Si persiste, verifique que perfil en app sea correcto. Consulte médico si tiene dudas.
+
+**P: ¿Puedo correr con dolor muscular?**
+R: Dolor muscular leve (DOMS): Sí, carrera fácil puede ayudar. Dolor articular o agudo: NO, descanse.
+
+---
+
+## RECURSOS ADICIONALES
+
+### En la App OmniConnect:
+- Biblioteca de videos de técnica de carrera
+- Calculadora de ritmos objetivo
+- Planes de entrenamiento descargables
+- Foro de comunidad OMNIGOODS
+
+### En la Web:
+- **Blog:** www.omnigoods.com/blog/fitness
+- **Videos:** www.youtube.com/omnigoods
+- **Webinars mensuales:** Entrenamiento con expertos
+- **Newsletter:** Tips semanales
+
+### Soporte:
+**Email:** fitness@omnigoods.com
+**Instagram:** @omnigoods_fitness
+
+---
+
+**¡El viaje de los mil kilómetros empieza con un solo paso!**
+
+Con su Smartwatch Pro, Zapatillas Runner Pro y esta guía, tiene todo lo necesario para alcanzar sus objetivos de fitness.
+
+OMNIGOODS - Tu Compañero en el Camino hacia una Vida Más Activa
+

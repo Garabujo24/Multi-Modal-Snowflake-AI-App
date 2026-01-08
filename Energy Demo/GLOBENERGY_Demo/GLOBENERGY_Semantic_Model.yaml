@@ -1,0 +1,636 @@
+---
+# ============================================================================
+# MODELO SEMÁNTICO: GLOBENERGY - PLATAFORMA DE GESTIÓN ENERGÉTICA
+# ============================================================================
+# Autor: Ingeniero de Datos - GLOBENERGY
+# Fecha: 22 de Octubre, 2025
+# Tecnología: Snowflake Semantic Model
+# Versión: 1.0
+# ============================================================================
+
+name: globenergy_energia_semantico
+label: GLOBENERGY - Gestión Energética Global
+description: |
+  Modelo semántico para análisis de consumo energético, optimización de costos,
+  predicción de demanda, sostenibilidad y continuidad de negocios ante eventos climáticos.
+  
+  Incluye datos de 100+ clientes, múltiples tipos de energía (gas natural, electricidad,
+  renovables), y análisis de impacto ambiental (emisiones CO2).
+
+tables:
+  # ==========================================================================
+  # TABLA PRINCIPAL: CONSUMO ENERGÉTICO
+  # ==========================================================================
+  - name: consumo
+    description: Tabla principal con registros de consumo energético por cliente, fecha y tipo de energía
+    base_table:
+      database: GLOBENERGY_DB
+      schema: ENERGIA
+      table: CONSUMO
+    
+    dimensions:
+      - name: consumo_id
+        synonyms: [id consumo, identificador consumo]
+        description: Identificador único del registro de consumo
+        expr: CONSUMO_ID
+        data_type: NUMBER
+        unique: true
+        kind: dimension
+      
+      - name: fecha_consumo
+        synonyms: [fecha, día consumo, fecha de consumo]
+        description: Fecha en que ocurrió el consumo energético
+        expr: FECHA_CONSUMO
+        data_type: DATE
+        kind: time_dimension
+      
+      - name: mes
+        synonyms: [mes consumo, mes del año]
+        description: Mes del consumo (1-12)
+        expr: MES
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: anio
+        synonyms: [año, año consumo, año del registro]
+        description: Año del consumo
+        expr: ANIO
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: trimestre
+        synonyms: [quarter, trimestre del año, Q]
+        description: Trimestre del consumo (1-4)
+        expr: TRIMESTRE
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: volumen_consumido
+        synonyms: [consumo, volumen, cantidad consumida, uso energético]
+        description: Volumen total de energía consumida en la unidad correspondiente
+        expr: VOLUMEN_CONSUMIDO
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: costo_total
+        synonyms: [costo, precio, gasto, facturación]
+        description: Costo total en USD del consumo energético
+        expr: COSTO_TOTAL
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: emision_co2_kg
+        synonyms: [emisiones, CO2, carbono, huella carbono, emisiones CO2]
+        description: Emisiones de CO2 en kilogramos generadas por el consumo
+        expr: EMISION_CO2_KG
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: temperatura_promedio_c
+        synonyms: [temperatura, temp, clima, temperatura ambiente]
+        description: Temperatura promedio en grados Celsius durante el consumo
+        expr: TEMPERATURA_PROMEDIO_C
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: hora_pico
+        synonyms: [pico, hora punta, demanda pico]
+        description: Indica si el consumo ocurrió durante hora pico (true/false)
+        expr: HORA_PICO
+        data_type: BOOLEAN
+        kind: dimension
+      
+      - name: eficiencia_energetica
+        synonyms: [eficiencia, desempeño energético, performance]
+        description: Porcentaje de eficiencia energética (100 = óptimo)
+        expr: EFICIENCIA_ENERGETICA
+        data_type: NUMBER
+        kind: dimension
+
+  # ==========================================================================
+  # TABLA: CLIENTES
+  # ==========================================================================
+  - name: clientes
+    description: Información de clientes de GLOBENERGY en diferentes sectores y países
+    base_table:
+      database: GLOBENERGY_DB
+      schema: ENERGIA
+      table: CLIENTES
+    
+    dimensions:
+      - name: cliente_id
+        synonyms: [id cliente, identificador cliente]
+        description: Identificador único del cliente
+        expr: CLIENTE_ID
+        data_type: NUMBER
+        unique: true
+        kind: dimension
+      
+      - name: nombre_cliente
+        synonyms: [cliente, nombre, razón social]
+        description: Nombre completo del cliente
+        expr: NOMBRE_CLIENTE
+        data_type: TEXT
+        kind: dimension
+      
+      - name: sector
+        synonyms: [industria, vertical, tipo negocio, segmento]
+        description: Sector industrial del cliente (Educación, Salud, Industrial, etc.)
+        expr: SECTOR
+        data_type: TEXT
+        kind: dimension
+      
+      - name: pais
+        synonyms: [país, nación, country]
+        description: País donde opera el cliente
+        expr: PAIS
+        data_type: TEXT
+        kind: dimension
+      
+      - name: region
+        synonyms: [región, área geográfica, zona]
+        description: Región geográfica del cliente
+        expr: REGION
+        data_type: TEXT
+        kind: dimension
+      
+      - name: ciudad
+        synonyms: [city, localidad, municipio]
+        description: Ciudad donde se encuentra el cliente
+        expr: CIUDAD
+        data_type: TEXT
+        kind: dimension
+      
+      - name: tamano_empresa
+        synonyms: [tamaño, tamaño empresa, tamaño negocio, size]
+        description: Tamaño de la empresa (Pequeña, Mediana, Grande, Corporativa)
+        expr: TAMANO_EMPRESA
+        data_type: TEXT
+        kind: dimension
+      
+      - name: fecha_registro
+        synonyms: [fecha alta, fecha inscripción, fecha onboarding]
+        description: Fecha de registro del cliente en GLOBENERGY
+        expr: FECHA_REGISTRO
+        data_type: DATE
+        kind: time_dimension
+      
+      - name: nivel_sostenibilidad
+        synonyms: [sostenibilidad, nivel verde, compromiso ambiental]
+        description: Nivel de compromiso con sostenibilidad (Básico, Intermedio, Avanzado, Líder)
+        expr: NIVEL_SOSTENIBILIDAD
+        data_type: TEXT
+        kind: dimension
+      
+      - name: contacto_email
+        synonyms: [email, correo, correo electrónico, contacto]
+        description: Email de contacto del cliente
+        expr: CONTACTO_EMAIL
+        data_type: TEXT
+        kind: dimension
+      
+      - name: estado
+        synonyms: [status, estado cliente, condición]
+        description: Estado actual del cliente (Activo, Inactivo, Suspendido)
+        expr: ESTADO
+        data_type: TEXT
+        kind: dimension
+
+  # ==========================================================================
+  # TABLA: TIPOS DE ENERGÍA
+  # ==========================================================================
+  - name: tipos_energia
+    description: Catálogo de tipos de energía disponibles (gas, electricidad, renovables, etc.)
+    base_table:
+      database: GLOBENERGY_DB
+      schema: ENERGIA
+      table: TIPOS_ENERGIA
+    
+    dimensions:
+      - name: tipo_energia_id
+        synonyms: [id tipo energía, id energía]
+        description: Identificador único del tipo de energía
+        expr: TIPO_ENERGIA_ID
+        data_type: NUMBER
+        unique: true
+        kind: dimension
+      
+      - name: nombre_tipo
+        synonyms: [tipo energía, energía, fuente energética]
+        description: Nombre del tipo de energía (Gas Natural, Electricidad, Solar, etc.)
+        expr: NOMBRE_TIPO
+        data_type: TEXT
+        kind: dimension
+      
+      - name: categoria
+        synonyms: [categoría energía, clasificación, tipo fuente]
+        description: Categoría de la energía (Fósil, Renovable, Híbrida)
+        expr: CATEGORIA
+        data_type: TEXT
+        kind: dimension
+      
+      - name: unidad_medida
+        synonyms: [unidad, medida, UOM, unidad de medición]
+        description: Unidad de medida (kWh, m3, Galones, Toneladas)
+        expr: UNIDAD_MEDIDA
+        data_type: TEXT
+        kind: dimension
+      
+      - name: factor_emision_co2
+        synonyms: [factor CO2, factor emisión, intensidad carbono]
+        description: Factor de emisión de CO2 en kg por unidad de energía
+        expr: FACTOR_EMISION_CO2
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: precio_base_unitario
+        synonyms: [precio base, costo unitario, tarifa base]
+        description: Precio base por unidad de energía en USD
+        expr: PRECIO_BASE_UNITARIO
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: descripcion
+        synonyms: [descripción tipo, detalle, información]
+        description: Descripción detallada del tipo de energía
+        expr: DESCRIPCION
+        data_type: TEXT
+        kind: dimension
+
+  # ==========================================================================
+  # TABLA: CONTRATOS
+  # ==========================================================================
+  - name: contratos
+    description: Contratos de suministro energético entre GLOBENERGY y sus clientes
+    base_table:
+      database: GLOBENERGY_DB
+      schema: ENERGIA
+      table: CONTRATOS
+    
+    dimensions:
+      - name: contrato_id
+        synonyms: [id contrato, número contrato]
+        description: Identificador único del contrato
+        expr: CONTRATO_ID
+        data_type: NUMBER
+        unique: true
+        kind: dimension
+      
+      - name: tipo_contrato
+        synonyms: [tipo, modalidad contrato, plan]
+        description: Tipo de contrato (Fijo, Indexado, Híbrido)
+        expr: TIPO_CONTRATO
+        data_type: TEXT
+        kind: dimension
+      
+      - name: fecha_inicio
+        synonyms: [inicio contrato, fecha inicio, start date]
+        description: Fecha de inicio del contrato
+        expr: FECHA_INICIO
+        data_type: DATE
+        kind: time_dimension
+      
+      - name: fecha_fin
+        synonyms: [fin contrato, vencimiento, fecha término, end date]
+        description: Fecha de finalización del contrato
+        expr: FECHA_FIN
+        data_type: DATE
+        kind: time_dimension
+      
+      - name: volumen_comprometido_anual
+        synonyms: [volumen comprometido, compromiso anual, volumen contratado]
+        description: Volumen de energía comprometido anualmente
+        expr: VOLUMEN_COMPROMETIDO_ANUAL
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: precio_unitario
+        synonyms: [precio, tarifa, costo unitario contrato]
+        description: Precio unitario acordado en el contrato
+        expr: PRECIO_UNITARIO
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: descuento_aplicado
+        synonyms: [descuento, rebaja, discount]
+        description: Porcentaje de descuento aplicado al contrato
+        expr: DESCUENTO_APLICADO
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: estado_contrato
+        synonyms: [estado, status contrato, condición contrato]
+        description: Estado del contrato (Activo, Vencido, Renovado, Cancelado)
+        expr: ESTADO_CONTRATO
+        data_type: TEXT
+        kind: dimension
+      
+      - name: energia_renovable
+        synonyms: [renovable, energía verde, green energy]
+        description: Indica si el contrato es de energía renovable (true/false)
+        expr: ENERGIA_RENOVABLE
+        data_type: BOOLEAN
+        kind: dimension
+
+  # ==========================================================================
+  # TABLA: EVENTOS CLIMÁTICOS
+  # ==========================================================================
+  - name: eventos_climaticos
+    description: Registro de eventos climáticos que impactan operaciones y suministro energético
+    base_table:
+      database: GLOBENERGY_DB
+      schema: ENERGIA
+      table: EVENTOS_CLIMATICOS
+    
+    dimensions:
+      - name: evento_id
+        synonyms: [id evento, identificador evento]
+        description: Identificador único del evento climático
+        expr: EVENTO_ID
+        data_type: NUMBER
+        unique: true
+        kind: dimension
+      
+      - name: tipo_evento
+        synonyms: [tipo, evento, fenómeno climático]
+        description: Tipo de evento (Tormenta, Huracán, Ola de Calor, Ola de Frío, Inundación)
+        expr: TIPO_EVENTO
+        data_type: TEXT
+        kind: dimension
+      
+      - name: severidad
+        synonyms: [severidad, gravedad, intensidad]
+        description: Nivel de severidad del evento (Baja, Media, Alta, Crítica)
+        expr: SEVERIDAD
+        data_type: TEXT
+        kind: dimension
+      
+      - name: pais_evento
+        synonyms: [país evento, nación afectada, country]
+        description: País donde ocurrió el evento climático
+        expr: PAIS
+        data_type: TEXT
+        kind: dimension
+      
+      - name: region_evento
+        synonyms: [región evento, área afectada, zona]
+        description: Región afectada por el evento
+        expr: REGION
+        data_type: TEXT
+        kind: dimension
+      
+      - name: fecha_inicio_evento
+        synonyms: [inicio evento, fecha inicio, start]
+        description: Fecha de inicio del evento climático
+        expr: FECHA_INICIO
+        data_type: DATE
+        kind: time_dimension
+      
+      - name: fecha_fin_evento
+        synonyms: [fin evento, fecha fin, término]
+        description: Fecha de finalización del evento
+        expr: FECHA_FIN
+        data_type: DATE
+        kind: time_dimension
+      
+      - name: duracion_dias
+        synonyms: [duración, días evento, tiempo duración]
+        description: Duración del evento en días
+        expr: DURACION_DIAS
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: impacto_operacional
+        synonyms: [impacto, afectación, impacto operaciones]
+        description: Nivel de impacto operacional (Ninguno, Menor, Moderado, Severo)
+        expr: IMPACTO_OPERACIONAL
+        data_type: TEXT
+        kind: dimension
+      
+      - name: clientes_afectados
+        synonyms: [afectados, clientes impactados, número afectados]
+        description: Número de clientes afectados por el evento
+        expr: CLIENTES_AFECTADOS
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: perdida_suministro_horas
+        synonyms: [horas perdidas, pérdida suministro, downtime]
+        description: Horas totales de pérdida de suministro
+        expr: PERDIDA_SUMINISTRO_HORAS
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: costo_mitigacion
+        synonyms: [costo, gasto mitigación, inversión recuperación]
+        description: Costo de mitigación y recuperación en USD
+        expr: COSTO_MITIGACION
+        data_type: NUMBER
+        kind: dimension
+
+  # ==========================================================================
+  # TABLA: PREDICCIONES DE DEMANDA
+  # ==========================================================================
+  - name: predicciones_demanda
+    description: Predicciones de demanda energética generadas por modelos de Machine Learning
+    base_table:
+      database: GLOBENERGY_DB
+      schema: ENERGIA
+      table: PREDICCIONES_DEMANDA
+    
+    dimensions:
+      - name: prediccion_id
+        synonyms: [id predicción, identificador predicción]
+        description: Identificador único de la predicción
+        expr: PREDICCION_ID
+        data_type: NUMBER
+        unique: true
+        kind: dimension
+      
+      - name: fecha_prediccion
+        synonyms: [fecha, fecha forecast, fecha proyección]
+        description: Fecha para la cual se realiza la predicción
+        expr: FECHA_PREDICCION
+        data_type: DATE
+        kind: time_dimension
+      
+      - name: volumen_predicho
+        synonyms: [predicción, forecast, volumen estimado, demanda predicha]
+        description: Volumen de energía predicho por el modelo
+        expr: VOLUMEN_PREDICHO
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: volumen_real
+        synonyms: [real, actual, volumen real, consumo real]
+        description: Volumen real de energía consumido
+        expr: VOLUMEN_REAL
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: error_porcentual
+        synonyms: [error, desviación, error predicción, accuracy]
+        description: Error porcentual entre predicción y valor real
+        expr: ERROR_PORCENTUAL
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: confianza_modelo
+        synonyms: [confianza, confidence, certeza modelo]
+        description: Nivel de confianza del modelo en la predicción (0-100%)
+        expr: CONFIANZA_MODELO
+        data_type: NUMBER
+        kind: dimension
+      
+      - name: factores_clave
+        synonyms: [factores, drivers, variables clave]
+        description: Factores principales que influyeron en la predicción
+        expr: FACTORES_CLAVE
+        data_type: TEXT
+        kind: dimension
+
+# ============================================================================
+# RELACIONES ENTRE TABLAS
+# ============================================================================
+relationships:
+  - name: consumo_to_cliente
+    description: Relación de consumo a cliente (muchos a uno)
+    type: many_to_one
+    left_table: consumo
+    left_column: CLIENTE_ID
+    right_table: clientes
+    right_column: CLIENTE_ID
+  
+  - name: consumo_to_tipo_energia
+    description: Relación de consumo a tipo de energía (muchos a uno)
+    type: many_to_one
+    left_table: consumo
+    left_column: TIPO_ENERGIA_ID
+    right_table: tipos_energia
+    right_column: TIPO_ENERGIA_ID
+  
+  - name: consumo_to_contrato
+    description: Relación de consumo a contrato (muchos a uno)
+    type: many_to_one
+    left_table: consumo
+    left_column: CONTRATO_ID
+    right_table: contratos
+    right_column: CONTRATO_ID
+  
+  - name: contrato_to_cliente
+    description: Relación de contrato a cliente (muchos a uno)
+    type: many_to_one
+    left_table: contratos
+    left_column: CLIENTE_ID
+    right_table: clientes
+    right_column: CLIENTE_ID
+  
+  - name: contrato_to_tipo_energia
+    description: Relación de contrato a tipo de energía (muchos a uno)
+    type: many_to_one
+    left_table: contratos
+    left_column: TIPO_ENERGIA_ID
+    right_table: tipos_energia
+    right_column: TIPO_ENERGIA_ID
+  
+  - name: prediccion_to_cliente
+    description: Relación de predicción a cliente (muchos a uno)
+    type: many_to_one
+    left_table: predicciones_demanda
+    left_column: CLIENTE_ID
+    right_table: clientes
+    right_column: CLIENTE_ID
+  
+  - name: prediccion_to_tipo_energia
+    description: Relación de predicción a tipo de energía (muchos a uno)
+    type: many_to_one
+    left_table: predicciones_demanda
+    left_column: TIPO_ENERGIA_ID
+    right_table: tipos_energia
+    right_column: TIPO_ENERGIA_ID
+
+# ============================================================================
+# CONSULTAS VERIFICADAS (5 consultas ultra-simples)
+# ============================================================================
+verified_queries:
+  - name: total_consumo_por_sector
+    description: Muestra el volumen total consumido y costo por sector de cliente
+    question: ¿Cuál es el consumo total por sector?
+    sql: |
+      SELECT 
+        clientes.sector,
+        COUNT(consumo.consumo_id) AS total_registros,
+        SUM(consumo.volumen_consumido) AS volumen_total,
+        SUM(consumo.costo_total) AS costo_total_usd
+      FROM {{ ref('consumo') }} AS consumo
+      JOIN {{ ref('clientes') }} AS clientes 
+        ON consumo.CLIENTE_ID = clientes.CLIENTE_ID
+      GROUP BY clientes.sector
+      ORDER BY costo_total_usd DESC
+  
+  - name: tipos_energia_disponibles
+    description: Lista todos los tipos de energía disponibles con sus características
+    question: ¿Qué tipos de energía ofrece GLOBENERGY?
+    sql: |
+      SELECT 
+        tipos_energia.nombre_tipo,
+        tipos_energia.categoria,
+        tipos_energia.unidad_medida,
+        tipos_energia.factor_emision_co2,
+        tipos_energia.precio_base_unitario
+      FROM {{ ref('tipos_energia') }} AS tipos_energia
+      ORDER BY tipos_energia.categoria, tipos_energia.nombre_tipo
+  
+  - name: clientes_activos_por_pais
+    description: Cuenta el número de clientes activos agrupados por país
+    question: ¿Cuántos clientes activos hay por país?
+    sql: |
+      SELECT 
+        clientes.pais,
+        clientes.region,
+        COUNT(clientes.cliente_id) AS total_clientes
+      FROM {{ ref('clientes') }} AS clientes
+      WHERE clientes.estado = 'Activo'
+      GROUP BY clientes.pais, clientes.region
+      ORDER BY total_clientes DESC
+  
+  - name: contratos_activos_renovables
+    description: Muestra los contratos activos de energía renovable
+    question: ¿Cuántos contratos de energía renovable están activos?
+    sql: |
+      SELECT 
+        contratos.contrato_id,
+        clientes.nombre_cliente,
+        tipos_energia.nombre_tipo,
+        contratos.fecha_inicio,
+        contratos.fecha_fin,
+        contratos.precio_unitario
+      FROM {{ ref('contratos') }} AS contratos
+      JOIN {{ ref('clientes') }} AS clientes 
+        ON contratos.CLIENTE_ID = clientes.CLIENTE_ID
+      JOIN {{ ref('tipos_energia') }} AS tipos_energia 
+        ON contratos.TIPO_ENERGIA_ID = tipos_energia.TIPO_ENERGIA_ID
+      WHERE contratos.energia_renovable = TRUE
+        AND contratos.estado_contrato = 'Activo'
+      ORDER BY contratos.fecha_fin
+  
+  - name: eventos_climaticos_recientes
+    description: Lista los eventos climáticos más recientes y su impacto
+    question: ¿Cuáles son los eventos climáticos recientes?
+    sql: |
+      SELECT 
+        eventos_climaticos.tipo_evento,
+        eventos_climaticos.severidad,
+        eventos_climaticos.pais_evento,
+        eventos_climaticos.fecha_inicio_evento,
+        eventos_climaticos.duracion_dias,
+        eventos_climaticos.clientes_afectados,
+        eventos_climaticos.impacto_operacional
+      FROM {{ ref('eventos_climaticos') }} AS eventos_climaticos
+      ORDER BY eventos_climaticos.fecha_inicio_evento DESC
+      LIMIT 10
+
+# ============================================================================
+# FIN DEL MODELO SEMÁNTICO
+# ============================================================================
+

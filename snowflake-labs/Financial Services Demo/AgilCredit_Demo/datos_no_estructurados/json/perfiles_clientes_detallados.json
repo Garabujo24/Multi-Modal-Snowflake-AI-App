@@ -1,0 +1,498 @@
+[
+  {
+    "cliente_id": "CLI000145",
+    "perfil_completo": {
+      "datos_personales": {
+        "nombre_completo": "Carlos Miguel Hernández Torres",
+        "fecha_nacimiento": "1987-04-12",
+        "edad": 38,
+        "genero": "Masculino",
+        "estado_civil": "Casado",
+        "dependientes_economicos": 2,
+        "nivel_educacion": "Licenciatura en Administración",
+        "idiomas": ["Español", "Inglés Intermedio"]
+      },
+      "contacto": {
+        "email_principal": "carlos.hernandez@email.com",
+        "email_alterno": "c.hernandez.work@company.com",
+        "telefono_movil": "5551234567",
+        "telefono_casa": "5556789012",
+        "telefono_oficina": "5555678901 ext. 345",
+        "preferencia_contacto": "email"
+      },
+      "domicilio": {
+        "calle": "Avenida Insurgentes Sur",
+        "numero_exterior": "1234",
+        "numero_interior": "Depto 502",
+        "colonia": "Del Valle Centro",
+        "codigo_postal": "03100",
+        "municipio": "Benito Juárez",
+        "estado": "Ciudad de México",
+        "tipo_vivienda": "Propia",
+        "antiguedad_domicilio_años": 5
+      },
+      "datos_laborales": {
+        "situacion_laboral": "Empleado",
+        "empresa": "Tecnologías Avanzadas S.A. de C.V.",
+        "puesto": "Gerente de Operaciones",
+        "antiguedad_años": 8,
+        "tipo_contrato": "Planta",
+        "ingreso_mensual_bruto": 52000.00,
+        "ingreso_mensual_neto": 38500.00,
+        "ingresos_adicionales": {
+          "bonos_anuales": 65000.00,
+          "rentas": 0.00,
+          "negocios_propios": 0.00
+        },
+        "comprobacion_ingresos": ["recibos_nomina", "estado_cuenta", "declaracion_anual"]
+      },
+      "informacion_financiera": {
+        "cuentas_bancarias": [
+          {
+            "banco": "BBVA México",
+            "tipo": "Nómina",
+            "numero_cuenta": "012180001234567890",
+            "antiguedad_años": 8
+          },
+          {
+            "banco": "Citibanamex",
+            "tipo": "Ahorro",
+            "numero_cuenta": "002180009876543210",
+            "antiguedad_años": 5
+          }
+        ],
+        "tarjetas_credito": [
+          {
+            "banco": "BBVA",
+            "limite_credito": 45000.00,
+            "saldo_actual": 12500.00,
+            "utilizacion_porcentaje": 27.78
+          },
+          {
+            "banco": "American Express",
+            "limite_credito": 60000.00,
+            "saldo_actual": 8200.00,
+            "utilizacion_porcentaje": 13.67
+          }
+        ],
+        "creditos_vigentes_externos": [
+          {
+            "tipo": "Hipotecario",
+            "institucion": "Infonavit",
+            "saldo": 520000.00,
+            "pago_mensual": 4800.00,
+            "estatus": "Al corriente"
+          },
+          {
+            "tipo": "Automotriz",
+            "institucion": "Santander",
+            "saldo": 185000.00,
+            "pago_mensual": 6750.00,
+            "estatus": "Al corriente"
+          }
+        ],
+        "ahorro_inversion": {
+          "cuenta_ahorro": 45000.00,
+          "afore": 280000.00,
+          "inversiones": 120000.00
+        }
+      },
+      "historial_crediticio": {
+        "buro_credito": {
+          "calificacion": 748,
+          "ultima_consulta": "2025-10-01",
+          "num_consultas_12_meses": 3,
+          "creditos_historicos": 8,
+          "creditos_actuales": 4,
+          "cuentas_morosas": 0,
+          "peor_atraso_historico": "0 días",
+          "antiguedad_historial_años": 15
+        },
+        "comportamiento_pago": {
+          "score_pago": 95.8,
+          "pagos_puntuales_consecutivos": 24,
+          "total_pagos_historicos": 48,
+          "pagos_atrasados_historico": 2,
+          "max_dias_atraso": 15
+        }
+      },
+      "perfil_riesgo": {
+        "score_interno_agilcredit": 88.5,
+        "clasificacion_riesgo": "Bajo",
+        "segmento_cliente": "Oro",
+        "probabilidad_incumplimiento": 2.3,
+        "limite_credito_sugerido": 150000.00,
+        "tasa_interes_sugerida": 18.5,
+        "factores_positivos": [
+          "Estabilidad laboral comprobada",
+          "Historial crediticio excelente",
+          "Capacidad de ahorro demostrada",
+          "Ingresos verificables y suficientes"
+        ],
+        "factores_atencion": [
+          "Nivel de endeudamiento al 35% del ingreso",
+          "Múltiples obligaciones crediticias activas"
+        ]
+      },
+      "historial_agilcredit": {
+        "fecha_registro": "2023-03-15",
+        "antiguedad_meses": 31,
+        "canal_adquisicion": "Referido",
+        "creditos_otorgados": 2,
+        "creditos_liquidados": 1,
+        "creditos_vigentes": 1,
+        "monto_total_prestado": 85000.00,
+        "monto_total_pagado": 42750.00,
+        "ingresos_generados": {
+          "intereses": 12450.00,
+          "comisiones": 2550.00,
+          "total": 15000.00
+        },
+        "ultima_interaccion": "2025-10-15",
+        "nivel_satisfaccion": "Alto",
+        "quejas_reclamos": 0
+      },
+      "preferencias_producto": {
+        "productos_interes": ["Crédito Personal", "Línea de Crédito"],
+        "monto_preferido_promedio": 50000.00,
+        "plazo_preferido_meses": 18,
+        "canal_preferido": "App Móvil",
+        "horario_contacto_preferido": "18:00 - 20:00"
+      },
+      "scoring_ml": {
+        "ltv_estimado": 45000.00,
+        "churn_probability": 12.3,
+        "cross_sell_score": 78.5,
+        "productos_recomendados": [
+          "Crédito Nómina Plus",
+          "Inversión a Plazo Fijo"
+        ]
+      }
+    }
+  },
+  {
+    "cliente_id": "CLI000287",
+    "perfil_completo": {
+      "datos_personales": {
+        "nombre_completo": "Ana Patricia Rodríguez Gómez",
+        "fecha_nacimiento": "1992-08-23",
+        "edad": 33,
+        "genero": "Femenino",
+        "estado_civil": "Soltera",
+        "dependientes_economicos": 0,
+        "nivel_educacion": "Maestría en Finanzas",
+        "idiomas": ["Español", "Inglés Avanzado", "Francés Básico"]
+      },
+      "contacto": {
+        "email_principal": "ana.rodriguez@email.com",
+        "email_alterno": "arodriguez@consulting.com",
+        "telefono_movil": "5559876543",
+        "telefono_casa": null,
+        "telefono_oficina": "5558765432 ext. 201",
+        "preferencia_contacto": "whatsapp"
+      },
+      "domicilio": {
+        "calle": "Avenida Santa Fe",
+        "numero_exterior": "482",
+        "numero_interior": "Torre 2, Piso 8, Depto 805",
+        "colonia": "Santa Fe",
+        "codigo_postal": "01219",
+        "municipio": "Álvaro Obregón",
+        "estado": "Ciudad de México",
+        "tipo_vivienda": "Rentada",
+        "antiguedad_domicilio_años": 3
+      },
+      "datos_laborales": {
+        "situacion_laboral": "Empleada",
+        "empresa": "Consultoría Financiera Internacional",
+        "puesto": "Senior Financial Analyst",
+        "antiguedad_años": 5,
+        "tipo_contrato": "Planta",
+        "ingreso_mensual_bruto": 72000.00,
+        "ingreso_mensual_neto": 52000.00,
+        "ingresos_adicionales": {
+          "bonos_anuales": 120000.00,
+          "consultorias_freelance": 15000.00,
+          "inversiones": 8000.00
+        },
+        "comprobacion_ingresos": ["recibos_nomina", "declaracion_anual", "contratos_freelance"]
+      },
+      "informacion_financiera": {
+        "cuentas_bancarias": [
+          {
+            "banco": "Citibanamex",
+            "tipo": "Nómina Premium",
+            "numero_cuenta": "002180111234567890",
+            "antiguedad_años": 5
+          },
+          {
+            "banco": "HSBC",
+            "tipo": "Inversión",
+            "numero_cuenta": "021180225678901234",
+            "antiguedad_años": 4
+          },
+          {
+            "banco": "Banorte",
+            "tipo": "Ahorro",
+            "numero_cuenta": "072180336789012345",
+            "antiguedad_años": 2
+          }
+        ],
+        "tarjetas_credito": [
+          {
+            "banco": "American Express Gold",
+            "limite_credito": 120000.00,
+            "saldo_actual": 18500.00,
+            "utilizacion_porcentaje": 15.42
+          },
+          {
+            "banco": "Citibanamex Platinum",
+            "limite_credito": 85000.00,
+            "saldo_actual": 5200.00,
+            "utilizacion_porcentaje": 6.12
+          }
+        ],
+        "creditos_vigentes_externos": [],
+        "ahorro_inversion": {
+          "cuenta_ahorro": 125000.00,
+          "afore": 420000.00,
+          "inversiones": 380000.00,
+          "cetes": 150000.00
+        }
+      },
+      "historial_crediticio": {
+        "buro_credito": {
+          "calificacion": 812,
+          "ultima_consulta": "2025-09-15",
+          "num_consultas_12_meses": 2,
+          "creditos_historicos": 6,
+          "creditos_actuales": 3,
+          "cuentas_morosas": 0,
+          "peor_atraso_historico": "0 días",
+          "antiguedad_historial_años": 12
+        },
+        "comportamiento_pago": {
+          "score_pago": 100.0,
+          "pagos_puntuales_consecutivos": 36,
+          "total_pagos_historicos": 36,
+          "pagos_atrasados_historico": 0,
+          "max_dias_atraso": 0
+        }
+      },
+      "perfil_riesgo": {
+        "score_interno_agilcredit": 96.2,
+        "clasificacion_riesgo": "Muy Bajo",
+        "segmento_cliente": "Premium",
+        "probabilidad_incumplimiento": 0.8,
+        "limite_credito_sugerido": 300000.00,
+        "tasa_interes_sugerida": 14.5,
+        "factores_positivos": [
+          "Excelente historial crediticio",
+          "Altos ingresos estables",
+          "Múltiples fuentes de ingreso",
+          "Capacidad de ahorro excepcional",
+          "Educación financiera avanzada"
+        ],
+        "factores_atencion": []
+      },
+      "historial_agilcredit": {
+        "fecha_registro": "2024-02-10",
+        "antiguedad_meses": 20,
+        "canal_adquisicion": "App Móvil",
+        "creditos_otorgados": 1,
+        "creditos_liquidados": 0,
+        "creditos_vigentes": 1,
+        "monto_total_prestado": 100000.00,
+        "monto_total_pagado": 58500.00,
+        "ingresos_generados": {
+          "intereses": 8200.00,
+          "comisiones": 1500.00,
+          "total": 9700.00
+        },
+        "ultima_interaccion": "2025-10-18",
+        "nivel_satisfaccion": "Muy Alto",
+        "quejas_reclamos": 0,
+        "nps_score": 10
+      },
+      "preferencias_producto": {
+        "productos_interes": ["Inversión", "Crédito PyME", "Asesoría Financiera"],
+        "monto_preferido_promedio": 150000.00,
+        "plazo_preferido_meses": 24,
+        "canal_preferido": "App Móvil",
+        "horario_contacto_preferido": "12:00 - 14:00"
+      },
+      "scoring_ml": {
+        "ltv_estimado": 125000.00,
+        "churn_probability": 5.2,
+        "cross_sell_score": 92.8,
+        "productos_recomendados": [
+          "Inversión Premium",
+          "Crédito Empresarial",
+          "Línea de Crédito Flexible Premium"
+        ]
+      }
+    }
+  },
+  {
+    "cliente_id": "CLI000521",
+    "perfil_completo": {
+      "datos_personales": {
+        "nombre_completo": "Miguel Ángel Torres Ramírez",
+        "fecha_nacimiento": "1980-12-05",
+        "edad": 44,
+        "genero": "Masculino",
+        "estado_civil": "Divorciado",
+        "dependientes_economicos": 2,
+        "nivel_educacion": "Preparatoria",
+        "idiomas": ["Español"]
+      },
+      "contacto": {
+        "email_principal": "m.torres2025@email.com",
+        "email_alterno": null,
+        "telefono_movil": "8181234567",
+        "telefono_casa": null,
+        "telefono_oficina": null,
+        "preferencia_contacto": "llamada"
+      },
+      "domicilio": {
+        "calle": "Calle Morelos",
+        "numero_exterior": "789",
+        "numero_interior": null,
+        "colonia": "Centro",
+        "codigo_postal": "64000",
+        "municipio": "Monterrey",
+        "estado": "Nuevo León",
+        "tipo_vivienda": "Rentada",
+        "antiguedad_domicilio_años": 2
+      },
+      "datos_laborales": {
+        "situacion_laboral": "Comerciante Independiente",
+        "empresa": "Negocio Propio - Abarrotes",
+        "puesto": "Propietario",
+        "antiguedad_años": 12,
+        "tipo_contrato": "Independiente",
+        "ingreso_mensual_bruto": 28000.00,
+        "ingreso_mensual_neto": 22000.00,
+        "ingresos_adicionales": {
+          "ventas_temporada_alta": 8000.00,
+          "otros": 0.00
+        },
+        "comprobacion_ingresos": ["declaracion_anual", "estados_cuenta", "alta_SAT"]
+      },
+      "informacion_financiera": {
+        "cuentas_bancarias": [
+          {
+            "banco": "Banorte",
+            "tipo": "Cuenta Básica",
+            "numero_cuenta": "072180123456789012",
+            "antiguedad_años": 6
+          }
+        ],
+        "tarjetas_credito": [
+          {
+            "banco": "Banco Azteca",
+            "limite_credito": 15000.00,
+            "saldo_actual": 12500.00,
+            "utilizacion_porcentaje": 83.33
+          }
+        ],
+        "creditos_vigentes_externos": [
+          {
+            "tipo": "Personal",
+            "institucion": "Banco Azteca",
+            "saldo": 25000.00,
+            "pago_mensual": 2100.00,
+            "estatus": "Con atrasos ocasionales"
+          }
+        ],
+        "ahorro_inversion": {
+          "cuenta_ahorro": 3500.00,
+          "afore": 85000.00,
+          "inversiones": 0.00
+        }
+      },
+      "historial_crediticio": {
+        "buro_credito": {
+          "calificacion": 628,
+          "ultima_consulta": "2025-10-05",
+          "num_consultas_12_meses": 7,
+          "creditos_historicos": 5,
+          "creditos_actuales": 3,
+          "cuentas_morosas": 1,
+          "peor_atraso_historico": "45 días",
+          "antiguedad_historial_años": 18
+        },
+        "comportamiento_pago": {
+          "score_pago": 72.5,
+          "pagos_puntuales_consecutivos": 3,
+          "total_pagos_historicos": 18,
+          "pagos_atrasados_historico": 5,
+          "max_dias_atraso": 45
+        }
+      },
+      "perfil_riesgo": {
+        "score_interno_agilcredit": 64.8,
+        "clasificacion_riesgo": "Medio-Alto",
+        "segmento_cliente": "Plata",
+        "probabilidad_incumplimiento": 18.5,
+        "limite_credito_sugerido": 35000.00,
+        "tasa_interes_sugerida": 32.5,
+        "factores_positivos": [
+          "Antigüedad en negocio propio (12 años)",
+          "Últimos 3 pagos puntuales"
+        ],
+        "factores_atencion": [
+          "Historial de atrasos",
+          "Alta utilización de crédito (83%)",
+          "Múltiples consultas recientes",
+          "Ingresos variables por ser comerciante independiente",
+          "1 cuenta en mora activa"
+        ]
+      },
+      "historial_agilcredit": {
+        "fecha_registro": "2024-08-20",
+        "antiguedad_meses": 14,
+        "canal_adquisicion": "Sucursal",
+        "creditos_otorgados": 1,
+        "creditos_liquidados": 0,
+        "creditos_vigentes": 1,
+        "monto_total_prestado": 30000.00,
+        "monto_total_pagado": 15200.00,
+        "ingresos_generados": {
+          "intereses": 4800.00,
+          "comisiones": 900.00,
+          "cargos_mora": 450.00,
+          "total": 6150.00
+        },
+        "ultima_interaccion": "2025-10-12",
+        "nivel_satisfaccion": "Medio",
+        "quejas_reclamos": 1,
+        "alertas_cobranza": 2
+      },
+      "preferencias_producto": {
+        "productos_interes": ["Crédito Personal", "Renovación"],
+        "monto_preferido_promedio": 25000.00,
+        "plazo_preferido_meses": 12,
+        "canal_preferido": "Sucursal",
+        "horario_contacto_preferido": "10:00 - 12:00"
+      },
+      "scoring_ml": {
+        "ltv_estimado": 18000.00,
+        "churn_probability": 35.7,
+        "cross_sell_score": 28.5,
+        "productos_recomendados": [
+          "Programa de Mejora de Crédito",
+          "Asesoría Financiera"
+        ],
+        "acciones_recomendadas": [
+          "Monitoreo cercano de pagos",
+          "Programa de educación financiera",
+          "Limitar incrementos de crédito"
+        ]
+      }
+    }
+  }
+]
+
+
+

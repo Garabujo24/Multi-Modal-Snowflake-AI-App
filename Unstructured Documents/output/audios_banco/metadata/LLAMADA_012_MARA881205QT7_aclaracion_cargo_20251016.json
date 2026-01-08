@@ -1,0 +1,28 @@
+{
+  "id_llamada": 12,
+  "cliente": {
+    "nombre": "ANA PATRICIA MARTÍNEZ RODRÍGUEZ",
+    "rfc": "MARA881205QT7",
+    "tipo": "Persona Física",
+    "estado": "Puebla"
+  },
+  "llamada": {
+    "tipo": "aclaracion_cargo",
+    "titulo": "Aclaración de Cargo",
+    "categoria": "Soporte",
+    "fecha": "2025-10-16T15:39:58.684191",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_012_MARA881205QT7_aclaracion_cargo_20251016.mp3",
+    "transcripcion": "LLAMADA_012_MARA881205QT7_aclaracion_cargo_20251016.txt",
+    "metadata": "LLAMADA_012_MARA881205QT7_aclaracion_cargo_20251016.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Carlos Mendoza",
+    "num_cuenta": "****4405",
+    "ultimos_rfc": "5QT7"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

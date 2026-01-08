@@ -1,0 +1,308 @@
+name: lapi_semantic_model
+description: Modelo semantico para la demo de LAPI enfocada en eficiencia operativa, resultados clinicos y consumo de materiales.
+
+tables:
+  - name: test_ordenes
+    description: Ordenes de pruebas clinicas con metricas de turnaround y estatus de resultados.
+    base_table:
+      database: LAPI_DB
+      schema: RAW
+      table: FACT_TEST_ORDERS
+    primary_key:
+      columns:
+        - ORDER_ID
+    dimensions:
+      - name: order_id
+        expr: ORDER_ID
+        data_type: STRING
+        description: Identificador unico de la orden.
+      - name: branch_id
+        expr: BRANCH_ID
+        data_type: STRING
+        description: Sucursal donde se proceso la orden.
+      - name: test_id
+        expr: TEST_ID
+        data_type: STRING
+        description: Prueba realizada.
+      - name: patient_id
+        expr: PATIENT_ID
+        data_type: STRING
+        description: Paciente asociado a la orden.
+      - name: order_channel
+        expr: ORDER_CHANNEL
+        data_type: STRING
+        description: Canal por donde se levanto la orden.
+      - name: priority_level
+        expr: PRIORITY_LEVEL
+        data_type: STRING
+        description: Prioridad asignada a la prueba.
+      - name: result_status
+        expr: RESULT_STATUS
+        data_type: STRING
+        description: Estado actual del resultado clinico.
+    time_dimensions:
+      - name: fecha_orden
+        expr: ORDER_DATE
+        data_type: DATE
+        description: Fecha en que se genero la orden.
+      - name: fecha_resultado
+        expr: RESULT_READY_DATE
+        data_type: DATE
+        description: Fecha en que el resultado estuvo disponible.
+    facts:
+      - name: turnaround_horas
+        expr: TURNAROUND_HOURS
+        data_type: NUMBER
+        description: Horas transcurridas entre la orden y el resultado.
+      - name: total_precio
+        expr: TOTAL_PRICE
+        data_type: NUMBER
+        description: Importe cobrado por la prueba.
+
+  - name: consumo_insumos
+    description: Registro de uso de materiales por prueba y sucursal.
+    base_table:
+      database: LAPI_DB
+      schema: RAW
+      table: FACT_SUPPLY_USAGE
+    primary_key:
+      columns:
+        - USAGE_ID
+    dimensions:
+      - name: usage_id
+        expr: USAGE_ID
+        data_type: STRING
+        description: Identificador unico del consumo registrado.
+      - name: branch_id
+        expr: BRANCH_ID
+        data_type: STRING
+        description: Sucursal donde se consumo el material.
+      - name: test_id
+        expr: TEST_ID
+        data_type: STRING
+        description: Prueba asociada al consumo.
+      - name: supply_id
+        expr: SUPPLY_ID
+        data_type: STRING
+        description: Material utilizado.
+    time_dimensions:
+      - name: fecha_consumo
+        expr: USAGE_DATE
+        data_type: DATE
+        description: Fecha en que se registro el consumo.
+    facts:
+      - name: cantidad_usada
+        expr: QUANTITY_USED
+        data_type: NUMBER
+        description: Cantidad de material utilizada.
+      - name: costo_incurrido
+        expr: COST_INCURRED
+        data_type: NUMBER
+        description: Costo asociado al consumo.
+      - name: desperdicio
+        expr: WASTE_UNITS
+        data_type: NUMBER
+        description: Cantidad de material desperdiciado.
+
+  - name: sucursales
+    description: Catalogo de sucursales de LAPI.
+    base_table:
+      database: LAPI_DB
+      schema: RAW
+      table: DIM_LAB_BRANCH
+    primary_key:
+      columns:
+        - BRANCH_ID
+    dimensions:
+      - name: branch_id
+        expr: BRANCH_ID
+        data_type: STRING
+      - name: branch_name
+        expr: BRANCH_NAME
+        data_type: STRING
+      - name: city
+        expr: CITY
+        data_type: STRING
+      - name: state
+        expr: STATE
+        data_type: STRING
+      - name: service_model
+        expr: SERVICE_MODEL
+        data_type: STRING
+    time_dimensions:
+      - name: fecha_apertura
+        expr: OPEN_DATE
+        data_type: DATE
+
+  - name: pruebas
+    description: Catalogo de pruebas clinicas.
+    base_table:
+      database: LAPI_DB
+      schema: RAW
+      table: DIM_LAB_TEST
+    primary_key:
+      columns:
+        - TEST_ID
+    dimensions:
+      - name: test_id
+        expr: TEST_ID
+        data_type: STRING
+      - name: test_name
+        expr: TEST_NAME
+        data_type: STRING
+      - name: test_category
+        expr: TEST_CATEGORY
+        data_type: STRING
+      - name: sample_type
+        expr: SAMPLE_TYPE
+        data_type: STRING
+    facts:
+      - name: costo_unitario
+        expr: UNIT_COST
+        data_type: NUMBER
+      - name: precio_unitario
+        expr: UNIT_PRICE
+        data_type: NUMBER
+
+  - name: pacientes
+    description: Informacion anonimizada de pacientes.
+    base_table:
+      database: LAPI_DB
+      schema: RAW
+      table: DIM_PATIENT
+    primary_key:
+      columns:
+        - PATIENT_ID
+    dimensions:
+      - name: patient_id
+        expr: PATIENT_ID
+        data_type: STRING
+      - name: patient_name
+        expr: PATIENT_NAME
+        data_type: STRING
+      - name: age_range
+        expr: AGE_RANGE
+        data_type: STRING
+      - name: gender
+        expr: GENDER
+        data_type: STRING
+      - name: insurance_type
+        expr: INSURANCE_TYPE
+        data_type: STRING
+      - name: home_branch_id
+        expr: HOME_BRANCH_ID
+        data_type: STRING
+
+  - name: insumos
+    description: Catalogo de materiales y suministros usados en laboratorio.
+    base_table:
+      database: LAPI_DB
+      schema: RAW
+      table: DIM_SUPPLY
+    primary_key:
+      columns:
+        - SUPPLY_ID
+    dimensions:
+      - name: supply_id
+        expr: SUPPLY_ID
+        data_type: STRING
+      - name: supply_name
+        expr: SUPPLY_NAME
+        data_type: STRING
+      - name: supply_category
+        expr: SUPPLY_CATEGORY
+        data_type: STRING
+      - name: unidad_medida
+        expr: UNIT_OF_MEASURE
+        data_type: STRING
+    facts:
+      - name: costo_unitario
+        expr: COST_PER_UNIT
+        data_type: NUMBER
+      - name: stock_seguridad
+        expr: SAFETY_STOCK_LEVEL
+        data_type: NUMBER
+
+relationships:
+  - name: ordenes_sucursales
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: test_ordenes
+    rightTable: sucursales
+    relationshipColumns:
+      - leftColumn: BRANCH_ID
+        rightColumn: BRANCH_ID
+  - name: ordenes_pruebas
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: test_ordenes
+    rightTable: pruebas
+    relationshipColumns:
+      - leftColumn: TEST_ID
+        rightColumn: TEST_ID
+  - name: ordenes_pacientes
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: test_ordenes
+    rightTable: pacientes
+    relationshipColumns:
+      - leftColumn: PATIENT_ID
+        rightColumn: PATIENT_ID
+  - name: consumo_sucursales
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: consumo_insumos
+    rightTable: sucursales
+    relationshipColumns:
+      - leftColumn: BRANCH_ID
+        rightColumn: BRANCH_ID
+  - name: consumo_pruebas
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: consumo_insumos
+    rightTable: pruebas
+    relationshipColumns:
+      - leftColumn: TEST_ID
+        rightColumn: TEST_ID
+  - name: consumo_insumos_catalogo
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: consumo_insumos
+    rightTable: insumos
+    relationshipColumns:
+      - leftColumn: SUPPLY_ID
+        rightColumn: SUPPLY_ID
+
+metrics:
+  - name: turnaround_promedio
+    description: Tiempo promedio de entrega de resultados.
+    expr: AVG(test_ordenes.turnaround_horas)
+  - name: ingresos_pruebas
+    description: Ingresos totales por pruebas realizadas.
+    expr: SUM(test_ordenes.total_precio)
+  - name: consumo_total_insumos
+    description: Cantidad total de materiales consumidos.
+    expr: SUM(consumo_insumos.cantidad_usada)
+  - name: desperdicio_total
+    description: Total de material desperdiciado.
+    expr: SUM(consumo_insumos.desperdicio)
+  - name: costo_insumos
+    description: Costo total de insumos consumidos.
+    expr: SUM(consumo_insumos.costo_incurrido)
+
+verified_queries:
+  - name: consumo_vs_costos
+    question: Como se comparan el consumo y costo de insumos por categoria de prueba?
+    sql: SELECT t.test_category AS categoria_prueba, DATE_TRUNC('month', c.fecha_consumo) AS mes, SUM(c.cantidad_usada) AS consumo_total, SUM(c.costo_incurrido) AS costo_total FROM __consumo_insumos AS c JOIN __pruebas AS t ON c.test_id = t.test_id GROUP BY t.test_category, DATE_TRUNC('month', c.fecha_consumo) ORDER BY costo_total DESC
+    use_as_onboarding_question: false
+
+custom_instructions: |
+  Preguntas guia para el laboratorista con perfil de ingenieria de datos:
+  - Que sucursales entregan resultados clinicos mas rapido por tipo de prueba?
+  - Cuales son los canales con mayor backlog de resultados pendientes?
+  - Que insumos criticos estan consumiendose mas rapido que el stock de seguridad?
+  - Que pruebas generan el mayor costo de insumos en cada region?
+  - Cuales pacientes de convenios empresariales requieren seguimiento por tiempos de entrega?
+  - Que sucursales concentran mayor desperdicio de materiales y como impacta el margen?
+  - Cual es la tendencia semanal de pruebas de alta prioridad y su impacto operativo?
+  - Que protocolos documentados en LAPI_DOCS_SEARCH ayudan a reducir desperdicio o turnaround?

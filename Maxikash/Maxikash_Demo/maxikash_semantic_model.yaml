@@ -1,0 +1,495 @@
+---
+# Modelo Semántico Maxikash - Análisis de Cartera y Morosidad
+# Cliente: Maxikash México (https://maxikash.mx/)
+# Propósito: Facilitar análisis de colocación, morosidad e incumplimiento en financiamiento de motocicletas
+
+name: maxikash_cartera_modelo
+description: "Modelo semántico para análisis de cartera, morosidad y colocación de créditos de motocicletas Maxikash"
+
+tables:
+  - name: clientes
+    description: "Datos maestros de clientes Maxikash"
+    base_table:
+      database: MAXIKASH_DB
+      schema: MAXIKASH_RAW_SCHEMA
+      table: CUSTOMER_RAW
+    primary_key:
+      columns:
+        - customer_id
+    columns:
+      - name: customer_id
+        kind: dimension
+        expr: CUSTOMER_ID
+        data_type: NUMBER
+        description: "Identificador único del cliente"
+      - name: first_name
+        kind: dimension
+        expr: FIRST_NAME
+        data_type: STRING
+        description: "Nombre del cliente"
+      - name: last_name
+        kind: dimension
+        expr: LAST_NAME
+        data_type: STRING
+        description: "Apellido del cliente"
+      - name: gender
+        kind: dimension
+        expr: GENDER
+        data_type: STRING
+        description: "Género del cliente"
+      - name: age
+        kind: dimension
+        expr: AGE
+        data_type: NUMBER
+        description: "Edad del cliente"
+      - name: occupation
+        kind: dimension
+        expr: OCCUPATION
+        data_type: STRING
+        description: "Ocupación principal del cliente"
+      - name: monthly_income_mxn
+        kind: measure
+        expr: MONTHLY_INCOME_MXN
+        data_type: NUMBER
+        description: "Ingreso mensual en pesos mexicanos"
+      - name: state
+        kind: dimension
+        expr: STATE
+        data_type: STRING
+        description: "Estado de residencia"
+      - name: city
+        kind: dimension
+        expr: CITY
+        data_type: STRING
+        description: "Ciudad de residencia"
+      - name: registration_date
+        kind: time_dimension
+        expr: REGISTRATION_DATE
+        data_type: DATE
+        description: "Fecha de registro del cliente"
+      - name: referred_channel
+        kind: dimension
+        expr: REFERRED_CHANNEL
+        data_type: STRING
+        description: "Canal de adquisición del cliente"
+      - name: customer_segment
+        kind: dimension
+        expr: CUSTOMER_SEGMENT
+        data_type: STRING
+        description: "Segmento de uso: Delivery, Uso Productivo, Ride Hailing, etc."
+      - name: credit_score
+        kind: measure
+        expr: CREDIT_SCORE
+        data_type: NUMBER
+        description: "Score crediticio del cliente"
+      - name: risk_segment
+        kind: dimension
+        expr: RISK_SEGMENT
+        data_type: STRING
+        description: "Clasificación de riesgo: Bajo, Medio, Alto"
+      - name: digital_adoption_index
+        kind: measure
+        expr: DIGITAL_ADOPTION_INDEX
+        data_type: NUMBER
+        description: "Índice de adopción digital"
+      - name: nps_score
+        kind: measure
+        expr: NPS_SCORE
+        data_type: NUMBER
+        description: "Net Promoter Score"
+      - name: is_active
+        kind: dimension
+        expr: IS_ACTIVE
+        data_type: BOOLEAN
+        description: "Indica si el cliente está activo"
+
+  - name: solicitudes
+    description: "Solicitudes de crédito para motocicletas"
+    base_table:
+      database: MAXIKASH_DB
+      schema: MAXIKASH_RAW_SCHEMA
+      table: APPLICATION_RAW
+    primary_key:
+      columns:
+        - application_id
+    columns:
+      - name: application_id
+        kind: dimension
+        expr: APPLICATION_ID
+        data_type: NUMBER
+        description: "Identificador único de la solicitud"
+      - name: customer_id
+        kind: dimension
+        expr: CUSTOMER_ID
+        data_type: NUMBER
+        description: "Identificador del cliente solicitante"
+      - name: application_date
+        kind: time_dimension
+        expr: APPLICATION_DATE
+        data_type: DATE
+        description: "Fecha de la solicitud"
+      - name: application_channel
+        kind: dimension
+        expr: APPLICATION_CHANNEL
+        data_type: STRING
+        description: "Canal de solicitud: Marketplace, Agencia Afiliada, Campaña Digital, etc."
+      - name: requested_amount_mxn
+        kind: measure
+        expr: REQUESTED_AMOUNT_MXN
+        data_type: NUMBER
+        description: "Monto solicitado en pesos mexicanos"
+      - name: approved_amount_mxn
+        kind: measure
+        expr: APPROVED_AMOUNT_MXN
+        data_type: NUMBER
+        description: "Monto aprobado en pesos mexicanos"
+      - name: approval_status
+        kind: dimension
+        expr: APPROVAL_STATUS
+        data_type: STRING
+        description: "Estado de aprobación: APROBADA, RECHAZADA, EN_REVISION"
+      - name: tenor_weeks
+        kind: dimension
+        expr: TENOR_WEEKS
+        data_type: NUMBER
+        description: "Plazo solicitado en semanas"
+      - name: vehicle_brand
+        kind: dimension
+        expr: VEHICLE_BRAND
+        data_type: STRING
+        description: "Marca de motocicleta: Italika, Vento, Bajaj, Honda, Yamaha, etc."
+      - name: vehicle_model
+        kind: dimension
+        expr: VEHICLE_MODEL
+        data_type: STRING
+        description: "Modelo de la motocicleta"
+      - name: vehicle_price_mxn
+        kind: measure
+        expr: VEHICLE_PRICE_MXN
+        data_type: NUMBER
+        description: "Precio de la motocicleta en pesos mexicanos"
+      - name: down_payment_mxn
+        kind: measure
+        expr: DOWN_PAYMENT_MXN
+        data_type: NUMBER
+        description: "Enganche pagado en pesos mexicanos"
+      - name: risk_score
+        kind: measure
+        expr: RISK_SCORE
+        data_type: NUMBER
+        description: "Score de riesgo de la solicitud"
+      - name: decision_time_minutes
+        kind: measure
+        expr: DECISION_TIME_MINUTES
+        data_type: NUMBER
+        description: "Tiempo de decisión en minutos"
+      - name: region
+        kind: dimension
+        expr: REGION
+        data_type: STRING
+        description: "Región geográfica: Centro, Occidente, Noreste, etc."
+      - name: customer_segment
+        kind: dimension
+        expr: CUSTOMER_SEGMENT
+        data_type: STRING
+        description: "Segmento del cliente"
+      - name: expected_default_prob
+        kind: measure
+        expr: EXPECTED_DEFAULT_PROB
+        data_type: NUMBER
+        description: "Probabilidad esperada de default"
+      - name: debt_to_income_ratio
+        kind: measure
+        expr: DEBT_TO_INCOME_RATIO
+        data_type: NUMBER
+        description: "Ratio deuda-ingreso"
+      - name: promo_code_applied
+        kind: dimension
+        expr: PROMO_CODE_APPLIED
+        data_type: BOOLEAN
+        description: "Indica si se aplicó código promocional"
+
+  - name: creditos
+    description: "Créditos desembolsados y su estado actual"
+    base_table:
+      database: MAXIKASH_DB
+      schema: MAXIKASH_RAW_SCHEMA
+      table: LOAN_RAW
+    primary_key:
+      columns:
+        - loan_id
+    columns:
+      - name: loan_id
+        kind: dimension
+        expr: LOAN_ID
+        data_type: NUMBER
+        description: "Identificador único del crédito"
+      - name: application_id
+        kind: dimension
+        expr: APPLICATION_ID
+        data_type: NUMBER
+        description: "Identificador de la solicitud origen"
+      - name: customer_id
+        kind: dimension
+        expr: CUSTOMER_ID
+        data_type: NUMBER
+        description: "Identificador del cliente"
+      - name: disbursement_date
+        kind: time_dimension
+        expr: DISBURSEMENT_DATE
+        data_type: DATE
+        description: "Fecha de desembolso del crédito"
+      - name: principal_amount_mxn
+        kind: measure
+        expr: PRINCIPAL_AMOUNT_MXN
+        data_type: NUMBER
+        description: "Monto principal desembolsado en pesos mexicanos"
+      - name: interest_rate_annual
+        kind: measure
+        expr: INTEREST_RATE_ANNUAL
+        data_type: NUMBER
+        description: "Tasa de interés anual"
+      - name: tenor_weeks
+        kind: dimension
+        expr: TENOR_WEEKS
+        data_type: NUMBER
+        description: "Plazo del crédito en semanas"
+      - name: expected_end_date
+        kind: time_dimension
+        expr: EXPECTED_END_DATE
+        data_type: DATE
+        description: "Fecha esperada de finalización"
+      - name: weekly_payment_expected_mxn
+        kind: measure
+        expr: WEEKLY_PAYMENT_EXPECTED_MXN
+        data_type: NUMBER
+        description: "Pago semanal esperado en pesos mexicanos"
+      - name: current_balance_mxn
+        kind: measure
+        expr: CURRENT_BALANCE_MXN
+        data_type: NUMBER
+        description: "Saldo actual en pesos mexicanos"
+      - name: days_past_due
+        kind: measure
+        expr: DAYS_PAST_DUE
+        data_type: NUMBER
+        description: "Días de atraso actual"
+      - name: loan_status
+        kind: dimension
+        expr: LOAN_STATUS
+        data_type: STRING
+        description: "Estado del crédito: VIGENTE, MOROSO_30, MOROSO_60, REESTRUCTURADO, INCUMPLIDO"
+      - name: morosity_bucket
+        kind: dimension
+        expr: MOROSITY_BUCKET
+        data_type: STRING
+        description: "Bucket de morosidad por días de atraso"
+      - name: placement_channel
+        kind: dimension
+        expr: PLACEMENT_CHANNEL
+        data_type: STRING
+        description: "Canal de colocación del crédito"
+      - name: dealer_partner
+        kind: dimension
+        expr: DEALER_PARTNER
+        data_type: STRING
+        description: "Dealer o agencia aliada"
+      - name: portfolio_segment
+        kind: dimension
+        expr: PORTFOLIO_SEGMENT
+        data_type: STRING
+        description: "Segmento de cartera"
+      - name: insurance_opt_in
+        kind: dimension
+        expr: INSURANCE_OPT_IN
+        data_type: BOOLEAN
+        description: "Indica si se contrató seguro"
+      - name: first_default_date
+        kind: time_dimension
+        expr: FIRST_DEFAULT_DATE
+        data_type: DATE
+        description: "Fecha del primer incumplimiento"
+      - name: restructured_flag
+        kind: dimension
+        expr: RESTRUCTURED_FLAG
+        data_type: BOOLEAN
+        description: "Indica si el crédito fue reestructurado"
+      - name: charge_off_flag
+        kind: dimension
+        expr: CHARGE_OFF_FLAG
+        data_type: BOOLEAN
+        description: "Indica si el crédito fue castigado"
+      - name: collection_stage
+        kind: dimension
+        expr: COLLECTION_STAGE
+        data_type: STRING
+        description: "Etapa de cobranza: Preventivo, Gestión Temprana, Reestructura, Cobranza Jurídica"
+      - name: risk_tier
+        kind: dimension
+        expr: RISK_TIER
+        data_type: STRING
+        description: "Tier de riesgo: Prime, Near-Prime, Subprime"
+      - name: last_payment_date
+        kind: time_dimension
+        expr: LAST_PAYMENT_DATE
+        data_type: DATE
+        description: "Fecha del último pago recibido"
+      - name: weeks_elapsed
+        kind: measure
+        expr: WEEKS_ELAPSED
+        data_type: NUMBER
+        description: "Semanas transcurridas desde desembolso"
+      - name: payments_completed
+        kind: measure
+        expr: PAYMENTS_COMPLETED
+        data_type: NUMBER
+        description: "Número de pagos completados"
+
+  - name: pagos
+    description: "Historial de pagos semanales de créditos"
+    base_table:
+      database: MAXIKASH_DB
+      schema: MAXIKASH_RAW_SCHEMA
+      table: PAYMENT_RAW
+    columns:
+      - name: loan_id
+        kind: dimension
+        expr: LOAN_ID
+        data_type: NUMBER
+        description: "Identificador del crédito"
+      - name: customer_id
+        kind: dimension
+        expr: CUSTOMER_ID
+        data_type: NUMBER
+        description: "Identificador del cliente"
+      - name: payment_date
+        kind: time_dimension
+        expr: PAYMENT_DATE
+        data_type: DATE
+        description: "Fecha del pago"
+      - name: expected_amount_mxn
+        kind: measure
+        expr: EXPECTED_AMOUNT_MXN
+        data_type: NUMBER
+        description: "Monto esperado en pesos mexicanos"
+      - name: actual_amount_mxn
+        kind: measure
+        expr: ACTUAL_AMOUNT_MXN
+        data_type: NUMBER
+        description: "Monto real pagado en pesos mexicanos"
+      - name: is_on_time
+        kind: dimension
+        expr: IS_ON_TIME
+        data_type: BOOLEAN
+        description: "Indica si el pago fue a tiempo"
+      - name: days_late
+        kind: measure
+        expr: DAYS_LATE
+        data_type: NUMBER
+        description: "Días de retraso del pago"
+      - name: payment_channel
+        kind: dimension
+        expr: PAYMENT_CHANNEL
+        data_type: STRING
+        description: "Canal de pago: Convenio Digital, OXXO Pay, SPEI, etc."
+      - name: week_number
+        kind: dimension
+        expr: WEEK_NUMBER
+        data_type: NUMBER
+        description: "Número de semana del pago"
+      - name: is_final_payment
+        kind: dimension
+        expr: IS_FINAL_PAYMENT
+        data_type: BOOLEAN
+        description: "Indica si es el pago final del crédito"
+
+relationships:
+  - name: cliente_solicitud
+    leftTable: solicitudes
+    rightTable: clientes
+    relationshipColumns:
+      - leftColumn: customer_id
+        rightColumn: customer_id
+    joinType: inner
+    relationshipType: many_to_one
+  
+  - name: solicitud_credito
+    leftTable: creditos
+    rightTable: solicitudes
+    relationshipColumns:
+      - leftColumn: application_id
+        rightColumn: application_id
+    joinType: left_outer
+    relationshipType: many_to_one
+  
+  - name: cliente_credito
+    leftTable: creditos
+    rightTable: clientes
+    relationshipColumns:
+      - leftColumn: customer_id
+        rightColumn: customer_id
+    joinType: inner
+    relationshipType: many_to_one
+  
+  - name: credito_pago
+    leftTable: pagos
+    rightTable: creditos
+    relationshipColumns:
+      - leftColumn: loan_id
+        rightColumn: loan_id
+    joinType: inner
+    relationshipType: many_to_one
+  
+  - name: cliente_pago
+    leftTable: pagos
+    rightTable: clientes
+    relationshipColumns:
+      - leftColumn: customer_id
+        rightColumn: customer_id
+    joinType: inner
+    relationshipType: many_to_one
+
+verifiedQueries:
+  - name: "Embudo de colocación mensual"
+    question: "¿Cuál es el embudo de solicitudes a colocación por mes en los últimos 12 meses?"
+    sql: |
+      SELECT DATE_TRUNC('MONTH', s.application_date) AS mes, COUNT(*) AS solicitudes_total, COUNT_IF(s.approval_status = 'APROBADA') AS solicitudes_aprobadas, ROUND(COUNT_IF(s.approval_status = 'APROBADA') / NULLIF(COUNT(*), 0) * 100, 2) AS tasa_aprobacion_pct, COUNT(DISTINCT c.loan_id) AS creditos_colocados, ROUND(SUM(c.principal_amount_mxn) / 1000000, 2) AS monto_colocado_mn FROM __solicitudes AS s LEFT JOIN __creditos AS c ON s.application_id = c.application_id WHERE s.application_date >= DATEADD(MONTH, -11, DATE_TRUNC('MONTH', CURRENT_DATE)) GROUP BY 1 ORDER BY 1 DESC
+
+  - name: "Salud de cartera actual"
+    question: "¿Cuál es el estado actual de salud de la cartera por segmento y tier de riesgo?"
+    sql: |
+      SELECT portfolio_segment, risk_tier, COUNT(*) AS total_creditos, COUNT_IF(loan_status = 'VIGENTE') AS creditos_vigentes, COUNT_IF(loan_status LIKE 'MOROSO%') AS creditos_morosos, COUNT_IF(loan_status = 'INCUMPLIDO') AS creditos_incumplidos, ROUND(COUNT_IF(loan_status LIKE 'MOROSO%') / NULLIF(COUNT(*), 0) * 100, 2) AS tasa_morosidad_pct, ROUND(COUNT_IF(loan_status = 'INCUMPLIDO') / NULLIF(COUNT(*), 0) * 100, 2) AS tasa_incumplimiento_pct, ROUND(SUM(principal_amount_mxn) / 1000000, 2) AS principal_mn, ROUND(SUM(current_balance_mxn) / 1000000, 2) AS saldo_actual_mn, ROUND(AVG(days_past_due), 1) AS dias_atraso_promedio FROM __creditos GROUP BY portfolio_segment, risk_tier ORDER BY principal_mn DESC
+
+  - name: "Efectividad de cobranza mensual"
+    question: "¿Cuál ha sido la efectividad de cobranza mes a mes?"
+    sql: |
+      SELECT DATE_TRUNC('MONTH', payment_date) AS mes_pago, COUNT(*) AS total_pagos, COUNT_IF(is_on_time = TRUE) AS pagos_a_tiempo, ROUND(COUNT_IF(is_on_time = TRUE) / NULLIF(COUNT(*), 0) * 100, 2) AS tasa_pago_oportuno_pct, ROUND(SUM(expected_amount_mxn), 2) AS cobro_planeado_mxn, ROUND(SUM(actual_amount_mxn), 2) AS cobro_real_mxn, ROUND((SUM(actual_amount_mxn) / NULLIF(SUM(expected_amount_mxn), 0)) * 100, 2) AS efectividad_pct, ROUND(AVG(days_late), 1) AS dias_atraso_promedio FROM __pagos WHERE payment_date >= DATEADD(MONTH, -11, DATE_TRUNC('MONTH', CURRENT_DATE)) GROUP BY 1 ORDER BY 1 DESC
+
+  - name: "Indicadores de morosidad por bucket"
+    question: "¿Cuáles son los indicadores de morosidad por bucket de días de atraso?"
+    sql: |
+      SELECT morosity_bucket, COUNT(*) AS cuentas, ROUND(SUM(principal_amount_mxn) / 1000000, 2) AS saldo_principal_mn, ROUND(SUM(current_balance_mxn) / 1000000, 2) AS saldo_actual_mn, ROUND(AVG(days_past_due), 1) AS dias_promedio_atraso, ROUND(AVG(CASE WHEN loan_status = 'INCUMPLIDO' THEN 1 ELSE 0 END) * 100, 2) AS porc_incumplido FROM __creditos GROUP BY morosity_bucket ORDER BY CASE WHEN morosity_bucket = '0-7 días' THEN 0 WHEN morosity_bucket = '8-30 días' THEN 1 WHEN morosity_bucket = '31-60 días' THEN 2 WHEN morosity_bucket = '61-90 días' THEN 3 ELSE 4 END
+
+customInstructions: |
+  Este modelo semántico está diseñado para Maxikash, empresa mexicana de financiamiento de motocicletas.
+  
+  Contexto de negocio:
+  - Maxikash ofrece créditos ágiles para motocicletas con aprobación en minutos usando solo INE
+  - Se enfoca en segmentos de Delivery, Uso Productivo y Ride Hailing
+  - Trabaja con marcas como Italika, Vento, Bajaj, Honda y Yamaha
+  - Ofrece pagos semanales adaptados al flujo de ingresos de sus clientes
+  
+  Métricas clave:
+  - Tasa de aprobación: porcentaje de solicitudes aprobadas
+  - Tasa de morosidad: porcentaje de créditos con atraso
+  - Tasa de incumplimiento: porcentaje de créditos incumplidos (default)
+  - Efectividad de cobranza: ratio entre cobro real vs. cobro planeado
+  
+  Segmentación importante:
+  - Por canal: Marketplace, Agencia Afiliada, Campaña Digital
+  - Por segmento de cliente: Delivery, Uso Productivo, Ride Hailing
+  - Por tier de riesgo: Prime, Near-Prime, Subprime
+  - Por bucket de morosidad: 0-7, 8-30, 31-60, 61-90, 90+ días
+  
+  Todas las cantidades monetarias están en pesos mexicanos (MXN).
+  Los plazos se miden en semanas con pagos semanales.

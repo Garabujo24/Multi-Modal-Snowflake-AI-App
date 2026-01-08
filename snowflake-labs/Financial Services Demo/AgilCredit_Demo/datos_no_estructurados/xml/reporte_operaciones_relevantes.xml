@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteOperacionesRelevantes>
+    <Metadata>
+        <NumeroReporte>OR-2025-09-001</NumeroReporte>
+        <TipoReporte>Operaciones Relevantes - PLD</TipoReporte>
+        <Periodo>Septiembre 2025</Periodo>
+        <FechaPresentacion>2025-10-05</FechaPresentacion>
+        <Institucion>AgilCredit SOFOM E.N.R.</Institucion>
+    </Metadata>
+    
+    <OperacionesReportadas>
+        <Operacion>
+            <FolioOperacion>OR-2025-0001</FolioOperacion>
+            <FechaOperacion>2025-09-08</FechaOperacion>
+            <TipoOperacion>Solicitud de crédito por monto inusual</TipoOperacion>
+            <ClienteID>CLI000892</ClienteID>
+            <MontoOperacion>485000.00</MontoOperacion>
+            <Justificacion>Monto solicitado excede 400% del ingreso declarado mensual</Justificacion>
+            <AccionTomada>Solicitud declinada tras análisis de riesgo</AccionTomada>
+            <Estatus>Cerrado</Estatus>
+        </Operacion>
+        <Operacion>
+            <FolioOperacion>OR-2025-0002</FolioOperacion>
+            <FechaOperacion>2025-09-15</FechaOperacion>
+            <TipoOperacion>Pago anticipado total en efectivo</TipoOperacion>
+            <ClienteID>CLI000234</ClienteID>
+            <MontoOperacion>125000.00</MontoOperacion>
+            <Justificacion>Liquidación anticipada total en efectivo de crédito personal</Justificacion>
+            <AccionTomada>Verificación de origen de fondos completada, operación aprobada</AccionTomada>
+            <Estatus>Cerrado</Estatus>
+        </Operacion>
+        <Operacion>
+            <FolioOperacion>OR-2025-0003</FolioOperacion>
+            <FechaOperacion>2025-09-22</FechaOperacion>
+            <TipoOperacion>Múltiples solicitudes mismo día</TipoOperacion>
+            <ClienteID>CLI000567</ClienteID>
+            <MontoOperacion>0.00</MontoOperacion>
+            <Justificacion>Cliente realizó 5 solicitudes de crédito en diferentes sucursales el mismo día</Justificacion>
+            <AccionTomada>Todas las solicitudes bloqueadas, perfil bajo revisión</AccionTomada>
+            <Estatus>En investigación</Estatus>
+        </Operacion>
+    </OperacionesReportadas>
+    
+    <ResumenEstadistico>
+        <TotalOperacionesReportadas>3</TotalOperacionesReportadas>
+        <OperacionesCerradas>2</OperacionesCerradas>
+        <OperacionesInvestigacion>1</OperacionesInvestigacion>
+        <MontoTotalReportado>610000.00</MontoTotalReportado>
+    </ResumenEstadistico>
+    
+    <Cumplimiento>
+        <ReportadoOportunamente>Sí</ReportadoOportunamente>
+        <Oficial>Lic. Carmen Rodríguez Soto</Oficial>
+        <Cargo>Oficial de Cumplimiento</Cargo>
+        <CertificacionCNBV>OC-2023-12345</CertificacionCNBV>
+    </Cumplimiento>
+</ReporteOperacionesRelevantes>
+
+
+

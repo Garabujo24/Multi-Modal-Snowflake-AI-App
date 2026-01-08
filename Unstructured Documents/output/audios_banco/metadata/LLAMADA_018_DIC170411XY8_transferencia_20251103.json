@@ -1,0 +1,28 @@
+{
+  "id_llamada": 18,
+  "cliente": {
+    "nombre": "DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV",
+    "rfc": "DIC170411XY8",
+    "tipo": "Persona Moral",
+    "estado": "Quintana Roo"
+  },
+  "llamada": {
+    "tipo": "transferencia",
+    "titulo": "Solicitud de Transferencia",
+    "categoria": "Operaciones",
+    "fecha": "2025-11-03T15:53:01.679455",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_018_DIC170411XY8_transferencia_20251103.mp3",
+    "transcripcion": "LLAMADA_018_DIC170411XY8_transferencia_20251103.txt",
+    "metadata": "LLAMADA_018_DIC170411XY8_transferencia_20251103.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Patricia Gutiérrez",
+    "num_cuenta": "****7525",
+    "ultimos_rfc": "1XY8"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

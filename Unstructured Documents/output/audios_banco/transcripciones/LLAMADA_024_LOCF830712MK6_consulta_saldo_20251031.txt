@@ -1,0 +1,41 @@
+LLAMADA BANCARIA - Consulta de Saldo
+======================================================================
+
+Cliente: FERNANDO JAVIER LÓPEZ CASTILLO
+RFC: LOCF830712MK6
+Fecha: 31/10/2025 15:45
+Duración estimada: 2-3 minutos
+Categoría: Información
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buen día, le atiende Laura Fernández del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Hola, buenos días. Quisiera consultar el saldo de mi cuenta.
+
+Ejecutivo: Con gusto le ayudo. ¿Me podría proporcionar su número de cuenta o tarjeta, por favor?
+
+Cliente: Sí, claro. Mi número de cuenta es ****8114.
+
+Ejecutivo: Perfecto. ¿Me puede confirmar su nombre completo?
+
+Cliente: FERNANDO JAVIER LÓPEZ CASTILLO.
+
+Ejecutivo: Gracias. Por seguridad, ¿me podría proporcionar los últimos cuatro dígitos de su RFC?
+
+Cliente: Sí, son 2MK6.
+
+Ejecutivo: Excelente, gracias por confirmar. Su saldo actual es de 78,738 pesos con 25 centavos. Su último movimiento fue un retiro en cajero automático por 10,306 pesos.
+
+Cliente: Perfecto, muchas gracias. ¿Y cuál es mi saldo disponible?
+
+Ejecutivo: Su saldo disponible es de 65,716 pesos. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo. Muchas gracias.
+
+Ejecutivo: A usted. Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

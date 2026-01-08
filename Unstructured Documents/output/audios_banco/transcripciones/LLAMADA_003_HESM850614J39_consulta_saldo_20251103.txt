@@ -1,0 +1,41 @@
+LLAMADA BANCARIA - Consulta de Saldo
+======================================================================
+
+Cliente: MARÍA GUADALUPE HERNÁNDEZ SÁNCHEZ
+RFC: HESM850614J39
+Fecha: 03/11/2025 15:36
+Duración estimada: 2-3 minutos
+Categoría: Información
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buen día, le atiende Ana María López del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Hola, buenos días. Quisiera consultar el saldo de mi cuenta.
+
+Ejecutivo: Con gusto le ayudo. ¿Me podría proporcionar su número de cuenta o tarjeta, por favor?
+
+Cliente: Sí, claro. Mi número de cuenta es ****6372.
+
+Ejecutivo: Perfecto. ¿Me puede confirmar su nombre completo?
+
+Cliente: MARÍA GUADALUPE HERNÁNDEZ SÁNCHEZ.
+
+Ejecutivo: Gracias. Por seguridad, ¿me podría proporcionar los últimos cuatro dígitos de su RFC?
+
+Cliente: Sí, son 4J39.
+
+Ejecutivo: Excelente, gracias por confirmar. Su saldo actual es de 129,772 pesos con 11 centavos. Su último movimiento fue un retiro en cajero automático por 4,115 pesos.
+
+Cliente: Perfecto, muchas gracias. ¿Y cuál es mi saldo disponible?
+
+Ejecutivo: Su saldo disponible es de 117,634 pesos. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo. Muchas gracias.
+
+Ejecutivo: A usted. Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

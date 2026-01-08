@@ -1,0 +1,28 @@
+{
+  "id_llamada": 15,
+  "cliente": {
+    "nombre": "CARLOS EDUARDO RAMÍREZ FERNÁNDEZ",
+    "rfc": "RAFC900518KP9",
+    "tipo": "Persona Física",
+    "estado": "Querétaro"
+  },
+  "llamada": {
+    "tipo": "actualizacion_datos",
+    "titulo": "Actualización de Datos",
+    "categoria": "Administración",
+    "fecha": "2025-11-01T15:41:14.727150",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_015_RAFC900518KP9_actualizacion_datos_20251101.mp3",
+    "transcripcion": "LLAMADA_015_RAFC900518KP9_actualizacion_datos_20251101.txt",
+    "metadata": "LLAMADA_015_RAFC900518KP9_actualizacion_datos_20251101.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Patricia Gutiérrez",
+    "num_cuenta": "****6236",
+    "ultimos_rfc": "8KP9"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

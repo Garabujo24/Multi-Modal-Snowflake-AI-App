@@ -1,0 +1,28 @@
+{
+  "id_llamada": 1,
+  "cliente": {
+    "nombre": "TECNOLOGÍA AVANZADA DEL SURESTE SA DE CV",
+    "rfc": "TAS180523KL8",
+    "tipo": "Persona Moral",
+    "estado": "Yucatán"
+  },
+  "llamada": {
+    "tipo": "solicitud_credito",
+    "titulo": "Solicitud de Crédito",
+    "categoria": "Productos",
+    "fecha": "2025-10-22T15:35:33.322697",
+    "duracion_estimada": "5-7 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_001_TAS180523KL8_solicitud_credito_20251022.mp3",
+    "transcripcion": "LLAMADA_001_TAS180523KL8_solicitud_credito_20251022.txt",
+    "metadata": "LLAMADA_001_TAS180523KL8_solicitud_credito_20251022.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****8450",
+    "ultimos_rfc": "3KL8"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

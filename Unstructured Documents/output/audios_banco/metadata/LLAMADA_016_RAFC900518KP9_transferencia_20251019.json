@@ -1,0 +1,28 @@
+{
+  "id_llamada": 16,
+  "cliente": {
+    "nombre": "CARLOS EDUARDO RAMÍREZ FERNÁNDEZ",
+    "rfc": "RAFC900518KP9",
+    "tipo": "Persona Física",
+    "estado": "Querétaro"
+  },
+  "llamada": {
+    "tipo": "transferencia",
+    "titulo": "Solicitud de Transferencia",
+    "categoria": "Operaciones",
+    "fecha": "2025-10-19T15:41:39.082920",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_016_RAFC900518KP9_transferencia_20251019.mp3",
+    "transcripcion": "LLAMADA_016_RAFC900518KP9_transferencia_20251019.txt",
+    "metadata": "LLAMADA_016_RAFC900518KP9_transferencia_20251019.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Diana Morales",
+    "num_cuenta": "****8320",
+    "ultimos_rfc": "8KP9"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

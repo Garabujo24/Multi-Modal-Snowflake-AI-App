@@ -1,0 +1,681 @@
+Guía de Resolución de Problemas - OMNIGOODS
+
+Soluciones Rápidas para los Problemas Más Comunes
+
+---
+
+## ÍNDICE RÁPIDO
+
+1. Smartwatch Pro
+2. Auriculares Inalámbricos Elite
+3. PowerBank Ultra
+4. Zapatillas Runner Pro
+5. Mochila Urbana Versatile
+6. Aplicación OmniConnect
+7. Problemas de Conectividad General
+8. Cuando Contactar Soporte
+
+---
+
+## 1. SMARTWATCH PRO - SOLUCIÓN DE PROBLEMAS
+
+### El smartwatch no enciende
+
+**Posibles causas y soluciones:**
+
+□ **Batería completamente descargada**
+- Solución: Conecte a cargador durante al menos 30 minutos
+- Use el cable magnético incluido
+- Verifique que el cargador de pared funcione (pruebe con otro dispositivo)
+- LED indicador debería encenderse al conectar
+
+□ **Cable de carga defectuoso**
+- Solución: Limpie contactos magnéticos con paño seco
+- Verifique que cable esté bien conectado (debe "pegarse" magnéticamente)
+- Pruebe con otro cable de carga si tiene disponible
+
+□ **Bloqueo del sistema**
+- Solución: Reinicio forzado
+- Mantenga presionado botón lateral durante 15 segundos
+- Espere 30 segundos y vuelva a presionar para encender
+
+### El smartwatch no sincroniza con el teléfono
+
+**Diagnóstico por pasos:**
+
+**Paso 1: Verificar Bluetooth**
+□ Abra configuración de Bluetooth en su smartphone
+□ Verifique que Bluetooth esté activado
+□ Busque "OMNIGOODS Watch" en lista de dispositivos
+
+**Paso 2: Verificar app OmniConnect**
+□ ¿Tiene la app instalada? Descargue de App Store/Google Play
+□ ¿Tiene permisos activados? Vaya a Ajustes > OmniConnect > Permisos
+□ ¿App actualizada? Verifique actualizaciones en tienda
+
+**Paso 3: Restablecer conexión**
+□ En smartphone: Elimine emparejamiento previo (Ajustes > Bluetooth)
+□ En smartwatch: Menú > Ajustes > Sistema > Restablecer Bluetooth
+□ Reinicie ambos dispositivos
+□ Intente emparejar nuevamente desde app OmniConnect
+
+**Paso 4: Verificar distancia**
+□ Mantenga dispositivos a menos de 2 metros durante emparejamiento
+□ Aléjese de interferencias (microondas, routers WiFi)
+
+**Si persiste:** 
+Restablecimiento de fábrica (perderá datos no sincronizados):
+Smartwatch > Ajustes > Sistema > Restablecer de Fábrica
+
+### GPS no encuentra señal o es impreciso
+
+**Soluciones:**
+
+□ **Espere más tiempo**
+- Primera vez o después de viaje: Puede tardar 2-5 minutos
+- Mantenga reloj con pantalla hacia el cielo
+
+□ **Ubíquese en exterior despejado**
+- GPS no funciona bien en interiores
+- Edificios altos pueden bloquear señal
+- Mejor en parques abiertos
+
+□ **Actualice A-GPS (GPS Asistido)**
+- App OmniConnect > Smartwatch > Configuración > Actualizar A-GPS
+- Requiere conexión WiFi/datos
+- Actualización cada 7 días mejora adquisición de señal
+
+□ **Calibre brújula**
+- Smartwatch > Ajustes > Sensores > Calibrar Brújula
+- Mueva el reloj en forma de "8" varias veces
+
+### Monitor de frecuencia cardíaca impreciso
+
+**Optimización:**
+
+□ **Ajuste el reloj correctamente**
+- Debe estar ajustado firmemente en la muñeca
+- No demasiado apretado (incomoda) ni flojo (se mueve)
+- Use 2-3 dedos por encima del hueso de la muñeca
+
+□ **Limpie sensor**
+- Parte posterior del reloj debe estar limpia
+- Elimine sudor, suciedad con paño suave húmedo
+- Seque completamente antes de usar
+
+□ **Condiciones de piel**
+- Tatuajes oscuros en muñeca pueden afectar precisión
+- Piel muy fría reduce precisión
+- Cremas o lociones pueden interferir
+
+□ **Durante ejercicio**
+- Primeros 5 minutos pueden ser imprecisos (calentamiento)
+- Ajuste reloj ligeramente más firme para correr
+- Si hace intervalos, FC tarda en reflejar cambios (10-20 seg)
+
+□ **Calibración**
+- App OmniConnect > Smartwatch > Salud > Calibrar FC
+- Siga instrucciones para calibración (requiere estar en reposo)
+
+### Batería se agota rápido
+
+**Causas comunes y soluciones:**
+
+□ **GPS activo constantemente**
+- Solución: Desactive GPS cuando no entrene
+- Ajustes > GPS > Automático (solo en entrenamientos)
+
+□ **Pantalla siempre encendida**
+- Solución: Desactive "Always On Display"
+- Ajustes > Pantalla > Always On > Desactivar
+- Ahorro: +30% de batería
+
+□ **Brillo muy alto**
+- Solución: Reduzca brillo
+- Ajustes > Pantalla > Brillo > Medio o Automático
+
+□ **Demasiadas notificaciones**
+- Solución: Filtre notificaciones en app OmniConnect
+- OmniConnect > Notificaciones > Seleccione solo apps importantes
+
+□ **Medición FC continua**
+- Solución: Cambie a medición cada 10 minutos
+- Ajustes > Salud > Frecuencia Cardíaca > Cada 10 min
+- Para fitness serio, mantenga continua
+
+□ **Batería degradada**
+- Si reloj tiene >2 años, capacidad de batería puede haber disminuido
+- Contacte soporte para evaluación de batería
+
+**Duración esperada:**
+- Uso normal: 5-7 días
+- Con GPS activo: 8-10 horas
+- Modo ahorro extremo: Hasta 14 días
+
+---
+
+## 2. AURICULARES ELITE - SOLUCIÓN DE PROBLEMAS
+
+### Auriculares no encienden
+
+□ **Batería descargada**
+- Conecte a cargador USB-C durante 1 hora
+- LED debe iluminar rojo durante carga, azul cuando completo
+
+□ **Botón de encendido defectuoso**
+- Mantenga presionado 5 segundos (no solo 2)
+- Pruebe con otro cable USB-C
+- Reinicio forzado: Mantenga botón 15 segundos
+
+### No se conectan por Bluetooth
+
+**Checklist de diagnóstico:**
+
+□ **Paso 1: Modo emparejamiento**
+- Con auriculares apagados, mantenga botón 5 segundos
+- LED debe parpadear azul rápidamente
+- Busque "OMNIGOODS Elite" en dispositivos Bluetooth
+
+□ **Paso 2: Eliminar emparejamientos previos**
+- Si estaban conectados a otro dispositivo, ese dispositivo puede estar interfiriendo
+- Desactive Bluetooth en dispositivos previamente conectados
+- O vaya a configuración Bluetooth y "Olvidar dispositivo"
+
+□ **Paso 3: Restablecer auriculares**
+- Con auriculares encendidos: Mantenga botón ANC + botón encendido simultáneamente 10 segundos
+- LED parpadeará rojo y azul alternando
+- Esto restablece todos los emparejamientos
+
+□ **Paso 4: Verificar compatibilidad**
+- Requieren Bluetooth 4.0 o superior
+- Smartphones desde 2015+ generalmente compatibles
+- Verifique que su dispositivo tenga Bluetooth activado y funcional
+
+### Cancelación de ruido no funciona bien
+
+**Optimización ANC:**
+
+□ **Almohadillas incorrectas**
+- ANC requiere sellado hermético
+- Pruebe diferentes tamaños (S, M, L)
+- Almohadillas dañadas o sucias reducen efectividad
+- Reemplace almohadillas cada 3-6 meses
+
+□ **Colocación incorrecta**
+- Inserte auricular y gírelo ligeramente para crear sello
+- Tire suavemente de oreja hacia arriba durante inserción
+
+□ **Activar ANC**
+- Presione botón ANC una vez
+- LED verde indica que está activo
+- Presione de nuevo para desactivar
+
+□ **Limitaciones naturales del ANC**
+- Mejor con ruidos constantes (motor avión, aire acondicionado)
+- Menos efectivo con voces y sonidos agudos repentinos
+- ANC perfecto 100% no existe en ningún auricular
+
+### Calidad de audio pobre
+
+**Soluciones:**
+
+□ **Verifique volumen**
+- Puede estar limitado por configuración del teléfono
+- iOS: Ajustes > Sonido > Reducir sonidos fuertes
+- Android: Ajustes > Sonido > Volumen absoluto
+
+□ **Codec de audio**
+- Mejores codecs: aptX, AAC
+- Verifique que estén habilitados en configuración Bluetooth
+- Android: Opciones de desarrollador > Codec de audio Bluetooth
+
+□ **Ecualización**
+- Ajuste EQ en configuración de música de su teléfono
+- Spotify, Apple Music tienen ecualizadores integrados
+
+□ **Almohadillas sucias**
+- Limpie con paño ligeramente húmedo
+- Residuos de cerumen reducen calidad de audio
+
+□ **Interferencia**
+- Aléjese de routers WiFi, microondas
+- Mantenga teléfono en bolsillo cercano, no en mochila
+
+### Batería se agota rápido
+
+□ **ANC siempre activo**
+- ANC consume batería adicional
+- Desactive cuando no necesite (presione botón ANC)
+- Duración: 30h sin ANC, 25h con ANC
+
+□ **Volumen muy alto**
+- Volumen máximo consume más batería
+- Use 60-70% de volumen máximo
+
+□ **Batería degradada**
+- Después de 500 ciclos de carga, capacidad disminuye
+- Normal perder 10-20% capacidad después de 1-2 años
+
+### Un auricular suena más bajo que el otro
+
+□ **Limpieza**
+- Malla del auricular bloqueada por cerumen
+- Limpie con cepillo suave o palillo (con cuidado)
+- NO use agua directamente en auricular
+
+□ **Balance de audio**
+- Verifique configuración de balance L/R en smartphone
+- iOS: Ajustes > Accesibilidad > Audio/Visual > Balance
+- Android: Ajustes > Accesibilidad > Balance de audio
+
+□ **Defecto**
+- Si persiste después de limpieza y verificación de balance
+- Contacte soporte técnico para reemplazo bajo garantía
+
+---
+
+## 3. POWERBANK ULTRA - SOLUCIÓN DE PROBLEMAS
+
+### PowerBank no carga mis dispositivos
+
+**Diagnóstico:**
+
+□ **PowerBank sin carga**
+- Presione botón de encendido
+- Verifique LEDs indicadores
+- Si no enciende ningún LED, PowerBank está descargado
+- Cargue completamente (8-10 horas) antes de usar
+
+□ **Activar salida**
+- Conecte su dispositivo
+- Presione botón de encendido una vez
+- Carga debería iniciar automáticamente
+
+□ **Cable defectuoso**
+- El cable es del cliente (no incluido)
+- Pruebe con otro cable que sepa que funciona
+- Cables viejos o dañados son causa común
+
+□ **Puerto equivocado**
+- Verifique que está usando puerto de SALIDA
+- Entrada: Logo de batería con flecha entrando
+- Salida: Logo USB
+
+□ **Dispositivo pequeño (smartwatch, auriculares)**
+- PowerBank puede apagarse al detectar corriente muy baja
+- Presione botón 2 veces rápidamente para activar modo baja corriente
+- LED parpadeará 2 veces confirmando activación
+
+□ **Protección activada**
+- PowerBank tiene protecciones de seguridad
+- Si detecta cortocircuito, se apaga automáticamente
+- Desconecte todo, espere 1 minuto, intente con otro cable
+
+### PowerBank no se carga
+
+□ **Cable o cargador defectuoso**
+- Pruebe con otro cable USB-C
+- Use cargador de al menos 2A (5V/2A mínimo)
+- Cargador de teléfono generalmente funciona bien
+
+□ **Puerto incorrecto**
+- Use puerto de ENTRADA (marcado con icono de batería+flecha)
+- Puerto USB-C puede ser entrada Y salida
+
+□ **LEDs no encienden pero está cargando**
+- LEDs se apagan después de 30 segundos cargando (normal)
+- Presione botón para verificar nivel de carga
+
+□ **Temperatura**
+- No se carga si temperatura <0°C o >45°C
+- Mueva a temperatura ambiente y espere 10 minutos
+
+### Carga muy lenta
+
+□ **Cargador de baja potencia**
+- Use cargador de mínimo 2A
+- Cargadores de 1A tardarán 15-20 horas
+- Recomendado: 2.4A o superior
+
+□ **Usando PowerBank mientras carga**
+- "Pass-through charging" funciona pero es más lento
+- Para carga rápida, desconecte dispositivos durante carga del PowerBank
+
+□ **Temperatura ambiente**
+- Carga más lenta en frío
+- Óptimo: 15-30°C
+
+### LEDs parpadean y PowerBank no funciona
+
+□ **Protección por cortocircuito activada**
+- Desconecte todo
+- Espere 2 minutos
+- Conecte PowerBank a cargador de pared para resetear
+- No use el cable/dispositivo que causó problema
+
+□ **Batería en modo protección por descarga profunda**
+- Ocurre si PowerBank no se usó por 6+ meses
+- Conecte a cargador durante 12-24 horas continuas
+- Puede parecer "muerto" inicialmente pero debería recuperarse
+
+---
+
+## 4. ZAPATILLAS RUNNER PRO - SOLUCIÓN DE PROBLEMAS
+
+### Zapatillas causan ampollas
+
+□ **Período de adaptación**
+- Primeras 2-3 salidas, camine 10-15 min antes de correr
+- No use para carreras largas hasta haberlas "domado"
+
+□ **Talla incorrecta**
+- Debe haber 1-1.5 cm entre dedo más largo y punta
+- Pie se hincha durante carrera; si muy justas al probarse, son muy pequeñas
+
+□ **Calcetines inadecuados**
+- Use calcetines técnicos sin costuras
+- Evite calcetines de algodón (retienen humedad)
+
+□ **Atado muy flojo o muy apretado**
+- Ajuste firme pero cómodo
+- No debe sentir presión en ningún punto específico
+
+□ **Humedad**
+- Aplique vaselina o crema anti-rozaduras en puntos conflictivos
+- Use calcetines de doble capa si es propenso a ampollas
+
+### Dolor en arco o planta del pie
+
+□ **Soporte insuficiente**
+- Considere plantillas ortopédicas personalizadas
+- Plantilla incluida es estándar (pie neutro)
+
+□ **Talla incorrecta**
+- Zapatillas muy grandes causan que pie se deslice
+- Cambio gratuito dentro de 30 días
+
+□ **Pisada no neutra**
+- Runner Pro diseñadas para pisada neutra o ligera pronación
+- Si tiene pronación severa o supinación, consulte con podólogo
+
+□ **Aumente kilometraje gradualmente**
+- No aumente más del 10% semanal
+- Dolor puede indicar sobrecarga
+
+### Zapatillas se sienten rígidas o incómodas
+
+□ **Necesitan "domarse"**
+- Primeras 20-30 km pueden sentirse rígidas
+- Camine con ellas en casa primero
+
+□ **Temperatura fría**
+- Materiales más rígidos en frío
+- Caliente zapatillas a temperatura ambiente antes de usar
+
+□ **Expectativas**
+- Runner Pro ofrecen soporte y estructura
+- No son tan "esponjosas" como zapatillas máxima amortiguación
+- Diseñadas para equilibrio amortiguación-respuesta
+
+---
+
+## 5. MOCHILA URBANA - SOLUCIÓN DE PROBLEMAS
+
+### Cremallera atascada
+
+□ **No fuerce**
+- Mover cremallera hacia adelante y atrás suavemente
+- Verifique que nada esté atrapado en dientes
+
+□ **Lubrique**
+- Frote crayón de cera o vela sobre dientes de cremallera
+- Abra y cierre varias veces
+- También funciona: lápiz de grafito
+
+□ **Cursor desalineado**
+- Si una lado no cierra, cursor puede estar desalineado
+- Presione cursor suavemente con alicates para alinear
+
+□ **Dientes rotos**
+- Si varios dientes rotos, cremallera necesita reemplazo
+- Servicio de reparación: reparaciones@omnigoods.com
+
+### Puerto USB no carga
+
+□ **PowerBank conectado correctamente**
+- Verifique que cable interno esté conectado al powerbank
+- PowerBank debe tener carga
+
+□ **Cable interno suelto**
+- Verifique ambas conexiones del cable interno
+- Desconecte y reconecte firmemente
+
+□ **Puerto USB sucio**
+- Limpie con aire comprimido
+- NO inserte objetos metálicos
+
+□ **Cable interno dañado**
+- Cable de reemplazo disponible: www.omnigoods.com/repuestos
+
+### Olor desagradable
+
+□ **Nueva**
+- Olor a "nuevo" normal primeras semanas
+- Airee mochila en exterior 1-2 días
+
+□ **Húmeda**
+- Seque completamente después de lluvia o sudor
+- No guarde húmeda
+- Olor a moho requiere limpieza profunda
+
+□ **Limpieza**
+- Lave a mano con jabón suave y agua tibia
+- Frote con cepillo suave en áreas sucias
+- Enjuague bien y seque completamente
+- Añada bicarbonato de sodio en compartimentos (absorbe olores)
+
+### Correas incómodas
+
+□ **Ajuste inadecuado**
+- Afloje todas correas antes de ponerse mochila
+- Ajuste hombros primero, luego pectoral
+- Mochila debe quedar alta en espalda, no colgando
+
+□ **Distribución de peso**
+- Objetos pesados cerca de espalda
+- Objetos ligeros en frente
+- Use correas de compresión
+
+□ **Peso excesivo**
+- Máximo recomendado: 10 kg
+- Más peso puede causar incomodidad y dañar mochila
+
+---
+
+## 6. APP OMNICONNECT - SOLUCIÓN DE PROBLEMAS
+
+### App se cierra inesperadamente (crash)
+
+□ **Actualizar app**
+- App Store/Google Play > Actualizaciones
+- Instale última versión
+
+□ **Limpiar caché**
+- iOS: Desinstale y reinstale app
+- Android: Ajustes > Apps > OmniConnect > Almacenamiento > Borrar caché
+
+□ **Memoria del teléfono**
+- Verifique que tenga al menos 500MB libre
+- Cierre otras apps en segundo plano
+
+□ **Reportar problema**
+- Incluya modelo de teléfono y versión de app
+- feedback@omnigoods.com
+
+### Datos no sincronizan
+
+□ **Verificar conexión**
+- WiFi o datos móviles deben estar activos
+- App requiere permiso de datos en segundo plano
+
+□ **Sincronización manual**
+- Abra app > Deslice hacia abajo para actualizar
+- O: Perfil > Smartwatch > Sincronizar ahora
+
+□ **Permisos**
+- iOS: Ajustes > OmniConnect > Activar todos permisos
+- Android: Ajustes > Apps > OmniConnect > Permisos
+
+□ **Reiniciar dispositivos**
+- Cierre app completamente
+- Reinicie smartphone
+- Reinicie smartwatch
+- Abra app y sincronice
+
+### App no detecta smartwatch
+
+Ver sección "Smartwatch no sincroniza" arriba.
+
+Adicionalmente:
+□ **Permitir ubicación**
+- Bluetooth requiere permiso de ubicación en Android
+- Ajustes > Apps > OmniConnect > Permisos > Ubicación > Permitir
+
+□ **Desactivar modo ahorro batería**
+- Modo ahorro puede desactivar Bluetooth
+- Desactive temporalmente para emparejar
+
+---
+
+## 7. PROBLEMAS DE CONECTIVIDAD GENERAL
+
+### Dispositivos Bluetooth no se conectan
+
+**Solución universal:**
+
+1. **Desactivar Bluetooth 10 segundos y reactivar**
+2. **Reiniciar ambos dispositivos** (smartphone + accesorio)
+3. **"Olvidar" dispositivo** y emparejar de nuevo
+4. **Actualizar software** de smartphone
+5. **Restablecer configuración de red** (último recurso)
+   - iOS: Ajustes > General > Transferir o Restablecer > Restablecer > Restablecer ajustes red
+   - Android: Ajustes > Sistema > Opciones de reinicio > Restablecer WiFi, datos móviles y Bluetooth
+
+### Interferencia Bluetooth
+
+**Síntomas:** Conexión intermitente, audio entrecortado
+
+**Causas y soluciones:**
+
+□ **Demasiados dispositivos Bluetooth**
+- Desconecte dispositivos Bluetooth no usados
+- Límite: ~7 dispositivos simultáneos
+
+□ **Interferencia WiFi**
+- WiFi 2.4GHz interfiere con Bluetooth
+- Muévase a área con menos congestión WiFi
+- O use WiFi 5GHz en su router
+
+□ **Obstrucciones físicas**
+- Bluetooth funciona mejor con línea de visión
+- Paredes, metal, agua (cuerpo) bloquean señal
+- Mantenga smartphone en bolsillo delantero, no mochila
+
+□ **Microondas**
+- Microondas en uso interfiere fuertemente
+- Aléjese de cocina cuando microondas esté encendido
+
+---
+
+## 8. CUANDO CONTACTAR SOPORTE
+
+### Contacte soporte técnico si:
+
+- Ha intentado todas las soluciones y problema persiste
+- Sospecha defecto de fabricación
+- Necesita servicio de garantía
+- Tiene preguntas técnicas no cubiertas aquí
+
+### Información para proporcionar:
+
+1. **Producto específico** (Smartwatch Pro, Auriculares Elite, etc.)
+2. **Número de serie** (en producto o caja)
+3. **Fecha de compra** (número de pedido)
+4. **Descripción detallada** del problema
+5. **Qué soluciones** ha intentado ya
+6. **Fotos** (si aplica)
+7. **Versión de software** (para electrónicos)
+
+### Canales de Soporte:
+
+**Email:** soporte@omnigoods.com
+- Tiempo de respuesta: 24-48 horas laborables
+
+**Teléfono:** +34 900 123 456
+- Lunes a Viernes: 9:00-18:00h (hora de Madrid)
+
+**Chat en vivo:** www.omnigoods.com
+- Disponible: Lunes a Viernes, 9:00-20:00h
+
+**Portal de Soporte:** www.omnigoods.com/soporte
+- Ticket tracking, base de conocimiento, FAQs
+
+**Redes Sociales:**
+- Twitter: @omnigoods_help (respuesta en 2-4 horas)
+- Facebook: facebook.com/omnigoods
+
+---
+
+## CONSEJOS DE PREVENCIÓN
+
+### Mantenimiento Regular
+
+**Dispositivos Electrónicos:**
+- Actualice firmware regularmente
+- Limpie contactos de carga mensualmente
+- Cargue completamente al menos una vez al mes (si no usa frecuentemente)
+- Almacene a temperatura ambiente (15-25°C)
+
+**Zapatillas:**
+- Rote entre dos pares si corre frecuentemente
+- Seque completamente después de cada uso
+- Desate cordones antes de quitarse
+- No lave en lavadora
+
+**Mochila:**
+- Vacíe completamente cada semana
+- Limpie manchas inmediatamente
+- Seque si se moja
+- No sobrecargue
+
+### Actualizaciones de Firmware
+
+Mantener dispositivos actualizados previene muchos problemas:
+
+**Smartwatch y Auriculares:**
+- App OmniConnect notifica cuando hay actualización
+- Conecte a WiFi y cargador durante actualización
+- NO interrumpa actualización (puede dañar dispositivo)
+
+---
+
+## RECURSOS ADICIONALES
+
+**Videos de solución de problemas:**
+www.youtube.com/omnigoods/troubleshooting
+
+**Base de conocimiento completa:**
+www.omnigoods.com/soporte/kb
+
+**Manuales descargables:**
+www.omnigoods.com/manuales
+
+**Comunidad de usuarios:**
+www.omnigoods.com/comunidad
+
+---
+
+**En OMNIGOODS estamos aquí para ayudarle. No dude en contactarnos.**
+
+Solución de Problemas | Soporte Técnico | OMNIGOODS
+

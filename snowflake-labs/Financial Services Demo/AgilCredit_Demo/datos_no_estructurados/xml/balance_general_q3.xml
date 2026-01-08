@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BalanceGeneral>
+    <Metadata>
+        <Periodo>Q3 2025</Periodo>
+        <FechaCorte>2025-09-30</FechaCorte>
+        <Moneda>MXN</Moneda>
+        <NormaContable>NIF (Normas de Información Financiera México)</NormaContable>
+    </Metadata>
+    
+    <Activo>
+        <ActivoCirculante>
+            <Efectivo>15250000.00</Efectivo>
+            <BancosInversiones>28950000.00</BancosInversiones>
+            <CarteraVigente>142280000.00</CarteraVigente>
+            <CarteraVencida>6471000.00</CarteraVencida>
+            <EstimacionCuentasIncobrables>-5850000.00</EstimacionCuentasIncobrables>
+            <OtrosCuentasPorCobrar>2450000.00</OtrosCuentasPorCobrar>
+            <TotalActivoCirculante>189551000.00</TotalActivoCirculante>
+        </ActivoCirculante>
+        <ActivoNoCirculante>
+            <MobilarioEquipo>8500000.00</MobilarioEquipo>
+            <EquipoComputo>4250000.00</EquipoComputo>
+            <DepreciacionAcumulada>-3850000.00</DepreciacionAcumulada>
+            <ActivosIntangibles>5200000.00</ActivosIntangibles>
+            <TotalActivoNoCirculante>14100000.00</TotalActivoNoCirculante>
+        </ActivoNoCirculante>
+        <TotalActivo>203651000.00</TotalActivo>
+    </Activo>
+    
+    <Pasivo>
+        <PasivoCirculante>
+            <PrestamosInstitucionesBancarias>35800000.00</PrestamosInstitucionesBancarias>
+            <CuentasPorPagar>8450000.00</CuentasPorPagar>
+            <ImpuestosPorPagar>4250000.00</ImpuestosPorPagar>
+            <AcreedoresDiversos>2850000.00</AcreedoresDiversos>
+            <TotalPasivoCirculante>51350000.00</TotalPasivoCirculante>
+        </PasivoCirculante>
+        <PasivoNoCirculante>
+            <DeudaLargoPlazo>42500000.00</DeudaLargoPlazo>
+            <OtrasCuentasPorPagar>1750000.00</OtrasCuentasPorPagar>
+            <TotalPasivoNoCirculante>44250000.00</TotalPasivoNoCirculante>
+        </PasivoNoCirculante>
+        <TotalPasivo>95600000.00</TotalPasivo>
+    </Pasivo>
+    
+    <CapitalContable>
+        <CapitalSocial>50000000.00</CapitalSocial>
+        <ReservaLegal>8500000.00</ReservaLegal>
+        <ResultadosAcumulados>42701000.00</ResultadosAcumulados>
+        <ResultadoEjercicio>6850000.00</ResultadoEjercicio>
+        <TotalCapitalContable>108051000.00</TotalCapitalContable>
+    </CapitalContable>
+    
+    <PasivoMasCapital>203651000.00</PasivoMasCapital>
+    
+    <NotasImportantes>
+        <Nota>La cartera crediticia representa el 73% del total de activos</Nota>
+        <Nota>El índice de capitalización se mantiene en 35.58%, muy por encima del mínimo regulatorio</Nota>
+        <Nota>La liquidez inmediata cubre 86% de obligaciones de corto plazo</Nota>
+    </NotasImportantes>
+</BalanceGeneral>
+
+
+

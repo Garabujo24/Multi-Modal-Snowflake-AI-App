@@ -1,0 +1,28 @@
+{
+  "id_llamada": 21,
+  "cliente": {
+    "nombre": "MANUFACTURAS TEXTILES DE OCCIDENTE SA DE CV",
+    "rfc": "MTO140627GH3",
+    "tipo": "Persona Moral",
+    "estado": "Jalisco"
+  },
+  "llamada": {
+    "tipo": "solicitud_credito",
+    "titulo": "Solicitud de Crédito",
+    "categoria": "Productos",
+    "fecha": "2025-10-23T15:54:15.759237",
+    "duracion_estimada": "5-7 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_021_MTO140627GH3_solicitud_credito_20251023.mp3",
+    "transcripcion": "LLAMADA_021_MTO140627GH3_solicitud_credito_20251023.txt",
+    "metadata": "LLAMADA_021_MTO140627GH3_solicitud_credito_20251023.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Carlos Mendoza",
+    "num_cuenta": "****5837",
+    "ultimos_rfc": "7GH3"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

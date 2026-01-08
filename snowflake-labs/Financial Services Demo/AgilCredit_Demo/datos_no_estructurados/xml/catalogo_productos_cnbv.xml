@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CatalogoProductos>
+    <Metadata>
+        <FechaActualizacion>2025-10-01</FechaActualizacion>
+        <Version>2.3</Version>
+        <AutorizadoPor>CNBV</AutorizadoPor>
+    </Metadata>
+    
+    <Producto>
+        <CodigoProducto>CP-001</CodigoProducto>
+        <Nombre>Crédito Personal Express</Nombre>
+        <TipoCredito>Personal</TipoCredito>
+        <MontoMinimo>10000.00</MontoMinimo>
+        <MontoMaximo>150000.00</MontoMaximo>
+        <PlazoMinimo>6</PlazoMinimo>
+        <PlazoMaximo>48</PlazoMaximo>
+        <TasaInteresMin>18.00</TasaInteresMin>
+        <TasaInteresMax>45.00</TasaInteresMax>
+        <CATPromedio>38.5</CATPromedio>
+        <Garantias>Sin garantía</Garantias>
+        <RequisitosMinimos>
+            <Edad>18-70 años</Edad>
+            <Ingreso>5000 MXN mensuales</Ingreso>
+            <ScoreMinimo>550</ScoreMinimo>
+            <ComprobacionIngresos>Últimos 3 meses</ComprobacionIngresos>
+        </RequisitosMinimos>
+    </Producto>
+    
+    <Producto>
+        <CodigoProducto>CP-002</CodigoProducto>
+        <Nombre>Crédito PyME</Nombre>
+        <TipoCredito>Empresarial</TipoCredito>
+        <MontoMinimo>50000.00</MontoMinimo>
+        <MontoMaximo>500000.00</MontoMaximo>
+        <PlazoMinimo>12</PlazoMinimo>
+        <PlazoMaximo>60</PlazoMaximo>
+        <TasaInteresMin>16.00</TasaInteresMin>
+        <TasaInteresMax>38.00</TasaInteresMax>
+        <CATPromedio>32.8</CATPromedio>
+        <Garantias>Facturas por cobrar o activos fijos</Garantias>
+        <RequisitosMinimos>
+            <AntiguedadEmpresa>12 meses</AntiguedadEmpresa>
+            <VentasMensualMinimas>50000 MXN</VentasMensualMinimas>
+            <ScoreMinimo>600</ScoreMinimo>
+        </RequisitosMinimos>
+    </Producto>
+    
+    <Producto>
+        <CodigoProducto>CP-003</CodigoProducto>
+        <Nombre>Crédito Nómina Plus</Nombre>
+        <TipoCredito>Nómina</TipoCredito>
+        <MontoMinimo>5000.00</MontoMinimo>
+        <MontoMaximo>100000.00</MontoMaximo>
+        <PlazoMinimo>6</PlazoMinimo>
+        <PlazoMaximo>36</PlazoMaximo>
+        <TasaInteresMin>14.00</TasaInteresMin>
+        <TasaInteresMax>32.00</TasaInteresMax>
+        <CATPromedio>26.5</CATPromedio>
+        <Garantias>Descuento vía nómina</Garantias>
+        <RequisitosMinimos>
+            <AntiguedadLaboral>6 meses</AntiguedadLaboral>
+            <EmpresaConvenio>Requerido</EmpresaConvenio>
+            <ScoreMinimo>580</ScoreMinimo>
+        </RequisitosMinimos>
+    </Producto>
+    
+    <Producto>
+        <CodigoProducto>CP-004</CodigoProducto>
+        <Nombre>Crédito Auto Fácil</Nombre>
+        <TipoCredito>Automotriz</TipoCredito>
+        <MontoMinimo>80000.00</MontoMinimo>
+        <MontoMaximo>600000.00</MontoMaximo>
+        <PlazoMinimo>12</PlazoMinimo>
+        <PlazoMaximo>60</PlazoMaximo>
+        <TasaInteresMin>12.50</TasaInteresMin>
+        <TasaInteresMax>28.00</TasaInteresMax>
+        <CATPromedio>22.8</CATPromedio>
+        <Garantias>Vehículo en garantía prendaria</Garantias>
+        <RequisitosMinimos>
+            <Edad>23-65 años</Edad>
+            <IngresoMinimo>15000 MXN mensuales</IngresoMinimo>
+            <ScoreMinimo>650</ScoreMinimo>
+            <Enganche>20% del valor del vehículo</Enganche>
+        </RequisitosMinimos>
+    </Producto>
+    
+    <Producto>
+        <CodigoProducto>CP-005</CodigoProducto>
+        <Nombre>Línea de Crédito Flexible</Nombre>
+        <TipoCredito>Revolvente</TipoCredito>
+        <MontoMinimo>20000.00</MontoMinimo>
+        <MontoMaximo>200000.00</MontoMaximo>
+        <PlazoMinimo>12</PlazoMinimo>
+        <PlazoMaximo>36</PlazoMaximo>
+        <TasaInteresMin>20.00</TasaInteresMin>
+        <TasaInteresMax>48.00</TasaInteresMax>
+        <CATPromedio>42.3</CATPromedio>
+        <Garantias>Sin garantía</Garantias>
+        <RequisitosMinimos>
+            <ClienteExistente>Requerido</ClienteExistente>
+            <HistorialPagos>Mínimo 6 meses sin atraso</HistorialPagos>
+            <ScoreMinimo>620</ScoreMinimo>
+        </RequisitosMinimos>
+    </Producto>
+</CatalogoProductos>
+
+
+

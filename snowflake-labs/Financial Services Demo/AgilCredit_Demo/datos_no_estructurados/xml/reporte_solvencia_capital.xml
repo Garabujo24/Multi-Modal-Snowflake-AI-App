@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteSolvenciaCapital>
+    <MetadataReporte>
+        <TituloReporte>Reporte de Índice de Capitalización - Basilea III</TituloReporte>
+        <FechaCorte>2025-09-30</FechaCorte>
+        <FechaGeneracion>2025-10-05</FechaGeneracion>
+        <Responsable>
+            <Nombre>Lic. Andrea Martínez Ruiz</Nombre>
+            <Cargo>Directora de Finanzas</Cargo>
+            <Email>andrea.martinez@agilcredit.mx</Email>
+        </Responsable>
+        <RegimenRegulatorio>CNBV - Disposiciones de Carácter General para SOFOM ENR</RegimenRegulatorio>
+    </MetadataReporte>
+    
+    <CapitalContable>
+        <CapitalSocial>50000000.00</CapitalSocial>
+        <ReservasLegales>8500000.00</ReservasLegales>
+        <ResultadosEjerciciosAnteriores>12350000.00</ResultadosEjerciciosAnteriores>
+        <ResultadoEjercicioActual>6850000.00</ResultadoEjercicioActual>
+        <TotalCapitalContable>77700000.00</TotalCapitalContable>
+    </CapitalContable>
+    
+    <ActivosPonderadosRiesgo>
+        <CreditoComercial>125800000.00</CreditoComercial>
+        <CreditoConsumo>68500000.00</CreditoConsumo>
+        <RiesgoOperacional>15200000.00</RiesgoOperacional>
+        <RiesgoMercado>8900000.00</RiesgoMercado>
+        <TotalAPR>218400000.00</TotalAPR>
+    </ActivosPonderadosRiesgo>
+    
+    <IndiceSolvencia>
+        <CapitalNivelUno>65000000.00</CapitalNivelUno>
+        <CapitalNivelDos>12700000.00</CapitalNivelDos>
+        <CapitalTotal>77700000.00</CapitalTotal>
+        <ICAP>35.58</ICAP>
+        <ICAPrequerido>8.00</ICAPrequerido>
+        <ExcedenteCapital>27.58</ExcedenteCapital>
+        <Cumplimiento>Cumple</Cumplimiento>
+    </IndiceSolvencia>
+    
+    <RatiosFinancieros>
+        <Liquidez>
+            <ActivoLiquido>45200000.00</ActivoLiquido>
+            <PasivoCorto>28500000.00</PasivoCorto>
+            <RatioLiquidez>1.59</RatioLiquidez>
+            <EstatusLiquidez>Saludable</EstatusLiquidez>
+        </Liquidez>
+        <Apalancamiento>
+            <PasivoTotal>95600000.00</PasivoTotal>
+            <CapitalContable>77700000.00</CapitalContable>
+            <RatioApalancamiento>1.23</RatioApalancamiento>
+        </Apalancamiento>
+        <Rentabilidad>
+            <ROE>8.82</ROE>
+            <ROA>3.95</ROA>
+            <MargenOperativo>24.5</MargenOperativo>
+        </Rentabilidad>
+    </RatiosFinancieros>
+    
+    <ProyeccionCapital>
+        <TrimestresProyectados>4</TrimestresProyectados>
+        <Trimestre>
+            <Periodo>Q4 2025</Periodo>
+            <ICAPProyectado>36.2</ICAPProyectado>
+            <CrecimientoCartera>5.5</CrecimientoCartera>
+        </Trimestre>
+        <Trimestre>
+            <Periodo>Q1 2026</Periodo>
+            <ICAPProyectado>37.1</ICAPProyectado>
+            <CrecimientoCartera>4.8</CrecimientoCartera>
+        </Trimestre>
+        <Trimestre>
+            <Periodo>Q2 2026</Periodo>
+            <ICAPProyectado>37.8</ICAPProyectado>
+            <CrecimientoCartera>6.2</CrecimientoCartera>
+        </Trimestre>
+        <Trimestre>
+            <Periodo>Q3 2026</Periodo>
+            <ICAPProyectado>38.5</ICAPProyectado>
+            <CrecimientoCartera>5.9</CrecimientoCartera>
+        </Trimestre>
+    </ProyeccionCapital>
+    
+    <Recomendaciones>
+        <Recomendacion>Mantener niveles de capitalización por encima del 30% para absorber volatilidad</Recomendacion>
+        <Recomendacion>Evaluar emisión de deuda subordinada para fortalecer Capital Nivel 2</Recomendacion>
+        <Recomendacion>Diversificar cartera para reducir concentración de riesgo</Recomendacion>
+    </Recomendaciones>
+</ReporteSolvenciaCapital>
+
+
+

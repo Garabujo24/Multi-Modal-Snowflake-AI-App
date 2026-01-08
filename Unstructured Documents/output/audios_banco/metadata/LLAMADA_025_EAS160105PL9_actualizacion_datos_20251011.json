@@ -1,0 +1,28 @@
+{
+  "id_llamada": 25,
+  "cliente": {
+    "nombre": "EXPORTADORA AGRÍCOLA DE SONORA SA DE CV",
+    "rfc": "EAS160105PL9",
+    "tipo": "Persona Moral",
+    "estado": "Sonora"
+  },
+  "llamada": {
+    "tipo": "actualizacion_datos",
+    "titulo": "Actualización de Datos",
+    "categoria": "Administración",
+    "fecha": "2025-10-11T15:45:28.323521",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_025_EAS160105PL9_actualizacion_datos_20251011.mp3",
+    "transcripcion": "LLAMADA_025_EAS160105PL9_actualizacion_datos_20251011.txt",
+    "metadata": "LLAMADA_025_EAS160105PL9_actualizacion_datos_20251011.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Sofía Castillo",
+    "num_cuenta": "****8115",
+    "ultimos_rfc": "5PL9"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

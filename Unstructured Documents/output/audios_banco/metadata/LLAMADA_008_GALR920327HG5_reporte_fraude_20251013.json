@@ -1,0 +1,28 @@
+{
+  "id_llamada": 8,
+  "cliente": {
+    "nombre": "JOSÉ ROBERTO GARCÍA LÓPEZ",
+    "rfc": "GALR920327HG5",
+    "tipo": "Persona Física",
+    "estado": "Ciudad de México"
+  },
+  "llamada": {
+    "tipo": "reporte_fraude",
+    "titulo": "Reporte de Fraude",
+    "categoria": "Seguridad",
+    "fecha": "2025-10-13T15:38:20.161809",
+    "duracion_estimada": "4-5 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_008_GALR920327HG5_reporte_fraude_20251013.mp3",
+    "transcripcion": "LLAMADA_008_GALR920327HG5_reporte_fraude_20251013.txt",
+    "metadata": "LLAMADA_008_GALR920327HG5_reporte_fraude_20251013.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Miguel Ángel Ruiz",
+    "num_cuenta": "****4919",
+    "ultimos_rfc": "7HG5"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

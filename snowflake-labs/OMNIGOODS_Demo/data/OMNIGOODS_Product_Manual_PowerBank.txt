@@ -1,0 +1,103 @@
+Manual de Usuario - OMNIGOODS PowerBank Ultra 20000mAh
+
+## 1. Introducción
+Gracias por adquirir el OMNIGOODS PowerBank Ultra. Con su capacidad de 20,000mAh, nunca más se quedará sin batería en sus dispositivos móviles.
+
+## 2. Especificaciones Técnicas
+- Capacidad: 20,000mAh (74Wh)
+- Puertos de salida: 2x USB-A, 1x USB-C
+- Puerto de entrada: USB-C y Micro-USB
+- Salida USB-A: 5V/2.4A por puerto (máx 3A total)
+- Salida USB-C: 5V/3A, 9V/2A, 12V/1.5A (18W máx)
+- Entrada: 5V/2A (USB-C y Micro-USB)
+- Carga rápida: Compatible con QC 3.0 y PD 18W
+- Indicadores LED: 4 luces que muestran nivel de batería
+- Protecciones: Sobrecarga, sobrecorriente, cortocircuito y sobrecalentamiento
+- Peso: 380 gramos
+- Dimensiones: 14.5 x 7 x 2.5 cm
+
+## 3. Contenido del Paquete
+- 1x PowerBank OMNIGOODS Ultra 20000mAh
+- 1x Cable USB-C a USB-A (50cm)
+- 1x Manual de usuario
+- 1x Bolsa de transporte
+
+## 4. Primer Uso
+Antes de usar el PowerBank por primera vez, cárguelo completamente. Esto puede tardar aproximadamente 8-10 horas con un cargador de 2A.
+
+### Cargar el PowerBank:
+1. Conecte el cable USB-C o Micro-USB al puerto de entrada.
+2. Conecte el otro extremo a un cargador de pared o puerto USB de computadora.
+3. Los LED parpadearán durante la carga. Cuando los 4 LED estén encendidos fijos, la carga está completa.
+
+### Cargar sus Dispositivos:
+1. Conecte su dispositivo al puerto USB apropiado usando su propio cable.
+2. La carga comenzará automáticamente.
+3. Presione el botón de encendido si la carga no inicia automáticamente.
+4. Los LED indicarán el nivel de batería restante del PowerBank.
+
+## 5. Indicadores LED
+- 4 luces encendidas: 75-100% de carga
+- 3 luces encendidas: 50-75% de carga
+- 2 luces encendidas: 25-50% de carga
+- 1 luz encendida: 5-25% de carga
+- 1 luz parpadeando: Menos del 5%, recargue pronto
+
+## 6. Capacidad de Carga
+El PowerBank puede cargar aproximadamente:
+- iPhone 13: 4-5 cargas completas
+- Samsung Galaxy S21: 4 cargas completas
+- iPad Mini: 2 cargas completas
+- AirPods: 40+ cargas completas
+- Smartwatch OMNIGOODS: 10+ cargas completas
+
+Nota: La capacidad real puede variar según el estado de la batería del dispositivo y las condiciones de uso.
+
+## 7. Carga Simultánea
+Puede cargar hasta 3 dispositivos simultáneamente. La corriente total se distribuirá entre los dispositivos conectados.
+
+## 8. Modo de Baja Corriente
+Para cargar dispositivos de baja potencia (auriculares Bluetooth, smartwatches, etc.), presione el botón de encendido dos veces rápidamente. El LED parpadeará dos veces para confirmar. Esto evita que el PowerBank se apague automáticamente al detectar baja corriente.
+
+## 9. Seguridad y Mantenimiento
+- No exponga el PowerBank a temperaturas extremas (por debajo de 0°C o por encima de 45°C).
+- No lo deje en vehículos bajo el sol.
+- Manténgalo alejado del agua y la humedad.
+- No lo deje caer ni lo someta a impactos fuertes.
+- Recárguelo al menos una vez cada 3 meses si no lo usa para mantener la salud de la batería.
+- No intente abrir o modificar el PowerBank.
+
+## 10. Restricciones de Viaje
+Este PowerBank cumple con las regulaciones de la mayoría de aerolíneas (bajo 100Wh). Sin embargo, debe llevarse en equipaje de mano, NUNCA en equipaje facturado. Verifique las políticas específicas de su aerolínea antes de viajar.
+
+## 11. Solución de Problemas
+
+**Problema: El PowerBank no carga mis dispositivos**
+- Verifique que el PowerBank tenga carga (presione el botón y observe los LED)
+- Intente con otro cable
+- Presione el botón de encendido para activar la carga
+- Para dispositivos pequeños, active el modo de baja corriente
+
+**Problema: El PowerBank no se carga**
+- Verifique que el cable y el cargador funcionen correctamente
+- Intente con otro cargador
+- Asegúrese de usar el puerto correcto (entrada)
+- La temperatura ambiente debe estar entre 0°C y 45°C
+
+**Problema: La carga es muy lenta**
+- Use un cargador de al menos 2A para cargar el PowerBank
+- Para carga rápida de dispositivos compatibles, use el puerto USB-C
+- Evite usar el PowerBank mientras se está cargando
+
+## 12. Reciclaje y Medio Ambiente
+Este producto contiene una batería de litio-polímero. No lo deseche con la basura doméstica regular. Llévelo a un punto de reciclaje de electrónicos o contacte a reciclaje@omnigoods.com para información sobre nuestro programa de reciclaje.
+
+## 13. Garantía
+OMNIGOODS ofrece una garantía de 2 años contra defectos de fabricación. La garantía no cubre:
+- Daño físico por caídas o impactos
+- Exposición a líquidos
+- Degradación normal de la batería con el tiempo
+- Uso inadecuado o modificaciones no autorizadas
+
+Para soporte: soporte@omnigoods.com | Tel: +34 900 123 456
+

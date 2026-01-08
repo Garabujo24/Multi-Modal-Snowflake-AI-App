@@ -1,0 +1,28 @@
+{
+  "id_llamada": 24,
+  "cliente": {
+    "nombre": "FERNANDO JAVIER LÓPEZ CASTILLO",
+    "rfc": "LOCF830712MK6",
+    "tipo": "Persona Física",
+    "estado": "San Luis Potosí"
+  },
+  "llamada": {
+    "tipo": "consulta_saldo",
+    "titulo": "Consulta de Saldo",
+    "categoria": "Información",
+    "fecha": "2025-10-31T15:45:10.065506",
+    "duracion_estimada": "2-3 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_024_LOCF830712MK6_consulta_saldo_20251031.mp3",
+    "transcripcion": "LLAMADA_024_LOCF830712MK6_consulta_saldo_20251031.txt",
+    "metadata": "LLAMADA_024_LOCF830712MK6_consulta_saldo_20251031.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****8114",
+    "ultimos_rfc": "2MK6"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

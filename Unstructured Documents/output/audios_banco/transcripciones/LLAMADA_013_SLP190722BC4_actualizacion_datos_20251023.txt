@@ -1,0 +1,53 @@
+LLAMADA BANCARIA - Actualización de Datos
+======================================================================
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV
+RFC: SLP190722BC4
+Fecha: 23/10/2025 15:51
+Duración estimada: 3-4 minutos
+Categoría: Administración
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenas tardes, le atiende Diana Morales del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenas tardes. Necesito actualizar mi dirección y teléfono.
+
+Ejecutivo: Con gusto le ayudo. ¿Me puede proporcionar su número de cuenta?
+
+Cliente: Sí, es ****3291.
+
+Ejecutivo: Gracias. ¿Y su nombre completo?
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV.
+
+Ejecutivo: Perfecto. ¿Cuál es su nueva dirección?
+
+Cliente: Calle Juárez 283, colonia Condesa, código postal 93281, en Monterrey, Sinaloa.
+
+Ejecutivo: Entendido. ¿Y su nuevo teléfono?
+
+Cliente: Es el 55-2958-3895.
+
+Ejecutivo: Perfecto. ¿También desea actualizar su correo electrónico?
+
+Cliente: Sí, el nuevo correo es nuevo.correo640@email.com.
+
+Ejecutivo: Excelente. He actualizado toda su información. En un plazo de 24 horas, los cambios estarán reflejados en todos nuestros sistemas. Le enviaremos una confirmación a su nuevo correo.
+
+Cliente: Perfecto. ¿Necesitan algún documento?
+
+Ejecutivo: Sí, por regulaciones bancarias, necesitamos que nos envíe una copia de un comprobante de domicilio reciente a través de la aplicación móvil o puede acudir a sucursal.
+
+Cliente: De acuerdo, lo haré desde la aplicación.
+
+Ejecutivo: Perfecto. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo. Gracias.
+
+Ejecutivo: A sus órdenes. Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

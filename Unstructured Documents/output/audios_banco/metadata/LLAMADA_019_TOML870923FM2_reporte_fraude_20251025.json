@@ -1,0 +1,28 @@
+{
+  "id_llamada": 19,
+  "cliente": {
+    "nombre": "LAURA ISABEL TORRES MENDOZA",
+    "rfc": "TOML870923FM2",
+    "tipo": "Persona Física",
+    "estado": "Veracruz"
+  },
+  "llamada": {
+    "tipo": "reporte_fraude",
+    "titulo": "Reporte de Fraude",
+    "categoria": "Seguridad",
+    "fecha": "2025-10-25T15:53:28.348324",
+    "duracion_estimada": "4-5 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_019_TOML870923FM2_reporte_fraude_20251025.mp3",
+    "transcripcion": "LLAMADA_019_TOML870923FM2_reporte_fraude_20251025.txt",
+    "metadata": "LLAMADA_019_TOML870923FM2_reporte_fraude_20251025.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Jorge Ramírez",
+    "num_cuenta": "****6332",
+    "ultimos_rfc": "3FM2"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

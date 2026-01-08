@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Snowflake
+*.private_key
+*.p8
+*.pem
+config.toml
+secrets.toml
+.streamlit/secrets.toml
+
+# Logs
+*.log
+
+# Credenciales y configuración sensible
+**/credentials.json
+**/secrets.yaml
+**/.env
+**/.env.local
+
+# Archivos temporales
+*.tmp
+*.bak
+*.cache
+
+

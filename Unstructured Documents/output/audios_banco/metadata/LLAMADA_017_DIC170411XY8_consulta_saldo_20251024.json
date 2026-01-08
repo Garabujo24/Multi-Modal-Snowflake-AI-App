@@ -1,0 +1,28 @@
+{
+  "id_llamada": 17,
+  "cliente": {
+    "nombre": "DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV",
+    "rfc": "DIC170411XY8",
+    "tipo": "Persona Moral",
+    "estado": "Quintana Roo"
+  },
+  "llamada": {
+    "tipo": "consulta_saldo",
+    "titulo": "Consulta de Saldo",
+    "categoria": "Información",
+    "fecha": "2025-10-24T15:52:44.217414",
+    "duracion_estimada": "2-3 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_017_DIC170411XY8_consulta_saldo_20251024.mp3",
+    "transcripcion": "LLAMADA_017_DIC170411XY8_consulta_saldo_20251024.txt",
+    "metadata": "LLAMADA_017_DIC170411XY8_consulta_saldo_20251024.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Roberto Sánchez",
+    "num_cuenta": "****8698",
+    "ultimos_rfc": "1XY8"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

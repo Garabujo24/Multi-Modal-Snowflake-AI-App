@@ -1,0 +1,28 @@
+{
+  "id_llamada": 2,
+  "cliente": {
+    "nombre": "TECNOLOGÍA AVANZADA DEL SURESTE SA DE CV",
+    "rfc": "TAS180523KL8",
+    "tipo": "Persona Moral",
+    "estado": "Yucatán"
+  },
+  "llamada": {
+    "tipo": "actualizacion_datos",
+    "titulo": "Actualización de Datos",
+    "categoria": "Administración",
+    "fecha": "2025-11-04T15:46:48.689584",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_002_TAS180523KL8_actualizacion_datos_20251104.mp3",
+    "transcripcion": "LLAMADA_002_TAS180523KL8_actualizacion_datos_20251104.txt",
+    "metadata": "LLAMADA_002_TAS180523KL8_actualizacion_datos_20251104.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Roberto Sánchez",
+    "num_cuenta": "****2987",
+    "ultimos_rfc": "3KL8"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

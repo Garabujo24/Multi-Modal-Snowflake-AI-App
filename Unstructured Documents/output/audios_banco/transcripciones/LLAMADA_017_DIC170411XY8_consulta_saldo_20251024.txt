@@ -1,0 +1,41 @@
+LLAMADA BANCARIA - Consulta de Saldo
+======================================================================
+
+Cliente: DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV
+RFC: DIC170411XY8
+Fecha: 24/10/2025 15:52
+Duración estimada: 2-3 minutos
+Categoría: Información
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buen día, le atiende Roberto Sánchez del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Hola, buenos días. Quisiera consultar el saldo de mi cuenta.
+
+Ejecutivo: Con gusto le ayudo. ¿Me podría proporcionar su número de cuenta o tarjeta, por favor?
+
+Cliente: Sí, claro. Mi número de cuenta es ****8698.
+
+Ejecutivo: Perfecto. ¿Me puede confirmar su nombre completo?
+
+Cliente: DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV.
+
+Ejecutivo: Gracias. Por seguridad, ¿me podría proporcionar los últimos cuatro dígitos de su RFC?
+
+Cliente: Sí, son 1XY8.
+
+Ejecutivo: Excelente, gracias por confirmar. Su saldo actual es de 152,827 pesos con 81 centavos. Su último movimiento fue una transferencia recibida por 8,579 pesos.
+
+Cliente: Perfecto, muchas gracias. ¿Y cuál es mi saldo disponible?
+
+Ejecutivo: Su saldo disponible es de 143,620 pesos. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo. Muchas gracias.
+
+Ejecutivo: A usted. Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

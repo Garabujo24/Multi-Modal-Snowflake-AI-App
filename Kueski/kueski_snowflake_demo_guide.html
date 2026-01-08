@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kueski Snowflake Demo - Quickstart Guide</title>
+
+    
+
+    <!-- Prism.js for syntax highlighting -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    
+
+    <style>
+
+        :root {
+
+            --snowflake-blue: #29B5E8;
+
+            --snowflake-dark: #1E3A8A;
+
+            --kueski-primary: #6366F1;
+
+            --kueski-secondary: #8B5CF6;
+
+            --gray-50: #F9FAFB;
+
+            --gray-100: #F3F4F6;
+
+            --gray-200: #E5E7EB;
+
+            --gray-700: #374151;
+
+            --gray-800: #1F2937;
+
+            --gray-900: #111827;
+
+            --white: #FFFFFF;
+
+            --green: #10B981;
+
+            --red: #EF4444;
+
+            --code-bg: #1E293B;
+
+            --code-text: #E0E6ED;
+
+        }
+
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+            line-height: 1.6;
+
+            color: var(--gray-800);
+
+            background-color: var(--gray-50);
+
+        }
+
+
+
+        /* Hero Section */
+
+        .hero {
+
+            background: linear-gradient(135deg, var(--snowflake-blue) 0%, var(--snowflake-dark) 100%);
+
+            color: var(--white);
+
+            padding: 4rem 2rem;
+
+            text-align: center;
+
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        .hero h1 {
+
+            font-size: 3rem;
+
+            margin-bottom: 1rem;
+
+            font-weight: 700;
+
+        }
+
+
+
+        .hero p {
+
+            font-size: 1.3rem;
+
+            opacity: 0.9;
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+        }
+
+
+
+        .hero-icons {
+
+            margin-top: 2rem;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 3rem;
+
+            flex-wrap: wrap;
+
+        }
+
+
+
+        .hero-icon {
+
+            text-align: center;
+
+        }
+
+
+
+        .hero-icon svg {
+
+            width: 48px;
+
+            height: 48px;
+
+            color: var(--white);
+
+            margin-bottom: 0.5rem;
+
+        }
+
+
+
+        /* Navigation */
+
+        nav {
+
+            position: sticky;
+
+            top: 0;
+
+            background-color: var(--white);
+
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            z-index: 1000;
+
+        }
+
+
+
+        nav ul {
+
+            list-style: none;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            padding: 1rem;
+
+            gap: 1rem;
+
+        }
+
+
+
+        nav a {
+
+            color: var(--gray-700);
+
+            text-decoration: none;
+
+            padding: 0.5rem 1rem;
+
+            border-radius: 6px;
+
+            transition: all 0.3s ease;
+
+            font-weight: 500;
+
+        }
+
+
+
+        nav a:hover {
+
+            background-color: var(--snowflake-blue);
+
+            color: var(--white);
+
+        }
+
+
+
+        /* Container */
+
+        .container {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            padding: 2rem;
+
+            margin-right: 320px; /* Espacio para la barra de progreso */
+
+        }
+
+        
+
+        @media (max-width: 1400px) {
+
+            .container {
+
+                max-width: 900px;
+
+                margin-right: auto;
+
+            }
+
+        }
+
+        
+
+        @media (max-width: 1200px) {
+
+            .container {
+
+                max-width: 800px;
+
+            }
+
+        }
+
+
+
+        /* Section */
+
+        section {
+
+            background-color: var(--white);
+
+            margin: 2rem 0;
+
+            padding: 2rem;
+
+            border-radius: 12px;
+
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        section h2 {
+
+            color: var(--snowflake-dark);
+
+            font-size: 2rem;
+
+            margin-bottom: 1rem;
+
+            padding-bottom: 0.5rem;
+
+            border-bottom: 3px solid var(--snowflake-blue);
+
+        }
+
+
+
+        section h3 {
+
+            color: var(--kueski-primary);
+
+            font-size: 1.5rem;
+
+            margin: 1.5rem 0 1rem 0;
+
+        }
+
+
+
+        /* Code Blocks */
+
+        .code-container {
+
+            position: relative;
+
+            margin: 1rem 0;
+
+        }
+
+
+
+        .code-header {
+
+            background-color: var(--gray-800);
+
+            color: var(--white);
+
+            padding: 0.75rem 1rem;
+
+            border-radius: 8px 8px 0 0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            font-size: 0.9rem;
+
+        }
+
+
+
+        .copy-button {
+
+            background-color: var(--snowflake-blue);
+
+            color: var(--white);
+
+            border: none;
+
+            padding: 0.5rem 1rem;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 0.85rem;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .copy-button:hover {
+
+            background-color: var(--snowflake-dark);
+
+            transform: translateY(-2px);
+
+        }
+
+
+
+        .copy-button.copied {
+
+            background-color: var(--green);
+
+        }
+
+
+
+        pre {
+
+            margin: 0 !important;
+
+            border-radius: 0 0 8px 8px !important;
+
+            background-color: var(--code-bg) !important;
+
+        }
+
+
+
+        pre code {
+
+            color: var(--code-text) !important;
+
+            font-size: 0.9rem;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        /* Progress Tracker */
+
+        .progress-tracker {
+
+            position: fixed;
+
+            right: 2rem;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            background-color: var(--white);
+
+            padding: 1.5rem;
+
+            border-radius: 12px;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+            width: 280px;
+
+            max-height: 80vh;
+
+            overflow-y: auto;
+
+            z-index: 999;
+
+        }
+
+        
+
+        @media (max-width: 1400px) {
+
+            .progress-tracker {
+
+                display: none;
+
+            }
+
+        }
+
+        
+
+        /* Custom scrollbar para la barra de progreso */
+
+        .progress-tracker::-webkit-scrollbar {
+
+            width: 6px;
+
+        }
+
+        
+
+        .progress-tracker::-webkit-scrollbar-track {
+
+            background: var(--gray-100);
+
+            border-radius: 3px;
+
+        }
+
+        
+
+        .progress-tracker::-webkit-scrollbar-thumb {
+
+            background: var(--snowflake-blue);
+
+            border-radius: 3px;
+
+        }
+
+        
+
+        .progress-tracker::-webkit-scrollbar-thumb:hover {
+
+            background: var(--snowflake-dark);
+
+        }
+
+
+
+        .progress-tracker h4 {
+
+            color: var(--snowflake-dark);
+
+            margin-bottom: 1rem;
+
+            font-size: 1.1rem;
+
+            font-weight: 600;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+            border-bottom: 2px solid var(--snowflake-blue);
+
+            padding-bottom: 0.75rem;
+
+        }
+
+
+
+        .progress-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+            padding: 0.5rem;
+
+            margin: 0.25rem 0;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s ease;
+
+        }
+
+
+
+        .progress-item:hover {
+
+            background-color: var(--gray-100);
+
+        }
+
+
+
+        .progress-item input[type="checkbox"] {
+
+            width: 18px;
+
+            height: 18px;
+
+            cursor: pointer;
+
+        }
+
+
+
+        .progress-item label {
+
+            cursor: pointer;
+
+            font-size: 0.9rem;
+
+            color: var(--gray-700);
+
+            transition: all 0.3s ease;
+
+            flex: 1;
+
+        }
+
+
+
+        .progress-item input[type="checkbox"]:checked + label {
+
+            text-decoration: line-through;
+
+            color: var(--green);
+
+            font-weight: 500;
+
+        }
+
+        
+
+        .progress-item input[type="checkbox"]:checked {
+
+            accent-color: var(--green);
+
+        }
+
+
+
+        /* Alert Boxes */
+
+        .alert {
+
+            padding: 1rem;
+
+            border-radius: 8px;
+
+            margin: 1rem 0;
+
+            border-left: 4px solid;
+
+        }
+
+
+
+        .alert-info {
+
+            background-color: #EBF5FF;
+
+            border-color: var(--snowflake-blue);
+
+            color: #1E40AF;
+
+        }
+
+
+
+        .alert-warning {
+
+            background-color: #FEF3C7;
+
+            border-color: #F59E0B;
+
+            color: #92400E;
+
+        }
+
+
+
+        .alert-success {
+
+            background-color: #D1FAE5;
+
+            border-color: var(--green);
+
+            color: #065F46;
+
+        }
+
+
+
+        /* Architecture Diagram */
+
+        .architecture {
+
+            text-align: center;
+
+            padding: 2rem;
+
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+
+            border-radius: 12px;
+
+            margin: 2rem 0;
+
+        }
+
+
+
+        .architecture-layer {
+
+            display: inline-block;
+
+            background-color: var(--white);
+
+            padding: 1.5rem;
+
+            margin: 0.5rem;
+
+            border-radius: 8px;
+
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            min-width: 200px;
+
+        }
+
+
+
+        /* Footer */
+
+        footer {
+
+            background-color: var(--gray-900);
+
+            color: var(--white);
+
+            text-align: center;
+
+            padding: 3rem 2rem;
+
+            margin-top: 4rem;
+
+        }
+
+
+
+        footer a {
+
+            color: var(--snowflake-blue);
+
+            text-decoration: none;
+
+        }
+
+
+
+        footer a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+
+        /* Responsive */
+
+        @media (max-width: 768px) {
+
+            .hero h1 {
+
+                font-size: 2rem;
+
+            }
+
+            
+
+            .hero p {
+
+                font-size: 1rem;
+
+            }
+
+
+
+            .progress-tracker {
+
+                display: none;
+
+            }
+
+
+
+            nav ul {
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+            
+
+            .container {
+
+                padding: 1rem;
+
+                margin-right: auto;
+
+            }
+
+            
+
+            section {
+
+                padding: 1.5rem;
+
+            }
+
+        }
+
+        
+
+        @media (max-width: 480px) {
+
+            .hero h1 {
+
+                font-size: 1.5rem;
+
+            }
+
+            
+
+            .hero-icons {
+
+                gap: 1.5rem;
+
+            }
+
+            
+
+            .container {
+
+                padding: 0.5rem;
+
+            }
+
+            
+
+            section {
+
+                padding: 1rem;
+
+                margin: 1rem 0;
+
+            }
+
+        }
+
+
+
+        /* Smooth Scroll */
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+
+    <div class="hero">
+
+        <h1>❄️ Kueski Snowflake Demo</h1>
+
+        <p>Guía interactiva para demostrar las capacidades de Snowflake en el sector FinTech</p>
+
+        <div class="hero-icons">
+
+            <div class="hero-icon">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+
+                </svg>
+
+                <div>Gobierno de Datos</div>
+
+            </div>
+
+            <div class="hero-icon">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+
+                </svg>
+
+                <div>Streams & Dynamic Tables</div>
+
+            </div>
+
+            <div class="hero-icon">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+
+                </svg>
+
+                <div>Cortex Analyst</div>
+
+            </div>
+
+            <div class="hero-icon">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+
+                </svg>
+
+                <div>Analytics en Tiempo Real</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <ul>
+
+            <li><a href="#overview">Overview</a></li>
+
+            <li><a href="#prerequisites">Prerequisites</a></li>
+
+            <li><a href="#architecture">Arquitectura</a></li>
+
+            <li><a href="#setup">Setup</a></li>
+
+            <li><a href="#governance">Gobierno</a></li>
+
+            <li><a href="#engineering">Data Engineering</a></li>
+
+            <li><a href="#cortex">Cortex Analyst</a></li>
+
+            <li><a href="#streamlit">Streamlit</a></li>
+
+            <li><a href="#benefits">Beneficios Snowflake</a></li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- Progress Tracker -->
+
+    <div class="progress-tracker">
+
+        <h4>📋 Progreso</h4>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-overview">
+
+            <label for="check-overview">Overview</label>
+
+        </div>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-prerequisites">
+
+            <label for="check-prerequisites">Prerequisites</label>
+
+        </div>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-architecture">
+
+            <label for="check-architecture">Arquitectura</label>
+
+        </div>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-setup">
+
+            <label for="check-setup">Setup</label>
+
+        </div>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-governance">
+
+            <label for="check-governance">Gobierno</label>
+
+        </div>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-engineering">
+
+            <label for="check-engineering">Data Engineering</label>
+
+        </div>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-cortex">
+
+            <label for="check-cortex">Cortex Analyst</label>
+
+        </div>
+
+        <div class="progress-item">
+
+            <input type="checkbox" id="check-streamlit">
+
+            <label for="check-streamlit">Streamlit</label>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+        <!-- Overview Section -->
+
+        <section id="overview">
+
+            <h2>📖 Overview</h2>
+
+            <p>Esta demo muestra las capacidades de Snowflake para <strong>Kueski</strong>, una empresa FinTech mexicana líder en préstamos personales digitales y Kueski Pay.</p>
+
+            
+
+            <h3>🎯 Objetivos de la Demo</h3>
+
+            <ul>
+
+                <li>Demostrar arquitectura Snowflake (separación compute/storage, micro-partitioning)</li>
+
+                <li>Integración con infraestructura AWS existente (S3, Athena)</li>
+
+                <li>Gobierno de datos completo (RBAC, Masking, Row Access Policies)</li>
+
+                <li>Pipeline moderno con Streams y Dynamic Tables</li>
+
+                <li>Consultas en lenguaje natural con Cortex Analyst</li>
+
+                <li>Mostrar los beneficios y capacidades únicas de Snowflake</li>
+
+            </ul>
+
+
+
+            <div class="alert alert-warning">
+
+                <strong>⚠️ Importante:</strong> Todos los datos utilizados son ficticios y generados para propósitos demostrativos. No representan información real de clientes de Kueski.
+
+            </div>
+
+
+
+            <h3>⏱️ Tiempo Estimado</h3>
+
+            <p><strong>Setup completo:</strong> 3-5 minutos con el script <code>one_click_run.sql</code></p>
+
+            <p><strong>Demo presentación:</strong> 30 minutos</p>
+
+        </section>
+
+
+
+        <!-- Prerequisites -->
+
+        <section id="prerequisites">
+
+            <h2>✅ Prerequisites</h2>
+
+            
+
+            <h3>Cuenta de Snowflake</h3>
+
+            <ul>
+
+                <li>Account en AWS (preferiblemente US-EAST-1)</li>
+
+                <li>Rol ACCOUNTADMIN para setup inicial</li>
+
+                <li>Créditos disponibles para warehouses</li>
+
+            </ul>
+
+
+
+            <h3>Herramientas Locales (Opcional)</h3>
+
+            <ul>
+
+                <li>Python 3.9+ para ejecutar Streamlit localmente</li>
+
+                <li>SnowSQL CLI (opcional, para ejecución de scripts)</li>
+
+                <li>Git para clonar el repositorio</li>
+
+            </ul>
+
+
+
+            <div class="alert alert-info">
+
+                <strong>💡 Tip:</strong> Puedes ejecutar todo directamente desde la interfaz web de Snowflake (Snowsight). No es necesario instalar nada localmente para la demo básica.
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Architecture -->
+
+        <section id="architecture">
+
+            <h2>🏗️ Arquitectura de la Solución</h2>
+
+            
+
+            <div class="architecture">
+
+                <h3>Capas de Datos</h3>
+
+                <div class="architecture-layer">
+
+                    <strong>RAW Layer</strong><br>
+
+                    Datos crudos<br>
+
+                    + External Tables (S3)
+
+                </div>
+
+                →
+
+                <div class="architecture-layer">
+
+                    <strong>STAGING Layer</strong><br>
+
+                    Dynamic Tables<br>
+
+                    Limpieza y normalización
+
+                </div>
+
+                →
+
+                <div class="architecture-layer">
+
+                    <strong>ANALYTICS Layer</strong><br>
+
+                    KPIs y agregaciones<br>
+
+                    Listo para consumo
+
+                </div>
+
+            </div>
+
+
+
+            <h3>🔄 Pipeline de Datos</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>📊 Flujo de datos</span>
+
+                </div>
+
+                <pre><code class="language-plaintext">S3 (External) → RAW Tables → Streams (CDC) → Dynamic Tables → Analytics → Streamlit Dashboard
+
+                                    ↓
+
+                            Governance Layer
+
+                            (Masking + Row Access)
+
+                                    ↓
+
+                            Cortex Analyst (Semantic Views)</code></pre>
+
+            </div>
+
+
+
+            <h3>📊 Modelo de Datos</h3>
+
+            <ul>
+
+                <li><strong>CLIENTES_RAW:</strong> 10,000 clientes con información demográfica y financiera</li>
+
+                <li><strong>PRESTAMOS_RAW:</strong> 50,000 préstamos con detalles de aprobación</li>
+
+                <li><strong>TRANSACCIONES_RAW:</strong> 100,000 transacciones de pago</li>
+
+            </ul>
+
+        </section>
+
+
+
+        <!-- Setup -->
+
+        <section id="setup">
+
+            <h2>🚀 Setup - One Click Run</h2>
+
+            
+
+            <div class="alert alert-success">
+
+                <strong>✨ Magic Script:</strong> El archivo <code>one_click_run.sql</code> configura toda la infraestructura automáticamente en menos de 5 minutos.
+
+            </div>
+
+
+
+            <h3>Paso 1: Conectar a Snowflake</h3>
+
+            <p>Abre Snowsight y conecta con rol ACCOUNTADMIN:</p>
+
+            
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">USE ROLE ACCOUNTADMIN;</code></pre>
+
+            </div>
+
+
+
+            <h3>Paso 2: Ejecutar One Click Script</h3>
+
+            <p>Copia y pega el contenido completo de <code>scripts/one_click_run.sql</code> en Snowsight y ejecuta.</p>
+
+            
+
+            <div class="alert alert-info">
+
+                <strong>💡 Lo que hace el script:</strong>
+
+                <ul>
+
+                    <li>Crea database KUESKI_DEMO con 5 schemas</li>
+
+                    <li>Configura 2 warehouses con auto-suspend/resume</li>
+
+                    <li>Crea 4 roles con permisos RBAC</li>
+
+                    <li>Genera 3 usuarios de prueba</li>
+
+                    <li>Inserta 160,000 registros de datos sintéticos</li>
+
+                    <li>Aplica masking y row access policies</li>
+
+                    <li>Configura streams y 4 dynamic tables</li>
+
+                    <li>Crea 3 Semantic Views para Cortex Analyst</li>
+
+                    <li>Implementa sistema de tags para clasificación</li>
+
+                </ul>
+
+            </div>
+
+
+
+            <h3>Paso 3: Verificar Instalación</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Verificación</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- Verificar clientes
+
+SELECT COUNT(*) FROM KUESKI_DEMO.RAW.CLIENTES_RAW;
+
+-- Resultado esperado: 10,000
+
+
+
+-- Verificar préstamos
+
+SELECT COUNT(*) FROM KUESKI_DEMO.RAW.PRESTAMOS_RAW;
+
+-- Resultado esperado: 50,000
+
+
+
+-- Verificar transacciones
+
+SELECT COUNT(*) FROM KUESKI_DEMO.RAW.TRANSACCIONES_RAW;
+
+-- Resultado esperado: 100,000
+
+
+
+-- Verificar Dynamic Tables
+
+SHOW DYNAMIC TABLES IN SCHEMA KUESKI_DEMO.ANALYTICS;
+
+-- Resultado esperado: 2 dynamic tables
+
+
+
+-- Verificar Semantic Views para Cortex Analyst
+
+USE SCHEMA KUESKI_DEMO.ANALYTICS;
+
+SHOW SEMANTIC VIEWS;
+
+-- Resultado esperado: 2 semantic views (SV_PRESTAMOS_ANALYTICS, SV_GEO_ANALYTICS)</code></pre>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Governance -->
+
+        <section id="governance">
+
+            <h2>🔒 Gobierno de Datos</h2>
+
+            
+
+            <h3>1. RBAC - Role-Based Access Control</h3>
+
+            <p>4 roles configurados con permisos específicos:</p>
+
+            
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Verificar roles</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">SHOW ROLES LIKE 'KUESKI%';
+
+
+
+-- Roles creados:
+
+-- KUESKI_ADMIN: Acceso completo
+
+-- KUESKI_ANALYST: Solo lectura en ANALYTICS
+
+-- KUESKI_AUDITOR: Acceso a GOVERNANCE
+
+-- KUESKI_RESTRICTED: Acceso limitado por región</code></pre>
+
+            </div>
+
+
+
+            <h3>2. Masking Policies - Column-level Security</h3>
+
+            <p>Prueba el enmascaramiento de datos con diferentes roles:</p>
+
+            
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Probar masking como ANALYST</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- Como ANALYST, verás datos enmascarados
+
+USE ROLE KUESKI_ANALYST;
+
+SELECT 
+
+    NOMBRE,
+
+    RFC,           -- Enmascarado: RFC***********
+
+    CURP,          -- Enmascarado: CURP**************
+
+    CUENTA_BANCARIA,  -- Parcial: **************1234
+
+    INGRESO_MENSUAL   -- Redondeado
+
+FROM KUESKI_DEMO.RAW.CLIENTES_RAW
+
+LIMIT 5;
+
+
+
+-- Como ADMIN, verás datos reales
+
+USE ROLE KUESKI_ADMIN;
+
+SELECT 
+
+    NOMBRE,
+
+    RFC,           -- Visible
+
+    CURP,          -- Visible
+
+    CUENTA_BANCARIA,  -- Visible
+
+    INGRESO_MENSUAL   -- Visible
+
+FROM KUESKI_DEMO.RAW.CLIENTES_RAW
+
+LIMIT 5;</code></pre>
+
+            </div>
+
+
+
+            <h3>3. Row Access Policies - Row-level Security</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Acceso restringido por región</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- KUESKI_RESTRICTED solo ve préstamos de CDMX
+
+USE ROLE KUESKI_RESTRICTED;
+
+SELECT ESTADO_CLIENTE, COUNT(*) 
+
+FROM KUESKI_DEMO.RAW.PRESTAMOS_RAW
+
+GROUP BY ESTADO_CLIENTE;
+
+-- Solo mostrará: CDMX
+
+
+
+-- KUESKI_ADMIN ve todo
+
+USE ROLE KUESKI_ADMIN;
+
+SELECT ESTADO_CLIENTE, COUNT(*) 
+
+FROM KUESKI_DEMO.RAW.PRESTAMOS_RAW
+
+GROUP BY ESTADO_CLIENTE;
+
+-- Mostrará: CDMX, Jalisco, Nuevo León, Puebla, etc.</code></pre>
+
+            </div>
+
+
+
+            <h3>4. Data Classification con Tags</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Ver tags aplicados (INFORMATION_SCHEMA)</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- Ver tags de CLIENTES_RAW (resultados inmediatos)
+
+SELECT 
+
+    TAG_DATABASE,
+
+    TAG_SCHEMA,
+
+    TAG_NAME,
+
+    COLUMN_NAME,
+
+    TAG_VALUE
+
+FROM TABLE(KUESKI_DEMO.INFORMATION_SCHEMA.TAG_REFERENCES_ALL_COLUMNS(
+
+    'KUESKI_DEMO.RAW.CLIENTES_RAW',
+
+    'TABLE'
+
+));
+
+
+
+-- Ver tags de PRESTAMOS_RAW
+
+SELECT 
+
+    TAG_DATABASE,
+
+    TAG_SCHEMA,
+
+    TAG_NAME,
+
+    COLUMN_NAME,
+
+    TAG_VALUE
+
+FROM TABLE(KUESKI_DEMO.INFORMATION_SCHEMA.TAG_REFERENCES_ALL_COLUMNS(
+
+    'KUESKI_DEMO.RAW.PRESTAMOS_RAW',
+
+    'TABLE'
+
+));
+
+
+
+-- Ver todos los tags creados
+
+USE SCHEMA KUESKI_DEMO.GOVERNANCE;
+
+SHOW TAGS;</code></pre>
+
+            </div>
+
+
+
+            <div class="alert alert-success">
+
+                <strong>✅ Gobierno Implementado:</strong> RBAC + Column Masking + Row Access + Tagging = Cumplimiento CNBV/CONDUSEF
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Data Engineering -->
+
+        <section id="engineering">
+
+            <h2>⚙️ Data Engineering - Streams & Dynamic Tables</h2>
+
+            
+
+            <h3>1. Streams para CDC (Change Data Capture)</h3>
+
+            <p>Los streams capturan automáticamente cambios en las tablas:</p>
+
+            
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Verificar stream</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- Ver metadata del stream
+
+SHOW STREAMS IN SCHEMA KUESKI_DEMO.STAGING;
+
+
+
+-- Simular cambio y verificar CDC
+
+UPDATE KUESKI_DEMO.RAW.PRESTAMOS_RAW 
+
+SET ESTATUS = 'LIQUIDADO' 
+
+WHERE ID_PRESTAMO = (SELECT ID_PRESTAMO FROM KUESKI_DEMO.RAW.PRESTAMOS_RAW WHERE ESTATUS = 'EN_PAGO' LIMIT 1);
+
+
+
+-- Ver cambios capturados
+
+SELECT 
+
+    METADATA$ACTION,
+
+    METADATA$ISUPDATE,
+
+    ID_PRESTAMO,
+
+    ESTATUS
+
+FROM KUESKI_DEMO.STAGING.PRESTAMOS_STREAM
+
+LIMIT 10;</code></pre>
+
+            </div>
+
+
+
+            <h3>2. Dynamic Tables - Transformaciones Continuas</h3>
+
+            <p>Dynamic Tables se actualizan automáticamente según el TARGET_LAG:</p>
+
+            
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Consultar Dynamic Tables</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- KPIs por región (actualizado cada 5 minutos)
+
+SELECT * FROM KUESKI_DEMO.ANALYTICS.PRESTAMOS_ANALYTICS
+
+WHERE ESTADO_CLIENTE = 'CDMX'
+
+ORDER BY TOTAL_PRESTAMOS DESC
+
+LIMIT 10;
+
+
+
+-- Analytics geoespacial
+
+SELECT * FROM KUESKI_DEMO.ANALYTICS.GEO_ANALYTICS
+
+ORDER BY VOLUMEN_APROBADO DESC;
+
+
+
+-- ========================================
+
+-- Monitorear Dynamic Tables (3 opciones)
+
+-- ========================================
+
+
+
+-- Opción 1: Ver historial de refreshes (recomendado)
+
+SELECT 
+
+    NAME,
+
+    STATE,
+
+    REFRESH_ACTION,
+
+    REFRESH_START_TIME,
+
+    REFRESH_END_TIME,
+
+    DATEDIFF('second', REFRESH_START_TIME, REFRESH_END_TIME) AS DURATION_SECONDS
+
+FROM SNOWFLAKE.ACCOUNT_USAGE.DYNAMIC_TABLE_REFRESH_HISTORY
+
+WHERE NAME = 'PRESTAMOS_ANALYTICS'
+
+  AND SCHEMA_NAME = 'ANALYTICS'
+
+  AND DATABASE_NAME = 'KUESKI_DEMO'
+
+ORDER BY REFRESH_START_TIME DESC
+
+LIMIT 10;
+
+
+
+-- Opción 2: Ver estado actual de la Dynamic Table
+
+SHOW DYNAMIC TABLES LIKE 'PRESTAMOS_ANALYTICS' IN SCHEMA KUESKI_DEMO.ANALYTICS;
+
+
+
+-- Opción 3: Forzar un refresh manual (si necesitas)
+
+ALTER DYNAMIC TABLE KUESKI_DEMO.ANALYTICS.PRESTAMOS_ANALYTICS REFRESH;</code></pre>
+
+            </div>
+
+
+
+            <h3>3. Ventajas vs Arquitectura Tradicional</h3>
+
+            <div class="alert alert-info">
+
+                <strong>🆚 Dynamic Tables vs Tasks + dbt:</strong>
+
+                <ul>
+
+                    <li>✅ <strong>Declarativo:</strong> Define QUÉ quieres, no CÓMO</li>
+
+                    <li>✅ <strong>Auto-optimizado:</strong> Snowflake decide cuándo refrescar</li>
+
+                    <li>✅ <strong>Incremental automático:</strong> No código manual para CDC</li>
+
+                    <li>✅ <strong>Zero maintenance:</strong> Sin orquestación externa</li>
+
+                    <li>✅ <strong>Cost-effective:</strong> Solo compute cuando hay cambios</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Cortex Analyst -->
+
+        <section id="cortex">
+
+            <h2>🤖 Cortex Analyst - Consultas en Lenguaje Natural</h2>
+
+            
+
+            <h3>¿Qué es Cortex Analyst?</h3>
+
+            <p>Servicio de IA de Snowflake que permite hacer consultas en lenguaje natural sobre tus datos usando Semantic Views. Convierte preguntas en español/inglés directamente en SQL y devuelve resultados estructurados.</p>
+
+
+
+            <h3>Semantic Views</h3>
+
+            <p>Las Semantic Views definen el contexto de negocio de tus datos (entidades, hechos, dimensiones, relaciones) para que Cortex Analyst pueda interpretar correctamente las consultas en lenguaje natural.</p>
+
+
+
+            <h3>Probar Cortex Analyst</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Ejemplos de consultas en lenguaje natural</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- Ver las Semantic Views creadas
+
+USE SCHEMA KUESKI_DEMO.ANALYTICS;
+
+SHOW SEMANTIC VIEWS;
+
+
+
+-- Ejemplos de preguntas a Cortex Analyst: 
+
+'¿Cuántos préstamos fueron aprobados en CDMX?'
+
+'¿Qué estados tienen la mayor tasa de aprobación?'
+
+'¿Cuál es el monto promedio aprobado por tipo de préstamo?'
+
+'¿Cuál es el score crediticio promedio de préstamos rechazados?'
+
+'¿Cuáles son los indicadores clave de rendimiento de nuestra cartera de préstamos, incluyendo el total de préstamos, la tasa de aprobación, el CAT promedio y el monto promedio aprobado?'</code></pre>
+
+            </div>
+
+
+
+            <h3>Casos de Uso</h3>
+
+            <ul>
+
+                <li>🔍 <strong>Análisis Ad-Hoc:</strong> Analistas de negocio pueden hacer consultas sin SQL</li>
+
+                <li>📊 <strong>Reportes Ejecutivos:</strong> Respuestas rápidas a preguntas de negocio</li>
+
+                <li>🤖 <strong>Chatbots Internos:</strong> Interfaz conversacional para datos empresariales</li>
+
+                <li>📈 <strong>Self-Service Analytics:</strong> Democratización del acceso a datos</li>
+
+                <li>🎯 <strong>Exploración de Datos:</strong> Descubrimiento rápido de insights</li>
+
+            </ul>
+
+
+
+            <div class="alert alert-success">
+
+                <strong>✨ Ventaja competitiva:</strong> Cortex Analyst es nativo de Snowflake y funciona directamente sobre tus datos sin necesidad de mover información o configurar infraestructura adicional. Las Semantic Views proporcionan contexto de negocio reutilizable.
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Streamlit -->
+
+        <section id="streamlit">
+
+            <h2>📊 Streamlit Dashboard</h2>
+
+            
+
+            <h3>Dos Versiones Disponibles</h3>
+
+            <ul>
+
+                <li><strong>kueski_dashboard.py:</strong> Para Streamlit in Snowflake (SiS)</li>
+
+                <li><strong>kueski_dashboard_sis.py:</strong> Versión standalone (local)</li>
+
+            </ul>
+
+
+
+            <h3>Opción 1: Desplegar en Streamlit in Snowflake</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Crear Streamlit app en Snowflake</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- 1. Crear stage para la app
+
+USE ROLE ACCOUNTADMIN;
+
+
+
+CREATE OR REPLACE STAGE KUESKI_DEMO.ML.STREAMLIT_STAGE
+
+    DIRECTORY = (ENABLE = TRUE)
+
+    COMMENT = 'Stage for KUESKI Streamlit applications - stores Python files';
+
+
+
+CREATE OR REPLACE STREAMLIT KUESKI_DASHBOARD
+
+    ROOT_LOCATION = '@KUESKI_DEMO.ML.STREAMLIT_STAGE'
+
+    MAIN_FILE = 'kueski_dashboard_sis.py'
+
+    QUERY_WAREHOUSE = 'DEMO_WH_S'
+
+    TITLE = 'KUESKI Executive Dashboard'
+
+    COMMENT = 'Executive  dashboard for Leadership.';
+
+
+
+
+
+-- 2. Subir archivo desde Snowsight:
+
+-- Apps → Streamlit → + Create → From existing files
+
+-- Seleccionar kueski_dashboard_sis.py
+
+
+
+-- 3. O usar SnowSQL:
+
+PUT file:///path/to/kueski_dashboard_local.py @KUESKI_DEMO.ML.STREAMLIT_STAGE AUTO_COMPRESS=FALSE OVERWRITE=TRUE;</code></pre>
+
+            </div>
+
+
+
+            <h3>Opción 2: Ejecutar Localmente</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>Bash - Setup local</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-bash"># 1. Instalar dependencias
+
+pip install -r requirements.txt
+
+
+
+# 2. Configurar variables de entorno (opcional)
+
+export SNOWFLAKE_ACCOUNT="your_account"
+
+export SNOWFLAKE_USER="kueski_analyst_user"
+
+
+
+# 3. Ejecutar Streamlit
+
+cd streamlit
+
+streamlit run kueski_dashboard_local.py</code></pre>
+
+            </div>
+
+
+
+            <h3>Características del Dashboard</h3>
+
+            <ul>
+
+                <li>🌐 <strong>Multiidioma:</strong> Español, Inglés, Portugués</li>
+
+                <li>🗺️ <strong>Mapas geoespaciales:</strong> Visualización por región</li>
+
+                <li>📊 <strong>KPIs en tiempo real:</strong> Conectados a Dynamic Tables</li>
+
+                <li>🤖 <strong>Cortex Analyst integrado:</strong> Consultas en lenguaje natural</li>
+
+                <li>🎨 <strong>UI/UX moderno:</strong> Responsive y amigable</li>
+
+            </ul>
+
+
+
+            <div class="alert alert-info">
+
+                <strong>💡 Tip:</strong> El dashboard se actualiza automáticamente gracias a las Dynamic Tables (lag de 1-5 minutos).
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Beneficios de Snowflake -->
+
+        <section id="benefits">
+
+            <h2>✨ Beneficios Clave de Snowflake</h2>
+
+            
+
+            <h3>1. Simplicidad Operativa</h3>
+
+            <ul>
+
+                <li>🎯 <strong>Zero Management:</strong> Gestión automática de infraestructura, sin necesidad de configurar o tunear clusters</li>
+
+                <li>⚡ <strong>Auto-optimización:</strong> El motor de Snowflake optimiza automáticamente el rendimiento sin intervención manual</li>
+
+                <li>🔧 <strong>Mantenimiento Cero:</strong> Plataforma completamente administrada, sin upgrades, patches o configuraciones complejas</li>
+
+                <li>🚀 <strong>Time-to-Value Rápido:</strong> Setup completo en menos de 5 minutos, como lo demuestra esta demo</li>
+
+                <li>📈 <strong>Escalabilidad Instantánea:</strong> Escala verticalmente u horizontalmente en segundos sin downtime</li>
+
+            </ul>
+
+
+
+            <h3>2. Costo-Efectividad y Eficiencia</h3>
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Monitoreo de costos en tiempo real</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- Monitorear costos de warehouses con transparencia total
+
+SELECT 
+
+    WAREHOUSE_NAME,
+
+    SUM(CREDITS_USED) AS TOTAL_CREDITS,
+
+    ROUND(TOTAL_CREDITS * 4, 2) AS ESTIMATED_COST_USD
+
+FROM SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_METERING_HISTORY
+
+WHERE START_TIME >= DATEADD(DAY, -7, CURRENT_TIMESTAMP())
+
+GROUP BY WAREHOUSE_NAME
+
+ORDER BY TOTAL_CREDITS DESC;</code></pre>
+
+            </div>
+
+
+
+            <p><strong>Arquitectura de separación Compute/Storage:</strong></p>
+
+            <ul>
+
+                <li>💰 <strong>Pago por Uso Real:</strong> Auto-suspend después de 60 segundos de inactividad, solo pagas cuando usas compute</li>
+
+                <li>📊 <strong>Storage Eficiente:</strong> No duplicas datos para diferentes workloads, un solo storage compartido</li>
+
+                <li>🔄 <strong>Zero-Copy Cloning:</strong> Crea clones instantáneos de bases de datos completas sin costo adicional de storage</li>
+
+                <li>⚡ <strong>Elasticidad Instantánea:</strong> Scale-up o scale-down en segundos sin provisioning de infraestructura</li>
+
+                <li>📉 <strong>Optimización Automática de Costos:</strong> El sistema ajusta recursos según la carga de trabajo</li>
+
+            </ul>
+
+
+
+            <h3>3. Gobierno de Datos de Clase Mundial</h3>
+
+            <p>Snowflake ofrece las capacidades de gobierno más avanzadas y nativas del mercado:</p>
+
+            <ul>
+
+                <li>✅ <strong>Column-Level Masking:</strong> Enmascaramiento dinámico nativo sin necesidad de UDFs complejos</li>
+
+                <li>✅ <strong>Row-Level Security:</strong> Políticas granulares con context functions integradas (CURRENT_ROLE, CURRENT_USER)</li>
+
+                <li>✅ <strong>Object Tagging:</strong> Sistema unificado de clasificación de datos para compliance (PII, Sensible, Público)</li>
+
+                <li>✅ <strong>Audit Logging Completo:</strong> Trazabilidad total, consultable vía SQL en ACCOUNT_USAGE</li>
+
+                <li>✅ <strong>Time Travel:</strong> Consulta datos históricos hasta 90 días (Enterprise Edition)</li>
+
+                <li>✅ <strong>Fail-Safe:</strong> Protección adicional de 7 días para recuperación de desastres</li>
+
+                <li>✅ <strong>Data Sharing Seguro:</strong> Comparte datos sin copiarlos, manteniendo control total de acceso</li>
+
+            </ul>
+
+
+
+            <div class="alert alert-success">
+
+                <strong>🏆 Cumplimiento Regulatorio:</strong> Snowflake facilita el cumplimiento con CNBV, CONDUSEF, GDPR, HIPAA, SOC 2, ISO 27001 y más, con gobierno nativo y certificaciones globales
+
+            </div>
+
+
+
+            <h3>4. Performance SQL Superior</h3>
+
+            <p>Snowflake está diseñado específicamente para workloads analíticos de alto rendimiento:</p>
+
+            
+
+            <div class="code-container">
+
+                <div class="code-header">
+
+                    <span>SQL - Query complejo ejecutado en menos de 1 segundo</span>
+
+                    <button class="copy-button" onclick="copyCode(this)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+
+                        </svg>
+
+                        Copiar
+
+                    </button>
+
+                </div>
+
+                <pre><code class="language-sql">-- Query analítico complejo con múltiples joins y agregaciones
+
+SELECT 
+
+    c.ESTADO,
+
+    c.OCUPACION,
+
+    COUNT(DISTINCT p.ID_CLIENTE) AS TOTAL_CLIENTES,
+
+    COUNT(p.ID_PRESTAMO) AS TOTAL_PRESTAMOS,
+
+    AVG(p.MONTO_APROBADO) AS MONTO_PROMEDIO,
+
+    AVG(p.CAT) AS CAT_PROMEDIO,
+
+    SUM(CASE WHEN t.DIAS_MORA > 0 THEN 1 ELSE 0 END) AS PRESTAMOS_MORA,
+
+    ROUND(100.0 * PRESTAMOS_MORA / NULLIF(COUNT(p.ID_PRESTAMO), 0), 2) AS PCT_MORA
+
+FROM KUESKI_DEMO.RAW.CLIENTES_RAW c
+
+INNER JOIN KUESKI_DEMO.RAW.PRESTAMOS_RAW p ON c.ID_CLIENTE = p.ID_CLIENTE
+
+LEFT JOIN KUESKI_DEMO.RAW.TRANSACCIONES_RAW t ON p.ID_PRESTAMO = t.ID_PRESTAMO
+
+WHERE p.ESTATUS IN ('DESEMBOLSADO', 'EN_PAGO', 'LIQUIDADO')
+
+    AND p.FECHA_SOLICITUD >= DATEADD(MONTH, -6, CURRENT_DATE())
+
+GROUP BY c.ESTADO, c.OCUPACION
+
+HAVING COUNT(p.ID_PRESTAMO) >= 100
+
+ORDER BY TOTAL_PRESTAMOS DESC;</code></pre>
+
+            </div>
+
+
+
+            <p><strong>Tecnología de optimización automática:</strong></p>
+
+            <ul>
+
+                <li>🚀 <strong>Micro-Partitioning Automático:</strong> Particionado inteligente sin configuración manual</li>
+
+                <li>📊 <strong>Query Optimizer Avanzado:</strong> Optimización automática de joins, agregaciones y filtros</li>
+
+                <li>💾 <strong>Result Caching Inteligente:</strong> Queries idénticas retornan resultados instantáneamente (sin costo)</li>
+
+                <li>⚡ <strong>Pruning Automático:</strong> Solo lee los micro-partitions necesarios para cada query</li>
+
+                <li>🔄 <strong>Clustering Adaptativo:</strong> Re-clustering automático para mantener performance óptimo</li>
+
+                <li>📈 <strong>Vectorized Execution:</strong> Procesamiento por columnas ultra-rápido en CPU</li>
+
+            </ul>
+
+
+
+            <h3>5. Innovación y Características Únicas</h3>
+
+            <ul>
+
+                <li>🤖 <strong>Snowflake Cortex AI:</strong> IA integrada para ML, análisis de sentimientos, traducción y más</li>
+
+                <li>🗣️ <strong>Cortex Analyst:</strong> Consultas en lenguaje natural sobre tus datos (demostrado en esta demo)</li>
+
+                <li>📊 <strong>Dynamic Tables:</strong> Transformaciones continuas y automáticas sin orquestación externa</li>
+
+                <li>🔄 <strong>Streams Nativos:</strong> Change Data Capture (CDC) sin herramientas adicionales</li>
+
+                <li>🌐 <strong>Data Sharing en Vivo:</strong> Comparte datos actualizados en tiempo real sin copias</li>
+
+                <li>🛒 <strong>Snowflake Marketplace:</strong> Acceso a 2000+ datasets de terceros listos para usar</li>
+
+                <li>📱 <strong>Streamlit in Snowflake:</strong> Crea y despliega aplicaciones Python directamente en Snowflake</li>
+
+                <li>🔐 <strong>Native Apps Framework:</strong> Monetiza y distribuye aplicaciones de datos seguras</li>
+
+            </ul>
+
+
+
+            <h3>6. Ecosistema e Integraciones</h3>
+
+            <ul>
+
+                <li>☁️ <strong>Multi-Cloud:</strong> Disponible en AWS, Azure y Google Cloud</li>
+
+                <li>🔗 <strong>Integraciones Nativas:</strong> Conectores para todas las herramientas principales (dbt, Fivetran, Tableau, Power BI, etc.)</li>
+
+                <li>🌍 <strong>Replicación Global:</strong> Replica datos entre regiones y clouds sin código</li>
+
+                <li>🤝 <strong>Partner Ecosystem:</strong> 850+ partners tecnológicos certificados</li>
+
+            </ul>
+
+
+
+            <div class="alert alert-success">
+
+                <strong>✨ ¿Por qué elegir Snowflake?</strong>
+
+                <ul>
+
+                    <li>📊 <strong>Analytics & BI:</strong> La mejor plataforma para workloads SQL-heavy y dashboards ejecutivos</li>
+
+                    <li>🔒 <strong>Sectores Regulados:</strong> Ideal para FinTech, Healthcare, Banca por su gobierno robusto</li>
+
+                    <li>💰 <strong>Optimización de TCO:</strong> Paga solo por uso real, sin costos ocultos de infraestructura</li>
+
+                    <li>⚡ <strong>Time-to-Market Acelerado:</strong> De cero a producción en minutos, no semanas</li>
+
+                    <li>👥 <strong>Equipos Ágiles:</strong> Requiere menos especialistas, ideal para equipos pequeños o en crecimiento</li>
+
+                    <li>🚀 <strong>Innovación Continua:</strong> Nuevas features cada trimestre sin migrations</li>
+
+                    <li>🎯 <strong>Democratización de Datos:</strong> Self-service analytics con gobernanza garantizada</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Next Steps -->
+
+        <section>
+
+            <h2>🚀 Next Steps</h2>
+
+            
+
+            <h3>Explorar Más Características</h3>
+
+            <ul>
+
+                <li>📸 <strong>Time Travel:</strong> Consultar datos históricos (hasta 90 días)</li>
+
+                <li>🔄 <strong>Data Sharing:</strong> Compartir datos sin copiarlos</li>
+
+                <li>📦 <strong>Snowflake Marketplace:</strong> Integrar datos externos</li>
+
+                <li>🤖 <strong>Cortex AI:</strong> ML functions (sentiment analysis, translation)</li>
+
+                <li>📊 <strong>Notebooks:</strong> Python notebooks nativos</li>
+
+            </ul>
+
+
+
+            <h3>Recursos Adicionales</h3>
+
+            <ul>
+
+                <li><a href="https://docs.snowflake.com" target="_blank">Documentación Oficial de Snowflake</a></li>
+
+                <li><a href="https://quickstarts.snowflake.com" target="_blank">Snowflake Quickstarts</a></li>
+
+                <li><a href="https://community.snowflake.com" target="_blank">Snowflake Community</a></li>
+
+                <li><a href="https://www.kueski.com" target="_blank">Kueski - Sitio Oficial</a></li>
+
+            </ul>
+
+
+
+            <h3>Contacto</h3>
+
+            <p>Para más información sobre esta demo o Snowflake:</p>
+
+            <ul>
+
+                <li>👤 <strong>Autor:</strong> Juan Manuel Díaz Iturbide</li>
+
+                <li>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jmdkent/" target="_blank">linkedin.com/in/jmdkent</a></li>
+
+                <li>📅 <strong>Fecha:</strong> 2025-11-13</li>
+
+            </ul>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h3>❄️ Snowflake + 💰 Kueski</h3>
+
+        <p>Demo desarrollada para mostrar las capacidades de Snowflake en el sector FinTech</p>
+
+        <p>Powered by <strong>Snowflake</strong> | Cortex AI | Streamlit | Dynamic Tables</p>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem;">
+
+            📅 2025-11-13 | 👤 Juan Manuel Díaz Iturbide | 
+
+            🔗 <a href="https://www.linkedin.com/in/jmdkent/">LinkedIn</a>
+
+        </p>
+
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+
+            ⚠️ Disclaimer: Todos los datos son ficticios para propósitos demostrativos
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- Scripts -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+
+
+    <script>
+
+        // Copy to clipboard functionality
+
+        function copyCode(button) {
+
+            const codeBlock = button.closest('.code-container').querySelector('code');
+
+            const code = codeBlock.textContent;
+
+            
+
+            navigator.clipboard.writeText(code).then(() => {
+
+                const originalHTML = button.innerHTML;
+
+                button.innerHTML = `
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+
+                    </svg>
+
+                    ¡Copiado!
+
+                `;
+
+                button.classList.add('copied');
+
+                
+
+                setTimeout(() => {
+
+                    button.innerHTML = originalHTML;
+
+                    button.classList.remove('copied');
+
+                }, 2000);
+
+            });
+
+        }
+
+
+
+        // Progress tracking with localStorage
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const checkboxes = document.querySelectorAll('.progress-item input[type="checkbox"]');
+
+            
+
+            // Load saved progress
+
+            checkboxes.forEach(checkbox => {
+
+                const saved = localStorage.getItem(checkbox.id);
+
+                if (saved === 'true') {
+
+                    checkbox.checked = true;
+
+                }
+
+                
+
+                // Save progress on change
+
+                checkbox.addEventListener('change', () => {
+
+                    localStorage.setItem(checkbox.id, checkbox.checked);
+
+                });
+
+            });
+
+        });
+
+
+
+        // Smooth scroll for navigation
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+
+                const targetElement = document.querySelector(targetId);
+
+                
+
+                if (targetElement) {
+
+                    targetElement.scrollIntoView({
+
+                        behavior: 'smooth',
+
+                        block: 'start'
+
+                    });
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

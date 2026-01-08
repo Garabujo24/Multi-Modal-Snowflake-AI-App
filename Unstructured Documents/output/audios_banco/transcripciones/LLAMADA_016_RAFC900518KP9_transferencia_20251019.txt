@@ -1,0 +1,61 @@
+LLAMADA BANCARIA - Solicitud de Transferencia
+======================================================================
+
+Cliente: CARLOS EDUARDO RAMÍREZ FERNÁNDEZ
+RFC: RAFC900518KP9
+Fecha: 19/10/2025 15:41
+Duración estimada: 3-4 minutos
+Categoría: Operaciones
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenos días, le atiende Diana Morales del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenos días. Necesito hacer una transferencia.
+
+Ejecutivo: Con gusto le ayudo. ¿Me puede proporcionar su número de cuenta?
+
+Cliente: Sí, es ****8320.
+
+Ejecutivo: Gracias. ¿Y su nombre completo?
+
+Cliente: CARLOS EDUARDO RAMÍREZ FERNÁNDEZ.
+
+Ejecutivo: Perfecto. ¿Tiene la CLABE del beneficiario?
+
+Cliente: Sí, es 0121805288750632.
+
+Ejecutivo: Déjeme verificar. El beneficiario es Juan Carlos Pérez García. ¿Es correcto?
+
+Cliente: Sí, es correcto.
+
+Ejecutivo: ¿Qué monto desea transferir?
+
+Cliente: 11,836 pesos.
+
+Ejecutivo: Entiendo. Por seguridad, ¿me puede confirmar el concepto de la transferencia?
+
+Cliente: Es por pago de renta.
+
+Ejecutivo: Perfecto. La transferencia tiene un costo de 15 pesos. El beneficiario recibirá 11,821 pesos. ¿Desea continuar?
+
+Cliente: Sí, adelante.
+
+Ejecutivo: Excelente. Le voy a enviar un código de verificación a su celular registrado. ¿Me puede proporcionar el código cuando lo reciba?
+
+Cliente: Sí, el código es 155895.
+
+Ejecutivo: Gracias. La transferencia ha sido procesada exitosamente. El número de referencia es TR95080043. El beneficiario recibirá el dinero en un plazo máximo de 24 horas.
+
+Cliente: Perfecto, muchas gracias.
+
+Ejecutivo: A sus órdenes. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo.
+
+Ejecutivo: Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

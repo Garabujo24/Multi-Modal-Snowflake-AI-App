@@ -1,0 +1,968 @@
+/*
+================================================================================
+  DEMO: GLOBENERGY - PLATAFORMA GLOBAL DE GESTIÓN ENERGÉTICA INTELIGENTE
+================================================================================
+
+Autor: Ingeniero de Datos - GLOBENERGY
+Fecha: 22 de Octubre, 2025
+Tecnología: Snowflake SQL
+Cliente: Demo Genérica - Empresa Ficticia Internacional
+
+================================================================================
+-- Sección 0: Historia y Caso de Uso
+================================================================================
+
+GLOBENERGY es una empresa ficticia internacional que provee soluciones energéticas
+integrales a más de 40,000 ubicaciones de clientes en todo el mundo.
+
+📊 PRODUCTOS Y SERVICIOS:
+   • Gas Natural (Suministro residencial, comercial e industrial)
+   • Electricidad (Planes con precios fijos e indexados)
+   • Gas Natural Licuado - LNG (Soluciones para flotas y operaciones remotas)
+   • Propano y Combustibles Líquidos (Suministro al por mayor)
+   • Servicios Midstream (Infraestructura y transporte)
+   • Energía Renovable (Solar, eólica, biogás)
+
+🎯 CASOS DE USO PRINCIPALES:
+   1. Optimización de Costos Energéticos
+   2. Análisis de Consumo por Sector y Tipo de Energía
+   3. Predicción de Demanda Energética
+   4. Sostenibilidad y Huella de Carbono
+   5. Continuidad de Negocios ante Eventos Climáticos Adversos
+
+🏢 SECTORES ATENDIDOS:
+   • Educación (Universidades, escuelas)
+   • Salud (Hospitales, clínicas)
+   • Hospitalidad (Hoteles, restaurantes)
+   • Industrial (Manufactura, logística)
+   • Comercial (Retail, oficinas)
+   • Gobierno (Edificios públicos, infraestructura)
+
+💡 VALOR DE NEGOCIO:
+   Esta demo permite a GLOBENERGY y sus clientes:
+   - Reducir costos energéticos hasta un 25% mediante análisis predictivo
+   - Identificar patrones de consumo anómalos en tiempo real
+   - Planificar la continuidad operativa ante alertas climáticas
+   - Cumplir objetivos de sostenibilidad (reducción de emisiones CO2)
+   - Optimizar contratos y negociaciones con proveedores
+*/
+
+-- ============================================================================
+-- Sección 1: Configuración de Recursos
+-- ============================================================================
+
+-- 1.1 Configuración de contexto y warehouse
+USE ROLE SYSADMIN;
+
+-- Crear Warehouse para la demo
+CREATE OR REPLACE WAREHOUSE GLOBENERGY_WH WITH
+    WAREHOUSE_SIZE = 'XSMALL'
+    AUTO_SUSPEND = 60
+    AUTO_RESUME = TRUE
+    INITIALLY_SUSPENDED = TRUE
+    COMMENT = 'Warehouse para análisis de datos energéticos de GLOBENERGY';
+
+-- FinOps: Configurar timeout para controlar costos
+ALTER WAREHOUSE GLOBENERGY_WH SET STATEMENT_TIMEOUT_IN_SECONDS = 300;
+
+-- Verificar configuración de timeout
+SHOW PARAMETERS LIKE 'STATEMENT_TIMEOUT_IN_SECONDS' IN WAREHOUSE GLOBENERGY_WH;
+
+USE WAREHOUSE GLOBENERGY_WH;
+
+-- 1.2 Crear Base de Datos y Schema
+CREATE OR REPLACE DATABASE GLOBENERGY_DB
+    COMMENT = 'Base de datos para gestión energética global de GLOBENERGY';
+
+CREATE OR REPLACE SCHEMA GLOBENERGY_DB.ENERGIA
+    COMMENT = 'Schema principal con datos de clientes, consumo y eventos climáticos';
+
+USE SCHEMA GLOBENERGY_DB.ENERGIA;
+
+-- 1.3 Crear Rol de Usuario
+CREATE OR REPLACE ROLE GLOBENERGY_ANALISTA
+    COMMENT = 'Rol para analistas de datos energéticos';
+
+-- Conceder privilegios
+GRANT USAGE ON WAREHOUSE GLOBENERGY_WH TO ROLE GLOBENERGY_ANALISTA;
+GRANT USAGE ON DATABASE GLOBENERGY_DB TO ROLE GLOBENERGY_ANALISTA;
+GRANT USAGE ON SCHEMA GLOBENERGY_DB.ENERGIA TO ROLE GLOBENERGY_ANALISTA;
+GRANT SELECT ON ALL TABLES IN SCHEMA GLOBENERGY_DB.ENERGIA TO ROLE GLOBENERGY_ANALISTA;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA GLOBENERGY_DB.ENERGIA TO ROLE GLOBENERGY_ANALISTA;
+
+-- 1.4 Crear Tablas
+
+-- Tabla: Clientes
+CREATE OR REPLACE TABLE GLOBENERGY_DB.ENERGIA.CLIENTES (
+    CLIENTE_ID INTEGER PRIMARY KEY,
+    NOMBRE_CLIENTE VARCHAR(200),
+    SECTOR VARCHAR(50),
+    PAIS VARCHAR(50),
+    REGION VARCHAR(100),
+    CIUDAD VARCHAR(100),
+    TAMANO_EMPRESA VARCHAR(20), -- Pequeña, Mediana, Grande, Corporativa
+    FECHA_REGISTRO DATE,
+    NIVEL_SOSTENIBILIDAD VARCHAR(20), -- Básico, Intermedio, Avanzado, Líder
+    CONTACTO_EMAIL VARCHAR(150),
+    ESTADO VARCHAR(20) -- Activo, Inactivo, Suspendido
+);
+
+-- Tabla: Tipos de Energía
+CREATE OR REPLACE TABLE GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA (
+    TIPO_ENERGIA_ID INTEGER PRIMARY KEY,
+    NOMBRE_TIPO VARCHAR(100),
+    CATEGORIA VARCHAR(50), -- Fósil, Renovable, Híbrida
+    UNIDAD_MEDIDA VARCHAR(20), -- kWh, m3, Galones, Toneladas
+    FACTOR_EMISION_CO2 DECIMAL(10,4), -- kg CO2 por unidad
+    PRECIO_BASE_UNITARIO DECIMAL(10,2),
+    DESCRIPCION VARCHAR(500)
+);
+
+-- Tabla: Contratos
+CREATE OR REPLACE TABLE GLOBENERGY_DB.ENERGIA.CONTRATOS (
+    CONTRATO_ID INTEGER PRIMARY KEY,
+    CLIENTE_ID INTEGER,
+    TIPO_ENERGIA_ID INTEGER,
+    TIPO_CONTRATO VARCHAR(50), -- Fijo, Indexado, Híbrido
+    FECHA_INICIO DATE,
+    FECHA_FIN DATE,
+    VOLUMEN_COMPROMETIDO_ANUAL DECIMAL(15,2),
+    PRECIO_UNITARIO DECIMAL(10,2),
+    DESCUENTO_APLICADO DECIMAL(5,2), -- Porcentaje
+    ESTADO_CONTRATO VARCHAR(20), -- Activo, Vencido, Renovado, Cancelado
+    ENERGIA_RENOVABLE BOOLEAN,
+    FOREIGN KEY (CLIENTE_ID) REFERENCES GLOBENERGY_DB.ENERGIA.CLIENTES(CLIENTE_ID),
+    FOREIGN KEY (TIPO_ENERGIA_ID) REFERENCES GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA(TIPO_ENERGIA_ID)
+);
+
+-- Tabla: Consumo Energético (Tabla principal - ~2K registros)
+CREATE OR REPLACE TABLE GLOBENERGY_DB.ENERGIA.CONSUMO (
+    CONSUMO_ID INTEGER PRIMARY KEY,
+    CONTRATO_ID INTEGER,
+    CLIENTE_ID INTEGER,
+    TIPO_ENERGIA_ID INTEGER,
+    FECHA_CONSUMO DATE,
+    MES INTEGER,
+    ANIO INTEGER,
+    TRIMESTRE INTEGER,
+    VOLUMEN_CONSUMIDO DECIMAL(15,2),
+    COSTO_TOTAL DECIMAL(15,2),
+    EMISION_CO2_KG DECIMAL(15,2),
+    TEMPERATURA_PROMEDIO_C DECIMAL(5,2), -- Temperatura del día
+    HORA_PICO BOOLEAN, -- Si el consumo fue en hora pico
+    EFICIENCIA_ENERGETICA DECIMAL(5,2), -- Porcentaje (100 = óptimo)
+    FOREIGN KEY (CONTRATO_ID) REFERENCES GLOBENERGY_DB.ENERGIA.CONTRATOS(CONTRATO_ID),
+    FOREIGN KEY (CLIENTE_ID) REFERENCES GLOBENERGY_DB.ENERGIA.CLIENTES(CLIENTE_ID),
+    FOREIGN KEY (TIPO_ENERGIA_ID) REFERENCES GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA(TIPO_ENERGIA_ID)
+);
+
+-- Tabla: Eventos Climáticos
+CREATE OR REPLACE TABLE GLOBENERGY_DB.ENERGIA.EVENTOS_CLIMATICOS (
+    EVENTO_ID INTEGER PRIMARY KEY,
+    TIPO_EVENTO VARCHAR(50), -- Tormenta, Huracán, Ola de Calor, Ola de Frío, Inundación
+    SEVERIDAD VARCHAR(20), -- Baja, Media, Alta, Crítica
+    PAIS VARCHAR(50),
+    REGION VARCHAR(100),
+    FECHA_INICIO DATE,
+    FECHA_FIN DATE,
+    DURACION_DIAS INTEGER,
+    IMPACTO_OPERACIONAL VARCHAR(20), -- Ninguno, Menor, Moderado, Severo
+    CLIENTES_AFECTADOS INTEGER,
+    PERDIDA_SUMINISTRO_HORAS DECIMAL(10,2),
+    COSTO_MITIGACION DECIMAL(15,2)
+);
+
+-- Tabla: Predicciones de Demanda (Machine Learning Output)
+CREATE OR REPLACE TABLE GLOBENERGY_DB.ENERGIA.PREDICCIONES_DEMANDA (
+    PREDICCION_ID INTEGER PRIMARY KEY,
+    CLIENTE_ID INTEGER,
+    TIPO_ENERGIA_ID INTEGER,
+    FECHA_PREDICCION DATE,
+    VOLUMEN_PREDICHO DECIMAL(15,2),
+    VOLUMEN_REAL DECIMAL(15,2),
+    ERROR_PORCENTUAL DECIMAL(5,2),
+    CONFIANZA_MODELO DECIMAL(5,2), -- 0-100%
+    FACTORES_CLAVE VARCHAR(500), -- Temperatura, Estacionalidad, Eventos
+    FOREIGN KEY (CLIENTE_ID) REFERENCES GLOBENERGY_DB.ENERGIA.CLIENTES(CLIENTE_ID),
+    FOREIGN KEY (TIPO_ENERGIA_ID) REFERENCES GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA(TIPO_ENERGIA_ID)
+);
+
+-- ============================================================================
+-- Sección 2: Generación de Datos Sintéticos
+-- ============================================================================
+
+-- 2.1 Insertar Tipos de Energía
+INSERT INTO GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA
+SELECT 
+    tipo_id,
+    nombre,
+    categoria,
+    unidad,
+    factor_co2,
+    precio_base,
+    descripcion
+FROM (
+    SELECT 1 AS tipo_id, 'Gas Natural' AS nombre, 'Fósil' AS categoria, 'm3' AS unidad, 2.0300 AS factor_co2, 0.45 AS precio_base, 'Gas natural para calefacción, cocción y procesos industriales' AS descripcion
+    UNION ALL SELECT 2, 'Electricidad', 'Híbrida', 'kWh', 0.4500, 0.12, 'Suministro eléctrico con mix energético (renovable y convencional)'
+    UNION ALL SELECT 3, 'Gas Natural Licuado (LNG)', 'Fósil', 'Galones', 5.7500, 2.80, 'GNL para flotas de transporte y operaciones remotas'
+    UNION ALL SELECT 4, 'Propano', 'Fósil', 'Galones', 5.6800, 2.50, 'Propano para uso residencial, comercial e industrial'
+    UNION ALL SELECT 5, 'Combustible Diésel', 'Fósil', 'Galones', 10.1800, 3.20, 'Diésel para generadores de respaldo y maquinaria'
+    UNION ALL SELECT 6, 'Energía Solar', 'Renovable', 'kWh', 0.0000, 0.08, 'Paneles solares fotovoltaicos - cero emisiones'
+    UNION ALL SELECT 7, 'Energía Eólica', 'Renovable', 'kWh', 0.0000, 0.09, 'Turbinas eólicas - cero emisiones'
+    UNION ALL SELECT 8, 'Biogás', 'Renovable', 'm3', 0.5000, 0.35, 'Gas renovable generado a partir de desechos orgánicos'
+);
+
+-- 2.2 Insertar Clientes (100 clientes)
+INSERT INTO GLOBENERGY_DB.ENERGIA.CLIENTES
+WITH SECUENCIA AS (
+    SELECT ROW_NUMBER() OVER (ORDER BY NULL) AS CLIENTE_ID
+    FROM TABLE(GENERATOR(ROWCOUNT => 100))
+),
+DATOS_BASE AS (
+    SELECT
+        CLIENTE_ID,
+        CASE MOD(CLIENTE_ID, 6)
+            WHEN 0 THEN 'Educación'
+            WHEN 1 THEN 'Salud'
+            WHEN 2 THEN 'Hospitalidad'
+            WHEN 3 THEN 'Industrial'
+            WHEN 4 THEN 'Comercial'
+            ELSE 'Gobierno'
+        END AS SECTOR,
+        CASE MOD(CLIENTE_ID, 10)
+            WHEN 0 THEN 'Estados Unidos'
+            WHEN 1 THEN 'Canadá'
+            WHEN 2 THEN 'México'
+            WHEN 3 THEN 'Reino Unido'
+            WHEN 4 THEN 'Alemania'
+            WHEN 5 THEN 'Francia'
+            WHEN 6 THEN 'España'
+            WHEN 7 THEN 'Brasil'
+            WHEN 8 THEN 'Argentina'
+            ELSE 'Chile'
+        END AS PAIS,
+        CASE MOD(CLIENTE_ID, 4)
+            WHEN 0 THEN 'Pequeña'
+            WHEN 1 THEN 'Mediana'
+            WHEN 2 THEN 'Grande'
+            ELSE 'Corporativa'
+        END AS TAMANO,
+        CASE MOD(CLIENTE_ID, 4)
+            WHEN 0 THEN 'Básico'
+            WHEN 1 THEN 'Intermedio'
+            WHEN 2 THEN 'Avanzado'
+            ELSE 'Líder'
+        END AS NIVEL_SOST,
+        DATEADD(DAY, -UNIFORM(30, 1800, RANDOM()), CURRENT_DATE()) AS FECHA_REG
+    FROM SECUENCIA
+)
+SELECT
+    CLIENTE_ID,
+    SECTOR || ' ' || PAIS || ' ' || LPAD(CLIENTE_ID::VARCHAR, 4, '0') AS NOMBRE_CLIENTE,
+    SECTOR,
+    PAIS,
+    CASE 
+        WHEN PAIS IN ('Estados Unidos', 'Canadá') THEN 'América del Norte'
+        WHEN PAIS IN ('México', 'Brasil', 'Argentina', 'Chile') THEN 'América Latina'
+        ELSE 'Europa'
+    END AS REGION,
+    CASE MOD(CLIENTE_ID, 5)
+        WHEN 0 THEN 'Nueva York'
+        WHEN 1 THEN 'Toronto'
+        WHEN 2 THEN 'Ciudad de México'
+        WHEN 3 THEN 'Londres'
+        ELSE 'Madrid'
+    END AS CIUDAD,
+    TAMANO AS TAMANO_EMPRESA,
+    FECHA_REG AS FECHA_REGISTRO,
+    NIVEL_SOST AS NIVEL_SOSTENIBILIDAD,
+    LOWER(REPLACE(SECTOR, ' ', '')) || CLIENTE_ID || '@globenergy-demo.com' AS CONTACTO_EMAIL,
+    CASE WHEN UNIFORM(1, 100, RANDOM()) > 5 THEN 'Activo' ELSE 'Inactivo' END AS ESTADO
+FROM DATOS_BASE;
+
+-- 2.3 Insertar Contratos (200 contratos - algunos clientes tienen múltiples contratos)
+INSERT INTO GLOBENERGY_DB.ENERGIA.CONTRATOS
+WITH SECUENCIA AS (
+    SELECT ROW_NUMBER() OVER (ORDER BY NULL) AS CONTRATO_ID
+    FROM TABLE(GENERATOR(ROWCOUNT => 200))
+)
+SELECT
+    CONTRATO_ID,
+    MOD(CONTRATO_ID - 1, 100) + 1 AS CLIENTE_ID,
+    MOD(CONTRATO_ID, 8) + 1 AS TIPO_ENERGIA_ID,
+    CASE MOD(CONTRATO_ID, 3)
+        WHEN 0 THEN 'Fijo'
+        WHEN 1 THEN 'Indexado'
+        ELSE 'Híbrido'
+    END AS TIPO_CONTRATO,
+    DATEADD(MONTH, -UNIFORM(1, 36, RANDOM()), CURRENT_DATE()) AS FECHA_INICIO,
+    DATEADD(MONTH, UNIFORM(12, 48, RANDOM()), CURRENT_DATE()) AS FECHA_FIN,
+    UNIFORM(10000, 1000000, RANDOM()) AS VOLUMEN_COMPROMETIDO_ANUAL,
+    CASE 
+        WHEN MOD(CONTRATO_ID, 8) + 1 = 1 THEN 0.45 * (1 + UNIFORM(-15, 15, RANDOM()) / 100.0)
+        WHEN MOD(CONTRATO_ID, 8) + 1 = 2 THEN 0.12 * (1 + UNIFORM(-10, 10, RANDOM()) / 100.0)
+        WHEN MOD(CONTRATO_ID, 8) + 1 = 3 THEN 2.80 * (1 + UNIFORM(-20, 20, RANDOM()) / 100.0)
+        WHEN MOD(CONTRATO_ID, 8) + 1 = 4 THEN 2.50 * (1 + UNIFORM(-15, 15, RANDOM()) / 100.0)
+        WHEN MOD(CONTRATO_ID, 8) + 1 = 5 THEN 3.20 * (1 + UNIFORM(-25, 25, RANDOM()) / 100.0)
+        WHEN MOD(CONTRATO_ID, 8) + 1 = 6 THEN 0.08 * (1 + UNIFORM(-5, 5, RANDOM()) / 100.0)
+        WHEN MOD(CONTRATO_ID, 8) + 1 = 7 THEN 0.09 * (1 + UNIFORM(-5, 5, RANDOM()) / 100.0)
+        ELSE 0.35 * (1 + UNIFORM(-10, 10, RANDOM()) / 100.0)
+    END AS PRECIO_UNITARIO,
+    CASE 
+        WHEN UNIFORM(1, 100, RANDOM()) > 70 THEN UNIFORM(5, 25, RANDOM())
+        ELSE 0
+    END AS DESCUENTO_APLICADO,
+    CASE 
+        WHEN UNIFORM(1, 100, RANDOM()) > 10 THEN 'Activo'
+        WHEN UNIFORM(1, 100, RANDOM()) > 50 THEN 'Vencido'
+        ELSE 'Renovado'
+    END AS ESTADO_CONTRATO,
+    CASE WHEN MOD(CONTRATO_ID, 8) + 1 IN (6, 7, 8) THEN TRUE ELSE FALSE END AS ENERGIA_RENOVABLE
+FROM SECUENCIA;
+
+-- 2.4 Insertar Consumo Energético (2000 registros - núcleo de la demo)
+INSERT INTO GLOBENERGY_DB.ENERGIA.CONSUMO
+WITH SECUENCIA AS (
+    SELECT ROW_NUMBER() OVER (ORDER BY NULL) AS CONSUMO_ID
+    FROM TABLE(GENERATOR(ROWCOUNT => 2000))
+),
+CONSUMO_BASE AS (
+    SELECT
+        s.CONSUMO_ID,
+        MOD(s.CONSUMO_ID - 1, 200) + 1 AS CONTRATO_ID,
+        c.CLIENTE_ID,
+        c.TIPO_ENERGIA_ID,
+        DATEADD(DAY, -UNIFORM(1, 730, RANDOM()), CURRENT_DATE()) AS FECHA_CONSUMO,
+        t.UNIDAD_MEDIDA,
+        t.FACTOR_EMISION_CO2,
+        c.PRECIO_UNITARIO,
+        cl.SECTOR,
+        cl.TAMANO_EMPRESA
+    FROM SECUENCIA s
+    JOIN GLOBENERGY_DB.ENERGIA.CONTRATOS c 
+        ON MOD(s.CONSUMO_ID - 1, 200) + 1 = c.CONTRATO_ID
+    JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA t 
+        ON c.TIPO_ENERGIA_ID = t.TIPO_ENERGIA_ID
+    JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl 
+        ON c.CLIENTE_ID = cl.CLIENTE_ID
+)
+SELECT
+    CONSUMO_ID,
+    CONTRATO_ID,
+    CLIENTE_ID,
+    TIPO_ENERGIA_ID,
+    FECHA_CONSUMO,
+    MONTH(FECHA_CONSUMO) AS MES,
+    YEAR(FECHA_CONSUMO) AS ANIO,
+    QUARTER(FECHA_CONSUMO) AS TRIMESTRE,
+    CASE 
+        WHEN SECTOR = 'Industrial' THEN UNIFORM(5000, 50000, RANDOM())
+        WHEN SECTOR = 'Salud' THEN UNIFORM(3000, 30000, RANDOM())
+        WHEN SECTOR = 'Hospitalidad' THEN UNIFORM(2000, 20000, RANDOM())
+        WHEN SECTOR = 'Comercial' THEN UNIFORM(1000, 15000, RANDOM())
+        WHEN SECTOR = 'Educación' THEN UNIFORM(2000, 25000, RANDOM())
+        ELSE UNIFORM(3000, 35000, RANDOM())
+    END * 
+    CASE TAMANO_EMPRESA
+        WHEN 'Pequeña' THEN 0.3
+        WHEN 'Mediana' THEN 0.7
+        WHEN 'Grande' THEN 1.2
+        ELSE 2.0
+    END AS VOLUMEN_CONSUMIDO,
+    0 AS COSTO_TOTAL, -- Calculado después
+    0 AS EMISION_CO2_KG, -- Calculado después
+    UNIFORM(-15, 35, RANDOM()) + UNIFORM(0, 99, RANDOM()) / 100.0 AS TEMPERATURA_PROMEDIO_C,
+    CASE WHEN UNIFORM(1, 100, RANDOM()) > 60 THEN TRUE ELSE FALSE END AS HORA_PICO,
+    UNIFORM(65, 98, RANDOM()) + UNIFORM(0, 99, RANDOM()) / 100.0 AS EFICIENCIA_ENERGETICA
+FROM CONSUMO_BASE;
+
+-- Actualizar columnas calculadas en CONSUMO
+UPDATE GLOBENERGY_DB.ENERGIA.CONSUMO c
+SET 
+    COSTO_TOTAL = c.VOLUMEN_CONSUMIDO * 
+        (SELECT t.PRECIO_BASE_UNITARIO FROM GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA t WHERE t.TIPO_ENERGIA_ID = c.TIPO_ENERGIA_ID) *
+        (CASE WHEN c.HORA_PICO THEN 1.35 ELSE 1.0 END),
+    EMISION_CO2_KG = c.VOLUMEN_CONSUMIDO * 
+        (SELECT t.FACTOR_EMISION_CO2 FROM GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA t WHERE t.TIPO_ENERGIA_ID = c.TIPO_ENERGIA_ID);
+
+-- 2.5 Insertar Eventos Climáticos (50 eventos)
+INSERT INTO GLOBENERGY_DB.ENERGIA.EVENTOS_CLIMATICOS
+WITH SECUENCIA AS (
+    SELECT ROW_NUMBER() OVER (ORDER BY NULL) AS EVENTO_ID
+    FROM TABLE(GENERATOR(ROWCOUNT => 50))
+)
+SELECT
+    EVENTO_ID,
+    CASE MOD(EVENTO_ID, 5)
+        WHEN 0 THEN 'Tormenta'
+        WHEN 1 THEN 'Huracán'
+        WHEN 2 THEN 'Ola de Calor'
+        WHEN 3 THEN 'Ola de Frío'
+        ELSE 'Inundación'
+    END AS TIPO_EVENTO,
+    CASE MOD(EVENTO_ID, 4)
+        WHEN 0 THEN 'Baja'
+        WHEN 1 THEN 'Media'
+        WHEN 2 THEN 'Alta'
+        ELSE 'Crítica'
+    END AS SEVERIDAD,
+    CASE MOD(EVENTO_ID, 10)
+        WHEN 0 THEN 'Estados Unidos'
+        WHEN 1 THEN 'Canadá'
+        WHEN 2 THEN 'México'
+        WHEN 3 THEN 'Reino Unido'
+        WHEN 4 THEN 'Alemania'
+        WHEN 5 THEN 'Francia'
+        WHEN 6 THEN 'España'
+        WHEN 7 THEN 'Brasil'
+        WHEN 8 THEN 'Argentina'
+        ELSE 'Chile'
+    END AS PAIS,
+    CASE 
+        WHEN MOD(EVENTO_ID, 10) IN (0, 1, 2) THEN 'América del Norte'
+        WHEN MOD(EVENTO_ID, 10) IN (7, 8, 9) THEN 'América Latina'
+        ELSE 'Europa'
+    END AS REGION,
+    DATEADD(DAY, -UNIFORM(1, 730, RANDOM()), CURRENT_DATE()) AS FECHA_INICIO,
+    DATEADD(DAY, UNIFORM(1, 14, RANDOM()), DATEADD(DAY, -UNIFORM(1, 730, RANDOM()), CURRENT_DATE())) AS FECHA_FIN,
+    UNIFORM(1, 14, RANDOM()) AS DURACION_DIAS,
+    CASE MOD(EVENTO_ID, 4)
+        WHEN 0 THEN 'Ninguno'
+        WHEN 1 THEN 'Menor'
+        WHEN 2 THEN 'Moderado'
+        ELSE 'Severo'
+    END AS IMPACTO_OPERACIONAL,
+    UNIFORM(0, 500, RANDOM()) AS CLIENTES_AFECTADOS,
+    UNIFORM(0, 120, RANDOM()) + UNIFORM(0, 99, RANDOM()) / 100.0 AS PERDIDA_SUMINISTRO_HORAS,
+    UNIFORM(5000, 500000, RANDOM()) AS COSTO_MITIGACION
+FROM SECUENCIA;
+
+-- 2.6 Insertar Predicciones de Demanda (300 predicciones)
+INSERT INTO GLOBENERGY_DB.ENERGIA.PREDICCIONES_DEMANDA
+WITH SECUENCIA AS (
+    SELECT ROW_NUMBER() OVER (ORDER BY NULL) AS PREDICCION_ID
+    FROM TABLE(GENERATOR(ROWCOUNT => 300))
+),
+PRED_BASE AS (
+    SELECT
+        s.PREDICCION_ID,
+        MOD(s.PREDICCION_ID - 1, 100) + 1 AS CLIENTE_ID,
+        MOD(s.PREDICCION_ID, 8) + 1 AS TIPO_ENERGIA_ID,
+        DATEADD(DAY, UNIFORM(1, 90, RANDOM()), CURRENT_DATE()) AS FECHA_PREDICCION
+    FROM SECUENCIA s
+)
+SELECT
+    PREDICCION_ID,
+    CLIENTE_ID,
+    TIPO_ENERGIA_ID,
+    FECHA_PREDICCION,
+    UNIFORM(1000, 50000, RANDOM()) + UNIFORM(0, 99, RANDOM()) / 100.0 AS VOLUMEN_PREDICHO,
+    UNIFORM(1000, 50000, RANDOM()) + UNIFORM(0, 99, RANDOM()) / 100.0 AS VOLUMEN_REAL,
+    UNIFORM(-15, 15, RANDOM()) + UNIFORM(0, 99, RANDOM()) / 100.0 AS ERROR_PORCENTUAL,
+    UNIFORM(75, 98, RANDOM()) + UNIFORM(0, 99, RANDOM()) / 100.0 AS CONFIANZA_MODELO,
+    CASE MOD(PREDICCION_ID, 5)
+        WHEN 0 THEN 'Temperatura, Estacionalidad'
+        WHEN 1 THEN 'Eventos Climáticos, Producción'
+        WHEN 2 THEN 'Histórico de Consumo, Crecimiento'
+        WHEN 3 THEN 'Días Festivos, Temperatura'
+        ELSE 'Estacionalidad, Tendencias de Mercado'
+    END AS FACTORES_CLAVE
+FROM PRED_BASE;
+
+-- ============================================================================
+-- Sección 3: La Demo - Consultas que Demuestran Valor
+-- ============================================================================
+
+-- ===========================================
+-- 3.1 OPTIMIZACIÓN DE COSTOS ENERGÉTICOS
+-- ===========================================
+
+-- Q1: Análisis de costos por sector y tipo de energía
+SELECT
+    cl.SECTOR,
+    te.NOMBRE_TIPO,
+    te.CATEGORIA AS CATEGORIA_ENERGIA,
+    COUNT(DISTINCT c.CLIENTE_ID) AS TOTAL_CLIENTES,
+    COUNT(c.CONSUMO_ID) AS TOTAL_REGISTROS_CONSUMO,
+    ROUND(SUM(c.COSTO_TOTAL), 2) AS COSTO_TOTAL_USD,
+    ROUND(AVG(c.COSTO_TOTAL), 2) AS COSTO_PROMEDIO_USD,
+    ROUND(SUM(c.VOLUMEN_CONSUMIDO), 2) AS VOLUMEN_TOTAL,
+    te.UNIDAD_MEDIDA
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON c.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+WHERE cl.ESTADO = 'Activo'
+GROUP BY cl.SECTOR, te.NOMBRE_TIPO, te.CATEGORIA, te.UNIDAD_MEDIDA
+ORDER BY COSTO_TOTAL_USD DESC;
+
+-- Q2: Identificar oportunidades de ahorro por migración a renovables
+WITH COSTO_ACTUAL AS (
+    SELECT
+        c.CLIENTE_ID,
+        cl.NOMBRE_CLIENTE,
+        cl.SECTOR,
+        SUM(c.COSTO_TOTAL) AS COSTO_TOTAL_ACTUAL,
+        SUM(c.VOLUMEN_CONSUMIDO) AS VOLUMEN_TOTAL
+    FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+    JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+    JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON c.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+    WHERE te.CATEGORIA IN ('Fósil', 'Híbrida')
+    GROUP BY c.CLIENTE_ID, cl.NOMBRE_CLIENTE, cl.SECTOR
+),
+COSTO_RENOVABLE AS (
+    SELECT
+        ca.CLIENTE_ID,
+        ca.NOMBRE_CLIENTE,
+        ca.SECTOR,
+        ca.COSTO_TOTAL_ACTUAL,
+        ca.VOLUMEN_TOTAL,
+        ca.VOLUMEN_TOTAL * 0.085 AS COSTO_ESTIMADO_RENOVABLE
+    FROM COSTO_ACTUAL ca
+)
+SELECT
+    CLIENTE_ID,
+    NOMBRE_CLIENTE,
+    SECTOR,
+    ROUND(COSTO_TOTAL_ACTUAL, 2) AS COSTO_ACTUAL_USD,
+    ROUND(COSTO_ESTIMADO_RENOVABLE, 2) AS COSTO_CON_RENOVABLES_USD,
+    ROUND(COSTO_TOTAL_ACTUAL - COSTO_ESTIMADO_RENOVABLE, 2) AS AHORRO_POTENCIAL_USD,
+    ROUND(((COSTO_TOTAL_ACTUAL - COSTO_ESTIMADO_RENOVABLE) / COSTO_TOTAL_ACTUAL) * 100, 2) AS AHORRO_PORCENTAJE
+FROM COSTO_RENOVABLE
+WHERE COSTO_TOTAL_ACTUAL > COSTO_ESTIMADO_RENOVABLE
+ORDER BY AHORRO_POTENCIAL_USD DESC
+LIMIT 20;
+
+-- Q3: Comparativa de eficiencia energética por tamaño de empresa
+SELECT
+    cl.TAMANO_EMPRESA,
+    cl.SECTOR,
+    COUNT(DISTINCT c.CLIENTE_ID) AS TOTAL_CLIENTES,
+    ROUND(AVG(c.EFICIENCIA_ENERGETICA), 2) AS EFICIENCIA_PROMEDIO_PCT,
+    ROUND(MIN(c.EFICIENCIA_ENERGETICA), 2) AS EFICIENCIA_MINIMA_PCT,
+    ROUND(MAX(c.EFICIENCIA_ENERGETICA), 2) AS EFICIENCIA_MAXIMA_PCT,
+    ROUND(SUM(c.COSTO_TOTAL), 2) AS COSTO_TOTAL_USD
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+GROUP BY cl.TAMANO_EMPRESA, cl.SECTOR
+ORDER BY EFICIENCIA_PROMEDIO_PCT DESC;
+
+-- ===========================================
+-- 3.2 ANÁLISIS DE CONSUMO
+-- ===========================================
+
+-- Q4: Tendencia de consumo mensual por tipo de energía (últimos 12 meses)
+SELECT
+    c.ANIO,
+    c.MES,
+    TO_DATE(c.ANIO || '-' || LPAD(c.MES, 2, '0') || '-01') AS FECHA_MES,
+    te.NOMBRE_TIPO,
+    te.CATEGORIA,
+    COUNT(c.CONSUMO_ID) AS TOTAL_REGISTROS,
+    ROUND(SUM(c.VOLUMEN_CONSUMIDO), 2) AS VOLUMEN_TOTAL,
+    ROUND(SUM(c.COSTO_TOTAL), 2) AS COSTO_TOTAL_USD,
+    te.UNIDAD_MEDIDA
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON c.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+WHERE c.FECHA_CONSUMO >= DATEADD(MONTH, -12, CURRENT_DATE())
+GROUP BY c.ANIO, c.MES, te.NOMBRE_TIPO, te.CATEGORIA, te.UNIDAD_MEDIDA
+ORDER BY FECHA_MES DESC, VOLUMEN_TOTAL DESC;
+
+-- Q5: Consumo en horas pico vs no pico por sector
+SELECT
+    cl.SECTOR,
+    CASE WHEN c.HORA_PICO THEN 'Hora Pico' ELSE 'Hora Normal' END AS TIPO_HORA,
+    COUNT(c.CONSUMO_ID) AS TOTAL_REGISTROS,
+    ROUND(SUM(c.VOLUMEN_CONSUMIDO), 2) AS VOLUMEN_TOTAL,
+    ROUND(SUM(c.COSTO_TOTAL), 2) AS COSTO_TOTAL_USD,
+    ROUND(AVG(c.COSTO_TOTAL), 2) AS COSTO_PROMEDIO_USD
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+GROUP BY cl.SECTOR, TIPO_HORA
+ORDER BY cl.SECTOR, TIPO_HORA;
+
+-- Q6: Top 10 clientes con mayor consumo y costo
+SELECT
+    cl.CLIENTE_ID,
+    cl.NOMBRE_CLIENTE,
+    cl.SECTOR,
+    cl.PAIS,
+    cl.TAMANO_EMPRESA,
+    COUNT(c.CONSUMO_ID) AS TOTAL_REGISTROS,
+    ROUND(SUM(c.VOLUMEN_CONSUMIDO), 2) AS VOLUMEN_TOTAL_CONSUMIDO,
+    ROUND(SUM(c.COSTO_TOTAL), 2) AS COSTO_TOTAL_USD,
+    ROUND(AVG(c.EFICIENCIA_ENERGETICA), 2) AS EFICIENCIA_PROMEDIO_PCT
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+WHERE cl.ESTADO = 'Activo'
+GROUP BY cl.CLIENTE_ID, cl.NOMBRE_CLIENTE, cl.SECTOR, cl.PAIS, cl.TAMANO_EMPRESA
+ORDER BY COSTO_TOTAL_USD DESC
+LIMIT 10;
+
+-- ===========================================
+-- 3.3 PREDICCIÓN DE DEMANDA
+-- ===========================================
+
+-- Q7: Precisión del modelo de predicción por tipo de energía
+SELECT
+    te.NOMBRE_TIPO,
+    te.CATEGORIA,
+    COUNT(pd.PREDICCION_ID) AS TOTAL_PREDICCIONES,
+    ROUND(AVG(pd.CONFIANZA_MODELO), 2) AS CONFIANZA_PROMEDIO_PCT,
+    ROUND(AVG(ABS(pd.ERROR_PORCENTUAL)), 2) AS ERROR_ABSOLUTO_PROMEDIO_PCT,
+    ROUND(SUM(pd.VOLUMEN_PREDICHO), 2) AS VOLUMEN_TOTAL_PREDICHO,
+    ROUND(SUM(pd.VOLUMEN_REAL), 2) AS VOLUMEN_TOTAL_REAL,
+    te.UNIDAD_MEDIDA
+FROM GLOBENERGY_DB.ENERGIA.PREDICCIONES_DEMANDA pd
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON pd.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+GROUP BY te.NOMBRE_TIPO, te.CATEGORIA, te.UNIDAD_MEDIDA
+ORDER BY CONFIANZA_PROMEDIO_PCT DESC;
+
+-- Q8: Predicciones con mayor desviación (alertas de planificación)
+SELECT
+    pd.PREDICCION_ID,
+    cl.NOMBRE_CLIENTE,
+    cl.SECTOR,
+    te.NOMBRE_TIPO,
+    pd.FECHA_PREDICCION,
+    ROUND(pd.VOLUMEN_PREDICHO, 2) AS VOLUMEN_PREDICHO,
+    ROUND(pd.VOLUMEN_REAL, 2) AS VOLUMEN_REAL,
+    ROUND(pd.ERROR_PORCENTUAL, 2) AS ERROR_PORCENTUAL,
+    ROUND(pd.CONFIANZA_MODELO, 2) AS CONFIANZA_MODELO_PCT,
+    pd.FACTORES_CLAVE
+FROM GLOBENERGY_DB.ENERGIA.PREDICCIONES_DEMANDA pd
+JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON pd.CLIENTE_ID = cl.CLIENTE_ID
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON pd.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+WHERE ABS(pd.ERROR_PORCENTUAL) > 10
+ORDER BY ABS(pd.ERROR_PORCENTUAL) DESC
+LIMIT 20;
+
+-- ===========================================
+-- 3.4 SOSTENIBILIDAD Y HUELLA DE CARBONO
+-- ===========================================
+
+-- Q9: Emisiones de CO2 por sector y nivel de sostenibilidad
+SELECT
+    cl.SECTOR,
+    cl.NIVEL_SOSTENIBILIDAD,
+    COUNT(DISTINCT cl.CLIENTE_ID) AS TOTAL_CLIENTES,
+    ROUND(SUM(c.EMISION_CO2_KG), 2) AS EMISION_TOTAL_CO2_KG,
+    ROUND(SUM(c.EMISION_CO2_KG) / 1000, 2) AS EMISION_TOTAL_CO2_TONELADAS,
+    ROUND(AVG(c.EMISION_CO2_KG), 2) AS EMISION_PROMEDIO_CO2_KG
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+GROUP BY cl.SECTOR, cl.NIVEL_SOSTENIBILIDAD
+ORDER BY EMISION_TOTAL_CO2_TONELADAS DESC;
+
+-- Q10: Comparativa de emisiones: Energías Fósiles vs Renovables
+SELECT
+    te.CATEGORIA,
+    COUNT(DISTINCT c.CLIENTE_ID) AS TOTAL_CLIENTES,
+    COUNT(c.CONSUMO_ID) AS TOTAL_REGISTROS,
+    ROUND(SUM(c.VOLUMEN_CONSUMIDO), 2) AS VOLUMEN_TOTAL,
+    ROUND(SUM(c.EMISION_CO2_KG), 2) AS EMISION_TOTAL_CO2_KG,
+    ROUND(SUM(c.EMISION_CO2_KG) / 1000, 2) AS EMISION_TOTAL_CO2_TONELADAS,
+    ROUND(SUM(c.COSTO_TOTAL), 2) AS COSTO_TOTAL_USD
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON c.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+GROUP BY te.CATEGORIA
+ORDER BY EMISION_TOTAL_CO2_TONELADAS DESC;
+
+-- Q11: Clientes líderes en sostenibilidad (menor huella de carbono relativa)
+WITH EMISION_POR_CLIENTE AS (
+    SELECT
+        c.CLIENTE_ID,
+        cl.NOMBRE_CLIENTE,
+        cl.SECTOR,
+        cl.NIVEL_SOSTENIBILIDAD,
+        SUM(c.VOLUMEN_CONSUMIDO) AS VOLUMEN_TOTAL,
+        SUM(c.EMISION_CO2_KG) AS EMISION_TOTAL_CO2_KG,
+        SUM(c.COSTO_TOTAL) AS COSTO_TOTAL_USD
+    FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+    JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+    WHERE cl.ESTADO = 'Activo'
+    GROUP BY c.CLIENTE_ID, cl.NOMBRE_CLIENTE, cl.SECTOR, cl.NIVEL_SOSTENIBILIDAD
+)
+SELECT
+    CLIENTE_ID,
+    NOMBRE_CLIENTE,
+    SECTOR,
+    NIVEL_SOSTENIBILIDAD,
+    ROUND(VOLUMEN_TOTAL, 2) AS VOLUMEN_TOTAL,
+    ROUND(EMISION_TOTAL_CO2_KG, 2) AS EMISION_TOTAL_CO2_KG,
+    ROUND(EMISION_TOTAL_CO2_KG / 1000, 2) AS EMISION_TOTAL_CO2_TONELADAS,
+    ROUND(EMISION_TOTAL_CO2_KG / VOLUMEN_TOTAL, 4) AS EMISION_POR_UNIDAD_KG,
+    ROUND(COSTO_TOTAL_USD, 2) AS COSTO_TOTAL_USD
+FROM EMISION_POR_CLIENTE
+WHERE VOLUMEN_TOTAL > 0
+ORDER BY EMISION_POR_UNIDAD_KG ASC
+LIMIT 20;
+
+-- ===========================================
+-- 3.5 CONTINUIDAD DE NEGOCIOS Y EVENTOS CLIMÁTICOS
+-- ===========================================
+
+-- Q12: Impacto de eventos climáticos por región y severidad
+SELECT
+    ec.REGION,
+    ec.TIPO_EVENTO,
+    ec.SEVERIDAD,
+    COUNT(ec.EVENTO_ID) AS TOTAL_EVENTOS,
+    SUM(ec.CLIENTES_AFECTADOS) AS TOTAL_CLIENTES_AFECTADOS,
+    ROUND(SUM(ec.PERDIDA_SUMINISTRO_HORAS), 2) AS TOTAL_HORAS_PERDIDAS,
+    ROUND(AVG(ec.PERDIDA_SUMINISTRO_HORAS), 2) AS PROMEDIO_HORAS_PERDIDAS,
+    ROUND(SUM(ec.COSTO_MITIGACION), 2) AS COSTO_TOTAL_MITIGACION_USD,
+    ROUND(AVG(ec.DURACION_DIAS), 2) AS DURACION_PROMEDIO_DIAS
+FROM GLOBENERGY_DB.ENERGIA.EVENTOS_CLIMATICOS ec
+GROUP BY ec.REGION, ec.TIPO_EVENTO, ec.SEVERIDAD
+ORDER BY TOTAL_CLIENTES_AFECTADOS DESC;
+
+-- Q13: Correlación entre temperatura y consumo energético
+SELECT
+    CASE 
+        WHEN c.TEMPERATURA_PROMEDIO_C < 0 THEN 'Bajo Cero (< 0°C)'
+        WHEN c.TEMPERATURA_PROMEDIO_C BETWEEN 0 AND 10 THEN 'Frío (0-10°C)'
+        WHEN c.TEMPERATURA_PROMEDIO_C BETWEEN 10 AND 20 THEN 'Templado (10-20°C)'
+        WHEN c.TEMPERATURA_PROMEDIO_C BETWEEN 20 AND 30 THEN 'Cálido (20-30°C)'
+        ELSE 'Calor Extremo (>30°C)'
+    END AS RANGO_TEMPERATURA,
+    te.NOMBRE_TIPO,
+    COUNT(c.CONSUMO_ID) AS TOTAL_REGISTROS,
+    ROUND(AVG(c.VOLUMEN_CONSUMIDO), 2) AS CONSUMO_PROMEDIO,
+    ROUND(AVG(c.COSTO_TOTAL), 2) AS COSTO_PROMEDIO_USD,
+    te.UNIDAD_MEDIDA
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON c.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+GROUP BY RANGO_TEMPERATURA, te.NOMBRE_TIPO, te.UNIDAD_MEDIDA
+ORDER BY RANGO_TEMPERATURA, CONSUMO_PROMEDIO DESC;
+
+-- Q14: Plan de continuidad - Clientes en zonas de alto riesgo climático
+WITH ZONAS_ALTO_RIESGO AS (
+    SELECT DISTINCT
+        ec.PAIS,
+        ec.REGION,
+        COUNT(ec.EVENTO_ID) AS EVENTOS_HISTORICOS,
+        SUM(ec.CLIENTES_AFECTADOS) AS TOTAL_AFECTADOS
+    FROM GLOBENERGY_DB.ENERGIA.EVENTOS_CLIMATICOS ec
+    WHERE ec.SEVERIDAD IN ('Alta', 'Crítica')
+    GROUP BY ec.PAIS, ec.REGION
+    HAVING COUNT(ec.EVENTO_ID) > 1
+)
+SELECT
+    cl.CLIENTE_ID,
+    cl.NOMBRE_CLIENTE,
+    cl.SECTOR,
+    cl.PAIS,
+    cl.REGION,
+    zr.EVENTOS_HISTORICOS AS EVENTOS_ALTO_RIESGO,
+    zr.TOTAL_AFECTADOS AS CLIENTES_AFECTADOS_HISTORICO,
+    COUNT(DISTINCT co.CONTRATO_ID) AS CONTRATOS_ACTIVOS,
+    ROUND(SUM(c.COSTO_TOTAL), 2) AS COSTO_ANUAL_ESTIMADO_USD,
+    'Requiere Plan de Continuidad' AS RECOMENDACION
+FROM GLOBENERGY_DB.ENERGIA.CLIENTES cl
+JOIN ZONAS_ALTO_RIESGO zr ON cl.PAIS = zr.PAIS AND cl.REGION = zr.REGION
+LEFT JOIN GLOBENERGY_DB.ENERGIA.CONTRATOS co ON cl.CLIENTE_ID = co.CLIENTE_ID
+LEFT JOIN GLOBENERGY_DB.ENERGIA.CONSUMO c ON cl.CLIENTE_ID = c.CLIENTE_ID
+WHERE cl.ESTADO = 'Activo'
+GROUP BY cl.CLIENTE_ID, cl.NOMBRE_CLIENTE, cl.SECTOR, cl.PAIS, cl.REGION, 
+         zr.EVENTOS_HISTORICOS, zr.TOTAL_AFECTADOS
+ORDER BY EVENTOS_ALTO_RIESGO DESC, COSTO_ANUAL_ESTIMADO_USD DESC;
+
+-- ===========================================
+-- 3.6 ANÁLISIS DE CONTRATOS Y RENOVACIONES
+-- ===========================================
+
+-- Q15: Contratos próximos a vencer (oportunidades de renovación)
+SELECT
+    co.CONTRATO_ID,
+    cl.NOMBRE_CLIENTE,
+    cl.SECTOR,
+    te.NOMBRE_TIPO,
+    co.TIPO_CONTRATO,
+    co.FECHA_INICIO,
+    co.FECHA_FIN,
+    DATEDIFF(DAY, CURRENT_DATE(), co.FECHA_FIN) AS DIAS_HASTA_VENCIMIENTO,
+    co.ESTADO_CONTRATO,
+    ROUND(co.PRECIO_UNITARIO, 4) AS PRECIO_ACTUAL_UNITARIO,
+    co.DESCUENTO_APLICADO AS DESCUENTO_ACTUAL_PCT,
+    CASE 
+        WHEN co.ENERGIA_RENOVABLE THEN 'Sí'
+        ELSE 'No'
+    END AS ES_RENOVABLE
+FROM GLOBENERGY_DB.ENERGIA.CONTRATOS co
+JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON co.CLIENTE_ID = cl.CLIENTE_ID
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON co.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+WHERE co.ESTADO_CONTRATO = 'Activo'
+  AND DATEDIFF(DAY, CURRENT_DATE(), co.FECHA_FIN) BETWEEN 0 AND 90
+ORDER BY DIAS_HASTA_VENCIMIENTO ASC;
+
+-- ============================================================================
+-- Sección 4: Queries de Diagnóstico y Validación
+-- ============================================================================
+
+-- V1: Validar conteo de registros en todas las tablas
+SELECT 'CLIENTES' AS TABLA, COUNT(*) AS TOTAL_REGISTROS FROM GLOBENERGY_DB.ENERGIA.CLIENTES
+UNION ALL
+SELECT 'TIPOS_ENERGIA', COUNT(*) FROM GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA
+UNION ALL
+SELECT 'CONTRATOS', COUNT(*) FROM GLOBENERGY_DB.ENERGIA.CONTRATOS
+UNION ALL
+SELECT 'CONSUMO', COUNT(*) FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT 'EVENTOS_CLIMATICOS', COUNT(*) FROM GLOBENERGY_DB.ENERGIA.EVENTOS_CLIMATICOS
+UNION ALL
+SELECT 'PREDICCIONES_DEMANDA', COUNT(*) FROM GLOBENERGY_DB.ENERGIA.PREDICCIONES_DEMANDA
+ORDER BY TABLA;
+
+-- V2: Validar rangos de datos en CONSUMO (coherencia)
+SELECT
+    'Volumen Consumido' AS METRICA,
+    ROUND(MIN(VOLUMEN_CONSUMIDO), 2) AS MINIMO,
+    ROUND(AVG(VOLUMEN_CONSUMIDO), 2) AS PROMEDIO,
+    ROUND(MAX(VOLUMEN_CONSUMIDO), 2) AS MAXIMO
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT
+    'Costo Total (USD)',
+    ROUND(MIN(COSTO_TOTAL), 2),
+    ROUND(AVG(COSTO_TOTAL), 2),
+    ROUND(MAX(COSTO_TOTAL), 2)
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT
+    'Emisión CO2 (kg)',
+    ROUND(MIN(EMISION_CO2_KG), 2),
+    ROUND(AVG(EMISION_CO2_KG), 2),
+    ROUND(MAX(EMISION_CO2_KG), 2)
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT
+    'Temperatura (°C)',
+    ROUND(MIN(TEMPERATURA_PROMEDIO_C), 2),
+    ROUND(AVG(TEMPERATURA_PROMEDIO_C), 2),
+    ROUND(MAX(TEMPERATURA_PROMEDIO_C), 2)
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT
+    'Eficiencia (%)',
+    ROUND(MIN(EFICIENCIA_ENERGETICA), 2),
+    ROUND(AVG(EFICIENCIA_ENERGETICA), 2),
+    ROUND(MAX(EFICIENCIA_ENERGETICA), 2)
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO;
+
+-- V3: Distribución de clientes por sector
+SELECT
+    SECTOR,
+    COUNT(*) AS TOTAL_CLIENTES,
+    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS PORCENTAJE
+FROM GLOBENERGY_DB.ENERGIA.CLIENTES
+GROUP BY SECTOR
+ORDER BY TOTAL_CLIENTES DESC;
+
+-- V4: Distribución de contratos por tipo de energía
+SELECT
+    te.NOMBRE_TIPO,
+    te.CATEGORIA,
+    COUNT(co.CONTRATO_ID) AS TOTAL_CONTRATOS,
+    ROUND(COUNT(co.CONTRATO_ID) * 100.0 / SUM(COUNT(co.CONTRATO_ID)) OVER (), 2) AS PORCENTAJE
+FROM GLOBENERGY_DB.ENERGIA.CONTRATOS co
+JOIN GLOBENERGY_DB.ENERGIA.TIPOS_ENERGIA te ON co.TIPO_ENERGIA_ID = te.TIPO_ENERGIA_ID
+GROUP BY te.NOMBRE_TIPO, te.CATEGORIA
+ORDER BY TOTAL_CONTRATOS DESC;
+
+-- V5: Verificar integridad referencial (Foreign Keys)
+SELECT
+    'Consumo -> Contratos' AS RELACION,
+    COUNT(*) AS REGISTROS_HUERFANOS
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+LEFT JOIN GLOBENERGY_DB.ENERGIA.CONTRATOS co ON c.CONTRATO_ID = co.CONTRATO_ID
+WHERE co.CONTRATO_ID IS NULL
+UNION ALL
+SELECT
+    'Consumo -> Clientes',
+    COUNT(*)
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO c
+LEFT JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON c.CLIENTE_ID = cl.CLIENTE_ID
+WHERE cl.CLIENTE_ID IS NULL
+UNION ALL
+SELECT
+    'Contratos -> Clientes',
+    COUNT(*)
+FROM GLOBENERGY_DB.ENERGIA.CONTRATOS co
+LEFT JOIN GLOBENERGY_DB.ENERGIA.CLIENTES cl ON co.CLIENTE_ID = cl.CLIENTE_ID
+WHERE cl.CLIENTE_ID IS NULL;
+
+-- V6: Resumen ejecutivo de la demo
+SELECT
+    'Total de Clientes Activos' AS KPI,
+    COUNT(*)::VARCHAR AS VALOR
+FROM GLOBENERGY_DB.ENERGIA.CLIENTES
+WHERE ESTADO = 'Activo'
+UNION ALL
+SELECT
+    'Total de Contratos Activos',
+    COUNT(*)::VARCHAR
+FROM GLOBENERGY_DB.ENERGIA.CONTRATOS
+WHERE ESTADO_CONTRATO = 'Activo'
+UNION ALL
+SELECT
+    'Total Registros de Consumo',
+    COUNT(*)::VARCHAR
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT
+    'Costo Total Facturado (USD)',
+    TO_VARCHAR(ROUND(SUM(COSTO_TOTAL), 2))
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT
+    'Emisiones Totales CO2 (Toneladas)',
+    TO_VARCHAR(ROUND(SUM(EMISION_CO2_KG) / 1000, 2))
+FROM GLOBENERGY_DB.ENERGIA.CONSUMO
+UNION ALL
+SELECT
+    'Eventos Climáticos Registrados',
+    COUNT(*)::VARCHAR
+FROM GLOBENERGY_DB.ENERGIA.EVENTOS_CLIMATICOS
+UNION ALL
+SELECT
+    'Precisión Promedio Predicciones (%)',
+    TO_VARCHAR(ROUND(100 - AVG(ABS(ERROR_PORCENTUAL)), 2))
+FROM GLOBENERGY_DB.ENERGIA.PREDICCIONES_DEMANDA;
+
+/*
+================================================================================
+🎉 FIN DEL SCRIPT - GLOBENERGY DEMO
+================================================================================
+
+✅ RECURSOS CREADOS:
+   - Warehouse: GLOBENERGY_WH
+   - Database: GLOBENERGY_DB
+   - Schema: GLOBENERGY_DB.ENERGIA
+   - Role: GLOBENERGY_ANALISTA
+   - 6 Tablas con ~2,650 registros totales
+
+📊 DATOS GENERADOS:
+   - 100 Clientes
+   - 8 Tipos de Energía
+   - 200 Contratos
+   - 2,000 Registros de Consumo ⭐
+   - 50 Eventos Climáticos
+   - 300 Predicciones de Demanda
+
+💡 CASOS DE USO DEMOSTRADOS:
+   1. Optimización de Costos (Q1-Q3)
+   2. Análisis de Consumo (Q4-Q6)
+   3. Predicción de Demanda (Q7-Q8)
+   4. Sostenibilidad (Q9-Q11)
+   5. Continuidad de Negocios (Q12-Q14)
+   6. Gestión de Contratos (Q15)
+
+🔍 PRÓXIMOS PASOS:
+   1. Ejecutar las consultas de la Sección 3 para explorar insights
+   2. Revisar el modelo semántico YAML (archivo adjunto)
+   3. Crear dashboards en Snowsight o herramientas BI
+   4. Integrar con Snowflake Cortex para ML avanzado
+
+================================================================================
+*/
+

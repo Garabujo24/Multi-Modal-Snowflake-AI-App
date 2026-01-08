@@ -1,0 +1,28 @@
+{
+  "id_llamada": 25,
+  "cliente": {
+    "nombre": "EXPORTADORA AGRÍCOLA DE SONORA SA DE CV",
+    "rfc": "EAS160105PL9",
+    "tipo": "Persona Moral",
+    "estado": "Sonora"
+  },
+  "llamada": {
+    "tipo": "consulta_saldo",
+    "titulo": "Consulta de Saldo",
+    "categoria": "Información",
+    "fecha": "2025-10-06T15:56:02.206479",
+    "duracion_estimada": "2-3 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_025_EAS160105PL9_consulta_saldo_20251006.mp3",
+    "transcripcion": "LLAMADA_025_EAS160105PL9_consulta_saldo_20251006.txt",
+    "metadata": "LLAMADA_025_EAS160105PL9_consulta_saldo_20251006.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Sofía Castillo",
+    "num_cuenta": "****2132",
+    "ultimos_rfc": "5PL9"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

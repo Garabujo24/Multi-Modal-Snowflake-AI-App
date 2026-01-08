@@ -1,0 +1,4609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIMPE Demo | Arquitectura Snowflake + PostgreSQL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fimpe-primary: #0A2540;
+            --fimpe-secondary: #00D4AA;
+            --fimpe-accent: #635BFF;
+            --fimpe-gold: #FFB830;
+            --fimpe-surface: #0F172A;
+            --fimpe-surface-light: #1E293B;
+            --fimpe-text: #E2E8F0;
+            --fimpe-text-muted: #94A3B8;
+            --gradient-primary: linear-gradient(135deg, #00D4AA 0%, #635BFF 100%);
+            --gradient-dark: linear-gradient(180deg, #0A2540 0%, #0F172A 100%);
+            --gradient-glow: radial-gradient(circle at 50% 0%, rgba(0, 212, 170, 0.15) 0%, transparent 50%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--fimpe-surface);
+            color: var(--fimpe-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                var(--gradient-glow),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(0, 212, 170, 0.02) 50px,
+                    rgba(0, 212, 170, 0.02) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(99, 91, 255, 0.02) 50px,
+                    rgba(99, 91, 255, 0.02) 51px
+                );
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--fimpe-text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--fimpe-secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--fimpe-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--fimpe-secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--fimpe-text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--fimpe-text);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--fimpe-secondary);
+            color: var(--fimpe-secondary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--fimpe-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--fimpe-text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Architecture Section */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .arch-card {
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .arch-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .arch-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .arch-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .arch-icon.postgres {
+            background: linear-gradient(135deg, #336791 0%, #4B9CD3 100%);
+        }
+
+        .arch-icon.snowflake {
+            background: linear-gradient(135deg, #29B5E8 0%, #00D4AA 100%);
+        }
+
+        .arch-card ul {
+            list-style: none;
+            color: var(--fimpe-text-muted);
+        }
+
+        .arch-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .arch-card li::before {
+            content: '→';
+            color: var(--fimpe-secondary);
+        }
+
+        /* Architecture Diagram */
+        .arch-diagram {
+            background: linear-gradient(180deg, rgba(99, 91, 255, 0.1) 0%, rgba(0, 212, 170, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arch-diagram::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .diagram-title {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--fimpe-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .diagram-layer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .diagram-node {
+            background: var(--fimpe-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .diagram-node:hover {
+            border-color: var(--fimpe-secondary);
+            box-shadow: 0 0 20px rgba(0, 212, 170, 0.2);
+        }
+
+        .diagram-node.primary {
+            background: var(--gradient-primary);
+            border: none;
+        }
+
+        .diagram-connector {
+            text-align: center;
+            color: var(--fimpe-text-muted);
+            font-size: 1.5rem;
+        }
+
+        /* Snowflake Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-icon.scale { background: linear-gradient(135deg, #29B5E8 0%, #00D4AA 100%); }
+        .feature-icon.cost { background: linear-gradient(135deg, #FFB830 0%, #FF6B35 100%); }
+        .feature-icon.clone { background: linear-gradient(135deg, #635BFF 0%, #A855F7 100%); }
+        .feature-icon.time { background: linear-gradient(135deg, #00D4AA 0%, #10B981 100%); }
+        .feature-icon.container { background: linear-gradient(135deg, #FF6B35 0%, #DC2626 100%); }
+        .feature-icon.gpu { background: linear-gradient(135deg, #76B900 0%, #00D4AA 100%); }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--fimpe-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Analogy Box */
+        .analogy-box {
+            background: rgba(99, 91, 255, 0.1);
+            border: 1px solid rgba(99, 91, 255, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .analogy-box .analogy-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--fimpe-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .analogy-box p {
+            font-size: 0.85rem;
+            color: var(--fimpe-text);
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* Code example in feature */
+        .feature-code {
+            background: var(--fimpe-surface);
+            border-radius: 10px;
+            padding: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+
+        /* Demo Section */
+        .demo-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .demo-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--fimpe-text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .demo-tab:hover, .demo-tab.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .demo-container.full-width {
+            grid-template-columns: 1fr;
+        }
+
+        @media (max-width: 900px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .demo-card {
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .demo-card.highlight {
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 0 30px rgba(0, 212, 170, 0.1);
+        }
+
+        .demo-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .demo-header-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .demo-header-icon.transport { background: linear-gradient(135deg, var(--fimpe-gold) 0%, #FF6B35 100%); }
+        .demo-header-icon.biometry { background: linear-gradient(135deg, var(--fimpe-accent) 0%, #A855F7 100%); }
+        .demo-header-icon.document { background: linear-gradient(135deg, #00D4AA 0%, #10B981 100%); }
+        .demo-header-icon.sentiment { background: linear-gradient(135deg, #FF6B35 0%, #DC2626 100%); }
+        .demo-header-icon.classify { background: linear-gradient(135deg, #29B5E8 0%, #635BFF 100%); }
+        .demo-header-icon.cortex { background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%); }
+
+        .demo-header-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .demo-header-text span {
+            font-size: 0.85rem;
+            color: var(--fimpe-text-muted);
+        }
+
+        .demo-badge {
+            margin-left: auto;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--fimpe-secondary);
+        }
+
+        .demo-body {
+            padding: 1.5rem;
+        }
+
+        .demo-code {
+            background: var(--fimpe-surface);
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .demo-code .keyword { color: var(--fimpe-accent); }
+        .demo-code .function { color: var(--fimpe-secondary); }
+        .demo-code .string { color: var(--fimpe-gold); }
+        .demo-code .comment { color: var(--fimpe-text-muted); }
+        .demo-code .cortex { color: #EC4899; }
+
+        .demo-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .demo-metrics.two-col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .metric {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 212, 170, 0.05);
+            border-radius: 12px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--fimpe-secondary);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+        }
+
+        /* Result Examples */
+        .result-example {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-example-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--fimpe-secondary);
+            font-weight: 600;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            background: var(--fimpe-surface);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .result-table th {
+            background: rgba(0, 212, 170, 0.1);
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--fimpe-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--fimpe-text-muted);
+        }
+
+        .result-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .result-table .highlight {
+            color: var(--fimpe-text);
+        }
+
+        .result-json {
+            background: var(--fimpe-surface);
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--fimpe-text);
+            overflow-x: auto;
+        }
+
+        .result-json .key { color: var(--fimpe-secondary); }
+        .result-json .value { color: var(--fimpe-gold); }
+        .result-json .string { color: #EC4899; }
+
+        .sentiment-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .sentiment-badge.positive {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10B981;
+        }
+
+        .sentiment-badge.negative {
+            background: rgba(239, 68, 68, 0.2);
+            color: #EF4444;
+        }
+
+        .sentiment-badge.neutral {
+            background: rgba(148, 163, 184, 0.2);
+            color: #94A3B8;
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(99, 91, 255, 0.2);
+            color: var(--fimpe-accent);
+        }
+
+        .confidence-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.25rem;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+
+        /* INE Card Visual - Realistic */
+        .ine-card {
+            width: 340px;
+            height: 215px;
+            background: linear-gradient(180deg, #f5f5dc 0%, #e8e4d4 50%, #f0ead6 100%);
+            border-radius: 10px;
+            padding: 0;
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+            border: 1px solid #c0b896;
+        }
+
+        /* Mexican flag stripe */
+        .ine-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                #006341 0%, #006341 33%, 
+                #fff 33%, #fff 66%, 
+                #ce1126 66%, #ce1126 100%);
+        }
+
+        /* Holographic effect */
+        .ine-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, 
+                    transparent 0%, 
+                    rgba(255,255,255,0.1) 25%, 
+                    transparent 50%,
+                    rgba(255,255,255,0.05) 75%,
+                    transparent 100%);
+            pointer-events: none;
+        }
+
+        .ine-header {
+            background: linear-gradient(180deg, #1a472a 0%, #2d5a3d 100%);
+            padding: 10px 12px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .ine-escudo {
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, #c9a227 0%, #8b6914 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 2px solid #d4af37;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .ine-header-text {
+            flex: 1;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .ine-header-text .institucion {
+            font-size: 0.5rem;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .ine-header-text .titulo {
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .ine-header-text .subtitulo {
+            font-size: 0.45rem;
+            opacity: 0.8;
+        }
+
+        .ine-body {
+            display: grid;
+            grid-template-columns: 75px 1fr;
+            gap: 10px;
+            padding: 10px 12px;
+        }
+
+        .ine-photo {
+            width: 75px;
+            height: 95px;
+            background: linear-gradient(180deg, #d4d4d4 0%, #a8a8a8 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #666;
+            border: 2px solid #888;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .ine-photo::after {
+            content: 'FOTO';
+            position: absolute;
+            bottom: 5px;
+            font-size: 0.5rem;
+            color: #888;
+            font-weight: bold;
+        }
+
+        .ine-data {
+            font-size: 0.6rem;
+            color: #1a1a1a;
+        }
+
+        .ine-data .field {
+            margin-bottom: 3px;
+        }
+
+        .ine-data .label {
+            font-size: 0.45rem;
+            color: #006341;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ine-data .value {
+            font-size: 0.6rem;
+            color: #000;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .ine-data .value.nombre {
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .ine-data .value.small {
+            font-size: 0.5rem;
+        }
+
+        .ine-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.03) 100%);
+            padding: 6px 12px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .ine-footer-left {
+            font-size: 0.45rem;
+            color: #333;
+        }
+
+        .ine-footer-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .ine-curp {
+            font-size: 0.55rem;
+            font-weight: bold;
+            color: #000;
+            letter-spacing: 0.5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .ine-clave {
+            font-size: 0.5rem;
+            color: #333;
+            font-family: 'Courier New', monospace;
+        }
+
+        .ine-barcode {
+            width: 80px;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                #000 0px, #000 1px,
+                transparent 1px, transparent 2px,
+                #000 2px, #000 4px,
+                transparent 4px, transparent 5px,
+                #000 5px, #000 6px,
+                transparent 6px, transparent 8px
+            );
+            border-radius: 2px;
+        }
+
+        .ine-vigencia {
+            position: absolute;
+            top: 55px;
+            right: 10px;
+            background: rgba(206, 17, 38, 0.9);
+            color: #fff;
+            font-size: 0.5rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .ine-hologram {
+            position: absolute;
+            bottom: 35px;
+            left: 12px;
+            width: 25px;
+            height: 25px;
+            background: conic-gradient(
+                from 0deg,
+                #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #ff6b6b
+            );
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: hologramShine 3s linear infinite;
+        }
+
+        @keyframes hologramShine {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .extraction-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .extraction-arrow {
+            font-size: 2rem;
+            color: var(--fimpe-secondary);
+            animation: pulseArrow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseArrow {
+            0%, 100% { opacity: 0.5; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(5px); }
+        }
+
+        @media (max-width: 900px) {
+            .extraction-flow {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .extraction-arrow {
+                transform: rotate(90deg);
+            }
+            .ine-card {
+                margin: 0 auto;
+            }
+            color: var(--fimpe-text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Pricing Box */
+        .pricing-visual {
+            background: linear-gradient(135deg, rgba(255, 184, 48, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            border: 1px solid rgba(255, 184, 48, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pricing-visual h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-diagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-diagram {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pricing-item {
+            background: var(--fimpe-surface);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .pricing-item-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-item h5 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-item p {
+            font-size: 0.8rem;
+            color: var(--fimpe-text-muted);
+        }
+
+        .pricing-item .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--fimpe-gold);
+            margin-top: 0.5rem;
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: var(--fimpe-text-muted);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Container/GPU Section */
+        .container-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .container-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .container-card {
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .container-card.spcs::before {
+            background: linear-gradient(90deg, #FF6B35 0%, #DC2626 100%);
+        }
+
+        .container-card.gpu::before {
+            background: linear-gradient(90deg, #76B900 0%, #00D4AA 100%);
+        }
+
+        .container-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .container-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+
+        .container-icon.spcs { background: linear-gradient(135deg, #FF6B35 0%, #DC2626 100%); }
+        .container-icon.gpu { background: linear-gradient(135deg, #76B900 0%, #00D4AA 100%); }
+
+        .container-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .container-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--fimpe-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .container-features li::before {
+            content: '✓';
+            color: var(--fimpe-secondary);
+            font-weight: bold;
+        }
+
+        .use-cases {
+            background: rgba(0, 212, 170, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .use-cases h5 {
+            font-size: 0.8rem;
+            color: var(--fimpe-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .use-cases ul {
+            list-style: none;
+        }
+
+        .use-cases li {
+            font-size: 0.85rem;
+            color: var(--fimpe-text-muted);
+            padding: 0.25rem 0;
+        }
+
+        /* Marketplace Section */
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .marketplace-card {
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .marketplace-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .marketplace-card:hover::before {
+            opacity: 1;
+        }
+
+        .marketplace-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .marketplace-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .marketplace-icon.data { background: linear-gradient(135deg, #29B5E8 0%, #00D4AA 100%); }
+        .marketplace-icon.ml { background: linear-gradient(135deg, #FF6B35 0%, #FFB830 100%); }
+        .marketplace-icon.security { background: linear-gradient(135deg, #635BFF 0%, #A855F7 100%); }
+        .marketplace-icon.analytics { background: linear-gradient(135deg, #00D4AA 0%, #10B981 100%); }
+
+        .marketplace-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .marketplace-card p {
+            color: var(--fimpe-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .marketplace-features {
+            list-style: none;
+        }
+
+        .marketplace-features li {
+            padding: 0.4rem 0;
+            font-size: 0.85rem;
+            color: var(--fimpe-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .marketplace-features li::before {
+            content: '✓';
+            color: var(--fimpe-secondary);
+            font-weight: bold;
+        }
+
+        /* Roadmap Section */
+        .roadmap-container {
+            position: relative;
+        }
+
+        .roadmap-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--fimpe-secondary) 0%, var(--fimpe-accent) 100%);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-line {
+                left: 20px;
+            }
+        }
+
+        .roadmap-item {
+            display: flex;
+            justify-content: flex-end;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .roadmap-item:nth-child(even) {
+            justify-content: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-item,
+            .roadmap-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 60px;
+            }
+        }
+
+        .roadmap-content {
+            width: 45%;
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-content {
+                width: 100%;
+            }
+        }
+
+        .roadmap-content:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--fimpe-secondary);
+            border-radius: 50%;
+            border: 4px solid var(--fimpe-surface);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-dot {
+                left: 20px;
+            }
+        }
+
+        .roadmap-phase {
+            display: inline-flex;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--fimpe-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .roadmap-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-content p {
+            color: var(--fimpe-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .roadmap-tasks {
+            list-style: none;
+        }
+
+        .roadmap-tasks li {
+            padding: 0.3rem 0;
+            font-size: 0.85rem;
+            color: var(--fimpe-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .roadmap-tasks li::before {
+            content: '○';
+            color: var(--fimpe-accent);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(99, 91, 255, 0.1) 0%, rgba(0, 212, 170, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--fimpe-text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--fimpe-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--fimpe-secondary);
+        }
+
+        .footer-copyright {
+            color: var(--fimpe-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-copyright span {
+            color: var(--fimpe-secondary);
+        }
+
+        /* Scroll Animation - Visible by default, animate only if JS works */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease-out;
+        }
+
+        .js-enabled .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .js-enabled .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cta-section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .demo-tabs {
+                gap: 0.5rem;
+            }
+
+            .demo-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Quickstart Section */
+        .quickstart-step {
+            background: var(--fimpe-surface-light);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .quickstart-step:hover {
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 212, 170, 0.03);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .step-info {
+            flex: 1;
+        }
+
+        .step-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-info span {
+            font-size: 0.9rem;
+            color: var(--fimpe-text-muted);
+        }
+
+        .copy-btn {
+            padding: 0.6rem 1.2rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            border-radius: 8px;
+            color: var(--fimpe-secondary);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--fimpe-secondary);
+            color: var(--fimpe-surface);
+        }
+
+        .copy-btn.copied {
+            background: var(--fimpe-secondary);
+            color: var(--fimpe-surface);
+        }
+
+        .step-code {
+            padding: 0;
+            max-height: 500px;
+            overflow: auto;
+        }
+
+        .step-code pre {
+            margin: 0;
+            padding: 1.5rem;
+            background: var(--fimpe-surface);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .step-code code {
+            color: var(--fimpe-text);
+        }
+
+        /* Syntax highlighting in quickstart */
+        .step-code code {
+            white-space: pre;
+        }
+
+        .quickstart-download {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(99, 91, 255, 0.1) 0%, rgba(0, 212, 170, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .quickstart-download p {
+            color: var(--fimpe-text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Scrollbar styling for code blocks */
+        .step-code::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .step-code::-webkit-scrollbar-track {
+            background: var(--fimpe-surface);
+        }
+
+        .step-code::-webkit-scrollbar-thumb {
+            background: var(--fimpe-surface-light);
+            border-radius: 4px;
+        }
+
+        .step-code::-webkit-scrollbar-thumb:hover {
+            background: var(--fimpe-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .step-header {
+                flex-wrap: wrap;
+            }
+
+            .copy-btn {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .step-code pre {
+                font-size: 0.7rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">FIMPE Demo</div>
+        <ul class="nav-links">
+            <li><a href="#arquitectura">Arquitectura</a></li>
+            <li><a href="#snowflake">Snowflake</a></li>
+            <li><a href="#quickstart">Quickstart</a></li>
+            <li><a href="#demo">Demo SQL</a></li>
+            <li><a href="#containers">Contenedores</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span>Demo Técnica 2024</span>
+        </div>
+        <h1>Integración <span>Snowflake + PostgreSQL</span></h1>
+        <p>Arquitectura de datos moderna para soluciones de transporte público, biometría e inclusión financiera con FIMPE</p>
+        <div class="hero-buttons">
+            <a href="#arquitectura" class="btn btn-primary">
+                Ver Arquitectura
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="https://fimpe.org" target="_blank" class="btn btn-secondary">Visitar FIMPE</a>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="arquitectura">
+        <div class="section-header fade-in">
+            <div class="section-label">Arquitectura Técnica</div>
+            <h2 class="section-title">Snowflake + PostgreSQL</h2>
+            <p class="section-subtitle">Integración híbrida que combina el poder del Data Cloud con la confiabilidad operacional de PostgreSQL</p>
+        </div>
+
+        <div class="architecture-grid fade-in">
+            <!-- PostgreSQL Card -->
+            <div class="arch-card">
+                <h3>
+                    <div class="arch-icon postgres">🐘</div>
+                    PostgreSQL
+                </h3>
+                <ul>
+                    <li>Base de datos operacional</li>
+                    <li>Transacciones ACID en tiempo real</li>
+                    <li>Datos biométricos sensibles</li>
+                    <li>Validaciones KYC</li>
+                    <li>Registros de transporte</li>
+                </ul>
+            </div>
+
+            <!-- Architecture Diagram -->
+            <div class="arch-diagram">
+                <div class="diagram-title">Flujo de Datos FIMPE</div>
+                <div class="diagram-flow">
+                    <div class="diagram-layer">
+                        <div class="diagram-node">📱 App Móvil</div>
+                        <div class="diagram-node">🚌 Terminales</div>
+                        <div class="diagram-node">🏦 Bancos</div>
+                    </div>
+                    <div class="diagram-connector">↓</div>
+                    <div class="diagram-layer">
+                        <div class="diagram-node primary">🔐 API FIMPE</div>
+                    </div>
+                    <div class="diagram-connector">↓</div>
+                    <div class="diagram-layer">
+                        <div class="diagram-node">🐘 PostgreSQL</div>
+                        <div class="diagram-node">📊 Kafka</div>
+                    </div>
+                    <div class="diagram-connector">↓</div>
+                    <div class="diagram-layer">
+                        <div class="diagram-node primary">❄️ Snowflake</div>
+                    </div>
+                    <div class="diagram-connector">↓</div>
+                    <div class="diagram-layer">
+                        <div class="diagram-node">📈 Analytics</div>
+                        <div class="diagram-node">🤖 Cortex AI</div>
+                        <div class="diagram-node">🐳 Containers</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snowflake Card -->
+            <div class="arch-card">
+                <h3>
+                    <div class="arch-icon snowflake">❄️</div>
+                    Snowflake
+                </h3>
+                <ul>
+                    <li>Data Warehouse centralizado</li>
+                    <li>Análisis histórico masivo</li>
+                    <li>Machine Learning con Cortex</li>
+                    <li>Contenedores y GPUs</li>
+                    <li>Escalabilidad automática</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snowflake Features Section -->
+    <section id="snowflake">
+        <div class="section-header fade-in">
+            <div class="section-label">Fundamentos</div>
+            <h2 class="section-title">¿Por qué Snowflake?</h2>
+            <p class="section-subtitle">Características clave que hacen de Snowflake la plataforma ideal para FIMPE</p>
+        </div>
+
+        <!-- Pricing Explanation -->
+        <div class="pricing-visual fade-in">
+            <h4>💰 ¿Cómo cobra Snowflake? — Modelo de Consumo</h4>
+            <div class="pricing-diagram">
+                <div class="pricing-item">
+                    <div class="pricing-item-icon">💾</div>
+                    <h5>Almacenamiento</h5>
+                    <p>Pago por TB almacenado por mes. Comprimido automáticamente.</p>
+                    <div class="price">~$23 USD/TB/mes</div>
+                </div>
+                <div class="pricing-item">
+                    <div class="pricing-item-icon">⚡</div>
+                    <h5>Cómputo (Créditos)</h5>
+                    <p>Solo pagas cuando ejecutas consultas. Warehouse apagado = $0.</p>
+                    <div class="price">~$2-4 USD/crédito</div>
+                </div>
+                <div class="pricing-item">
+                    <div class="pricing-item-icon">☁️</div>
+                    <h5>Servicios Cloud</h5>
+                    <p>Metadatos, optimización, seguridad. Primeros 10% gratis.</p>
+                    <div class="price">~10% del cómputo</div>
+                </div>
+            </div>
+            <div class="analogy-box" style="max-width: 800px; margin: 0 auto;">
+                <div class="analogy-label">💡 Analogía del Restaurante</div>
+                <p>Imagina Snowflake como un restaurante. El <strong>almacenamiento</strong> es la renta del local (pagas fijo mensual). El <strong>cómputo</strong> es la cocina: solo enciendes las estufas cuando hay pedidos. Si nadie ordena, las estufas están apagadas y no gastas gas. Los <strong>servicios cloud</strong> son como el mesero que te atiende: está incluido hasta cierto punto, y solo pagas extra si pides demasiado.</p>
+            </div>
+        </div>
+
+        <div class="features-grid fade-in">
+            <!-- Escalamiento -->
+            <div class="feature-card">
+                <div class="feature-icon scale">📈</div>
+                <h3>Escalamiento Automático</h3>
+                <p>Los warehouses escalan vertical y horizontalmente en segundos. De XS a 6XL sin reiniciar.</p>
+                <div class="analogy-box">
+                    <div class="analogy-label">💡 Analogía</div>
+                    <p>Como un Uber que manda más autos en hora pico y los retira cuando baja la demanda. Solo pagas por los viajes.</p>
+                </div>
+                <div class="feature-code">
+                    <span class="comment">-- Escalar de XS a XL en segundos</span><br>
+                    <span class="keyword">ALTER WAREHOUSE</span> FIMPE_WH<br>
+                    <span class="keyword">SET</span> WAREHOUSE_SIZE = <span class="string">'X-LARGE'</span>;
+                </div>
+            </div>
+
+            <!-- Control de Costos -->
+            <div class="feature-card">
+                <div class="feature-icon cost">💸</div>
+                <h3>Control de Costos (FinOps)</h3>
+                <p>Políticas de auto-suspend, resource monitors y límites de créditos por equipo/proyecto.</p>
+                <div class="analogy-box">
+                    <div class="analogy-label">💡 Analogía</div>
+                    <p>Es como el control parental de Netflix: puedes poner límites de tiempo y alertas cuando se acerca el límite del mes.</p>
+                </div>
+                <div class="feature-code">
+                    <span class="comment">-- Auto-suspender tras 1 min inactivo</span><br>
+                    <span class="keyword">ALTER WAREHOUSE</span> FIMPE_WH<br>
+                    <span class="keyword">SET</span> AUTO_SUSPEND = 60<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;AUTO_RESUME = <span class="keyword">TRUE</span>;
+                </div>
+            </div>
+
+            <!-- Zero Copy Cloning -->
+            <div class="feature-card">
+                <div class="feature-icon clone">📋</div>
+                <h3>Zero Copy Cloning</h3>
+                <p>Clona tablas, schemas o databases completas instantáneamente sin duplicar datos físicos.</p>
+                <div class="analogy-box">
+                    <div class="analogy-label">💡 Analogía</div>
+                    <p>Como un "acceso directo" de Windows: apunta a los mismos archivos sin copiarlos. Solo cuando modificas algo se crea una copia de esa parte.</p>
+                </div>
+                <div class="feature-code">
+                    <span class="comment">-- Clonar producción para testing</span><br>
+                    <span class="keyword">CREATE DATABASE</span> FIMPE_DEV<br>
+                    <span class="keyword">CLONE</span> FIMPE_PROD; <span class="comment">-- ¡Instantáneo!</span>
+                </div>
+            </div>
+
+            <!-- Time Travel -->
+            <div class="feature-card">
+                <div class="feature-icon time">⏰</div>
+                <h3>Time Travel</h3>
+                <p>Accede a datos históricos hasta 90 días atrás. Recupera tablas eliminadas o datos antes de un UPDATE.</p>
+                <div class="analogy-box">
+                    <div class="analogy-label">💡 Analogía</div>
+                    <p>Como el "Ctrl+Z infinito" de tu base de datos. ¿Borraste algo por error? Viaja al pasado y recupéralo.</p>
+                </div>
+                <div class="feature-code">
+                    <span class="comment">-- Ver datos de hace 1 hora</span><br>
+                    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TRANSACCIONES<br>
+                    <span class="keyword">AT</span>(<span class="function">OFFSET</span> => -3600);<br><br>
+                    <span class="comment">-- Recuperar tabla eliminada</span><br>
+                    <span class="keyword">UNDROP TABLE</span> VALIDACIONES;
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quickstart Section -->
+    <section id="quickstart" style="max-width: 1200px;">
+        <div class="section-header fade-in">
+            <div class="section-label">Quickstart</div>
+            <h2 class="section-title">🚀 Ejecuta la Demo en Snowflake</h2>
+            <p class="section-subtitle">Copia y ejecuta este código SQL paso a paso en tu cuenta de Snowflake para probar todos los ejemplos</p>
+        </div>
+
+        <!-- Step 0 -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">0</div>
+                <div class="step-info">
+                    <h3>Configuración Inicial</h3>
+                    <span>Database, Warehouse y Roles</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- FIMPE DEMO: PASO 0 - CONFIGURACIÓN INICIAL
+-- Ejecutar con rol ACCOUNTADMIN o equivalente
+-- ============================================================
+
+-- Usar rol con permisos de administrador
+USE ROLE ACCOUNTADMIN;
+
+-- Crear el Warehouse con configuración FinOps
+CREATE OR REPLACE WAREHOUSE FIMPE_WH
+    WAREHOUSE_SIZE = 'X-SMALL'
+    AUTO_SUSPEND = 60          -- Suspender tras 1 min inactivo
+    AUTO_RESUME = TRUE
+    MIN_CLUSTER_COUNT = 1
+    MAX_CLUSTER_COUNT = 2
+    SCALING_POLICY = 'STANDARD'
+    COMMENT = 'Warehouse para demo FIMPE - Auto-suspend habilitado';
+
+-- Crear la base de datos principal
+CREATE OR REPLACE DATABASE FIMPE_DB
+    COMMENT = 'Base de datos para demo FIMPE - Transporte, Biometría, KYC';
+
+-- Usar el contexto creado
+USE WAREHOUSE FIMPE_WH;
+USE DATABASE FIMPE_DB;
+
+-- Verificar configuración
+SELECT CURRENT_WAREHOUSE(), CURRENT_DATABASE(), CURRENT_ROLE();</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-info">
+                    <h3>Crear Schemas</h3>
+                    <span>Organización por dominio de negocio</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- FIMPE DEMO: PASO 1 - CREAR SCHEMAS
+-- ============================================================
+
+USE DATABASE FIMPE_DB;
+
+-- Schema para datos de transporte público
+CREATE OR REPLACE SCHEMA TRANSPORTE
+    COMMENT = 'Datos de rutas, viajes y recaudo de transporte público';
+
+-- Schema para datos biométricos y validaciones
+CREATE OR REPLACE SCHEMA BIOMETRIA
+    COMMENT = 'Validaciones biométricas: facial, huella, voz';
+
+-- Schema para documentos y KYC
+CREATE OR REPLACE SCHEMA KYC
+    COMMENT = 'Documentos de identidad y procesos Know Your Customer';
+
+-- Schema para feedback y comentarios de usuarios
+CREATE OR REPLACE SCHEMA FEEDBACK
+    COMMENT = 'Comentarios, tickets de soporte y análisis de sentimiento';
+
+-- Schema para operaciones y reportes
+CREATE OR REPLACE SCHEMA OPERACIONES
+    COMMENT = 'Métricas operativas y resúmenes ejecutivos';
+
+-- Listar schemas creados
+SHOW SCHEMAS IN DATABASE FIMPE_DB;</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-info">
+                    <h3>Crear Tablas</h3>
+                    <span>Estructura de datos para la demo</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- FIMPE DEMO: PASO 2 - CREAR TABLAS
+-- ============================================================
+
+-- ==================== TRANSPORTE ====================
+CREATE OR REPLACE TABLE FIMPE_DB.TRANSPORTE.VIAJES (
+    viaje_id            NUMBER AUTOINCREMENT PRIMARY KEY,
+    ruta_id             VARCHAR(20),
+    nombre_ruta         VARCHAR(100),
+    unidad_id           VARCHAR(20),
+    tarjeta_id          VARCHAR(30),
+    fecha               TIMESTAMP_NTZ,
+    monto_recaudado     NUMBER(10,2),
+    ocupacion_porcentaje NUMBER(5,2),
+    origen_estacion     VARCHAR(100),
+    destino_estacion    VARCHAR(100),
+    tiempo_viaje_min    NUMBER(5,2),
+    created_at          TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ==================== BIOMETRÍA ====================
+CREATE OR REPLACE TABLE FIMPE_DB.BIOMETRIA.VALIDACIONES (
+    validacion_id       NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    tipo_biometrico     VARCHAR(20),  -- FACIAL, HUELLA, VOZ
+    score_match         NUMBER(5,4),
+    resultado           VARCHAR(20),  -- MATCH, NO_MATCH, ERROR
+    tiempo_respuesta_ms NUMBER(10,2),
+    dispositivo         VARCHAR(50),
+    ubicacion           VARCHAR(100),
+    fecha               DATE,
+    created_at          TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ==================== KYC ====================
+CREATE OR REPLACE TABLE FIMPE_DB.KYC.DOCUMENTOS (
+    documento_id        NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    tipo_documento      VARCHAR(30),  -- INE, PASAPORTE, CURP, COMPROBANTE
+    estado              VARCHAR(20),  -- NUEVO, PROCESADO, RECHAZADO
+    nombre_extraido     VARCHAR(200),
+    curp_extraido       VARCHAR(18),
+    fecha_nacimiento    DATE,
+    direccion_extraida  VARCHAR(500),
+    score_confianza     NUMBER(5,4),
+    fecha_carga         TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ==================== FEEDBACK ====================
+CREATE OR REPLACE TABLE FIMPE_DB.FEEDBACK.COMENTARIOS (
+    comentario_id       NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    canal               VARCHAR(20),  -- APP, CALL_CENTER, REDES, WEB
+    comentario_texto    VARCHAR(2000),
+    calificacion        NUMBER(1),    -- 1 a 5
+    fecha               DATE,
+    created_at          TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE FIMPE_DB.FEEDBACK.TICKETS (
+    ticket_id           NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    descripcion         VARCHAR(2000),
+    categoria           VARCHAR(50),
+    prioridad           VARCHAR(10),  -- BAJA, MEDIA, ALTA, CRITICA
+    estado              VARCHAR(20),  -- NUEVO, EN_PROCESO, RESUELTO
+    fecha_creacion      TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ==================== OPERACIONES ====================
+CREATE OR REPLACE TABLE FIMPE_DB.OPERACIONES.RESUMEN_DIARIO (
+    fecha               DATE PRIMARY KEY,
+    transacciones       NUMBER,
+    monto_mxn           NUMBER(15,2),
+    usuario_id          NUMBER,
+    usuarios_activos    NUMBER,
+    validaciones_bio    NUMBER,
+    tasa_exito_bio      NUMBER(5,2),
+    score_fraude        NUMBER(5,4)
+);
+
+-- Verificar tablas creadas
+SELECT table_schema, table_name, row_count 
+FROM information_schema.tables 
+WHERE table_catalog = 'FIMPE_DB' 
+ORDER BY table_schema, table_name;</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-info">
+                    <h3>Insertar Datos Sintéticos</h3>
+                    <span>Datos dummy realistas para la demo</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- FIMPE DEMO: PASO 3 - INSERTAR DATOS SINTÉTICOS
+-- ============================================================
+
+-- ==================== DATOS DE TRANSPORTE ====================
+INSERT INTO FIMPE_DB.TRANSPORTE.VIAJES (
+    ruta_id, nombre_ruta, unidad_id, tarjeta_id, fecha, 
+    monto_recaudado, ocupacion_porcentaje, origen_estacion, 
+    destino_estacion, tiempo_viaje_min
+)
+SELECT 
+    'RUTA-' || LPAD(MOD(SEQ4(), 50) + 1, 3, '0') AS ruta_id,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'Línea 1 - Observatorio a Pantitlán'
+        WHEN 1 THEN 'Línea 2 - Cuatro Caminos a Tasqueña'
+        WHEN 2 THEN 'Línea 3 - Indios Verdes a Universidad'
+        WHEN 3 THEN 'Metrobús Línea 1 - El Caminero a Buenavista'
+        WHEN 4 THEN 'Trolebús Eje Central'
+        WHEN 5 THEN 'RTP Ruta 11 - Xochimilco Centro'
+        WHEN 6 THEN 'Línea 7 - El Rosario a Barranca del Muerto'
+        WHEN 7 THEN 'Línea 9 - Tacubaya a Pantitlán'
+        WHEN 8 THEN 'Metrobús Línea 2 - Tepalcates a Tacubaya'
+        ELSE 'Línea 12 - Mixcoac a Tláhuac'
+    END AS nombre_ruta,
+    'UNIDAD-' || LPAD(UNIFORM(1, 500, RANDOM()), 4, '0') AS unidad_id,
+    'TARJETA-' || LPAD(UNIFORM(100000, 999999, RANDOM()), 10, '0') AS tarjeta_id,
+    DATEADD('minute', -UNIFORM(1, 43200, RANDOM()), CURRENT_TIMESTAMP()) AS fecha,
+    ROUND(UNIFORM(5, 15, RANDOM()) + RANDOM() * 5, 2) AS monto_recaudado,
+    ROUND(UNIFORM(30, 95, RANDOM()) + RANDOM() * 5, 2) AS ocupacion_porcentaje,
+    CASE MOD(SEQ4(), 8)
+        WHEN 0 THEN 'Pantitlán'
+        WHEN 1 THEN 'Indios Verdes'
+        WHEN 2 THEN 'Cuatro Caminos'
+        WHEN 3 THEN 'Tacubaya'
+        WHEN 4 THEN 'Chabacano'
+        WHEN 5 THEN 'Pino Suárez'
+        WHEN 6 THEN 'Hidalgo'
+        ELSE 'Balderas'
+    END AS origen_estacion,
+    CASE MOD(SEQ4() + 3, 8)
+        WHEN 0 THEN 'Universidad'
+        WHEN 1 THEN 'Observatorio'
+        WHEN 2 THEN 'Tasqueña'
+        WHEN 3 THEN 'El Rosario'
+        WHEN 4 THEN 'Mixcoac'
+        WHEN 5 THEN 'Zócalo'
+        WHEN 6 THEN 'Bellas Artes'
+        ELSE 'Garibaldi'
+    END AS destino_estacion,
+    ROUND(UNIFORM(5, 45, RANDOM()) + RANDOM() * 10, 2) AS tiempo_viaje_min
+FROM TABLE(GENERATOR(ROWCOUNT => 10000));
+
+-- ==================== DATOS DE BIOMETRÍA ====================
+INSERT INTO FIMPE_DB.BIOMETRIA.VALIDACIONES (
+    usuario_id, tipo_biometrico, score_match, resultado,
+    tiempo_respuesta_ms, dispositivo, ubicacion, fecha
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 3)
+        WHEN 0 THEN 'FACIAL'
+        WHEN 1 THEN 'HUELLA'
+        ELSE 'VOZ'
+    END AS tipo_biometrico,
+    CASE 
+        WHEN UNIFORM(1, 100, RANDOM()) <= 97 
+        THEN ROUND(0.85 + RANDOM() * 0.15, 4)  -- Match alto
+        ELSE ROUND(0.20 + RANDOM() * 0.40, 4)  -- No match
+    END AS score_match,
+    CASE 
+        WHEN score_match >= 0.75 THEN 'MATCH'
+        WHEN score_match >= 0.50 THEN 'REVIEW'
+        ELSE 'NO_MATCH'
+    END AS resultado,
+    ROUND(UNIFORM(800, 2500, RANDOM()) + RANDOM() * 500, 2) AS tiempo_respuesta_ms,
+    CASE MOD(SEQ4(), 5)
+        WHEN 0 THEN 'iPhone 14 Pro'
+        WHEN 1 THEN 'Samsung Galaxy S23'
+        WHEN 2 THEN 'Terminal Kiosko v3'
+        WHEN 3 THEN 'Huawei P50'
+        ELSE 'Web Browser'
+    END AS dispositivo,
+    CASE MOD(SEQ4(), 6)
+        WHEN 0 THEN 'CDMX - Polanco'
+        WHEN 1 THEN 'CDMX - Centro Histórico'
+        WHEN 2 THEN 'Guadalajara - Centro'
+        WHEN 3 THEN 'Monterrey - San Pedro'
+        WHEN 4 THEN 'Puebla - Angelópolis'
+        ELSE 'CDMX - Santa Fe'
+    END AS ubicacion,
+    DATEADD('day', -UNIFORM(0, 30, RANDOM()), CURRENT_DATE()) AS fecha
+FROM TABLE(GENERATOR(ROWCOUNT => 5000));
+
+-- ==================== DATOS DE KYC ====================
+INSERT INTO FIMPE_DB.KYC.DOCUMENTOS (
+    usuario_id, tipo_documento, estado, nombre_extraido,
+    curp_extraido, fecha_nacimiento, direccion_extraida, score_confianza
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 4)
+        WHEN 0 THEN 'INE'
+        WHEN 1 THEN 'PASAPORTE'
+        WHEN 2 THEN 'CURP'
+        ELSE 'COMPROBANTE_DOMICILIO'
+    END AS tipo_documento,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'RECHAZADO'
+        WHEN 1 THEN 'NUEVO'
+        ELSE 'PROCESADO'
+    END AS estado,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'María García López'
+        WHEN 1 THEN 'Juan Hernández Martínez'
+        WHEN 2 THEN 'Ana Patricia Rodríguez Sánchez'
+        WHEN 3 THEN 'Carlos Eduardo Ramírez González'
+        WHEN 4 THEN 'Laura Fernández Díaz'
+        WHEN 5 THEN 'Roberto Morales Jiménez'
+        WHEN 6 THEN 'Sofía Alejandra Torres Ruiz'
+        WHEN 7 THEN 'Miguel Ángel Castro Flores'
+        WHEN 8 THEN 'Gabriela Ortiz Mendoza'
+        ELSE 'Fernando Vargas Pérez'
+    END AS nombre_extraido,
+    UPPER(SUBSTR(nombre_extraido, 1, 4)) || 
+        LPAD(UNIFORM(70, 99, RANDOM()), 2, '0') ||
+        LPAD(UNIFORM(1, 12, RANDOM()), 2, '0') ||
+        LPAD(UNIFORM(1, 28, RANDOM()), 2, '0') ||
+        'HDFRR' || LPAD(UNIFORM(0, 9, RANDOM()), 2, '0') AS curp_extraido,
+    DATEADD('year', -UNIFORM(18, 65, RANDOM()), CURRENT_DATE()) AS fecha_nacimiento,
+    CASE MOD(SEQ4(), 5)
+        WHEN 0 THEN 'Av. Insurgentes Sur 1234, Col. Del Valle, CDMX'
+        WHEN 1 THEN 'Calle Madero 567, Col. Centro, Guadalajara, JAL'
+        WHEN 2 THEN 'Blvd. Díaz Ordaz 890, Col. Santa María, MTY, NL'
+        WHEN 3 THEN 'Calle 5 de Mayo 321, Col. Anzures, CDMX'
+        ELSE 'Av. Chapultepec 456, Col. Juárez, CDMX'
+    END AS direccion_extraida,
+    ROUND(0.75 + RANDOM() * 0.25, 4) AS score_confianza
+FROM TABLE(GENERATOR(ROWCOUNT => 2000));
+
+-- ==================== DATOS DE FEEDBACK ====================
+INSERT INTO FIMPE_DB.FEEDBACK.COMENTARIOS (
+    usuario_id, canal, comentario_texto, calificacion, fecha
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 4)
+        WHEN 0 THEN 'APP'
+        WHEN 1 THEN 'CALL_CENTER'
+        WHEN 2 THEN 'REDES'
+        ELSE 'WEB'
+    END AS canal,
+    CASE MOD(SEQ4(), 15)
+        WHEN 0 THEN 'Excelente servicio, muy rápido y seguro. La app funciona perfecto.'
+        WHEN 1 THEN 'Me encanta lo fácil que es validar mi identidad. ¡5 estrellas!'
+        WHEN 2 THEN 'El proceso de verificación fue muy sencillo y rápido.'
+        WHEN 3 THEN 'Buena experiencia en general, aunque la app tardó un poco.'
+        WHEN 4 THEN 'Servicio aceptable, pero podrían mejorar los tiempos de espera.'
+        WHEN 5 THEN 'Todo bien con mi registro, sin problemas.'
+        WHEN 6 THEN 'La validación facial falló varias veces antes de funcionar.'
+        WHEN 7 THEN 'No me gusta que pidan tantos documentos, es muy tardado.'
+        WHEN 8 THEN 'Pésimo servicio al cliente, nadie me atendió por 2 horas.'
+        WHEN 9 THEN 'La app se cierra constantemente, muy frustrante.'
+        WHEN 10 THEN 'Muy mala experiencia, perdí mi tiempo y no pude registrarme.'
+        WHEN 11 THEN 'El soporte técnico fue muy amable y resolvió mi problema rápido.'
+        WHEN 12 THEN 'Me cobraron doble y nadie me da respuesta. Inaceptable.'
+        WHEN 13 THEN 'Funciona bien pero la interfaz podría ser más moderna.'
+        ELSE 'Regular, ni muy bien ni muy mal. Cumple su función.'
+    END AS comentario_texto,
+    CASE 
+        WHEN MOD(SEQ4(), 15) IN (0, 1, 2, 11) THEN 5
+        WHEN MOD(SEQ4(), 15) IN (3, 5, 13, 14) THEN 4
+        WHEN MOD(SEQ4(), 15) IN (4, 6) THEN 3
+        WHEN MOD(SEQ4(), 15) IN (7, 9) THEN 2
+        ELSE 1
+    END AS calificacion,
+    DATEADD('day', -UNIFORM(0, 30, RANDOM()), CURRENT_DATE()) AS fecha
+FROM TABLE(GENERATOR(ROWCOUNT => 1000));
+
+-- ==================== DATOS DE TICKETS ====================
+INSERT INTO FIMPE_DB.FEEDBACK.TICKETS (
+    usuario_id, descripcion, categoria, prioridad, estado
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'No puedo completar el pago con mi tarjeta, marca error de conexión.'
+        WHEN 1 THEN 'La validación biométrica no reconoce mi rostro después de usar lentes.'
+        WHEN 2 THEN 'Necesito saber el saldo de mi cuenta de transporte.'
+        WHEN 3 THEN 'Creo que alguien usó mi tarjeta sin autorización, reporto fraude.'
+        WHEN 4 THEN 'Solicito reembolso por cobro duplicado del día 15.'
+        WHEN 5 THEN 'La app no carga después de la última actualización.'
+        WHEN 6 THEN 'Mi documento fue rechazado pero la imagen está clara.'
+        WHEN 7 THEN 'No recibí el código de verificación por SMS.'
+        WHEN 8 THEN 'Quiero cambiar mi número de teléfono registrado.'
+        ELSE 'Tengo problemas para vincular mi tarjeta bancaria.'
+    END AS descripcion,
+    CASE MOD(SEQ4(), 5)
+        WHEN 0 THEN 'Problema de pago'
+        WHEN 1 THEN 'Error en validación biométrica'
+        WHEN 2 THEN 'Consulta de saldo'
+        WHEN 3 THEN 'Reporte de fraude'
+        ELSE 'Solicitud de reembolso'
+    END AS categoria,
+    CASE MOD(SEQ4(), 4)
+        WHEN 0 THEN 'BAJA'
+        WHEN 1 THEN 'MEDIA'
+        WHEN 2 THEN 'ALTA'
+        ELSE 'CRITICA'
+    END AS prioridad,
+    CASE MOD(SEQ4(), 3)
+        WHEN 0 THEN 'NUEVO'
+        WHEN 1 THEN 'EN_PROCESO'
+        ELSE 'RESUELTO'
+    END AS estado
+FROM TABLE(GENERATOR(ROWCOUNT => 500));
+
+-- ==================== RESUMEN OPERATIVO ====================
+INSERT INTO FIMPE_DB.OPERACIONES.RESUMEN_DIARIO (
+    fecha, transacciones, monto_mxn, usuario_id, usuarios_activos,
+    validaciones_bio, tasa_exito_bio, score_fraude
+)
+SELECT
+    DATEADD('day', -ROW_NUMBER() OVER (ORDER BY SEQ4()), CURRENT_DATE()) AS fecha,
+    UNIFORM(2000000, 2800000, RANDOM()) AS transacciones,
+    ROUND(UNIFORM(15000000, 22000000, RANDOM()) + RANDOM() * 1000000, 2) AS monto_mxn,
+    ROW_NUMBER() OVER (ORDER BY SEQ4()) AS usuario_id,
+    UNIFORM(150000, 250000, RANDOM()) AS usuarios_activos,
+    UNIFORM(400000, 500000, RANDOM()) AS validaciones_bio,
+    ROUND(UNIFORM(97, 99, RANDOM()) + RANDOM(), 2) AS tasa_exito_bio,
+    ROUND(0.01 + RANDOM() * 0.04, 4) AS score_fraude
+FROM TABLE(GENERATOR(ROWCOUNT => 30));
+
+-- Verificar conteos
+SELECT 'TRANSPORTE.VIAJES' AS tabla, COUNT(*) AS registros FROM FIMPE_DB.TRANSPORTE.VIAJES
+UNION ALL SELECT 'BIOMETRIA.VALIDACIONES', COUNT(*) FROM FIMPE_DB.BIOMETRIA.VALIDACIONES
+UNION ALL SELECT 'KYC.DOCUMENTOS', COUNT(*) FROM FIMPE_DB.KYC.DOCUMENTOS
+UNION ALL SELECT 'FEEDBACK.COMENTARIOS', COUNT(*) FROM FIMPE_DB.FEEDBACK.COMENTARIOS
+UNION ALL SELECT 'FEEDBACK.TICKETS', COUNT(*) FROM FIMPE_DB.FEEDBACK.TICKETS
+UNION ALL SELECT 'OPERACIONES.RESUMEN_DIARIO', COUNT(*) FROM FIMPE_DB.OPERACIONES.RESUMEN_DIARIO;</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <div class="step-info">
+                    <h3>Ejecutar Consultas de Demo</h3>
+                    <span>Analytics y Cortex AI</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- FIMPE DEMO: PASO 4 - CONSULTAS DE DEMO
+-- ============================================================
+
+-- ==================== 4.1 ANÁLISIS DE TRANSPORTE ====================
+-- Métricas de eficiencia por ruta
+SELECT 
+    ruta_id,
+    nombre_ruta,
+    COUNT(*) AS total_viajes,
+    SUM(monto_recaudado) AS recaudo_total,
+    ROUND(AVG(ocupacion_porcentaje), 2) AS ocupacion_promedio,
+    COUNT(DISTINCT unidad_id) AS unidades_activas,
+    ROUND(SUM(monto_recaudado) / COUNT(DISTINCT unidad_id), 2) AS ingreso_por_unidad
+FROM FIMPE_DB.TRANSPORTE.VIAJES
+WHERE fecha >= CURRENT_DATE() - 30
+GROUP BY ruta_id, nombre_ruta
+ORDER BY recaudo_total DESC
+LIMIT 10;
+
+-- ==================== 4.2 MÉTRICAS BIOMÉTRICAS ====================
+-- Dashboard de validaciones por tipo
+SELECT
+    tipo_biometrico,
+    COUNT(*) AS total_validaciones,
+    ROUND(AVG(score_match), 4) AS score_promedio,
+    ROUND(
+        SUM(CASE WHEN resultado = 'MATCH' THEN 1 ELSE 0 END) * 100.0 
+        / COUNT(*), 2
+    ) AS tasa_exito_pct,
+    ROUND(AVG(tiempo_respuesta_ms), 2) AS latencia_promedio_ms
+FROM FIMPE_DB.BIOMETRIA.VALIDACIONES
+WHERE fecha >= CURRENT_DATE() - 7
+GROUP BY tipo_biometrico
+ORDER BY total_validaciones DESC;
+
+-- ==================== 4.3 ANÁLISIS DE SENTIMIENTO (CORTEX) ====================
+-- Requiere Cortex habilitado en la cuenta
+SELECT
+    comentario_id,
+    canal,
+    comentario_texto,
+    calificacion,
+    SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) AS score_sentimiento,
+    CASE 
+        WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) > 0.3 THEN 'POSITIVO'
+        WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) < -0.3 THEN 'NEGATIVO'
+        ELSE 'NEUTRO'
+    END AS clasificacion_sentimiento
+FROM FIMPE_DB.FEEDBACK.COMENTARIOS
+WHERE fecha >= CURRENT_DATE() - 7
+LIMIT 20;
+
+-- Resumen de sentimiento por canal
+SELECT
+    canal,
+    COUNT(*) AS total_comentarios,
+    ROUND(AVG(SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto)), 4) AS sentimiento_promedio,
+    SUM(CASE WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) > 0.3 THEN 1 ELSE 0 END) AS positivos,
+    SUM(CASE WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) < -0.3 THEN 1 ELSE 0 END) AS negativos
+FROM FIMPE_DB.FEEDBACK.COMENTARIOS
+WHERE fecha >= CURRENT_DATE() - 30
+GROUP BY canal;
+
+-- ==================== 4.4 CLASIFICACIÓN DE TICKETS (CORTEX) ====================
+SELECT
+    ticket_id,
+    descripcion,
+    categoria AS categoria_original,
+    SNOWFLAKE.CORTEX.CLASSIFY_TEXT(
+        descripcion,
+        ARRAY_CONSTRUCT(
+            'Problema de pago',
+            'Error en validación biométrica',
+            'Consulta de saldo',
+            'Reporte de fraude',
+            'Solicitud de reembolso'
+        )
+    ):label::VARCHAR AS categoria_ia,
+    ROUND(SNOWFLAKE.CORTEX.CLASSIFY_TEXT(
+        descripcion,
+        ARRAY_CONSTRUCT(
+            'Problema de pago',
+            'Error en validación biométrica', 
+            'Consulta de saldo',
+            'Reporte de fraude',
+            'Solicitud de reembolso'
+        )
+    ):score::FLOAT, 4) AS confianza
+FROM FIMPE_DB.FEEDBACK.TICKETS
+WHERE estado = 'NUEVO'
+LIMIT 15;
+
+-- ==================== 4.5 RESUMEN EJECUTIVO CON LLM (CORTEX) ====================
+WITH metricas AS (
+    SELECT
+        SUM(transacciones) AS total_transacciones,
+        ROUND(SUM(monto_mxn), 2) AS volumen_total_mxn,
+        ROUND(AVG(tasa_exito_bio), 2) AS tasa_exito_promedio,
+        ROUND(AVG(score_fraude), 4) AS riesgo_promedio
+    FROM FIMPE_DB.OPERACIONES.RESUMEN_DIARIO
+    WHERE fecha >= CURRENT_DATE() - 7
+)
+SELECT
+    SNOWFLAKE.CORTEX.COMPLETE(
+        'mistral-large',
+        CONCAT(
+            'Genera un resumen ejecutivo breve en español para FIMPE. ',
+            'Datos de la última semana: ',
+            'Transacciones totales: ', total_transacciones::VARCHAR,
+            ', Volumen en MXN: $', volumen_total_mxn::VARCHAR,
+            ', Tasa de éxito biométrico: ', tasa_exito_promedio::VARCHAR, '%',
+            ', Score de riesgo promedio: ', riesgo_promedio::VARCHAR,
+            '. Incluye: resumen de 2 oraciones, un logro destacado y una alerta si el riesgo es alto.'
+        )
+    ) AS reporte_ejecutivo
+FROM metricas;
+
+-- ==================== 4.6 TIME TRAVEL (DEMO) ====================
+-- Ver cómo estaba la tabla hace 5 minutos
+SELECT COUNT(*) AS registros_hace_5_min
+FROM FIMPE_DB.TRANSPORTE.VIAJES AT(OFFSET => -300);
+
+-- Comparar con registros actuales
+SELECT COUNT(*) AS registros_actuales
+FROM FIMPE_DB.TRANSPORTE.VIAJES;
+
+-- ==================== 4.7 ZERO COPY CLONING (DEMO) ====================
+-- Clonar database para ambiente de desarrollo
+CREATE DATABASE FIMPE_DEV CLONE FIMPE_DB;
+
+-- Verificar que se clonó instantáneamente
+SELECT database_name, created, comment 
+FROM information_schema.databases 
+WHERE database_name LIKE 'FIMPE%';
+
+-- Eliminar el clon de desarrollo
+DROP DATABASE IF EXISTS FIMPE_DEV;</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <div class="step-info">
+                    <h3>FinOps y Limpieza</h3>
+                    <span>Control de costos y cleanup</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- FIMPE DEMO: PASO 5 - FINOPS Y LIMPIEZA
+-- ============================================================
+
+-- ==================== 5.1 VERIFICAR CONSUMO ====================
+-- Ver créditos consumidos en la sesión
+SELECT 
+    WAREHOUSE_NAME,
+    SUM(CREDITS_USED) AS creditos_usados
+FROM SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_METERING_HISTORY
+WHERE WAREHOUSE_NAME = 'FIMPE_WH'
+  AND START_TIME >= CURRENT_DATE()
+GROUP BY WAREHOUSE_NAME;
+
+-- Ver estado del warehouse
+SHOW WAREHOUSES LIKE 'FIMPE_WH';
+
+-- ==================== 5.2 SUSPENDER WAREHOUSE ====================
+-- Suspender manualmente para no consumir créditos
+ALTER WAREHOUSE FIMPE_WH SUSPEND;
+
+-- ==================== 5.3 CREAR RESOURCE MONITOR (OPCIONAL) ====================
+-- Crear monitor para limitar gastos
+CREATE OR REPLACE RESOURCE MONITOR FIMPE_MONITOR
+    WITH CREDIT_QUOTA = 100  -- Límite de 100 créditos
+    FREQUENCY = MONTHLY
+    START_TIMESTAMP = IMMEDIATELY
+    TRIGGERS
+        ON 75 PERCENT DO NOTIFY
+        ON 90 PERCENT DO NOTIFY
+        ON 100 PERCENT DO SUSPEND;
+
+-- Asignar monitor al warehouse
+ALTER WAREHOUSE FIMPE_WH SET RESOURCE_MONITOR = FIMPE_MONITOR;
+
+-- ==================== 5.4 CLEANUP COMPLETO (OPCIONAL) ====================
+-- ⚠️ CUIDADO: Esto elimina TODO lo creado en la demo
+
+-- Eliminar warehouse
+DROP WAREHOUSE IF EXISTS FIMPE_WH;
+
+-- Eliminar database (incluye todos los schemas y tablas)
+DROP DATABASE IF EXISTS FIMPE_DB;
+
+-- Eliminar resource monitor
+DROP RESOURCE MONITOR IF EXISTS FIMPE_MONITOR;
+
+-- Verificar limpieza
+SHOW DATABASES LIKE 'FIMPE%';
+SHOW WAREHOUSES LIKE 'FIMPE%';
+
+-- ============================================================
+-- ¡Demo completada! 🎉
+-- Visita https://fimpe.org para más información
+-- ============================================================</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <div class="step-info">
+                    <h3>App Streamlit en Snowflake</h3>
+                    <span>Dashboard interactivo con Cortex AI</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- FIMPE DEMO: PASO 6 - APP STREAMLIT EN SNOWFLAKE
+-- Dashboard interactivo con análisis de rutas, KYC y Cortex AI
+-- ============================================================
+
+-- ==================== 6.1 CREAR STAGE PARA LA APP ====================
+USE DATABASE FIMPE_DB;
+CREATE OR REPLACE SCHEMA APPS;
+
+CREATE OR REPLACE STAGE FIMPE_DB.APPS.STREAMLIT_STAGE
+    DIRECTORY = (ENABLE = TRUE);
+
+-- ==================== 6.2 CREAR LA STREAMLIT APP ====================
+-- Nota: Este código crea una aplicación Streamlit directamente en Snowflake
+
+CREATE OR REPLACE STREAMLIT FIMPE_DB.APPS.FIMPE_DASHBOARD
+    ROOT_LOCATION = '@FIMPE_DB.APPS.STREAMLIT_STAGE'
+    MAIN_FILE = 'app.py'
+    QUERY_WAREHOUSE = 'FIMPE_WH'
+    COMMENT = 'Dashboard FIMPE con análisis de rutas, KYC y Cortex AI';
+
+-- ==================== 6.3 CÓDIGO PYTHON DE LA APP ====================
+-- Copiar el siguiente código en un archivo llamado app.py
+-- y subirlo al stage STREAMLIT_STAGE, o usar el editor de Streamlit en Snowflake
+
+/*
+================================================================================
+ARCHIVO: app.py
+DESCRIPCIÓN: Dashboard FIMPE con Streamlit in Snowflake
+================================================================================
+*/
+
+-- El código Python está a continuación (copiar desde aquí hasta el final del bloque)
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 6b - Python Code -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number" style="background: linear-gradient(135deg, #3776AB 0%, #FFD43B 100%);">🐍</div>
+                <div class="step-info">
+                    <h3>Código Python - app.py</h3>
+                    <span>Copiar y pegar en Streamlit in Snowflake</span>
+                </div>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <div class="step-code">
+                <pre><code># ============================================================
+# FIMPE DASHBOARD - STREAMLIT IN SNOWFLAKE
+# Análisis de Rutas, KYC, Biometría y Cortex AI
+# ============================================================
+
+import streamlit as st
+from snowflake.snowpark.context import get_active_session
+import pandas as pd
+
+# Configuración de página
+st.set_page_config(
+    page_title="FIMPE Dashboard",
+    page_icon="🚌",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Obtener sesión de Snowflake
+session = get_active_session()
+
+# ==================== ESTILOS CSS ====================
+st.markdown("""
+&lt;style&gt;
+    .main-header {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #00D4AA 0%, #635BFF 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+    .metric-card {
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 212, 170, 0.2);
+    }
+    .section-header {
+        color: #00D4AA;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+    }
+&lt;/style&gt;
+""", unsafe_allow_html=True)
+
+# ==================== SIDEBAR ====================
+with st.sidebar:
+    st.image("https://fimpe.org/wp-content/uploads/2024/01/logo-fimpe.png", width=150)
+    st.markdown("---")
+    
+    menu = st.radio(
+        "📊 Navegación",
+        ["🚌 Análisis de Rutas", "🔐 Validación de Identidad", 
+         "📄 Extracción de Documentos", "😊 Análisis de Sentimientos",
+         "🏷️ Categorización", "📋 Resumen Ejecutivo"]
+    )
+    
+    st.markdown("---")
+    st.caption("Demo FIMPE © 2024")
+
+# ==================== HEADER ====================
+st.markdown('&lt;p class="main-header"&gt;FIMPE Dashboard&lt;/p&gt;', unsafe_allow_html=True)
+st.markdown("Plataforma de análisis con **Snowflake Cortex AI**")
+st.markdown("---")
+
+# ==================== 1. ANÁLISIS DE RUTAS ====================
+if menu == "🚌 Análisis de Rutas":
+    st.markdown('&lt;p class="section-header"&gt;Transporte Público&lt;/p&gt;', unsafe_allow_html=True)
+    st.subheader("📊 Análisis de Rutas de Transporte")
+    
+    # Métricas principales
+    col1, col2, col3, col4 = st.columns(4)
+    
+    # Query para métricas
+    metricas_df = session.sql("""
+        SELECT 
+            COUNT(*) AS total_viajes,
+            ROUND(SUM(monto_recaudado), 2) AS recaudo_total,
+            COUNT(DISTINCT ruta_id) AS rutas_activas,
+            ROUND(AVG(ocupacion_porcentaje), 1) AS ocupacion_promedio
+        FROM FIMPE_DB.TRANSPORTE.VIAJES
+        WHERE fecha >= CURRENT_DATE() - 30
+    """).to_pandas()
+    
+    col1.metric("🎫 Total Viajes", f"{metricas_df['TOTAL_VIAJES'].iloc[0]:,}")
+    col2.metric("💰 Recaudo Total", f"${metricas_df['RECAUDO_TOTAL'].iloc[0]:,.2f}")
+    col3.metric("🚌 Rutas Activas", metricas_df['RUTAS_ACTIVAS'].iloc[0])
+    col4.metric("👥 Ocupación Prom.", f"{metricas_df['OCUPACION_PROMEDIO'].iloc[0]}%")
+    
+    st.markdown("---")
+    
+    # Top rutas
+    st.subheader("🏆 Top 10 Rutas por Recaudo")
+    top_rutas = session.sql("""
+        SELECT 
+            nombre_ruta,
+            COUNT(*) AS viajes,
+            ROUND(SUM(monto_recaudado), 2) AS recaudo,
+            ROUND(AVG(ocupacion_porcentaje), 1) AS ocupacion
+        FROM FIMPE_DB.TRANSPORTE.VIAJES
+        WHERE fecha >= CURRENT_DATE() - 30
+        GROUP BY nombre_ruta
+        ORDER BY recaudo DESC
+        LIMIT 10
+    """).to_pandas()
+    
+    st.bar_chart(top_rutas.set_index('NOMBRE_RUTA')['RECAUDO'])
+    st.dataframe(top_rutas, use_container_width=True)
+
+# ==================== 2. VALIDACIÓN DE IDENTIDAD ====================
+elif menu == "🔐 Validación de Identidad":
+    st.markdown('&lt;p class="section-header"&gt;Biometría &amp; KYC&lt;/p&gt;', unsafe_allow_html=True)
+    st.subheader("🔐 Dashboard de Validación de Identidad")
+    
+    # Métricas biométricas
+    bio_metricas = session.sql("""
+        SELECT 
+            tipo_biometrico,
+            COUNT(*) AS total,
+            ROUND(AVG(score_match) * 100, 2) AS score_promedio,
+            ROUND(SUM(CASE WHEN resultado = 'MATCH' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS tasa_exito,
+            ROUND(AVG(tiempo_respuesta_ms), 0) AS latencia_ms
+        FROM FIMPE_DB.BIOMETRIA.VALIDACIONES
+        WHERE fecha >= CURRENT_DATE() - 7
+        GROUP BY tipo_biometrico
+    """).to_pandas()
+    
+    col1, col2, col3 = st.columns(3)
+    
+    for idx, row in bio_metricas.iterrows():
+        with [col1, col2, col3][idx % 3]:
+            icon = "👤" if row['TIPO_BIOMETRICO'] == 'FACIAL' else "👆" if row['TIPO_BIOMETRICO'] == 'HUELLA' else "🎤"
+            st.markdown(f"### {icon} {row['TIPO_BIOMETRICO']}")
+            st.metric("Validaciones", f"{row['TOTAL']:,}")
+            st.metric("Tasa de Éxito", f"{row['TASA_EXITO']}%")
+            st.metric("Latencia", f"{row['LATENCIA_MS']} ms")
+    
+    st.markdown("---")
+    
+    # Estado de documentos KYC
+    st.subheader("📋 Estado de Documentos KYC")
+    kyc_status = session.sql("""
+        SELECT 
+            tipo_documento,
+            estado,
+            COUNT(*) AS cantidad
+        FROM FIMPE_DB.KYC.DOCUMENTOS
+        GROUP BY tipo_documento, estado
+        ORDER BY tipo_documento, estado
+    """).to_pandas()
+    
+    st.dataframe(kyc_status, use_container_width=True)
+
+# ==================== 3. EXTRACCIÓN DE DOCUMENTOS ====================
+elif menu == "📄 Extracción de Documentos":
+    st.markdown('&lt;p class="section-header"&gt;Cortex AI&lt;/p&gt;', unsafe_allow_html=True)
+    st.subheader("📄 Extracción Inteligente de Documentos")
+    
+    st.info("💡 Esta demo utiliza **SNOWFLAKE.CORTEX.COMPLETE** para extraer información estructurada de documentos.")
+    
+    # Simulación de extracción
+    texto_documento = st.text_area(
+        "Pegue el texto del documento a analizar:",
+        value="""INE: María García López
+CURP: GALM850615MDFRRL09
+Fecha de Nacimiento: 15 de Junio de 1985
+Domicilio: Av. Insurgentes Sur 1234, Col. Del Valle, CP 03100, CDMX
+Clave de Elector: GRLPMR85061509M800""",
+        height=150
+    )
+    
+    if st.button("🔍 Extraer Información con Cortex AI", type="primary"):
+        with st.spinner("Procesando con Cortex AI..."):
+            # Query con Cortex
+            resultado = session.sql(f"""
+                SELECT SNOWFLAKE.CORTEX.COMPLETE(
+                    'mistral-large',
+                    'Extrae los siguientes campos del documento en formato JSON: 
+                    nombre_completo, curp, fecha_nacimiento, direccion, clave_elector.
+                    Documento: {texto_documento.replace("'", "''")}
+                    Responde SOLO con el JSON, sin explicaciones.'
+                ) AS datos_extraidos
+            """).to_pandas()
+            
+            st.success("✅ Extracción completada")
+            st.json(resultado['DATOS_EXTRAIDOS'].iloc[0])
+
+# ==================== 4. ANÁLISIS DE SENTIMIENTOS ====================
+elif menu == "😊 Análisis de Sentimientos":
+    st.markdown('&lt;p class="section-header"&gt;Cortex Sentiment&lt;/p&gt;', unsafe_allow_html=True)
+    st.subheader("😊 Análisis de Sentimientos con Cortex AI")
+    
+    # Resumen de sentimientos
+    sentimiento_resumen = session.sql("""
+        SELECT 
+            canal,
+            COUNT(*) AS total,
+            ROUND(AVG(SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto)), 4) AS sentimiento_promedio,
+            SUM(CASE WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) > 0.3 THEN 1 ELSE 0 END) AS positivos,
+            SUM(CASE WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) < -0.3 THEN 1 ELSE 0 END) AS negativos
+        FROM FIMPE_DB.FEEDBACK.COMENTARIOS
+        WHERE fecha >= CURRENT_DATE() - 30
+        GROUP BY canal
+    """).to_pandas()
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("### 📊 Sentimiento por Canal")
+        st.bar_chart(sentimiento_resumen.set_index('CANAL')['SENTIMIENTO_PROMEDIO'])
+    
+    with col2:
+        st.markdown("### 📈 Distribución")
+        st.dataframe(sentimiento_resumen, use_container_width=True)
+    
+    st.markdown("---")
+    
+    # Análisis en tiempo real
+    st.subheader("🔬 Analizar Nuevo Comentario")
+    nuevo_comentario = st.text_input(
+        "Escriba un comentario para analizar:",
+        value="El servicio fue excelente, muy rápido y seguro"
+    )
+    
+    if st.button("Analizar Sentimiento", type="primary"):
+        resultado = session.sql(f"""
+            SELECT 
+                SNOWFLAKE.CORTEX.SENTIMENT('{nuevo_comentario.replace("'", "''")}') AS score
+        """).to_pandas()
+        
+        score = resultado['SCORE'].iloc[0]
+        if score > 0.3:
+            st.success(f"😊 **POSITIVO** (Score: {score:.4f})")
+        elif score < -0.3:
+            st.error(f"😞 **NEGATIVO** (Score: {score:.4f})")
+        else:
+            st.warning(f"😐 **NEUTRO** (Score: {score:.4f})")
+
+# ==================== 5. CATEGORIZACIÓN ====================
+elif menu == "🏷️ Categorización":
+    st.markdown('&lt;p class="section-header"&gt;Cortex Classify&lt;/p&gt;', unsafe_allow_html=True)
+    st.subheader("🏷️ Categorización Automática de Tickets")
+    
+    # Tickets recientes clasificados
+    tickets_clasificados = session.sql("""
+        SELECT 
+            ticket_id,
+            descripcion,
+            categoria AS categoria_original,
+            SNOWFLAKE.CORTEX.CLASSIFY_TEXT(
+                descripcion,
+                ARRAY_CONSTRUCT(
+                    'Problema de pago',
+                    'Error en validación biométrica',
+                    'Consulta de saldo',
+                    'Reporte de fraude',
+                    'Solicitud de reembolso'
+                )
+            ):label::VARCHAR AS categoria_ia,
+            ROUND(SNOWFLAKE.CORTEX.CLASSIFY_TEXT(
+                descripcion,
+                ARRAY_CONSTRUCT(
+                    'Problema de pago',
+                    'Error en validación biométrica',
+                    'Consulta de saldo',
+                    'Reporte de fraude',
+                    'Solicitud de reembolso'
+                )
+            ):score::FLOAT, 4) AS confianza
+        FROM FIMPE_DB.FEEDBACK.TICKETS
+        WHERE estado = 'NUEVO'
+        LIMIT 10
+    """).to_pandas()
+    
+    st.dataframe(tickets_clasificados, use_container_width=True)
+    
+    st.markdown("---")
+    
+    # Clasificar nuevo ticket
+    st.subheader("🆕 Clasificar Nuevo Ticket")
+    nuevo_ticket = st.text_area(
+        "Descripción del ticket:",
+        value="No puedo completar el pago, me marca error de conexión con el banco"
+    )
+    
+    categorias = st.multiselect(
+        "Categorías disponibles:",
+        ["Problema de pago", "Error en validación biométrica", "Consulta de saldo", 
+         "Reporte de fraude", "Solicitud de reembolso", "Problema técnico"],
+        default=["Problema de pago", "Error en validación biométrica", "Consulta de saldo", 
+                 "Reporte de fraude", "Solicitud de reembolso"]
+    )
+    
+    if st.button("🏷️ Clasificar", type="primary"):
+        categorias_array = ", ".join([f"'{c}'" for c in categorias])
+        resultado = session.sql(f"""
+            SELECT 
+                SNOWFLAKE.CORTEX.CLASSIFY_TEXT(
+                    '{nuevo_ticket.replace("'", "''")}',
+                    ARRAY_CONSTRUCT({categorias_array})
+                ) AS clasificacion
+        """).to_pandas()
+        
+        clasificacion = resultado['CLASIFICACION'].iloc[0]
+        st.success(f"**Categoría:** {clasificacion['label']}")
+        st.info(f"**Confianza:** {clasificacion['score']:.2%}")
+
+# ==================== 6. RESUMEN EJECUTIVO ====================
+elif menu == "📋 Resumen Ejecutivo":
+    st.markdown('&lt;p class="section-header"&gt;Cortex Complete&lt;/p&gt;', unsafe_allow_html=True)
+    st.subheader("📋 Resumen Ejecutivo con IA Generativa")
+    
+    # Obtener métricas
+    metricas = session.sql("""
+        SELECT
+            SUM(transacciones) AS total_transacciones,
+            ROUND(SUM(monto_mxn), 2) AS volumen_total,
+            ROUND(AVG(tasa_exito_bio), 2) AS tasa_exito_bio,
+            ROUND(AVG(score_fraude), 4) AS score_fraude,
+            COUNT(*) AS dias
+        FROM FIMPE_DB.OPERACIONES.RESUMEN_DIARIO
+        WHERE fecha >= CURRENT_DATE() - 7
+    """).to_pandas()
+    
+    # Mostrar métricas
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("📊 Transacciones", f"{metricas['TOTAL_TRANSACCIONES'].iloc[0]:,}")
+    col2.metric("💰 Volumen MXN", f"${metricas['VOLUMEN_TOTAL'].iloc[0]:,.2f}")
+    col3.metric("✅ Tasa Éxito Bio", f"{metricas['TASA_EXITO_BIO'].iloc[0]}%")
+    col4.metric("⚠️ Score Fraude", f"{metricas['SCORE_FRAUDE'].iloc[0]:.4f}")
+    
+    st.markdown("---")
+    
+    if st.button("🤖 Generar Resumen Ejecutivo con Cortex AI", type="primary"):
+        with st.spinner("Generando resumen con Cortex AI..."):
+            resumen = session.sql(f"""
+                SELECT SNOWFLAKE.CORTEX.COMPLETE(
+                    'llama3.1-70b',
+                    'Genera un resumen ejecutivo profesional en español para FIMPE.
+                    
+                    Datos de la última semana:
+                    - Transacciones totales: {metricas['TOTAL_TRANSACCIONES'].iloc[0]:,}
+                    - Volumen en MXN: ${metricas['VOLUMEN_TOTAL'].iloc[0]:,.2f}
+                    - Tasa de éxito biométrico: {metricas['TASA_EXITO_BIO'].iloc[0]}%
+                    - Score de riesgo de fraude: {metricas['SCORE_FRAUDE'].iloc[0]:.4f}
+                    
+                    Incluye:
+                    1. Resumen ejecutivo (2-3 oraciones)
+                    2. Logros destacados
+                    3. Áreas de mejora
+                    4. Recomendaciones
+                    
+                    Formato con bullets y emojis para mejor lectura.'
+                ) AS resumen
+            """).to_pandas()
+            
+            st.markdown("### 📄 Resumen Generado")
+            st.markdown(resumen['RESUMEN'].iloc[0])
+    
+    st.markdown("---")
+    st.caption("Generado con Snowflake Cortex AI - LLaMA 3.1 70B")
+
+# ==================== FOOTER ====================
+st.markdown("---")
+st.markdown("""
+&lt;div style="text-align: center; color: #94A3B8; font-size: 0.8rem;"&gt;
+    🚀 Powered by &lt;b&gt;Snowflake Cortex AI&lt;/b&gt; | 
+    &lt;a href="https://fimpe.org" target="_blank"&gt;FIMPE&lt;/a&gt; © 2024
+&lt;/div&gt;
+""", unsafe_allow_html=True)</code></pre>
+            </div>
+        </div>
+
+        <!-- Step 6c - Deploy Instructions -->
+        <div class="quickstart-step fade-in">
+            <div class="step-header">
+                <div class="step-number">📱</div>
+                <div class="step-info">
+                    <h3>Instrucciones de Despliegue</h3>
+                    <span>Cómo ejecutar la app en Snowflake</span>
+                </div>
+            </div>
+            <div class="step-code">
+                <pre><code>-- ============================================================
+-- OPCIÓN 1: Crear Streamlit App desde la UI de Snowflake
+-- ============================================================
+-- 1. Ve a Snowsight > Streamlit
+-- 2. Click en "+ Streamlit App"
+-- 3. Selecciona Database: FIMPE_DB, Schema: APPS
+-- 4. Pega el código Python del paso anterior
+-- 5. Click en "Run"
+
+-- ============================================================
+-- OPCIÓN 2: Subir archivo app.py al Stage
+-- ============================================================
+
+-- 2.1 Guardar el código Python en un archivo local llamado app.py
+
+-- 2.2 Subir el archivo al stage usando Snowsight o SnowSQL:
+-- PUT file://ruta/local/app.py @FIMPE_DB.APPS.STREAMLIT_STAGE AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
+
+-- 2.3 Verificar que el archivo está en el stage
+LIST @FIMPE_DB.APPS.STREAMLIT_STAGE;
+
+-- 2.4 La app ya está lista en:
+-- Snowsight > Streamlit > FIMPE_DASHBOARD
+
+-- ============================================================
+-- VERIFICAR QUE TODO ESTÁ CONFIGURADO
+-- ============================================================
+
+-- Verificar warehouse activo
+SELECT CURRENT_WAREHOUSE();
+
+-- Verificar que Cortex está disponible
+SELECT SNOWFLAKE.CORTEX.SENTIMENT('Prueba de Cortex AI') AS test_cortex;
+
+-- Verificar datos disponibles
+SELECT COUNT(*) AS registros FROM FIMPE_DB.TRANSPORTE.VIAJES;
+SELECT COUNT(*) AS registros FROM FIMPE_DB.BIOMETRIA.VALIDACIONES;
+SELECT COUNT(*) AS registros FROM FIMPE_DB.FEEDBACK.COMENTARIOS;
+
+-- ============================================================
+-- 🎉 ¡Listo! Tu dashboard FIMPE está funcionando
+-- ============================================================</code></pre>
+            </div>
+        </div>
+
+        <!-- Download buttons -->
+        <div class="quickstart-download fade-in">
+            <p>Descarga los archivos para ejecutar la demo completa:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="downloadSQL()">
+                    📥 Descargar SQL
+                </button>
+                <button class="btn btn-secondary" onclick="downloadPython()" style="border-color: #3776AB; color: #FFD43B;">
+                    🐍 Descargar app.py
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo">
+        <div class="section-header fade-in">
+            <div class="section-label">Demo SQL Interactiva</div>
+            <h2 class="section-title">Casos de Uso FIMPE con Cortex AI</h2>
+            <p class="section-subtitle">Ejemplos reales de SQL para transporte, biometría, extracción de documentos y análisis de texto con Snowflake Cortex</p>
+        </div>
+
+        <!-- Row 1: Transporte y Biometría -->
+        <div class="demo-container fade-in" style="margin-bottom: 2rem;">
+            <!-- Transport Demo -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <div class="demo-header-icon transport">🚌</div>
+                    <div class="demo-header-text">
+                        <h3>Análisis de Rutas de Transporte</h3>
+                        <span>Recaudo, ocupación y patrones de movilidad</span>
+                    </div>
+                </div>
+                <div class="demo-body">
+                    <div class="demo-code">
+                        <span class="comment">-- Análisis de eficiencia por ruta con Time Travel</span><br>
+                        <span class="keyword">WITH</span> metricas_ruta <span class="keyword">AS</span> (<br>
+                        &nbsp;&nbsp;<span class="keyword">SELECT</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;ruta_id,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;nombre_ruta,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">SUM</span>(monto_recaudado) <span class="keyword">AS</span> recaudo_total,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">AVG</span>(ocupacion_porcentaje) <span class="keyword">AS</span> ocupacion_promedio,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">COUNT</span>(<span class="keyword">DISTINCT</span> unidad_id) <span class="keyword">AS</span> unidades_activas<br>
+                        &nbsp;&nbsp;<span class="keyword">FROM</span> FIMPE_DB.TRANSPORTE.VIAJES<br>
+                        &nbsp;&nbsp;<span class="keyword">WHERE</span> fecha >= <span class="function">CURRENT_DATE</span>() - 30<br>
+                        &nbsp;&nbsp;<span class="keyword">GROUP BY</span> 1, 2<br>
+                        )<br>
+                        <span class="keyword">SELECT</span> *,<br>
+                        &nbsp;&nbsp;recaudo_total / unidades_activas <span class="keyword">AS</span> ingreso_por_unidad<br>
+                        <span class="keyword">FROM</span> metricas_ruta<br>
+                        <span class="keyword">ORDER BY</span> recaudo_total <span class="keyword">DESC</span>;
+                    </div>
+                    <div class="demo-metrics">
+                        <div class="metric">
+                            <div class="metric-value">2.4M</div>
+                            <div class="metric-label">Viajes/día</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">847</div>
+                            <div class="metric-label">Rutas activas</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">73%</div>
+                            <div class="metric-label">Ocupación prom.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biometry Demo -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <div class="demo-header-icon biometry">🔐</div>
+                    <div class="demo-header-text">
+                        <h3>Datos Biométricos & KYC</h3>
+                        <span>Validación de identidad y métricas de precisión</span>
+                    </div>
+                </div>
+                <div class="demo-body">
+                    <div class="demo-code">
+                        <span class="comment">-- Dashboard de validaciones biométricas</span><br>
+                        <span class="keyword">SELECT</span><br>
+                        &nbsp;&nbsp;tipo_biometrico, <span class="comment">-- FACIAL, HUELLA, VOZ</span><br>
+                        &nbsp;&nbsp;<span class="function">COUNT</span>(*) <span class="keyword">AS</span> total_validaciones,<br>
+                        &nbsp;&nbsp;<span class="function">ROUND</span>(<span class="function">AVG</span>(score_match), 2) <span class="keyword">AS</span> score_promedio,<br>
+                        &nbsp;&nbsp;<span class="function">ROUND</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">SUM</span>(<span class="keyword">CASE WHEN</span> resultado = <span class="string">'MATCH'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">THEN</span> 1 <span class="keyword">ELSE</span> 0 <span class="keyword">END</span>) * 100.0<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;/ <span class="function">COUNT</span>(*), 2<br>
+                        &nbsp;&nbsp;) <span class="keyword">AS</span> tasa_exito_pct,<br>
+                        &nbsp;&nbsp;<span class="function">AVG</span>(tiempo_respuesta_ms) <span class="keyword">AS</span> latencia_ms<br>
+                        <span class="keyword">FROM</span> FIMPE_DB.BIOMETRIA.VALIDACIONES<br>
+                        <span class="keyword">WHERE</span> fecha >= <span class="function">CURRENT_DATE</span>() - 7<br>
+                        <span class="keyword">GROUP BY</span> tipo_biometrico<br>
+                        <span class="keyword">ORDER BY</span> total_validaciones <span class="keyword">DESC</span>;
+                    </div>
+                    <div class="demo-metrics">
+                        <div class="metric">
+                            <div class="metric-value">99.7%</div>
+                            <div class="metric-label">Precisión facial</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">1.2s</div>
+                            <div class="metric-label">Latencia prom.</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">450K</div>
+                            <div class="metric-label">Valid./mes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: AI Document Extraction -->
+        <div class="demo-container full-width fade-in" style="margin-bottom: 2rem;">
+            <div class="demo-card highlight">
+                <div class="demo-header">
+                    <div class="demo-header-icon document">📄</div>
+                    <div class="demo-header-text">
+                        <h3>Extracción de Documentos con AI_EXTRACT</h3>
+                        <span>Procesamiento automático de INE, pasaportes y comprobantes</span>
+                    </div>
+                    <div class="demo-badge">Cortex AI</div>
+                </div>
+                <div class="demo-body">
+                    <div class="demo-code">
+                        <span class="comment">-- Extraer datos estructurados de documentos con Cortex</span><br>
+                        <span class="keyword">SELECT</span><br>
+                        &nbsp;&nbsp;documento_id,<br>
+                        &nbsp;&nbsp;tipo_documento,<br>
+                        &nbsp;&nbsp;<span class="cortex">SNOWFLAKE.CORTEX.PARSE_DOCUMENT</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;@FIMPE_DB.DOCS.STAGE_DOCUMENTOS,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;documento_path,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;{<span class="string">'mode'</span>: <span class="string">'LAYOUT'</span>}<br>
+                        &nbsp;&nbsp;):<span class="function">content</span> <span class="keyword">AS</span> contenido_extraido,<br><br>
+                        &nbsp;&nbsp;<span class="comment">-- Extracción estructurada con LLM</span><br>
+                        &nbsp;&nbsp;<span class="cortex">SNOWFLAKE.CORTEX.COMPLETE</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'mistral-large'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">CONCAT</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Extrae: nombre, CURP, fecha_nacimiento, dirección. '</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Documento: '</span>, contenido_extraido,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">' Responde SOLO en JSON válido.'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                        &nbsp;&nbsp;) <span class="keyword">AS</span> datos_estructurados<br>
+                        <span class="keyword">FROM</span> FIMPE_DB.KYC.DOCUMENTOS_PENDIENTES<br>
+                        <span class="keyword">WHERE</span> estado = <span class="string">'NUEVO'</span>;
+                    </div>
+                    <div class="demo-metrics two-col">
+                        <div class="metric">
+                            <div class="metric-value">15K</div>
+                            <div class="metric-label">Documentos/hora procesados</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">98.5%</div>
+                            <div class="metric-label">Precisión extracción</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resultado Ejemplo con INE Visual -->
+                    <div class="result-example">
+                        <div class="result-example-header">
+                            📋 Ejemplo de Extracción - De Documento a JSON Estructurado
+                        </div>
+                        
+                        <div class="extraction-flow">
+                            <!-- INE Card Visual - Realistic -->
+                            <div class="ine-card">
+                                <!-- Header con escudo -->
+                                <div class="ine-header">
+                                    <div class="ine-escudo">🦅</div>
+                                    <div class="ine-header-text">
+                                        <div class="institucion">INSTITUTO NACIONAL ELECTORAL</div>
+                                        <div class="titulo">CREDENCIAL PARA VOTAR</div>
+                                        <div class="subtitulo">ESTADOS UNIDOS MEXICANOS</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vigencia badge -->
+                                <div class="ine-vigencia">VIGENCIA 2029</div>
+                                
+                                <!-- Body con foto y datos -->
+                                <div class="ine-body">
+                                    <div class="ine-photo">👤</div>
+                                    <div class="ine-data">
+                                        <div class="field">
+                                            <div class="label">Nombre</div>
+                                            <div class="value nombre">GARCÍA LÓPEZ</div>
+                                            <div class="value">MARÍA</div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="label">Domicilio</div>
+                                            <div class="value small">AV INSURGENTES SUR 1234</div>
+                                            <div class="value small">COL DEL VALLE C.P. 03100</div>
+                                            <div class="value small">BENITO JUÁREZ, CDMX</div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="label">Fecha de Nacimiento</div>
+                                            <div class="value">15/06/1985</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Hologram effect -->
+                                <div class="ine-hologram"></div>
+                                
+                                <!-- Footer con CURP y código de barras -->
+                                <div class="ine-footer">
+                                    <div class="ine-footer-left">
+                                        <div class="ine-barcode"></div>
+                                    </div>
+                                    <div class="ine-footer-right">
+                                        <div class="ine-curp">GALM850615MDFRRL09</div>
+                                        <div class="ine-clave">GRLPMR85061509M800</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Arrow -->
+                            <div class="extraction-arrow">➡️</div>
+                            
+                            <!-- JSON Result -->
+                            <div class="result-json" style="flex: 1;">
+{<br>
+&nbsp;&nbsp;<span class="key">"nombre_completo"</span>: <span class="string">"María García López"</span>,<br>
+&nbsp;&nbsp;<span class="key">"curp"</span>: <span class="string">"GALM850615MDFRRL09"</span>,<br>
+&nbsp;&nbsp;<span class="key">"fecha_nacimiento"</span>: <span class="string">"1985-06-15"</span>,<br>
+&nbsp;&nbsp;<span class="key">"direccion"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"calle"</span>: <span class="string">"Av. Insurgentes Sur 1234"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"colonia"</span>: <span class="string">"Del Valle"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"cp"</span>: <span class="string">"03100"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"ciudad"</span>: <span class="string">"Ciudad de México"</span><br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;<span class="key">"clave_elector"</span>: <span class="string">"GRLPMR85061509M800"</span>,<br>
+&nbsp;&nbsp;<span class="key">"vigencia"</span>: <span class="string">"2029"</span>,<br>
+&nbsp;&nbsp;<span class="key">"confianza"</span>: <span class="value">0.9847</span><br>
+}
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; font-size: 0.75rem; color: var(--fimpe-text-muted); margin-top: 1rem;">
+                            <span style="color: var(--fimpe-secondary);">✨ Cortex AI</span> extrae automáticamente los campos del documento y los estructura en JSON
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 3: Sentiment & Classification -->
+        <div class="demo-container fade-in" style="margin-bottom: 2rem;">
+            <!-- Sentiment Analysis -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <div class="demo-header-icon sentiment">😊</div>
+                    <div class="demo-header-text">
+                        <h3>Análisis de Sentimientos</h3>
+                        <span>Feedback de usuarios y satisfacción</span>
+                    </div>
+                    <div class="demo-badge">Cortex AI</div>
+                </div>
+                <div class="demo-body">
+                    <div class="demo-code">
+                        <span class="comment">-- Analizar sentimiento de comentarios de usuarios</span><br>
+                        <span class="keyword">SELECT</span><br>
+                        &nbsp;&nbsp;comentario_id,<br>
+                        &nbsp;&nbsp;canal, <span class="comment">-- APP, CALL_CENTER, REDES</span><br>
+                        &nbsp;&nbsp;comentario_texto,<br>
+                        &nbsp;&nbsp;<span class="cortex">SNOWFLAKE.CORTEX.SENTIMENT</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;comentario_texto<br>
+                        &nbsp;&nbsp;) <span class="keyword">AS</span> score_sentimiento,<br>
+                        &nbsp;&nbsp;<span class="keyword">CASE</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">WHEN</span> score_sentimiento > 0.3 <span class="keyword">THEN</span> <span class="string">'POSITIVO'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">WHEN</span> score_sentimiento < -0.3 <span class="keyword">THEN</span> <span class="string">'NEGATIVO'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">ELSE</span> <span class="string">'NEUTRO'</span><br>
+                        &nbsp;&nbsp;<span class="keyword">END AS</span> clasificacion<br>
+                        <span class="keyword">FROM</span> FIMPE_DB.FEEDBACK.COMENTARIOS<br>
+                        <span class="keyword">WHERE</span> fecha >= <span class="function">CURRENT_DATE</span>() - 7;
+                    </div>
+                    <div class="demo-metrics">
+                        <div class="metric">
+                            <div class="metric-value">78%</div>
+                            <div class="metric-label">Positivos</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">15%</div>
+                            <div class="metric-label">Neutros</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">7%</div>
+                            <div class="metric-label">Negativos</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resultado Ejemplo -->
+                    <div class="result-example">
+                        <div class="result-example-header">
+                            📋 Ejemplo de Resultado - SENTIMENT()
+                        </div>
+                        <table class="result-table">
+                            <thead>
+                                <tr>
+                                    <th>Comentario</th>
+                                    <th>Score</th>
+                                    <th>Clasificación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="highlight">"Excelente servicio, muy rápido"</td>
+                                    <td>0.8934</td>
+                                    <td><span class="sentiment-badge positive">😊 Positivo</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">"La app tardó un poco en cargar"</td>
+                                    <td>-0.1245</td>
+                                    <td><span class="sentiment-badge neutral">😐 Neutro</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">"Pésimo, nadie me atendió"</td>
+                                    <td>-0.7621</td>
+                                    <td><span class="sentiment-badge negative">😞 Negativo</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Classification -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <div class="demo-header-icon classify">🏷️</div>
+                    <div class="demo-header-text">
+                        <h3>Categorización de Texto</h3>
+                        <span>Clasificación automática de solicitudes</span>
+                    </div>
+                    <div class="demo-badge">Cortex AI</div>
+                </div>
+                <div class="demo-body">
+                    <div class="demo-code">
+                        <span class="comment">-- Clasificar tickets de soporte automáticamente</span><br>
+                        <span class="keyword">SELECT</span><br>
+                        &nbsp;&nbsp;ticket_id,<br>
+                        &nbsp;&nbsp;descripcion,<br>
+                        &nbsp;&nbsp;<span class="cortex">SNOWFLAKE.CORTEX.CLASSIFY_TEXT</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;descripcion,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">ARRAY_CONSTRUCT</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Problema de pago'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Error en validación biométrica'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Consulta de saldo'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Reporte de fraude'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Solicitud de reembolso'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                        &nbsp;&nbsp;):<span class="function">label</span> <span class="keyword">AS</span> categoria,<br>
+                        &nbsp;&nbsp;<span class="cortex">SNOWFLAKE.CORTEX.CLASSIFY_TEXT</span>(...<br>
+                        &nbsp;&nbsp;):<span class="function">score</span> <span class="keyword">AS</span> confianza<br>
+                        <span class="keyword">FROM</span> FIMPE_DB.SOPORTE.TICKETS_NUEVOS;
+                    </div>
+                    <div class="demo-metrics">
+                        <div class="metric">
+                            <div class="metric-value">94%</div>
+                            <div class="metric-label">Precisión clasificación</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5</div>
+                            <div class="metric-label">Categorías</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">< 1s</div>
+                            <div class="metric-label">Tiempo proceso</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resultado Ejemplo -->
+                    <div class="result-example">
+                        <div class="result-example-header">
+                            📋 Ejemplo de Resultado - CLASSIFY_TEXT()
+                        </div>
+                        <table class="result-table">
+                            <thead>
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Categoría IA</th>
+                                    <th>Confianza</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="highlight">"No puedo pagar con mi tarjeta"</td>
+                                    <td><span class="category-badge">💳 Problema de pago</span></td>
+                                    <td>
+                                        <span style="color: var(--fimpe-secondary);">96.2%</span>
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 96%;"></div></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">"Mi rostro no es reconocido"</td>
+                                    <td><span class="category-badge">👤 Error biométrico</span></td>
+                                    <td>
+                                        <span style="color: var(--fimpe-secondary);">91.8%</span>
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 91%;"></div></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">"Alguien usó mi cuenta sin permiso"</td>
+                                    <td><span class="category-badge">🚨 Reporte de fraude</span></td>
+                                    <td>
+                                        <span style="color: var(--fimpe-secondary);">94.5%</span>
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 94%;"></div></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 4: Advanced Cortex -->
+        <div class="demo-container full-width fade-in">
+            <div class="demo-card highlight">
+                <div class="demo-header">
+                    <div class="demo-header-icon cortex">🧠</div>
+                    <div class="demo-header-text">
+                        <h3>Resumen Ejecutivo con LLM</h3>
+                        <span>Generación automática de reportes con COMPLETE</span>
+                    </div>
+                    <div class="demo-badge">Cortex AI - LLM</div>
+                </div>
+                <div class="demo-body">
+                    <div class="demo-code">
+                        <span class="comment">-- Generar resumen ejecutivo automático de operaciones diarias</span><br>
+                        <span class="keyword">WITH</span> metricas_dia <span class="keyword">AS</span> (<br>
+                        &nbsp;&nbsp;<span class="keyword">SELECT</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">TO_CHAR</span>(<span class="function">CURRENT_DATE</span>(), <span class="string">'YYYY-MM-DD'</span>) <span class="keyword">AS</span> fecha,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">SUM</span>(transacciones) <span class="keyword">AS</span> total_transacciones,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">SUM</span>(monto_mxn) <span class="keyword">AS</span> volumen_total,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">COUNT</span>(<span class="keyword">DISTINCT</span> usuario_id) <span class="keyword">AS</span> usuarios_activos,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">AVG</span>(score_fraude) <span class="keyword">AS</span> riesgo_promedio<br>
+                        &nbsp;&nbsp;<span class="keyword">FROM</span> FIMPE_DB.OPERACIONES.RESUMEN_DIARIO<br>
+                        &nbsp;&nbsp;<span class="keyword">WHERE</span> fecha = <span class="function">CURRENT_DATE</span>()<br>
+                        )<br>
+                        <span class="keyword">SELECT</span><br>
+                        &nbsp;&nbsp;<span class="cortex">SNOWFLAKE.CORTEX.COMPLETE</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'llama3.1-70b'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">CONCAT</span>(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Genera un resumen ejecutivo en español para FIMPE. '</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'Fecha: '</span>, fecha,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">' Transacciones: '</span>, total_transacciones,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">' Volumen MXN: '</span>, volumen_total,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">' Usuarios: '</span>, usuarios_activos,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">' Riesgo: '</span>, riesgo_promedio,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">' Incluye: resumen, logros y alertas.'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                        &nbsp;&nbsp;) <span class="keyword">AS</span> reporte_ejecutivo<br>
+                        <span class="keyword">FROM</span> metricas_dia;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Containers & GPU Section -->
+    <section id="containers">
+        <div class="section-header fade-in">
+            <div class="section-label">Infraestructura Avanzada</div>
+            <h2 class="section-title">Contenedores y GPUs</h2>
+            <p class="section-subtitle">Snowpark Container Services: ejecuta cualquier código, modelo o aplicación dentro de Snowflake con acceso a GPUs</p>
+        </div>
+
+        <div class="container-grid fade-in">
+            <!-- SPCS Card -->
+            <div class="container-card spcs">
+                <div class="container-header">
+                    <div class="container-icon spcs">🐳</div>
+                    <div>
+                        <h3>Snowpark Container Services</h3>
+                        <span style="color: var(--fimpe-text-muted); font-size: 0.9rem;">Ejecuta contenedores Docker en Snowflake</span>
+                    </div>
+                </div>
+                <p style="color: var(--fimpe-text-muted); margin-bottom: 1.5rem;">
+                    Despliega cualquier aplicación containerizada (Python, R, Node.js, Java) directamente en Snowflake con acceso nativo a los datos sin moverlos.
+                </p>
+                <ul class="container-features">
+                    <li>Contenedores OCI estándar (Docker)</li>
+                    <li>Acceso directo a tablas Snowflake</li>
+                    <li>Escalamiento automático</li>
+                    <li>Seguridad y governance integrados</li>
+                    <li>Sin egress de datos</li>
+                </ul>
+                <div class="use-cases">
+                    <h5>Casos de Uso FIMPE</h5>
+                    <ul>
+                        <li>→ Modelos de ML personalizados (PyTorch, TensorFlow)</li>
+                        <li>→ APIs de validación biométrica propias</li>
+                        <li>→ Procesamiento de imágenes de documentos</li>
+                        <li>→ Streamlit apps para dashboards internos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GPU Card -->
+            <div class="container-card gpu">
+                <div class="container-header">
+                    <div class="container-icon gpu">⚡</div>
+                    <div>
+                        <h3>GPUs en Snowflake</h3>
+                        <span style="color: var(--fimpe-text-muted); font-size: 0.9rem;">Aceleración con NVIDIA para ML/AI</span>
+                    </div>
+                </div>
+                <p style="color: var(--fimpe-text-muted); margin-bottom: 1.5rem;">
+                    Utiliza GPUs NVIDIA (A10G, A100) para entrenar modelos de deep learning, ejecutar inferencia a escala y procesar workloads de AI/ML.
+                </p>
+                <ul class="container-features">
+                    <li>GPUs NVIDIA A10G y A100</li>
+                    <li>Integración con PyTorch y TensorFlow</li>
+                    <li>Cortex AI usa GPUs automáticamente</li>
+                    <li>Pago por uso (solo cuando ejecutas)</li>
+                    <li>Fine-tuning de LLMs privados</li>
+                </ul>
+                <div class="use-cases">
+                    <h5>Casos de Uso FIMPE</h5>
+                    <ul>
+                        <li>→ Entrenamiento de modelos de detección de fraude</li>
+                        <li>→ Reconocimiento facial en tiempo real</li>
+                        <li>→ OCR avanzado de documentos con Computer Vision</li>
+                        <li>→ Fine-tuning de LLMs para español mexicano</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Example -->
+        <div class="demo-card fade-in" style="margin-top: 2rem;">
+            <div class="demo-header">
+                <div class="demo-header-icon" style="background: linear-gradient(135deg, #FF6B35 0%, #76B900 100%);">🚀</div>
+                <div class="demo-header-text">
+                    <h3>Ejemplo: Servicio de ML en Container</h3>
+                    <span>Despliegue de modelo personalizado con acceso a GPU</span>
+                </div>
+            </div>
+            <div class="demo-body">
+                <div class="demo-code">
+                    <span class="comment">-- 1. Crear un compute pool con GPUs</span><br>
+                    <span class="keyword">CREATE COMPUTE POOL</span> FIMPE_GPU_POOL<br>
+                    &nbsp;&nbsp;<span class="keyword">MIN_NODES</span> = 1<br>
+                    &nbsp;&nbsp;<span class="keyword">MAX_NODES</span> = 3<br>
+                    &nbsp;&nbsp;<span class="keyword">INSTANCE_FAMILY</span> = <span class="string">GPU_NV_S</span>; <span class="comment">-- NVIDIA A10G</span><br><br>
+                    
+                    <span class="comment">-- 2. Crear el servicio containerizado</span><br>
+                    <span class="keyword">CREATE SERVICE</span> FIMPE_DB.ML.FRAUD_DETECTOR<br>
+                    &nbsp;&nbsp;<span class="keyword">IN COMPUTE POOL</span> FIMPE_GPU_POOL<br>
+                    &nbsp;&nbsp;<span class="keyword">FROM SPECIFICATION</span> $$<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;spec:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containers:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: fraud-model<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: /fimpe_db/ml/images/fraud_pytorch:v2<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resources:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requests: {nvidia.com/gpu: 1}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODEL_PATH: /models/fraud_v2.pt<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;endpoints:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: predict<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;port: 8080<br>
+                    &nbsp;&nbsp;$$;<br><br>
+
+                    <span class="comment">-- 3. Llamar al servicio desde SQL</span><br>
+                    <span class="keyword">SELECT</span><br>
+                    &nbsp;&nbsp;transaccion_id,<br>
+                    &nbsp;&nbsp;FIMPE_DB.ML.FRAUD_DETECTOR!PREDICT(features) <span class="keyword">AS</span> fraud_score<br>
+                    <span class="keyword">FROM</span> FIMPE_DB.TRANSPORTE.TRANSACCIONES_NUEVAS;
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketplace Section -->
+    <section id="marketplace">
+        <div class="section-header fade-in">
+            <div class="section-label">Oportunidades</div>
+            <h2 class="section-title">Snowflake Marketplace</h2>
+            <p class="section-subtitle">Soluciones listas para implementar que potencian los servicios FIMPE</p>
+        </div>
+
+        <div class="marketplace-grid fade-in">
+            <!-- Data Enrichment -->
+            <div class="marketplace-card">
+                <div class="marketplace-icon data">📊</div>
+                <h3>Enriquecimiento de Datos</h3>
+                <p>Datasets externos para mejorar la inteligencia de negocio</p>
+                <ul class="marketplace-features">
+                    <li>Datos demográficos INEGI</li>
+                    <li>Indicadores económicos BANXICO</li>
+                    <li>Zonas geográficas CDMX</li>
+                    <li>Patrones de movilidad urbana</li>
+                </ul>
+            </div>
+
+            <!-- ML Models -->
+            <div class="marketplace-card">
+                <div class="marketplace-icon ml">🤖</div>
+                <h3>Modelos ML Pre-entrenados</h3>
+                <p>Inteligencia artificial lista para producción</p>
+                <ul class="marketplace-features">
+                    <li>Detección de fraude en tiempo real</li>
+                    <li>Predicción de demanda de rutas</li>
+                    <li>Scoring de riesgo crediticio</li>
+                    <li>Análisis de sentimiento</li>
+                </ul>
+            </div>
+
+            <!-- Security -->
+            <div class="marketplace-card">
+                <div class="marketplace-icon security">🛡️</div>
+                <h3>Seguridad & Compliance</h3>
+                <p>Herramientas para cumplimiento normativo</p>
+                <ul class="marketplace-features">
+                    <li>Listas negras AML actualizadas</li>
+                    <li>Verificación PEP automatizada</li>
+                    <li>Reportes CNBV automatizados</li>
+                    <li>Auditoría de acceso a datos</li>
+                </ul>
+            </div>
+
+            <!-- Analytics -->
+            <div class="marketplace-card">
+                <div class="marketplace-icon analytics">📈</div>
+                <h3>Analytics Avanzado</h3>
+                <p>Visualización y reportería inteligente</p>
+                <ul class="marketplace-features">
+                    <li>Dashboards ejecutivos</li>
+                    <li>Alertas en tiempo real</li>
+                    <li>Reportes regulatorios</li>
+                    <li>KPIs automatizados</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+        <div class="section-header fade-in">
+            <div class="section-label">Próximos Pasos</div>
+            <h2 class="section-title">Roadmap de Implementación</h2>
+            <p class="section-subtitle">Plan estructurado para la adopción de la arquitectura Snowflake</p>
+        </div>
+
+        <div class="roadmap-container fade-in">
+            <div class="roadmap-line"></div>
+
+            <!-- Phase 1 -->
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <span class="roadmap-phase">Fase 1 - Mes 1-2</span>
+                    <h3>Fundamentos & Prueba Guiada</h3>
+                    <p>Establecer la infraestructura base y validar la arquitectura</p>
+                    <ul class="roadmap-tasks">
+                        <li>Configuración de cuenta Snowflake</li>
+                        <li>Definición de roles y políticas de seguridad</li>
+                        <li>Prueba guiada con datos de transporte (1 ruta piloto)</li>
+                        <li>Integración inicial PostgreSQL → Snowflake</li>
+                        <li>Configuración de Resource Monitors (FinOps)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <span class="roadmap-phase">Fase 2 - Mes 3-4</span>
+                    <h3>Integración de Datos</h3>
+                    <p>Migración completa y pipelines automatizados</p>
+                    <ul class="roadmap-tasks">
+                        <li>ETL completo de datos históricos</li>
+                        <li>Streaming en tiempo real con Kafka/Snowpipe</li>
+                        <li>Modelo de datos dimensional (Star Schema)</li>
+                        <li>Integración módulo biometría</li>
+                        <li>Zero Copy Cloning para ambientes DEV/QA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <span class="roadmap-phase">Fase 3 - Mes 5-6</span>
+                    <h3>Cortex AI & Analytics</h3>
+                    <p>Activación de inteligencia artificial nativa</p>
+                    <ul class="roadmap-tasks">
+                        <li>Implementación de SENTIMENT y CLASSIFY_TEXT</li>
+                        <li>AI_EXTRACT para documentos KYC</li>
+                        <li>Dashboards ejecutivos en Streamlit</li>
+                        <li>Modelos de detección de fraude con Cortex</li>
+                        <li>Data Sharing con socios estratégicos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <span class="roadmap-phase">Fase 4 - Mes 7+</span>
+                    <h3>Contenedores & Escalamiento</h3>
+                    <p>Producción completa con SPCS y GPUs</p>
+                    <ul class="roadmap-tasks">
+                        <li>Snowpark Container Services en producción</li>
+                        <li>Modelos de ML custom con GPUs</li>
+                        <li>Expansión a todas las rutas de transporte</li>
+                        <li>Optimización de costos (FinOps avanzado)</li>
+                        <li>Certificación SOC 2 y auditorías</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section>
+        <div class="cta-section fade-in">
+            <h2>¿Listo para transformar tus datos?</h2>
+            <p>Agenda una sesión con nuestro equipo técnico para explorar cómo implementar esta arquitectura</p>
+            <div class="hero-buttons" style="justify-content: center;">
+                <a href="mailto:contacto@fimpe.org" class="btn btn-primary">
+                    Contactar a FIMPE
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <path d="M22 6l-10 7L2 6"/>
+                    </svg>
+                </a>
+                <a href="https://www.snowflake.com/en/data-cloud/marketplace/" target="_blank" class="btn btn-secondary">
+                    Ver Snowflake Marketplace
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://fimpe.org" target="_blank">FIMPE</a>
+            <a href="https://fimpe.org/nosotros/" target="_blank">Nosotros</a>
+            <a href="https://fimpe.org/blog/" target="_blank">Blog</a>
+            <a href="mailto:contacto@fimpe.org">Contacto</a>
+        </div>
+        <p class="footer-copyright">
+            Demo técnica creada para <span>FIMPE</span> · Fideicomiso F/00185 · 2024
+        </p>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Enable animations only if JS works
+            document.body.classList.add('js-enabled');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Copy code function for quickstart
+        function copyCode(button) {
+            const stepCode = button.closest('.quickstart-step').querySelector('.step-code code');
+            const text = stepCode.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅ Copiado!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar:', err);
+                button.textContent = '❌ Error';
+                setTimeout(() => {
+                    button.textContent = '📋 Copiar';
+                }, 2000);
+            });
+        }
+
+        // Download SQL function
+        function downloadSQL() {
+            const sqlContent = `-- ============================================================
+-- FIMPE DEMO - SNOWFLAKE QUICKSTART
+-- Archivo generado desde https://fimpe.org demo
+-- Fecha: ${new Date().toISOString().split('T')[0]}
+-- ============================================================
+
+-- ============================================================
+-- PASO 0: CONFIGURACIÓN INICIAL
+-- Ejecutar con rol ACCOUNTADMIN o equivalente
+-- ============================================================
+
+USE ROLE ACCOUNTADMIN;
+
+CREATE OR REPLACE WAREHOUSE FIMPE_WH
+    WAREHOUSE_SIZE = 'X-SMALL'
+    AUTO_SUSPEND = 60
+    AUTO_RESUME = TRUE
+    MIN_CLUSTER_COUNT = 1
+    MAX_CLUSTER_COUNT = 2
+    SCALING_POLICY = 'STANDARD'
+    COMMENT = 'Warehouse para demo FIMPE - Auto-suspend habilitado';
+
+CREATE OR REPLACE DATABASE FIMPE_DB
+    COMMENT = 'Base de datos para demo FIMPE - Transporte, Biometría, KYC';
+
+USE WAREHOUSE FIMPE_WH;
+USE DATABASE FIMPE_DB;
+
+SELECT CURRENT_WAREHOUSE(), CURRENT_DATABASE(), CURRENT_ROLE();
+
+-- ============================================================
+-- PASO 1: CREAR SCHEMAS
+-- ============================================================
+
+USE DATABASE FIMPE_DB;
+
+CREATE OR REPLACE SCHEMA TRANSPORTE
+    COMMENT = 'Datos de rutas, viajes y recaudo de transporte público';
+
+CREATE OR REPLACE SCHEMA BIOMETRIA
+    COMMENT = 'Validaciones biométricas: facial, huella, voz';
+
+CREATE OR REPLACE SCHEMA KYC
+    COMMENT = 'Documentos de identidad y procesos Know Your Customer';
+
+CREATE OR REPLACE SCHEMA FEEDBACK
+    COMMENT = 'Comentarios, tickets de soporte y análisis de sentimiento';
+
+CREATE OR REPLACE SCHEMA OPERACIONES
+    COMMENT = 'Métricas operativas y resúmenes ejecutivos';
+
+SHOW SCHEMAS IN DATABASE FIMPE_DB;
+
+-- ============================================================
+-- PASO 2: CREAR TABLAS
+-- ============================================================
+
+CREATE OR REPLACE TABLE FIMPE_DB.TRANSPORTE.VIAJES (
+    viaje_id            NUMBER AUTOINCREMENT PRIMARY KEY,
+    ruta_id             VARCHAR(20),
+    nombre_ruta         VARCHAR(100),
+    unidad_id           VARCHAR(20),
+    tarjeta_id          VARCHAR(30),
+    fecha               TIMESTAMP_NTZ,
+    monto_recaudado     NUMBER(10,2),
+    ocupacion_porcentaje NUMBER(5,2),
+    origen_estacion     VARCHAR(100),
+    destino_estacion    VARCHAR(100),
+    tiempo_viaje_min    NUMBER(5,2),
+    created_at          TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE FIMPE_DB.BIOMETRIA.VALIDACIONES (
+    validacion_id       NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    tipo_biometrico     VARCHAR(20),
+    score_match         NUMBER(5,4),
+    resultado           VARCHAR(20),
+    tiempo_respuesta_ms NUMBER(10,2),
+    dispositivo         VARCHAR(50),
+    ubicacion           VARCHAR(100),
+    fecha               DATE,
+    created_at          TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE FIMPE_DB.KYC.DOCUMENTOS (
+    documento_id        NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    tipo_documento      VARCHAR(30),
+    estado              VARCHAR(20),
+    nombre_extraido     VARCHAR(200),
+    curp_extraido       VARCHAR(18),
+    fecha_nacimiento    DATE,
+    direccion_extraida  VARCHAR(500),
+    score_confianza     NUMBER(5,4),
+    fecha_carga         TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE FIMPE_DB.FEEDBACK.COMENTARIOS (
+    comentario_id       NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    canal               VARCHAR(20),
+    comentario_texto    VARCHAR(2000),
+    calificacion        NUMBER(1),
+    fecha               DATE,
+    created_at          TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE FIMPE_DB.FEEDBACK.TICKETS (
+    ticket_id           NUMBER AUTOINCREMENT PRIMARY KEY,
+    usuario_id          VARCHAR(30),
+    descripcion         VARCHAR(2000),
+    categoria           VARCHAR(50),
+    prioridad           VARCHAR(10),
+    estado              VARCHAR(20),
+    fecha_creacion      TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE FIMPE_DB.OPERACIONES.RESUMEN_DIARIO (
+    fecha               DATE PRIMARY KEY,
+    transacciones       NUMBER,
+    monto_mxn           NUMBER(15,2),
+    usuario_id          NUMBER,
+    usuarios_activos    NUMBER,
+    validaciones_bio    NUMBER,
+    tasa_exito_bio      NUMBER(5,2),
+    score_fraude        NUMBER(5,4)
+);
+
+SELECT table_schema, table_name, row_count 
+FROM information_schema.tables 
+WHERE table_catalog = 'FIMPE_DB' 
+ORDER BY table_schema, table_name;
+
+-- ============================================================
+-- PASO 3: INSERTAR DATOS SINTÉTICOS
+-- ============================================================
+
+-- DATOS DE TRANSPORTE (10,000 registros)
+INSERT INTO FIMPE_DB.TRANSPORTE.VIAJES (
+    ruta_id, nombre_ruta, unidad_id, tarjeta_id, fecha, 
+    monto_recaudado, ocupacion_porcentaje, origen_estacion, 
+    destino_estacion, tiempo_viaje_min
+)
+SELECT 
+    'RUTA-' || LPAD(MOD(SEQ4(), 50) + 1, 3, '0') AS ruta_id,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'Línea 1 - Observatorio a Pantitlán'
+        WHEN 1 THEN 'Línea 2 - Cuatro Caminos a Tasqueña'
+        WHEN 2 THEN 'Línea 3 - Indios Verdes a Universidad'
+        WHEN 3 THEN 'Metrobús Línea 1 - El Caminero a Buenavista'
+        WHEN 4 THEN 'Trolebús Eje Central'
+        WHEN 5 THEN 'RTP Ruta 11 - Xochimilco Centro'
+        WHEN 6 THEN 'Línea 7 - El Rosario a Barranca del Muerto'
+        WHEN 7 THEN 'Línea 9 - Tacubaya a Pantitlán'
+        WHEN 8 THEN 'Metrobús Línea 2 - Tepalcates a Tacubaya'
+        ELSE 'Línea 12 - Mixcoac a Tláhuac'
+    END AS nombre_ruta,
+    'UNIDAD-' || LPAD(UNIFORM(1, 500, RANDOM()), 4, '0') AS unidad_id,
+    'TARJETA-' || LPAD(UNIFORM(100000, 999999, RANDOM()), 10, '0') AS tarjeta_id,
+    DATEADD('minute', -UNIFORM(1, 43200, RANDOM()), CURRENT_TIMESTAMP()) AS fecha,
+    ROUND(UNIFORM(5, 15, RANDOM()) + RANDOM() * 5, 2) AS monto_recaudado,
+    ROUND(UNIFORM(30, 95, RANDOM()) + RANDOM() * 5, 2) AS ocupacion_porcentaje,
+    CASE MOD(SEQ4(), 8)
+        WHEN 0 THEN 'Pantitlán' WHEN 1 THEN 'Indios Verdes'
+        WHEN 2 THEN 'Cuatro Caminos' WHEN 3 THEN 'Tacubaya'
+        WHEN 4 THEN 'Chabacano' WHEN 5 THEN 'Pino Suárez'
+        WHEN 6 THEN 'Hidalgo' ELSE 'Balderas'
+    END AS origen_estacion,
+    CASE MOD(SEQ4() + 3, 8)
+        WHEN 0 THEN 'Universidad' WHEN 1 THEN 'Observatorio'
+        WHEN 2 THEN 'Tasqueña' WHEN 3 THEN 'El Rosario'
+        WHEN 4 THEN 'Mixcoac' WHEN 5 THEN 'Zócalo'
+        WHEN 6 THEN 'Bellas Artes' ELSE 'Garibaldi'
+    END AS destino_estacion,
+    ROUND(UNIFORM(5, 45, RANDOM()) + RANDOM() * 10, 2) AS tiempo_viaje_min
+FROM TABLE(GENERATOR(ROWCOUNT => 10000));
+
+-- DATOS DE BIOMETRÍA (5,000 registros)
+INSERT INTO FIMPE_DB.BIOMETRIA.VALIDACIONES (
+    usuario_id, tipo_biometrico, score_match, resultado,
+    tiempo_respuesta_ms, dispositivo, ubicacion, fecha
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 3)
+        WHEN 0 THEN 'FACIAL' WHEN 1 THEN 'HUELLA' ELSE 'VOZ'
+    END AS tipo_biometrico,
+    CASE 
+        WHEN UNIFORM(1, 100, RANDOM()) <= 97 THEN ROUND(0.85 + RANDOM() * 0.15, 4)
+        ELSE ROUND(0.20 + RANDOM() * 0.40, 4)
+    END AS score_match,
+    CASE 
+        WHEN score_match >= 0.75 THEN 'MATCH'
+        WHEN score_match >= 0.50 THEN 'REVIEW'
+        ELSE 'NO_MATCH'
+    END AS resultado,
+    ROUND(UNIFORM(800, 2500, RANDOM()) + RANDOM() * 500, 2) AS tiempo_respuesta_ms,
+    CASE MOD(SEQ4(), 5)
+        WHEN 0 THEN 'iPhone 14 Pro' WHEN 1 THEN 'Samsung Galaxy S23'
+        WHEN 2 THEN 'Terminal Kiosko v3' WHEN 3 THEN 'Huawei P50'
+        ELSE 'Web Browser'
+    END AS dispositivo,
+    CASE MOD(SEQ4(), 6)
+        WHEN 0 THEN 'CDMX - Polanco' WHEN 1 THEN 'CDMX - Centro Histórico'
+        WHEN 2 THEN 'Guadalajara - Centro' WHEN 3 THEN 'Monterrey - San Pedro'
+        WHEN 4 THEN 'Puebla - Angelópolis' ELSE 'CDMX - Santa Fe'
+    END AS ubicacion,
+    DATEADD('day', -UNIFORM(0, 30, RANDOM()), CURRENT_DATE()) AS fecha
+FROM TABLE(GENERATOR(ROWCOUNT => 5000));
+
+-- DATOS DE KYC (2,000 registros)
+INSERT INTO FIMPE_DB.KYC.DOCUMENTOS (
+    usuario_id, tipo_documento, estado, nombre_extraido,
+    curp_extraido, fecha_nacimiento, direccion_extraida, score_confianza
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 4)
+        WHEN 0 THEN 'INE' WHEN 1 THEN 'PASAPORTE'
+        WHEN 2 THEN 'CURP' ELSE 'COMPROBANTE_DOMICILIO'
+    END AS tipo_documento,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'RECHAZADO' WHEN 1 THEN 'NUEVO' ELSE 'PROCESADO'
+    END AS estado,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'María García López'
+        WHEN 1 THEN 'Juan Hernández Martínez'
+        WHEN 2 THEN 'Ana Patricia Rodríguez Sánchez'
+        WHEN 3 THEN 'Carlos Eduardo Ramírez González'
+        WHEN 4 THEN 'Laura Fernández Díaz'
+        WHEN 5 THEN 'Roberto Morales Jiménez'
+        WHEN 6 THEN 'Sofía Alejandra Torres Ruiz'
+        WHEN 7 THEN 'Miguel Ángel Castro Flores'
+        WHEN 8 THEN 'Gabriela Ortiz Mendoza'
+        ELSE 'Fernando Vargas Pérez'
+    END AS nombre_extraido,
+    UPPER(SUBSTR(nombre_extraido, 1, 4)) || 
+        LPAD(UNIFORM(70, 99, RANDOM()), 2, '0') ||
+        LPAD(UNIFORM(1, 12, RANDOM()), 2, '0') ||
+        LPAD(UNIFORM(1, 28, RANDOM()), 2, '0') ||
+        'HDFRR' || LPAD(UNIFORM(0, 9, RANDOM()), 2, '0') AS curp_extraido,
+    DATEADD('year', -UNIFORM(18, 65, RANDOM()), CURRENT_DATE()) AS fecha_nacimiento,
+    CASE MOD(SEQ4(), 5)
+        WHEN 0 THEN 'Av. Insurgentes Sur 1234, Col. Del Valle, CDMX'
+        WHEN 1 THEN 'Calle Madero 567, Col. Centro, Guadalajara, JAL'
+        WHEN 2 THEN 'Blvd. Díaz Ordaz 890, Col. Santa María, MTY, NL'
+        WHEN 3 THEN 'Calle 5 de Mayo 321, Col. Anzures, CDMX'
+        ELSE 'Av. Chapultepec 456, Col. Juárez, CDMX'
+    END AS direccion_extraida,
+    ROUND(0.75 + RANDOM() * 0.25, 4) AS score_confianza
+FROM TABLE(GENERATOR(ROWCOUNT => 2000));
+
+-- DATOS DE FEEDBACK (1,000 comentarios)
+INSERT INTO FIMPE_DB.FEEDBACK.COMENTARIOS (
+    usuario_id, canal, comentario_texto, calificacion, fecha
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 4)
+        WHEN 0 THEN 'APP' WHEN 1 THEN 'CALL_CENTER'
+        WHEN 2 THEN 'REDES' ELSE 'WEB'
+    END AS canal,
+    CASE MOD(SEQ4(), 15)
+        WHEN 0 THEN 'Excelente servicio, muy rápido y seguro. La app funciona perfecto.'
+        WHEN 1 THEN 'Me encanta lo fácil que es validar mi identidad. ¡5 estrellas!'
+        WHEN 2 THEN 'El proceso de verificación fue muy sencillo y rápido.'
+        WHEN 3 THEN 'Buena experiencia en general, aunque la app tardó un poco.'
+        WHEN 4 THEN 'Servicio aceptable, pero podrían mejorar los tiempos de espera.'
+        WHEN 5 THEN 'Todo bien con mi registro, sin problemas.'
+        WHEN 6 THEN 'La validación facial falló varias veces antes de funcionar.'
+        WHEN 7 THEN 'No me gusta que pidan tantos documentos, es muy tardado.'
+        WHEN 8 THEN 'Pésimo servicio al cliente, nadie me atendió por 2 horas.'
+        WHEN 9 THEN 'La app se cierra constantemente, muy frustrante.'
+        WHEN 10 THEN 'Muy mala experiencia, perdí mi tiempo y no pude registrarme.'
+        WHEN 11 THEN 'El soporte técnico fue muy amable y resolvió mi problema rápido.'
+        WHEN 12 THEN 'Me cobraron doble y nadie me da respuesta. Inaceptable.'
+        WHEN 13 THEN 'Funciona bien pero la interfaz podría ser más moderna.'
+        ELSE 'Regular, ni muy bien ni muy mal. Cumple su función.'
+    END AS comentario_texto,
+    CASE 
+        WHEN MOD(SEQ4(), 15) IN (0, 1, 2, 11) THEN 5
+        WHEN MOD(SEQ4(), 15) IN (3, 5, 13, 14) THEN 4
+        WHEN MOD(SEQ4(), 15) IN (4, 6) THEN 3
+        WHEN MOD(SEQ4(), 15) IN (7, 9) THEN 2
+        ELSE 1
+    END AS calificacion,
+    DATEADD('day', -UNIFORM(0, 30, RANDOM()), CURRENT_DATE()) AS fecha
+FROM TABLE(GENERATOR(ROWCOUNT => 1000));
+
+-- DATOS DE TICKETS (500 registros)
+INSERT INTO FIMPE_DB.FEEDBACK.TICKETS (
+    usuario_id, descripcion, categoria, prioridad, estado
+)
+SELECT
+    'USR-' || LPAD(UNIFORM(1000, 99999, RANDOM()), 6, '0') AS usuario_id,
+    CASE MOD(SEQ4(), 10)
+        WHEN 0 THEN 'No puedo completar el pago con mi tarjeta, marca error de conexión.'
+        WHEN 1 THEN 'La validación biométrica no reconoce mi rostro después de usar lentes.'
+        WHEN 2 THEN 'Necesito saber el saldo de mi cuenta de transporte.'
+        WHEN 3 THEN 'Creo que alguien usó mi tarjeta sin autorización, reporto fraude.'
+        WHEN 4 THEN 'Solicito reembolso por cobro duplicado del día 15.'
+        WHEN 5 THEN 'La app no carga después de la última actualización.'
+        WHEN 6 THEN 'Mi documento fue rechazado pero la imagen está clara.'
+        WHEN 7 THEN 'No recibí el código de verificación por SMS.'
+        WHEN 8 THEN 'Quiero cambiar mi número de teléfono registrado.'
+        ELSE 'Tengo problemas para vincular mi tarjeta bancaria.'
+    END AS descripcion,
+    CASE MOD(SEQ4(), 5)
+        WHEN 0 THEN 'Problema de pago'
+        WHEN 1 THEN 'Error en validación biométrica'
+        WHEN 2 THEN 'Consulta de saldo'
+        WHEN 3 THEN 'Reporte de fraude'
+        ELSE 'Solicitud de reembolso'
+    END AS categoria,
+    CASE MOD(SEQ4(), 4)
+        WHEN 0 THEN 'BAJA' WHEN 1 THEN 'MEDIA'
+        WHEN 2 THEN 'ALTA' ELSE 'CRITICA'
+    END AS prioridad,
+    CASE MOD(SEQ4(), 3)
+        WHEN 0 THEN 'NUEVO' WHEN 1 THEN 'EN_PROCESO' ELSE 'RESUELTO'
+    END AS estado
+FROM TABLE(GENERATOR(ROWCOUNT => 500));
+
+-- RESUMEN OPERATIVO (30 días)
+INSERT INTO FIMPE_DB.OPERACIONES.RESUMEN_DIARIO (
+    fecha, transacciones, monto_mxn, usuario_id, usuarios_activos,
+    validaciones_bio, tasa_exito_bio, score_fraude
+)
+SELECT
+    DATEADD('day', -ROW_NUMBER() OVER (ORDER BY SEQ4()), CURRENT_DATE()) AS fecha,
+    UNIFORM(2000000, 2800000, RANDOM()) AS transacciones,
+    ROUND(UNIFORM(15000000, 22000000, RANDOM()) + RANDOM() * 1000000, 2) AS monto_mxn,
+    ROW_NUMBER() OVER (ORDER BY SEQ4()) AS usuario_id,
+    UNIFORM(150000, 250000, RANDOM()) AS usuarios_activos,
+    UNIFORM(400000, 500000, RANDOM()) AS validaciones_bio,
+    ROUND(UNIFORM(97, 99, RANDOM()) + RANDOM(), 2) AS tasa_exito_bio,
+    ROUND(0.01 + RANDOM() * 0.04, 4) AS score_fraude
+FROM TABLE(GENERATOR(ROWCOUNT => 30));
+
+-- Verificar conteos
+SELECT 'TRANSPORTE.VIAJES' AS tabla, COUNT(*) AS registros FROM FIMPE_DB.TRANSPORTE.VIAJES
+UNION ALL SELECT 'BIOMETRIA.VALIDACIONES', COUNT(*) FROM FIMPE_DB.BIOMETRIA.VALIDACIONES
+UNION ALL SELECT 'KYC.DOCUMENTOS', COUNT(*) FROM FIMPE_DB.KYC.DOCUMENTOS
+UNION ALL SELECT 'FEEDBACK.COMENTARIOS', COUNT(*) FROM FIMPE_DB.FEEDBACK.COMENTARIOS
+UNION ALL SELECT 'FEEDBACK.TICKETS', COUNT(*) FROM FIMPE_DB.FEEDBACK.TICKETS
+UNION ALL SELECT 'OPERACIONES.RESUMEN_DIARIO', COUNT(*) FROM FIMPE_DB.OPERACIONES.RESUMEN_DIARIO;
+
+-- ============================================================
+-- PASO 4: CONSULTAS DE DEMO
+-- ============================================================
+
+-- 4.1 ANÁLISIS DE TRANSPORTE
+SELECT 
+    ruta_id, nombre_ruta, COUNT(*) AS total_viajes,
+    SUM(monto_recaudado) AS recaudo_total,
+    ROUND(AVG(ocupacion_porcentaje), 2) AS ocupacion_promedio,
+    COUNT(DISTINCT unidad_id) AS unidades_activas
+FROM FIMPE_DB.TRANSPORTE.VIAJES
+WHERE fecha >= CURRENT_DATE() - 30
+GROUP BY ruta_id, nombre_ruta
+ORDER BY recaudo_total DESC
+LIMIT 10;
+
+-- 4.2 MÉTRICAS BIOMÉTRICAS
+SELECT tipo_biometrico, COUNT(*) AS total,
+    ROUND(AVG(score_match), 4) AS score_promedio,
+    ROUND(SUM(CASE WHEN resultado = 'MATCH' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS tasa_exito_pct
+FROM FIMPE_DB.BIOMETRIA.VALIDACIONES
+WHERE fecha >= CURRENT_DATE() - 7
+GROUP BY tipo_biometrico;
+
+-- 4.3 ANÁLISIS DE SENTIMIENTO (Cortex)
+SELECT comentario_id, canal, comentario_texto, calificacion,
+    SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) AS score_sentimiento,
+    CASE 
+        WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) > 0.3 THEN 'POSITIVO'
+        WHEN SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto) < -0.3 THEN 'NEGATIVO'
+        ELSE 'NEUTRO'
+    END AS clasificacion
+FROM FIMPE_DB.FEEDBACK.COMENTARIOS
+LIMIT 20;
+
+-- 4.4 CLASIFICACIÓN DE TICKETS (Cortex)
+SELECT ticket_id, descripcion, categoria,
+    SNOWFLAKE.CORTEX.CLASSIFY_TEXT(descripcion, 
+        ARRAY_CONSTRUCT('Problema de pago','Error en validación biométrica',
+        'Consulta de saldo','Reporte de fraude','Solicitud de reembolso')
+    ):label::VARCHAR AS categoria_ia
+FROM FIMPE_DB.FEEDBACK.TICKETS
+WHERE estado = 'NUEVO'
+LIMIT 10;
+
+-- 4.5 ZERO COPY CLONING
+CREATE DATABASE FIMPE_DEV CLONE FIMPE_DB;
+SELECT database_name, created FROM information_schema.databases WHERE database_name LIKE 'FIMPE%';
+DROP DATABASE IF EXISTS FIMPE_DEV;
+
+-- ============================================================
+-- PASO 5: FINOPS Y LIMPIEZA
+-- ============================================================
+
+-- Suspender warehouse
+ALTER WAREHOUSE FIMPE_WH SUSPEND;
+
+-- Ver estado
+SHOW WAREHOUSES LIKE 'FIMPE_WH';
+
+-- CLEANUP COMPLETO (Descomenta para ejecutar)
+-- DROP WAREHOUSE IF EXISTS FIMPE_WH;
+-- DROP DATABASE IF EXISTS FIMPE_DB;
+
+-- ============================================================
+-- PASO 6: STREAMLIT APP EN SNOWFLAKE
+-- ============================================================
+
+-- Crear schema para apps
+CREATE OR REPLACE SCHEMA FIMPE_DB.APPS;
+
+-- Crear stage para Streamlit
+CREATE OR REPLACE STAGE FIMPE_DB.APPS.STREAMLIT_STAGE
+    DIRECTORY = (ENABLE = TRUE);
+
+-- El código Python de la app está en el archivo separado app.py
+-- Ver la demo HTML para el código completo de Streamlit
+
+-- Verificar Cortex
+SELECT SNOWFLAKE.CORTEX.SENTIMENT('Prueba de Cortex AI') AS test_cortex;
+
+-- ============================================================
+-- ¡Demo completada! 🎉
+-- Visita https://fimpe.org para más información
+-- El código de Streamlit está en la demo HTML
+-- ============================================================
+`;
+            
+            const blob = new Blob([sqlContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'FIMPE_Demo_Quickstart.sql';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Download Python Streamlit app
+        function downloadPython() {
+            const styleOpen = '<' + 'style>';
+            const styleClose = '</' + 'style>';
+            const pythonContent = `# ============================================================
+# FIMPE DASHBOARD - STREAMLIT IN SNOWFLAKE
+# Análisis de Rutas, KYC, Biometría y Cortex AI
+# Fecha: ${new Date().toISOString().split('T')[0]}
+# ============================================================
+
+import streamlit as st
+from snowflake.snowpark.context import get_active_session
+import pandas as pd
+
+# Configuración de página
+st.set_page_config(
+    page_title="FIMPE Dashboard",
+    page_icon="🚌",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Obtener sesión de Snowflake
+session = get_active_session()
+
+# ==================== ESTILOS CSS ====================
+st.markdown("""
+` + styleOpen + `
+    .main-header {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #00D4AA 0%, #635BFF 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+    .metric-card {
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 212, 170, 0.2);
+    }
+    .section-header {
+        color: #00D4AA;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+    }
+` + styleClose + `
+""", unsafe_allow_html=True)
+
+# ==================== SIDEBAR ====================
+with st.sidebar:
+    st.markdown("## 🚌 FIMPE Dashboard")
+    st.markdown("---")
+    
+    menu = st.radio(
+        "📊 Navegación",
+        ["🚌 Análisis de Rutas", "🔐 Validación de Identidad", 
+         "📄 Extracción de Documentos", "😊 Análisis de Sentimientos",
+         "🏷️ Categorización", "📋 Resumen Ejecutivo"]
+    )
+    
+    st.markdown("---")
+    st.caption("Demo FIMPE © 2024")
+
+# ==================== HEADER ====================
+st.markdown('<p class="main-header">FIMPE Dashboard</p>', unsafe_allow_html=True)
+st.markdown("Plataforma de análisis con **Snowflake Cortex AI**")
+st.markdown("---")
+
+# ==================== 1. ANÁLISIS DE RUTAS ====================
+if menu == "🚌 Análisis de Rutas":
+    st.markdown('<p class="section-header">Transporte Público</p>', unsafe_allow_html=True)
+    st.subheader("📊 Análisis de Rutas de Transporte")
+    
+    # Métricas principales
+    col1, col2, col3, col4 = st.columns(4)
+    
+    metricas_df = session.sql("""
+        SELECT 
+            COUNT(*) AS total_viajes,
+            ROUND(SUM(monto_recaudado), 2) AS recaudo_total,
+            COUNT(DISTINCT ruta_id) AS rutas_activas,
+            ROUND(AVG(ocupacion_porcentaje), 1) AS ocupacion_promedio
+        FROM FIMPE_DB.TRANSPORTE.VIAJES
+        WHERE fecha >= CURRENT_DATE() - 30
+    """).to_pandas()
+    
+    col1.metric("🎫 Total Viajes", f"{metricas_df['TOTAL_VIAJES'].iloc[0]:,}")
+    col2.metric("💰 Recaudo Total", f"\\${metricas_df['RECAUDO_TOTAL'].iloc[0]:,.2f}")
+    col3.metric("🚌 Rutas Activas", metricas_df['RUTAS_ACTIVAS'].iloc[0])
+    col4.metric("👥 Ocupación Prom.", f"{metricas_df['OCUPACION_PROMEDIO'].iloc[0]}%")
+    
+    st.markdown("---")
+    
+    st.subheader("🏆 Top 10 Rutas por Recaudo")
+    top_rutas = session.sql("""
+        SELECT 
+            nombre_ruta,
+            COUNT(*) AS viajes,
+            ROUND(SUM(monto_recaudado), 2) AS recaudo,
+            ROUND(AVG(ocupacion_porcentaje), 1) AS ocupacion
+        FROM FIMPE_DB.TRANSPORTE.VIAJES
+        WHERE fecha >= CURRENT_DATE() - 30
+        GROUP BY nombre_ruta
+        ORDER BY recaudo DESC
+        LIMIT 10
+    """).to_pandas()
+    
+    st.bar_chart(top_rutas.set_index('NOMBRE_RUTA')['RECAUDO'])
+    st.dataframe(top_rutas, use_container_width=True)
+
+# ==================== 2. VALIDACIÓN DE IDENTIDAD ====================
+elif menu == "🔐 Validación de Identidad":
+    st.markdown('<p class="section-header">Biometría & KYC</p>', unsafe_allow_html=True)
+    st.subheader("🔐 Dashboard de Validación de Identidad")
+    
+    bio_metricas = session.sql("""
+        SELECT 
+            tipo_biometrico,
+            COUNT(*) AS total,
+            ROUND(AVG(score_match) * 100, 2) AS score_promedio,
+            ROUND(SUM(CASE WHEN resultado = 'MATCH' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS tasa_exito,
+            ROUND(AVG(tiempo_respuesta_ms), 0) AS latencia_ms
+        FROM FIMPE_DB.BIOMETRIA.VALIDACIONES
+        WHERE fecha >= CURRENT_DATE() - 7
+        GROUP BY tipo_biometrico
+    """).to_pandas()
+    
+    col1, col2, col3 = st.columns(3)
+    
+    for idx, row in bio_metricas.iterrows():
+        with [col1, col2, col3][idx % 3]:
+            icon = "👤" if row['TIPO_BIOMETRICO'] == 'FACIAL' else "👆" if row['TIPO_BIOMETRICO'] == 'HUELLA' else "🎤"
+            st.markdown(f"### {icon} {row['TIPO_BIOMETRICO']}")
+            st.metric("Validaciones", f"{row['TOTAL']:,}")
+            st.metric("Tasa de Éxito", f"{row['TASA_EXITO']}%")
+            st.metric("Latencia", f"{row['LATENCIA_MS']} ms")
+    
+    st.markdown("---")
+    st.subheader("📋 Estado de Documentos KYC")
+    kyc_status = session.sql("""
+        SELECT tipo_documento, estado, COUNT(*) AS cantidad
+        FROM FIMPE_DB.KYC.DOCUMENTOS
+        GROUP BY tipo_documento, estado
+        ORDER BY tipo_documento, estado
+    """).to_pandas()
+    st.dataframe(kyc_status, use_container_width=True)
+
+# ==================== 3. EXTRACCIÓN DE DOCUMENTOS ====================
+elif menu == "📄 Extracción de Documentos":
+    st.markdown('<p class="section-header">Cortex AI</p>', unsafe_allow_html=True)
+    st.subheader("📄 Extracción Inteligente de Documentos")
+    
+    st.info("💡 Utiliza **SNOWFLAKE.CORTEX.COMPLETE** para extraer información estructurada.")
+    
+    texto_documento = st.text_area(
+        "Pegue el texto del documento:",
+        value="""INE: María García López
+CURP: GALM850615MDFRRL09
+Fecha de Nacimiento: 15 de Junio de 1985
+Domicilio: Av. Insurgentes Sur 1234, Col. Del Valle, CDMX""",
+        height=150
+    )
+    
+    if st.button("🔍 Extraer con Cortex AI", type="primary"):
+        with st.spinner("Procesando..."):
+            resultado = session.sql(f"""
+                SELECT SNOWFLAKE.CORTEX.COMPLETE(
+                    'mistral-large',
+                    'Extrae en JSON: nombre, curp, fecha_nacimiento, direccion.
+                    Documento: {texto_documento.replace("'", "''")}
+                    Solo JSON, sin explicaciones.'
+                ) AS datos
+            """).to_pandas()
+            st.success("✅ Completado")
+            st.code(resultado['DATOS'].iloc[0])
+
+# ==================== 4. ANÁLISIS DE SENTIMIENTOS ====================
+elif menu == "😊 Análisis de Sentimientos":
+    st.markdown('<p class="section-header">Cortex Sentiment</p>', unsafe_allow_html=True)
+    st.subheader("😊 Análisis de Sentimientos")
+    
+    sentimiento_resumen = session.sql("""
+        SELECT canal, COUNT(*) AS total,
+            ROUND(AVG(SNOWFLAKE.CORTEX.SENTIMENT(comentario_texto)), 4) AS sentimiento_promedio
+        FROM FIMPE_DB.FEEDBACK.COMENTARIOS
+        WHERE fecha >= CURRENT_DATE() - 30
+        GROUP BY canal
+    """).to_pandas()
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.bar_chart(sentimiento_resumen.set_index('CANAL')['SENTIMIENTO_PROMEDIO'])
+    with col2:
+        st.dataframe(sentimiento_resumen, use_container_width=True)
+    
+    st.markdown("---")
+    st.subheader("🔬 Analizar Comentario")
+    nuevo_comentario = st.text_input("Comentario:", value="El servicio fue excelente")
+    
+    if st.button("Analizar", type="primary"):
+        resultado = session.sql(f"""
+            SELECT SNOWFLAKE.CORTEX.SENTIMENT('{nuevo_comentario.replace("'", "''")}') AS score
+        """).to_pandas()
+        score = resultado['SCORE'].iloc[0]
+        if score > 0.3: st.success(f"😊 POSITIVO ({score:.4f})")
+        elif score < -0.3: st.error(f"😞 NEGATIVO ({score:.4f})")
+        else: st.warning(f"😐 NEUTRO ({score:.4f})")
+
+# ==================== 5. CATEGORIZACIÓN ====================
+elif menu == "🏷️ Categorización":
+    st.markdown('<p class="section-header">Cortex Classify</p>', unsafe_allow_html=True)
+    st.subheader("🏷️ Categorización de Tickets")
+    
+    tickets = session.sql("""
+        SELECT ticket_id, descripcion, categoria,
+            SNOWFLAKE.CORTEX.CLASSIFY_TEXT(descripcion, 
+                ARRAY_CONSTRUCT('Problema de pago','Error biométrico',
+                'Consulta de saldo','Fraude','Reembolso')
+            ):label::VARCHAR AS categoria_ia
+        FROM FIMPE_DB.FEEDBACK.TICKETS WHERE estado = 'NUEVO' LIMIT 10
+    """).to_pandas()
+    st.dataframe(tickets, use_container_width=True)
+
+# ==================== 6. RESUMEN EJECUTIVO ====================
+elif menu == "📋 Resumen Ejecutivo":
+    st.markdown('<p class="section-header">Cortex Complete</p>', unsafe_allow_html=True)
+    st.subheader("📋 Resumen Ejecutivo con IA")
+    
+    metricas = session.sql("""
+        SELECT SUM(transacciones) AS total_tx, ROUND(SUM(monto_mxn), 2) AS volumen,
+            ROUND(AVG(tasa_exito_bio), 2) AS tasa_bio, ROUND(AVG(score_fraude), 4) AS fraude
+        FROM FIMPE_DB.OPERACIONES.RESUMEN_DIARIO WHERE fecha >= CURRENT_DATE() - 7
+    """).to_pandas()
+    
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("📊 Transacciones", f"{metricas['TOTAL_TX'].iloc[0]:,}")
+    col2.metric("💰 Volumen", f"\\${metricas['VOLUMEN'].iloc[0]:,.2f}")
+    col3.metric("✅ Tasa Bio", f"{metricas['TASA_BIO'].iloc[0]}%")
+    col4.metric("⚠️ Fraude", f"{metricas['FRAUDE'].iloc[0]:.4f}")
+    
+    if st.button("🤖 Generar Resumen", type="primary"):
+        with st.spinner("Generando..."):
+            resumen = session.sql(f"""
+                SELECT SNOWFLAKE.CORTEX.COMPLETE('llama3.1-70b',
+                    'Resumen ejecutivo FIMPE. Datos semana: Tx: {metricas["TOTAL_TX"].iloc[0]:,}, 
+                    Volumen: \\${metricas["VOLUMEN"].iloc[0]:,.2f}, Bio: {metricas["TASA_BIO"].iloc[0]}%, 
+                    Fraude: {metricas["FRAUDE"].iloc[0]:.4f}. 
+                    Incluye: resumen, logros, mejoras. Español, con emojis.'
+                ) AS resumen
+            """).to_pandas()
+            st.markdown(resumen['RESUMEN'].iloc[0])
+
+# ==================== FOOTER ====================
+st.markdown("---")
+st.caption("🚀 Powered by Snowflake Cortex AI | FIMPE © 2024")
+`;
+            
+            const blob = new Blob([pythonContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'app.py';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

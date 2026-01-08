@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteProvisionReservas>
+    <Metadata>
+        <TituloReporte>Reporte de Provisiones y Reservas Preventivas</TituloReporte>
+        <FechaCorte>2025-09-30</FechaCorte>
+        <FechaGeneracion>2025-10-03</FechaGeneracion>
+        <Responsable>C.P.C. Luis Fernando Campos Ortiz</Responsable>
+        <Cargo>Director de Contraloría</Cargo>
+    </Metadata>
+    
+    <CarteraTotalAnalizada>
+        <MontoTotal>148750250.75</MontoTotal>
+        <NumeroCreditos>1200</NumeroCreditos>
+        <MetodologiaCalculo>CNBV - Circular Única de Bancos (Adaptada SOFOM)</MetodologiaCalculo>
+    </CarteraTotalAnalizada>
+    
+    <ReservasPorCalificacion>
+        <Calificacion>
+            <Nivel>A - Riesgo Mínimo</Nivel>
+            <PorcentajeReserva>1.00</PorcentajeReserva>
+            <SaldoCartera>115890000.50</SaldoCartera>
+            <ReservaRequerida>1158900.01</ReservaRequerida>
+            <ReservaConstituida>1200000.00</ReservaConstituida>
+            <Excedente>41099.99</Excedente>
+        </Calificacion>
+        <Calificacion>
+            <Nivel>B - Riesgo Bajo</Nivel>
+            <PorcentajeReserva>5.00</PorcentajeReserva>
+            <SaldoCartera>19650250.25</SaldoCartera>
+            <ReservaRequerida>982512.51</ReservaRequerida>
+            <ReservaConstituida>1050000.00</ReservaConstituida>
+            <Excedente>67487.49</Excedente>
+        </Calificacion>
+        <Calificacion>
+            <Nivel>C - Riesgo Medio</Nivel>
+            <PorcentajeReserva>25.00</PorcentajeReserva>
+            <SaldoCartera>6625000.00</SaldoCartera>
+            <ReservaRequerida>1656250.00</ReservaRequerida>
+            <ReservaConstituida>1700000.00</ReservaConstituida>
+            <Excedente>43750.00</Excedente>
+        </Calificacion>
+        <Calificacion>
+            <Nivel>D - Riesgo Alto</Nivel>
+            <PorcentajeReserva>60.00</PorcentajeReserva>
+            <SaldoCartera>3234115.00</SaldoCartera>
+            <ReservaRequerida>1940469.00</ReservaRequerida>
+            <ReservaConstituida>2100000.00</ReservaConstituida>
+            <Excedente>159531.00</Excedente>
+        </Calificacion>
+        <Calificacion>
+            <Nivel>E - Irrecuperable</Nivel>
+            <PorcentajeReserva>100.00</PorcentajeReserva>
+            <SaldoCartera>2750885.00</SaldoCartera>
+            <ReservaRequerida>2750885.00</ReservaRequerida>
+            <ReservaConstituida>2800000.00</ReservaConstituida>
+            <Excedente>49115.00</Excedente>
+        </Calificacion>
+    </ReservasPorCalificacion>
+    
+    <ResumenReservas>
+        <TotalReservaRequerida>8489016.52</TotalReservaRequerida>
+        <TotalReservaConstituida>8850000.00</TotalReservaConstituida>
+        <ExcedenteTotal>360983.48</ExcedenteTotal>
+        <PorcentajeCobertura>104.26</PorcentajeCobertura>
+        <Cumplimiento>Cumple</Cumplimiento>
+    </ResumenReservas>
+    
+    <MovimientosReservas>
+        <SaldoInicial>8320000.00</SaldoInicial>
+        <IncrementosNetos>530000.00</IncrementosNetos>
+        <CancelacionesRecuperaciones>0.00</CancelacionesRecuperaciones>
+        <SaldoFinal>8850000.00</SaldoFinal>
+    </MovimientosReservas>
+    
+    <AnalisisProyeccion>
+        <ProximoTrimestre>Q4 2025</ProximoTrimestre>
+        <ReservaProyectada>9100000.00</ReservaProyectada>
+        <JustificacionIncremento>Crecimiento esperado de cartera en 8% y estacionalidad de morosidad en Q4</JustificacionIncremento>
+    </AnalisisProyeccion>
+    
+    <Certificacion>
+        <Declaracion>Las cifras presentadas son correctas y corresponden a los registros contables al 30 de septiembre de 2025</Declaracion>
+        <Firmante>C.P.C. Luis Fernando Campos Ortiz</Firmante>
+        <Fecha>2025-10-03</Fecha>
+    </Certificacion>
+</ReporteProvisionReservas>
+
+
+

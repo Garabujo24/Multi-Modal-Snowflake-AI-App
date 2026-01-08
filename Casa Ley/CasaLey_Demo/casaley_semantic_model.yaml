@@ -1,0 +1,420 @@
+name: casaley_semantic_model
+description: Modelo semántico para la demo de Casa Ley enfocada en promociones personalizadas y eficiencia de inventario usando Snowflake Cortex Analyst.
+
+tables:
+  - name: promo_transacciones
+    description: Transacciones generadas por promociones personalizadas en tiendas físicas y canales digitales de Casa Ley.
+    base_table:
+      database: CASALEY_DB
+      schema: RAW
+      table: FACT_PROMO_TRANSACTIONS
+    primary_key:
+      columns:
+        - TRANSACTION_ID
+    dimensions:
+      - name: transaction_id
+        expr: TRANSACTION_ID
+        data_type: STRING
+        description: Identificador único de la transacción promocional.
+        synonyms:
+          - id_transaccion
+          - folio_transaccion
+      - name: store_id
+        expr: STORE_ID
+        data_type: STRING
+        description: Identificador de la tienda Casa Ley que ejecutó la promoción.
+        synonyms:
+          - tienda_id
+          - id_tienda
+      - name: product_id
+        expr: PRODUCT_ID
+        data_type: STRING
+        description: SKU del producto vendido en la promoción.
+        synonyms:
+          - sku
+          - id_producto
+      - name: customer_id
+        expr: CUSTOMER_ID
+        data_type: STRING
+        description: Cliente que aprovechó la promoción.
+        synonyms:
+          - id_cliente
+          - cliente
+      - name: promo_id
+        expr: PROMO_ID
+        data_type: STRING
+        description: Promoción aplicada a la transacción.
+        synonyms:
+          - id_promocion
+          - promotion_id
+      - name: channel
+        expr: CHANNEL
+        data_type: STRING
+        description: Canal de venta donde se aplicó la promoción (Sucursal, E-commerce, App Privilegia, WhatsApp).
+        synonyms:
+          - canal_venta
+          - canal
+    time_dimensions:
+      - name: fecha
+        expr: TX_DATE
+        data_type: DATE
+        description: Fecha en la que se registró la transacción.
+        synonyms:
+          - fecha_transaccion
+          - transaction_date
+    facts:
+      - name: cantidad
+        expr: QUANTITY
+        data_type: NUMBER
+        description: Unidades vendidas en la transacción.
+      - name: ingreso_bruto
+        expr: GROSS_REVENUE
+        data_type: NUMBER
+        description: Importe antes del descuento promocional.
+      - name: descuento
+        expr: DISCOUNT_VALUE
+        data_type: NUMBER
+        description: Valor aplicado como incentivo de la promoción.
+      - name: ingreso_neto
+        expr: NET_REVENUE
+        data_type: NUMBER
+        description: Importe final pagado por el cliente tras descuentos.
+      - name: margen
+        expr: MARGIN
+        data_type: NUMBER
+        description: Margen estimado considerando el costo unitario del producto.
+
+  - name: inventario_diario
+    description: Niveles de inventario diario por tienda y producto para anticipar quiebres o sobreinventario.
+    base_table:
+      database: CASALEY_DB
+      schema: RAW
+      table: FACT_INVENTORY_DAILY
+    primary_key:
+      columns:
+        - STORE_ID
+        - PRODUCT_ID
+    dimensions:
+      - name: store_id
+        expr: STORE_ID
+        data_type: STRING
+        description: Identificador de la tienda Casa Ley que reporta inventario.
+        synonyms:
+          - tienda_id
+          - id_tienda
+      - name: product_id
+        expr: PRODUCT_ID
+        data_type: STRING
+        description: Producto monitoreado en inventario.
+        synonyms:
+          - sku
+          - id_producto
+    time_dimensions:
+      - name: inventory_date
+        expr: INVENTORY_DATE
+        data_type: DATE
+        description: Fecha de corte del reporte de inventario.
+        synonyms:
+          - fecha
+          - fecha_inventario
+    facts:
+      - name: inventario
+        expr: ON_HAND_UNITS
+        data_type: NUMBER
+        description: Unidades disponibles al inicio del día.
+      - name: stock_seguridad
+        expr: SAFETY_STOCK
+        data_type: NUMBER
+        description: Stock mínimo recomendado para operar sin quiebres.
+      - name: demanda_pronosticada
+        expr: FORECAST_DEMAND
+        data_type: NUMBER
+        description: Demanda estimada con base en modelos de pronóstico.
+      - name: pedido_reabasto
+        expr: REPLENISHMENT_ORDER_UNITS
+        data_type: NUMBER
+        description: Unidades solicitadas al centro de distribución para reposición.
+
+  - name: tiendas
+    description: Información maestra de tiendas Casa Ley.
+    base_table:
+      database: CASALEY_DB
+      schema: RAW
+      table: DIM_STORE
+    primary_key:
+      columns:
+        - STORE_ID
+    dimensions:
+      - name: store_id
+        expr: STORE_ID
+        data_type: STRING
+        description: Identificador único de la tienda.
+      - name: store_name
+        expr: STORE_NAME
+        data_type: STRING
+        description: Nombre comercial de la tienda.
+        synonyms:
+          - nombre_tienda
+          - tienda
+      - name: city
+        expr: CITY
+        data_type: STRING
+        description: Ciudad donde opera la tienda.
+      - name: state
+        expr: STATE
+        data_type: STRING
+        description: Estado de la república mexicana.
+      - name: store_format
+        expr: STORE_FORMAT
+        data_type: STRING
+        description: Formato operativo (Hipermercado, Supermercado, Bodega).
+        synonyms:
+          - formato_tienda
+          - tipo_tienda
+    time_dimensions:
+      - name: fecha_apertura
+        expr: OPEN_DATE
+        data_type: DATE
+        description: Fecha de apertura de la tienda.
+
+  - name: productos
+    description: Catálogo de productos clave para promociones y control de inventario.
+    base_table:
+      database: CASALEY_DB
+      schema: RAW
+      table: DIM_PRODUCT
+    primary_key:
+      columns:
+        - PRODUCT_ID
+    dimensions:
+      - name: product_id
+        expr: PRODUCT_ID
+        data_type: STRING
+        description: Identificador único del producto.
+      - name: product_name
+        expr: PRODUCT_NAME
+        data_type: STRING
+        description: Nombre comercial del producto.
+        synonyms:
+          - nombre_producto
+          - producto
+      - name: category
+        expr: CATEGORY
+        data_type: STRING
+        description: Categoría principal del producto (Lácteos, Abarrotes, Bebidas, etc.).
+        synonyms:
+          - categoria
+      - name: subcategory
+        expr: SUBCATEGORY
+        data_type: STRING
+        description: Subcategoría detallada del producto.
+        synonyms:
+          - subcategoria
+      - name: brand
+        expr: BRAND
+        data_type: STRING
+        description: Marca asociada al producto.
+        synonyms:
+          - marca
+    facts:
+      - name: unit_cost
+        expr: UNIT_COST
+        data_type: NUMBER
+        description: Costo unitario estimado en pesos mexicanos.
+      - name: unit_price
+        expr: UNIT_PRICE
+        data_type: NUMBER
+        description: Precio de venta al público.
+      - name: shelf_life_dias
+        expr: SHELF_LIFE_DAYS
+        data_type: NUMBER
+        description: Días de vida útil promedio del producto.
+
+  - name: clientes
+    description: Segmentación comercial de los clientes que participan en promociones.
+    base_table:
+      database: CASALEY_DB
+      schema: RAW
+      table: DIM_CUSTOMER
+    primary_key:
+      columns:
+        - CUSTOMER_ID
+    dimensions:
+      - name: customer_id
+        expr: CUSTOMER_ID
+        data_type: STRING
+        description: Identificador único del cliente.
+      - name: customer_name
+        expr: CUSTOMER_NAME
+        data_type: STRING
+        description: Nombre anonimizado del cliente.
+      - name: gender
+        expr: GENDER
+        data_type: STRING
+        description: Género declarado para segmentación (F/M).
+      - name: age_range
+        expr: AGE_RANGE
+        data_type: STRING
+        description: Rango de edad del cliente.
+      - name: segment
+        expr: SEGMENT
+        data_type: STRING
+        description: Segmento comercial (Familias saludables, Foodies premium, etc.).
+      - name: loyalty_tier
+        expr: LOYALTY_TIER
+        data_type: STRING
+        description: Nivel del programa Privilegia (Bronce, Plata, Oro, Platino).
+      - name: home_store_id
+        expr: HOME_STORE_ID
+        data_type: STRING
+        description: Tienda habitual del cliente.
+        synonyms:
+          - tienda_base
+      - name: email
+        expr: EMAIL
+        data_type: STRING
+        description: Correo electrónico anonimizado del cliente.
+
+  - name: promociones
+    description: Catálogo de promociones activas y programadas.
+    base_table:
+      database: CASALEY_DB
+      schema: RAW
+      table: DIM_PROMOTION
+    primary_key:
+      columns:
+        - PROMO_ID
+    dimensions:
+      - name: promo_id
+        expr: PROMO_ID
+        data_type: STRING
+        description: Identificador único de la promoción.
+      - name: promo_name
+        expr: PROMO_NAME
+        data_type: STRING
+        description: Nombre comercial de la promoción.
+      - name: promo_type
+        expr: PROMO_TYPE
+        data_type: STRING
+        description: Tipo de promoción (Descuento directo, Bonificación, Combo, etc.).
+      - name: start_date
+        expr: START_DATE
+        data_type: DATE
+        description: Fecha de inicio de la promoción.
+      - name: end_date
+        expr: END_DATE
+        data_type: DATE
+        description: Fecha de término de la promoción.
+      - name: discount_pct
+        expr: DISCOUNT_PCT
+        data_type: NUMBER
+        description: Porcentaje de descuento aplicado.
+      - name: target_segments
+        expr: TARGET_SEGMENTS
+        data_type: ARRAY
+        description: Segmentos objetivo de la promoción.
+      - name: channels
+        expr: CHANNELS
+        data_type: ARRAY
+        description: Canales habilitados para la promoción.
+    facts:
+      - name: presupuesto
+        expr: BUDGET_MXN
+        data_type: NUMBER
+        description: Presupuesto estimado en pesos mexicanos para la promoción.
+
+relationships:
+  - name: promo_tiendas
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: promo_transacciones
+    rightTable: tiendas
+    relationshipColumns:
+      - leftColumn: STORE_ID
+        rightColumn: STORE_ID
+  - name: promo_productos
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: promo_transacciones
+    rightTable: productos
+    relationshipColumns:
+      - leftColumn: PRODUCT_ID
+        rightColumn: PRODUCT_ID
+  - name: promo_clientes
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: promo_transacciones
+    rightTable: clientes
+    relationshipColumns:
+      - leftColumn: CUSTOMER_ID
+        rightColumn: CUSTOMER_ID
+  - name: promo_promociones
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: promo_transacciones
+    rightTable: promociones
+    relationshipColumns:
+      - leftColumn: PROMO_ID
+        rightColumn: PROMO_ID
+  - name: inventario_tiendas
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: inventario_diario
+    rightTable: tiendas
+    relationshipColumns:
+      - leftColumn: STORE_ID
+        rightColumn: STORE_ID
+  - name: inventario_productos
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: inventario_diario
+    rightTable: productos
+    relationshipColumns:
+      - leftColumn: PRODUCT_ID
+        rightColumn: PRODUCT_ID
+  - name: promo_inventario
+    joinType: inner
+    relationshipType: many_to_one
+    leftTable: promo_transacciones
+    rightTable: inventario_diario
+    relationshipColumns:
+      - leftColumn: PRODUCT_ID
+        rightColumn: PRODUCT_ID
+      - leftColumn: STORE_ID
+        rightColumn: STORE_ID
+
+metrics:
+  - name: ingresos_netos_total
+    description: Total de ingresos netos generados por promociones.
+    expr: SUM(promo_transacciones.ingreso_neto)
+  - name: margen_total
+    description: Margen total acumulado por promociones.
+    expr: SUM(promo_transacciones.margen)
+  - name: unidades_promocion
+    description: Total de unidades vendidas en promociones.
+    expr: SUM(promo_transacciones.cantidad)
+  - name: inventario_critico
+    description: Conteo de registros con inventario por debajo de la demanda pronosticada.
+    expr: COUNT_IF(inventario_diario.inventario < inventario_diario.demanda_pronosticada)
+  - name: promedio_descuento
+    description: Porcentaje promedio de descuento aplicado en promociones.
+    expr: AVG(promociones.discount_pct)
+
+verified_queries:
+  - name: ingresos_margen_por_segmento
+    question: ¿Cuáles son los ingresos netos y margen por segmento de cliente y tipo de promoción en los últimos 90 días?
+    sql: SELECT c.segment AS segmento_cliente, p.promo_type AS tipo_promocion, DATE_TRUNC('MONTH', f.fecha) AS mes, SUM(f.ingreso_neto) AS ingresos_netos, SUM(f.margen) AS margen_total, COUNT(DISTINCT f.customer_id) AS clientes_unicos FROM __promo_transacciones AS f JOIN __clientes AS c ON f.customer_id = c.customer_id JOIN __promociones AS p ON f.promo_id = p.promo_id WHERE f.fecha >= DATEADD(MONTH, -3, CURRENT_DATE()) GROUP BY c.segment, p.promo_type, DATE_TRUNC('MONTH', f.fecha) ORDER BY ingresos_netos DESC
+    use_as_onboarding_question: true
+  - name: margen_por_canal
+    question: ¿Qué canal genera mayor margen promedio por ticket promocional?
+    sql: SELECT f.channel AS canal, DATE_TRUNC('WEEK', f.fecha) AS semana, AVG(f.margen) AS margen_promedio, SUM(f.ingreso_neto) AS ingresos_netos, SUM(f.cantidad) AS unidades FROM __promo_transacciones AS f WHERE f.fecha >= DATEADD(WEEK, -8, CURRENT_DATE()) GROUP BY f.channel, DATE_TRUNC('WEEK', f.fecha) ORDER BY margen_promedio DESC
+    use_as_onboarding_question: false
+  - name: riesgo_inventario_por_tienda
+    question: ¿Qué tiendas tienen mayor riesgo de quiebre por producto?
+    sql: SELECT s.store_name, p.product_name, i.inventory_date, i.inventario, i.demanda_pronosticada, i.stock_seguridad FROM __inventario_diario AS i JOIN __tiendas AS s ON i.store_id = s.store_id JOIN __productos AS p ON i.product_id = p.product_id WHERE i.inventario < i.demanda_pronosticada ORDER BY i.inventory_date DESC, s.store_name
+    use_as_onboarding_question: false
+  - name: retorno_descuento_promocional
+    question: ¿Cuál es el retorno por peso invertido en descuento por día?
+    sql: SELECT DATE_TRUNC('DAY', f.fecha) AS fecha, SUM(f.margen) AS margen_total, SUM(f.descuento) AS descuento_total, CASE WHEN SUM(f.descuento) > 0 THEN ROUND(SUM(f.margen) / SUM(f.descuento), 2) ELSE NULL END AS retorno_por_peso FROM __promo_transacciones AS f WHERE f.fecha >= DATEADD(DAY, -30, CURRENT_DATE()) GROUP BY DATE_TRUNC('DAY', f.fecha) ORDER BY fecha DESC
+    use_as_onboarding_question: false
+

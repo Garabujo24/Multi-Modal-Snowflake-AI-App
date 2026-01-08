@@ -1,0 +1,156 @@
+[
+  {
+    "log_id": "APP-LOG-2025-001",
+    "timestamp": "2025-10-20T08:15:23.456Z",
+    "user_id": "CLI000145",
+    "session_id": "SES-8A92F3B1",
+    "device": {
+      "type": "mobile",
+      "os": "iOS",
+      "os_version": "17.1",
+      "app_version": "3.2.1",
+      "device_model": "iPhone 14 Pro",
+      "device_id": "D8F3A921-4B5C-4E1A-9D2F-1C8B9A3F4E5D"
+    },
+    "event": {
+      "type": "login",
+      "status": "success",
+      "method": "biometric",
+      "duration_ms": 342,
+      "ip_address": "187.190.45.123",
+      "location": {
+        "latitude": 19.4326,
+        "longitude": -99.1332,
+        "city": "Ciudad de México",
+        "state": "CDMX"
+      }
+    },
+    "metadata": {
+      "network_type": "wifi",
+      "battery_level": 78,
+      "storage_available_mb": 12500
+    }
+  },
+  {
+    "log_id": "APP-LOG-2025-002",
+    "timestamp": "2025-10-20T08:18:45.789Z",
+    "user_id": "CLI000145",
+    "session_id": "SES-8A92F3B1",
+    "device": {
+      "type": "mobile",
+      "os": "iOS",
+      "os_version": "17.1",
+      "app_version": "3.2.1",
+      "device_model": "iPhone 14 Pro",
+      "device_id": "D8F3A921-4B5C-4E1A-9D2F-1C8B9A3F4E5D"
+    },
+    "event": {
+      "type": "payment_made",
+      "status": "success",
+      "payment_method": "SPEI",
+      "amount": 5800.00,
+      "credit_id": "CRE000234",
+      "duration_ms": 2145,
+      "ip_address": "187.190.45.123"
+    },
+    "metadata": {
+      "screen": "payment_confirmation",
+      "confirmation_code": "PAY-2025-ABC123"
+    }
+  },
+  {
+    "log_id": "APP-LOG-2025-003",
+    "timestamp": "2025-10-20T09:30:12.234Z",
+    "user_id": "CLI000267",
+    "session_id": "SES-9B84C2A3",
+    "device": {
+      "type": "mobile",
+      "os": "Android",
+      "os_version": "13.0",
+      "app_version": "3.2.1",
+      "device_model": "Samsung Galaxy S23",
+      "device_id": "A1B2C3D4-E5F6-7890-ABCD-EF1234567890"
+    },
+    "event": {
+      "type": "credit_application",
+      "status": "submitted",
+      "product_id": "CP-001",
+      "requested_amount": 50000.00,
+      "requested_term_months": 24,
+      "duration_ms": 185000,
+      "ip_address": "201.175.89.45",
+      "location": {
+        "latitude": 20.6597,
+        "longitude": -103.3496,
+        "city": "Guadalajara",
+        "state": "Jalisco"
+      }
+    },
+    "metadata": {
+      "documents_uploaded": ["ine", "comprobante_domicilio", "comprobante_ingresos"],
+      "credit_score_retrieved": 720,
+      "pre_approval_status": "approved"
+    }
+  },
+  {
+    "log_id": "APP-LOG-2025-004",
+    "timestamp": "2025-10-20T10:15:30.567Z",
+    "user_id": "CLI000389",
+    "session_id": "SES-7C65D4E2",
+    "device": {
+      "type": "mobile",
+      "os": "iOS",
+      "os_version": "16.5",
+      "app_version": "3.2.0",
+      "device_model": "iPhone 12",
+      "device_id": "F9E8D7C6-B5A4-9384-8273-6152A9B8C7D6"
+    },
+    "event": {
+      "type": "app_error",
+      "status": "error",
+      "error_code": "NET-001",
+      "error_message": "Network timeout during statement download",
+      "duration_ms": 30000,
+      "ip_address": "189.150.123.78"
+    },
+    "metadata": {
+      "screen": "account_statements",
+      "retry_count": 2,
+      "stack_trace": "NetworkException at StatementService.download()"
+    }
+  },
+  {
+    "log_id": "APP-LOG-2025-005",
+    "timestamp": "2025-10-20T11:45:18.901Z",
+    "user_id": "CLI000521",
+    "session_id": "SES-4F38G5H9",
+    "device": {
+      "type": "mobile",
+      "os": "Android",
+      "os_version": "12.0",
+      "app_version": "3.2.1",
+      "device_model": "Xiaomi Redmi Note 12",
+      "device_id": "X1Y2Z3A4-B5C6-D7E8-F9G0-H1I2J3K4L5M6"
+    },
+    "event": {
+      "type": "biometric_setup",
+      "status": "success",
+      "biometric_type": "fingerprint",
+      "duration_ms": 12500,
+      "ip_address": "200.68.145.92",
+      "location": {
+        "latitude": 25.6866,
+        "longitude": -100.3161,
+        "city": "Monterrey",
+        "state": "Nuevo León"
+      }
+    },
+    "metadata": {
+      "previous_auth_method": "pin",
+      "security_score_after": 95
+    }
+  }
+]
+
+
+

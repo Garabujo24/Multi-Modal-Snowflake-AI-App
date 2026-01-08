@@ -1,0 +1,61 @@
+LLAMADA BANCARIA - Solicitud de Transferencia
+======================================================================
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV
+RFC: SLP190722BC4
+Fecha: 18/10/2025 15:51
+Duración estimada: 3-4 minutos
+Categoría: Operaciones
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenos días, le atiende Diana Morales del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenos días. Necesito hacer una transferencia.
+
+Ejecutivo: Con gusto le ayudo. ¿Me puede proporcionar su número de cuenta?
+
+Cliente: Sí, es ****6818.
+
+Ejecutivo: Gracias. ¿Y su nombre completo?
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV.
+
+Ejecutivo: Perfecto. ¿Tiene la CLABE del beneficiario?
+
+Cliente: Sí, es 0121802871446098.
+
+Ejecutivo: Déjeme verificar. El beneficiario es Luis Fernando Martínez López. ¿Es correcto?
+
+Cliente: Sí, es correcto.
+
+Ejecutivo: ¿Qué monto desea transferir?
+
+Cliente: 28,336 pesos.
+
+Ejecutivo: Entiendo. Por seguridad, ¿me puede confirmar el concepto de la transferencia?
+
+Cliente: Es por préstamo familiar.
+
+Ejecutivo: Perfecto. La transferencia tiene un costo de 15 pesos. El beneficiario recibirá 28,321 pesos. ¿Desea continuar?
+
+Cliente: Sí, adelante.
+
+Ejecutivo: Excelente. Le voy a enviar un código de verificación a su celular registrado. ¿Me puede proporcionar el código cuando lo reciba?
+
+Cliente: Sí, el código es 572213.
+
+Ejecutivo: Gracias. La transferencia ha sido procesada exitosamente. El número de referencia es TR86974547. El beneficiario recibirá el dinero en un plazo máximo de 24 horas.
+
+Cliente: Perfecto, muchas gracias.
+
+Ejecutivo: A sus órdenes. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo.
+
+Ejecutivo: Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

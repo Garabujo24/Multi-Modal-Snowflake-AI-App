@@ -1,0 +1,28 @@
+{
+  "id_llamada": 13,
+  "cliente": {
+    "nombre": "SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV",
+    "rfc": "SLP190722BC4",
+    "tipo": "Persona Moral",
+    "estado": "Sinaloa"
+  },
+  "llamada": {
+    "tipo": "reporte_fraude",
+    "titulo": "Reporte de Fraude",
+    "categoria": "Seguridad",
+    "fecha": "2025-10-14T15:40:20.211053",
+    "duracion_estimada": "4-5 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_013_SLP190722BC4_reporte_fraude_20251014.mp3",
+    "transcripcion": "LLAMADA_013_SLP190722BC4_reporte_fraude_20251014.txt",
+    "metadata": "LLAMADA_013_SLP190722BC4_reporte_fraude_20251014.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Carlos Mendoza",
+    "num_cuenta": "****4504",
+    "ultimos_rfc": "2BC4"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteQuejasCondusef>
+    <MetadataReporte>
+        <NumeroReporte>CONDUSEF-2025-Q3-001</NumeroReporte>
+        <TipoReporte>Reporte Trimestral de Atención a Usuarios</TipoReporte>
+        <Periodo>Julio - Septiembre 2025</Periodo>
+        <FechaPresentacion>2025-10-15</FechaPresentacion>
+        <InstitucionReportante>
+            <RazonSocial>AgilCredit SOFOM E.N.R.</RazonSocial>
+            <RFC>AGC150720AB3</RFC>
+            <Registro>CONDUSEF-12345</Registro>
+        </InstitucionReportante>
+        <Responsable>
+            <Nombre>Lic. María Fernanda López Torres</Nombre>
+            <Cargo>Directora de Atención a Clientes</Cargo>
+            <Telefono>55-5000-4500</Telefono>
+            <Email>atencion.usuarios@agilcredit.mx</Email>
+        </Responsable>
+    </MetadataReporte>
+    
+    <ResumenEjecutivo>
+        <TotalQuejas>47</TotalQuejas>
+        <QuejasResueltas>39</QuejasResueltas>
+        <QuejasPendientes>8</QuejasPendientes>
+        <TasaResolucion>82.98</TasaResolucion>
+        <TiempoPromedioAtencion>8.5</TiempoPromedioAtencion>
+        <UnidadTiempo>Días hábiles</UnidadTiempo>
+    </ResumenEjecutivo>
+    
+    <QuejasPorCausa>
+        <Categoria>
+            <Causa>Cobros no reconocidos</Causa>
+            <NumeroQuejas>15</NumeroQuejas>
+            <Porcentaje>31.91</Porcentaje>
+            <Resueltas>13</Resueltas>
+            <AFavorInstitucion>8</AFavorInstitucion>
+            <AFavorUsuario>5</AFavorUsuario>
+        </Categoria>
+        <Categoria>
+            <Causa>Aclaraciones sobre tasas de interés</Causa>
+            <NumeroQuejas>12</NumeroQuejas>
+            <Porcentaje>25.53</Porcentaje>
+            <Resueltas>11</Resueltas>
+            <AFavorInstitucion>7</AFavorInstitucion>
+            <AFavorUsuario>4</AFavorUsuario>
+        </Categoria>
+        <Categoria>
+            <Causa>Negativa de crédito</Causa>
+            <NumeroQuejas>8</NumeroQuejas>
+            <Porcentaje>17.02</Porcentaje>
+            <Resueltas>7</Resueltas>
+            <AFavorInstitucion>6</AFavorInstitucion>
+            <AFavorUsuario>1</AFavorUsuario>
+        </Categoria>
+        <Categoria>
+            <Causa>Problemas con pagos</Causa>
+            <NumeroQuejas>7</NumeroQuejas>
+            <Porcentaje>14.89</Porcentaje>
+            <Resueltas>5</Resueltas>
+            <AFavorInstitucion>2</AFavorInstitucion>
+            <AFavorUsuario>3</AFavorUsuario>
+        </Categoria>
+        <Categoria>
+            <Causa>Atención al cliente deficiente</Causa>
+            <NumeroQuejas>5</NumeroQuejas>
+            <Porcentaje>10.64</Porcentaje>
+            <Resueltas>3</Resueltas>
+            <AFavorInstitucion>1</AFavorInstitucion>
+            <AFavorUsuario>2</AFavorUsuario>
+        </Categoria>
+    </QuejasPorCausa>
+    
+    <QuejasPorCanal>
+        <Canal>
+            <Nombre>CONDUSEF Directa</Nombre>
+            <NumeroQuejas>28</NumeroQuejas>
+            <Porcentaje>59.57</Porcentaje>
+        </Canal>
+        <Canal>
+            <Nombre>UNE AgilCredit</Nombre>
+            <NumeroQuejas>19</NumeroQuejas>
+            <Porcentaje>40.43</Porcentaje>
+        </Canal>
+    </QuejasPorCanal>
+    
+    <MontoReclamado>
+        <TotalReclamado>1250840.50</TotalReclamado>
+        <TotalBonificado>187450.25</TotalBonificado>
+        <PorcentajeBonificado>14.98</PorcentajeBonificado>
+    </MontoReclamado>
+    
+    <AccionesCorrectivas>
+        <Accion>
+            <Descripcion>Mejorar comunicación de CAT y comisiones en proceso de originación</Descripcion>
+            <FechaImplementacion>2025-08-15</FechaImplementacion>
+            <Estado>Implementada</Estado>
+            <Impacto>Reducción del 20% en quejas por tasas de interés</Impacto>
+        </Accion>
+        <Accion>
+            <Descripcion>Capacitación adicional a equipo de atención telefónica</Descripcion>
+            <FechaImplementacion>2025-09-01</FechaImplementacion>
+            <Estado>En curso</Estado>
+            <Impacto>Esperado: Mejor experiencia del usuario</Impacto>
+        </Accion>
+        <Accion>
+            <Descripcion>Implementación de sistema de confirmación de pagos por SMS</Descripcion>
+            <FechaImplementacion>2025-10-01</FechaImplementacion>
+            <Estado>Planeada</Estado>
+            <Impacto>Esperado: Reducción de quejas por pagos</Impacto>
+        </Accion>
+    </AccionesCorrectivas>
+    
+    <Comparativo>
+        <TrimestreAnterior>
+            <Periodo>Abril - Junio 2025</Periodo>
+            <TotalQuejas>52</TotalQuejas>
+            <VariacionPorcentual>-9.62</VariacionPorcentual>
+        </TrimestreAnterior>
+        <MismoTrimestreAnioAnterior>
+            <Periodo>Julio - Septiembre 2024</Periodo>
+            <TotalQuejas>64</TotalQuejas>
+            <VariacionPorcentual>-26.56</VariacionPorcentual>
+        </MismoTrimestreAnioAnterior>
+    </Comparativo>
+    
+    <Certificacion>
+        <Declaracion>Los datos contenidos en este reporte son verídicos y pueden ser verificados con la documentación soporte en nuestros archivos.</Declaracion>
+        <Firmante>Lic. María Fernanda López Torres</Firmante>
+        <Cargo>Directora de Atención a Clientes</Cargo>
+        <Fecha>2025-10-15</Fecha>
+    </Certificacion>
+</ReporteQuejasCondusef>
+
+
+

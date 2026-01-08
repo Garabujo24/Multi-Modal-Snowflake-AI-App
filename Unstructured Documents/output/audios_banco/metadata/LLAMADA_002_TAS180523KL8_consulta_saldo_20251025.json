@@ -1,0 +1,28 @@
+{
+  "id_llamada": 2,
+  "cliente": {
+    "nombre": "TECNOLOGÍA AVANZADA DEL SURESTE SA DE CV",
+    "rfc": "TAS180523KL8",
+    "tipo": "Persona Moral",
+    "estado": "Yucatán"
+  },
+  "llamada": {
+    "tipo": "consulta_saldo",
+    "titulo": "Consulta de Saldo",
+    "categoria": "Información",
+    "fecha": "2025-10-25T15:36:01.969721",
+    "duracion_estimada": "2-3 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_002_TAS180523KL8_consulta_saldo_20251025.mp3",
+    "transcripcion": "LLAMADA_002_TAS180523KL8_consulta_saldo_20251025.txt",
+    "metadata": "LLAMADA_002_TAS180523KL8_consulta_saldo_20251025.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****5139",
+    "ultimos_rfc": "3KL8"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

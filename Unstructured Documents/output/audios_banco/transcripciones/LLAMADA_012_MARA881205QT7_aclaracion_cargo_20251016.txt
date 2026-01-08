@@ -1,0 +1,49 @@
+LLAMADA BANCARIA - Aclaración de Cargo
+======================================================================
+
+Cliente: ANA PATRICIA MARTÍNEZ RODRÍGUEZ
+RFC: MARA881205QT7
+Fecha: 16/10/2025 15:39
+Duración estimada: 3-4 minutos
+Categoría: Soporte
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenas tardes, le atiende Carlos Mendoza del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenas tardes. Tengo una duda sobre un cargo en mi tarjeta.
+
+Ejecutivo: Con gusto le ayudo. ¿Me puede proporcionar su número de tarjeta?
+
+Cliente: Sí, es la ****-****-****-5921.
+
+Ejecutivo: Gracias. ¿Y su nombre completo?
+
+Cliente: ANA PATRICIA MARTÍNEZ RODRÍGUEZ.
+
+Ejecutivo: Perfecto. ¿Cuál es el cargo que desea aclarar?
+
+Cliente: Hay un cargo de 2,423 pesos de HOME DEPOT. No recuerdo haberlo hecho.
+
+Ejecutivo: Entiendo. Déjeme revisar los detalles de la transacción. ¿Recuerda la fecha aproximada?
+
+Cliente: Fue hace como 3 días.
+
+Ejecutivo: Ya lo tengo. El cargo se realizó el 02 de November en HOME DEPOT, ubicado en Puebla. La transacción fue aprobada con chip y NIP.
+
+Cliente: Ah, ya recuerdo. Sí fui yo. Es que la compra aparece con otro nombre en el estado de cuenta.
+
+Ejecutivo: Sí, a veces los comercios tienen razones sociales diferentes. ¿Hay algo más que necesite aclarar?
+
+Cliente: No, ya quedó claro. Disculpe las molestias.
+
+Ejecutivo: No hay ninguna molestia. Estamos para servirle. Si tiene alguna otra duda, no dude en contactarnos.
+
+Cliente: Muchas gracias.
+
+Ejecutivo: A sus órdenes. Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

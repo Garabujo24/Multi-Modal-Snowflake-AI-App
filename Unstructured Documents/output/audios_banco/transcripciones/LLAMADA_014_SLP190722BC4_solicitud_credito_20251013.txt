@@ -1,0 +1,57 @@
+LLAMADA BANCARIA - Solicitud de Crédito
+======================================================================
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV
+RFC: SLP190722BC4
+Fecha: 13/10/2025 15:40
+Duración estimada: 5-7 minutos
+Categoría: Productos
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenos días, le atiende Miguel Ángel Ruiz del área de créditos del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenos días. Me gustaría solicitar un crédito personal.
+
+Ejecutivo: Con gusto. ¿Es cliente del banco?
+
+Cliente: Sí, tengo mi cuenta de nómina con ustedes.
+
+Ejecutivo: Excelente. ¿Me puede proporcionar su número de cuenta?
+
+Cliente: Sí, es ****7816.
+
+Ejecutivo: Gracias. ¿Y su nombre completo?
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV.
+
+Ejecutivo: Perfecto. Déjeme verificar su información. Veo que tiene 2 años de antigüedad con nosotros. ¿Qué monto le gustaría solicitar?
+
+Cliente: Necesito 200,000 pesos.
+
+Ejecutivo: Entiendo. ¿Y en cuántos meses le gustaría pagarlo?
+
+Cliente: En 18 meses, si es posible.
+
+Ejecutivo: Déjeme revisar su historial crediticio y capacidad de pago. Por favor, espere un momento.
+
+Cliente: Claro, sin problema.
+
+Ejecutivo: Gracias por su espera. Tengo buenas noticias. Su solicitud ha sido pre-aprobada por 200,000 pesos a 18 meses, con una tasa de interés del 18.42 por ciento anual. Su pago mensual sería de aproximadamente 13,157 pesos.
+
+Cliente: ¿Y cuándo podría tener el dinero?
+
+Ejecutivo: Una vez que firme el contrato, el dinero se depositará en su cuenta en un plazo de 24 a 48 horas. ¿Le gustaría proceder con la solicitud?
+
+Cliente: Sí, me interesa. ¿Qué documentos necesito?
+
+Ejecutivo: Como ya es cliente, solo necesitamos que confirme sus datos en la aplicación móvil y firme el contrato digital. Le enviaré un correo con los detalles y el link para continuar.
+
+Cliente: Perfecto, muchas gracias.
+
+Ejecutivo: A sus órdenes. Si tiene alguna duda, puede llamarnos al centro de atención. Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

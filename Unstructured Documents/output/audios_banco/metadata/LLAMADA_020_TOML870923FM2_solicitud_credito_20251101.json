@@ -1,0 +1,28 @@
+{
+  "id_llamada": 20,
+  "cliente": {
+    "nombre": "LAURA ISABEL TORRES MENDOZA",
+    "rfc": "TOML870923FM2",
+    "tipo": "Persona Física",
+    "estado": "Veracruz"
+  },
+  "llamada": {
+    "tipo": "solicitud_credito",
+    "titulo": "Solicitud de Crédito",
+    "categoria": "Productos",
+    "fecha": "2025-11-01T15:43:25.151537",
+    "duracion_estimada": "5-7 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_020_TOML870923FM2_solicitud_credito_20251101.mp3",
+    "transcripcion": "LLAMADA_020_TOML870923FM2_solicitud_credito_20251101.txt",
+    "metadata": "LLAMADA_020_TOML870923FM2_solicitud_credito_20251101.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Ana María López",
+    "num_cuenta": "****1437",
+    "ultimos_rfc": "3FM2"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

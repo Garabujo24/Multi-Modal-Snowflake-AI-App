@@ -1,0 +1,94 @@
+[
+  {
+    "event_id": "SEC-2025-0001",
+    "timestamp": "2025-10-20T02:34:12Z",
+    "event_type": "failed_login_attempt",
+    "severity": "medium",
+    "user_id": "CLI000234",
+    "source": {
+      "ip_address": "45.134.23.187",
+      "location": {
+        "country": "Russia",
+        "city": "Moscow"
+      },
+      "device": "Unknown",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    "attempt_details": {
+      "method": "password",
+      "failures_count": 5,
+      "last_successful_login": "2025-10-19T08:15:00Z",
+      "last_successful_location": "Ciudad de México, México"
+    },
+    "actions_taken": [
+      "Account temporarily locked",
+      "SMS sent to registered number",
+      "Email notification sent",
+      "Security team alerted"
+    ],
+    "resolved": false,
+    "investigation_status": "in_progress"
+  },
+  {
+    "event_id": "SEC-2025-0002",
+    "timestamp": "2025-10-20T09:45:30Z",
+    "event_type": "suspicious_api_access",
+    "severity": "high",
+    "api_endpoint": "/api/v1/accounts/bulk_export",
+    "user_id": "EMP-IT-045",
+    "source": {
+      "ip_address": "192.168.1.89",
+      "internal": true,
+      "department": "IT"
+    },
+    "anomaly_detected": {
+      "unusual_time": true,
+      "unusual_endpoint": true,
+      "description": "IT user accessing bulk export outside work hours",
+      "risk_score": 78
+    },
+    "data_accessed": {
+      "records_requested": 1000,
+      "records_returned": 0,
+      "blocked": true
+    },
+    "actions_taken": [
+      "Access denied",
+      "Security manager notified",
+      "Session terminated",
+      "Audit log created"
+    ],
+    "resolved": true,
+    "resolution": "Legitimate request - employee working overtime on data migration project"
+  },
+  {
+    "event_id": "SEC-2025-0003",
+    "timestamp": "2025-10-20T14:22:18Z",
+    "event_type": "privilege_escalation_detected",
+    "severity": "critical",
+    "user_id": "EMP-OPS-023",
+    "source": {
+      "ip_address": "10.0.45.123",
+      "internal": true,
+      "workstation": "WS-OPS-023"
+    },
+    "details": {
+      "attempted_action": "modify_user_permissions",
+      "target_user": "EMP-FIN-001",
+      "current_role": "Operations Analyst",
+      "attempted_role": "Financial Administrator",
+      "authorized": false
+    },
+    "actions_taken": [
+      "Action blocked immediately",
+      "CISO notified",
+      "HR investigation initiated",
+      "User account suspended"
+    ],
+    "resolved": false,
+    "investigation_status": "ongoing"
+  }
+]
+
+
+

@@ -1,0 +1,53 @@
+LLAMADA BANCARIA - Reporte de Fraude
+======================================================================
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV
+RFC: SLP190722BC4
+Fecha: 14/10/2025 15:40
+Duración estimada: 4-5 minutos
+Categoría: Seguridad
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenas tardes, le atiende Carlos Mendoza del área de seguridad del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenas tardes. Necesito reportar un cargo no reconocido en mi tarjeta.
+
+Ejecutivo: Entiendo su preocupación. Le voy a ayudar de inmediato. ¿Me podría proporcionar su número de tarjeta?
+
+Cliente: Es la ****-****-****-8952.
+
+Ejecutivo: Gracias. ¿Me puede confirmar su nombre completo?
+
+Cliente: SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV.
+
+Ejecutivo: Perfecto. ¿Cuál es el monto del cargo no reconocido?
+
+Cliente: Son 2,573 pesos. Aparece como AMAZON MARKETPLACE.
+
+Ejecutivo: Entiendo. ¿Recuerda cuándo se realizó este cargo?
+
+Cliente: Según mi estado de cuenta, fue el 01 de November.
+
+Ejecutivo: De acuerdo. Por seguridad, voy a bloquear su tarjeta inmediatamente. ¿Tiene la tarjeta física en su poder?
+
+Cliente: Sí, la tengo aquí conmigo.
+
+Ejecutivo: Perfecto. He bloqueado su tarjeta y he iniciado el proceso de reclamación. En un plazo de 3 a 5 días hábiles, recibirá una tarjeta de reemplazo en su domicilio. El monto será acreditado durante la investigación, que toma aproximadamente 45 días hábiles.
+
+Cliente: De acuerdo. ¿Puedo seguir usando mi cuenta?
+
+Ejecutivo: Sí, su cuenta sigue activa. Solo está bloqueada la tarjeta física. ¿Desea que le enviemos una tarjeta digital temporal?
+
+Cliente: Sí, por favor.
+
+Ejecutivo: Listo, en unos minutos recibirá la tarjeta digital en su aplicación móvil. Su número de reporte es FR709768. ¿Algo más en que pueda ayudarle?
+
+Cliente: No, eso es todo. Muchas gracias por su ayuda.
+
+Ejecutivo: A sus órdenes. Cualquier cosa, estamos para servirle.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

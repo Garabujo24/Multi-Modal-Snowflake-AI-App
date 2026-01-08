@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteRiesgoCartera>
+    <MetadataReporte>
+        <TituloReporte>Análisis de Riesgo Crediticio - Cartera Total</TituloReporte>
+        <FechaGeneracion>2025-10-20</FechaGeneracion>
+        <PeriodoAnalisis>
+            <Inicio>2025-09-01</Inicio>
+            <Fin>2025-09-30</Fin>
+        </PeriodoAnalisis>
+        <Responsable>
+            <Nombre>Lic. Patricia Morales Hernández</Nombre>
+            <Cargo>Directora de Riesgos</Cargo>
+            <Departamento>Gestión de Riesgos</Departamento>
+        </Responsable>
+        <Version>3.2</Version>
+    </MetadataReporte>
+    
+    <ResumenEjecutivo>
+        <CarteraTotal>
+            <MontoTotal>148750250.75</MontoTotal>
+            <NumeroCreditos>1200</NumeroCreditos>
+            <NumeroClientes>956</NumeroClientes>
+        </CarteraTotal>
+        <IndicadoresRiesgo>
+            <IMOR>4.35</IMOR> <!-- Índice de Morosidad -->
+            <IMORAmpliado>5.87</IMORAmpliado>
+            <CarteraVencida>6470885.91</CarteraVencida>
+            <ReservaPreventivaRequerida>7437512.54</ReservaPreventivaRequerida>
+            <ReservaConstituida>7650000.00</ReservaConstituida>
+            <CoberturaMorosidad>118.23</CoberturaMorosidad>
+        </IndicadoresRiesgo>
+    </ResumenEjecutivo>
+    
+    <SegmentacionCartera>
+        <PorCalificacion>
+            <Segmento>
+                <Calificacion>A - Riesgo Mínimo</Calificacion>
+                <Descripcion>Créditos sin problemas, pago puntual</Descripcion>
+                <NumeroCreditos>845</NumeroCreditos>
+                <MontoTotal>115890340.25</MontoTotal>
+                <PorcentajeCartera>77.91</PorcentajeCartera>
+                <ReservaPreventivaRequerida>579451.70</ReservaPreventivaRequerida>
+                <PorcentajeReserva>0.50</PorcentajeReserva>
+            </Segmento>
+            <Segmento>
+                <Calificacion>B - Riesgo Bajo</Calificacion>
+                <Descripcion>Créditos con 1-29 días de atraso</Descripcion>
+                <NumeroCreditos>198</NumeroCreditos>
+                <MontoTotal>19850125.50</MontoTotal>
+                <PorcentajeCartera>13.35</PorcentajeCartera>
+                <ReservaPreventivaRequerida>992506.28</ReservaPreventivaRequerida>
+                <PorcentajeReserva>5.00</PorcentajeReserva>
+            </Segmento>
+            <Segmento>
+                <Calificacion>C - Riesgo Medio</Calificacion>
+                <Descripcion>Créditos con 30-59 días de atraso</Descripcion>
+                <NumeroCreditos>89</NumeroCreditos>
+                <MontoTotal>8125670.00</MontoTotal>
+                <PorcentajeCartera>5.46</PorcentajeCartera>
+                <ReservaPreventivaRequerida>1625134.00</ReservaPreventivaRequerida>
+                <PorcentajeReserva>20.00</PorcentajeReserva>
+            </Segmento>
+            <Segmento>
+                <Calificacion>D - Riesgo Alto</Calificacion>
+                <Descripcion>Créditos con 60-89 días de atraso</Descripcion>
+                <NumeroCreditos>42</NumeroCreditos>
+                <MontoTotal>3234115.00</MontoTotal>
+                <PorcentajeCartera>2.17</PorcentajeCartera>
+                <ReservaPreventivaRequerida>1940469.00</ReservaPreventivaRequerida>
+                <PorcentajeReserva>60.00</PorcentajeReserva>
+            </Segmento>
+            <Segmento>
+                <Calificacion>E - Irrecuperable</Calificacion>
+                <Descripcion>Créditos con más de 90 días de atraso</Descripcion>
+                <NumeroCreditos>26</NumeroCreditos>
+                <MontoTotal>1650000.00</MontoTotal>
+                <PorcentajeCartera>1.11</PorcentajeCartera>
+                <ReservaPreventivaRequerida>1650000.00</ReservaPreventivaRequerida>
+                <PorcentajeReserva>100.00</PorcentajeReserva>
+            </Segmento>
+        </PorCalificacion>
+        
+        <PorProducto>
+            <Producto>
+                <Nombre>Crédito Personal Express</Nombre>
+                <NumeroCreditos>523</NumeroCreditos>
+                <MontoTotal>42850125.50</MontoTotal>
+                <PorcentajeCartera>28.81</PorcentajeCartera>
+                <IMOR>3.87</IMOR>
+                <TasaMorosidad>4.21</TasaMorosidad>
+            </Producto>
+            <Producto>
+                <Nombre>Crédito PyME Crecimiento</Nombre>
+                <NumeroCreditos>287</NumeroCreditos>
+                <MontoTotal>78450670.25</MontoTotal>
+                <PorcentajeCartera>52.75</PorcentajeCartera>
+                <IMOR>5.12</IMOR>
+                <TasaMorosidad>6.28</TasaMorosidad>
+            </Producto>
+            <Producto>
+                <Nombre>Crédito Nómina Plus</Nombre>
+                <NumeroCreditos>245</NumeroCreditos>
+                <MontoTotal>18950345.00</MontoTotal>
+                <PorcentajeCartera>12.74</PorcentajeCartera>
+                <IMOR>2.45</IMOR>
+                <TasaMorosidad>2.89</TasaMorosidad>
+            </Producto>
+            <Producto>
+                <Nombre>Crédito Auto Fácil</Nombre>
+                <NumeroCreditos>98</NumeroCreditos>
+                <MontoTotal>7250110.00</MontoTotal>
+                <PorcentajeCartera>4.87</PorcentajeCartera>
+                <IMOR>4.56</IMOR>
+                <TasaMorosidad>5.34</TasaMorosidad>
+            </Producto>
+            <Producto>
+                <Nombre>Línea de Crédito Flexible</Nombre>
+                <NumeroCreditos>47</NumeroCreditos>
+                <MontoTotal>1249000.00</MontoTotal>
+                <PorcentajeCartera>0.83</PorcentajeCartera>
+                <IMOR>8.92</IMOR>
+                <TasaMorosidad>10.45</TasaMorosidad>
+            </Producto>
+        </PorProducto>
+    </SegmentacionCartera>
+    
+    <AnalisisConcentracion>
+        <Top10Clientes>
+            <TotalExposicion>28450120.75</TotalExposicion>
+            <PorcentajeCarteraTotal>19.13</PorcentajeCarteraTotal>
+            <Evaluacion>Concentración dentro de límites aceptables (menor al 25%)</Evaluacion>
+        </Top10Clientes>
+        <Top20Clientes>
+            <TotalExposicion>45320890.50</TotalExposicion>
+            <PorcentajeCarteraTotal>30.47</PorcentajeCarteraTotal>
+        </Top20Clientes>
+        <ConcentracionGeografica>
+            <Estado>
+                <Nombre>Ciudad de México</Nombre>
+                <PorcentajeCartera>32.45</PorcentajeCartera>
+                <IMOR>4.12</IMOR>
+            </Estado>
+            <Estado>
+                <Nombre>Jalisco</Nombre>
+                <PorcentajeCartera>18.67</PorcentajeCartera>
+                <IMOR>3.89</IMOR>
+            </Estado>
+            <Estado>
+                <Nombre>Nuevo León</Nombre>
+                <PorcentajeCartera>15.23</PorcentajeCartera>
+                <IMOR>5.34</IMOR>
+            </Estado>
+            <Estado>
+                <Nombre>Otros Estados</Nombre>
+                <PorcentajeCartera>33.65</PorcentajeCartera>
+                <IMOR>4.78</IMOR>
+            </Estado>
+        </ConcentracionGeografica>
+    </AnalisisConcentracion>
+    
+    <PruebasEstres>
+        <Escenario>
+            <Nombre>Escenario Base</Nombre>
+            <Descripcion>Condiciones económicas estables</Descripcion>
+            <ProbabilidadIncumplimiento>4.35</ProbabilidadIncumplimiento>
+            <PerdidaEsperada>6470885.91</PerdidaEsperada>
+        </Escenario>
+        <Escenario>
+            <Nombre>Escenario Adverso</Nombre>
+            <Descripcion>Recesión moderada, aumento de desempleo al 5.5%</Descripcion>
+            <ProbabilidadIncumplimiento>7.80</ProbabilidadIncumplimiento>
+            <PerdidaEsperada>11602519.55</PerdidaEsperada>
+            <ReservaAdicionalRequerida>5131633.64</ReservaAdicionalRequerida>
+        </Escenario>
+        <Escenario>
+            <Nombre>Escenario Severo</Nombre>
+            <Descripcion>Crisis económica, desempleo al 8%, caída del PIB -3%</Descripcion>
+            <ProbabilidadIncumplimiento>12.50</ProbabilidadIncumplimiento>
+            <PerdidaEsperada>18593781.34</PerdidaEsperada>
+            <ReservaAdicionalRequerida>12123780.43</ReservaAdicionalRequerida>
+        </Escenario>
+    </PruebasEstres>
+    
+    <Recomendaciones>
+        <Recomendacion>
+            <Prioridad>Alta</Prioridad>
+            <Area>Línea de Crédito Flexible</Area>
+            <Descripcion>Producto con mayor tasa de morosidad (10.45%). Se recomienda revisión de criterios de otorgamiento y límites de crédito.</Descripcion>
+            <AccionPropuesta>Endurecer criterios de score mínimo de 580 a 620</AccionPropuesta>
+        </Recomendacion>
+        <Recomendacion>
+            <Prioridad>Media</Prioridad>
+            <Area>Crédito PyME Crecimiento</Area>
+            <Descripcion>IMOR de 5.12% por encima del promedio de cartera. Concentra el 52.75% de la exposición total.</Descripcion>
+            <AccionPropuesta>Implementar seguimiento mensual reforzado para créditos empresariales mayores a $200,000</AccionPropuesta>
+        </Recomendacion>
+        <Recomendacion>
+            <Prioridad>Alta</Prioridad>
+            <Area>Reservas Preventivas</Area>
+            <Descripcion>Bajo escenario adverso, las reservas actuales serían insuficientes.</Descripcion>
+            <AccionPropuesta>Incrementar reserva preventiva en $2.5 millones durante los próximos 3 meses</AccionPropuesta>
+        </Recomendacion>
+        <Recomendacion>
+            <Prioridad>Media</Prioridad>
+            <Area>Concentración Geográfica</Area>
+            <Descripcion>Nuevo León muestra IMOR de 5.34%, el más alto de los principales estados.</Descripcion>
+            <AccionPropuesta>Análisis detallado de cartera en Nuevo León e implementación de estrategias de cobranza diferenciadas</AccionPropuesta>
+        </Recomendacion>
+    </Recomendaciones>
+    
+    <Anexos>
+        <Anexo>
+            <Titulo>Metodología de Cálculo de Reservas</Titulo>
+            <Referencia>Circular Única de Bancos - CNBV</Referencia>
+        </Anexo>
+        <Anexo>
+            <Titulo>Modelo de Score de Riesgo Interno</Titulo>
+            <Version>2.1</Version>
+            <UltimaActualizacion>2025-07-15</UltimaActualizacion>
+        </Anexo>
+    </Anexos>
+</ReporteRiesgoCartera>
+
+

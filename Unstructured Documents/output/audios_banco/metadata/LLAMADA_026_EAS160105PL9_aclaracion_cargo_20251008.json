@@ -1,0 +1,28 @@
+{
+  "id_llamada": 26,
+  "cliente": {
+    "nombre": "EXPORTADORA AGRÍCOLA DE SONORA SA DE CV",
+    "rfc": "EAS160105PL9",
+    "tipo": "Persona Moral",
+    "estado": "Sonora"
+  },
+  "llamada": {
+    "tipo": "aclaracion_cargo",
+    "titulo": "Aclaración de Cargo",
+    "categoria": "Soporte",
+    "fecha": "2025-10-08T15:56:19.962700",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_026_EAS160105PL9_aclaracion_cargo_20251008.mp3",
+    "transcripcion": "LLAMADA_026_EAS160105PL9_aclaracion_cargo_20251008.txt",
+    "metadata": "LLAMADA_026_EAS160105PL9_aclaracion_cargo_20251008.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Diana Morales",
+    "num_cuenta": "****1157",
+    "ultimos_rfc": "5PL9"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

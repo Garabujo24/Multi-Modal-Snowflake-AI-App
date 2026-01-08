@@ -1,0 +1,28 @@
+{
+  "id_llamada": 3,
+  "cliente": {
+    "nombre": "MARÍA GUADALUPE HERNÁNDEZ SÁNCHEZ",
+    "rfc": "HESM850614J39",
+    "tipo": "Persona Física",
+    "estado": "Jalisco"
+  },
+  "llamada": {
+    "tipo": "consulta_saldo",
+    "titulo": "Consulta de Saldo",
+    "categoria": "Información",
+    "fecha": "2025-11-03T15:36:20.199957",
+    "duracion_estimada": "2-3 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_003_HESM850614J39_consulta_saldo_20251103.mp3",
+    "transcripcion": "LLAMADA_003_HESM850614J39_consulta_saldo_20251103.txt",
+    "metadata": "LLAMADA_003_HESM850614J39_consulta_saldo_20251103.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Ana María López",
+    "num_cuenta": "****6372",
+    "ultimos_rfc": "4J39"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

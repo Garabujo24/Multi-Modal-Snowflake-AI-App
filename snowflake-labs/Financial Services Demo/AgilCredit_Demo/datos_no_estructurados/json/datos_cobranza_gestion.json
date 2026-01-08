@@ -1,0 +1,67 @@
+[
+  {
+    "gestion_id": "COB-2025-0001",
+    "fecha": "2025-10-20T08:30:00Z",
+    "cliente_id": "CLI000423",
+    "credito_id": "CRE000423",
+    "dias_mora": 15,
+    "monto_vencido": 4250.00,
+    "tipo_gestion": "llamada_telefonica",
+    "ejecutor": "COB-AGENT-012",
+    "resultado": "contacto_efectivo",
+    "compromiso_pago": {
+      "fecha_prometida": "2025-10-25",
+      "monto_prometido": 4250.00,
+      "metodo_pago": "transferencia"
+    },
+    "notas": "Cliente acepta responsabilidad. Tuvo imprevisto médico. Compromete pago total más recargo.",
+    "duracion_minutos": 8.5,
+    "siguiente_accion": "seguimiento_25_oct"
+  },
+  {
+    "gestion_id": "COB-2025-0002",
+    "fecha": "2025-10-20T09:15:00Z",
+    "cliente_id": "CLI000567",
+    "credito_id": "CRE000567",
+    "dias_mora": 32,
+    "monto_vencido": 11500.00,
+    "tipo_gestion": "sms",
+    "ejecutor": "SYSTEM",
+    "resultado": "mensaje_enviado",
+    "mensaje": "Estimado cliente, tiene un adeudo vencido de $11,500. Evite cargos adicionales pagando hoy. Llame al 555-1234.",
+    "tasa_apertura": true,
+    "siguiente_accion": "llamada_si_no_paga_48h"
+  },
+  {
+    "gestion_id": "COB-2025-0003",
+    "fecha": "2025-10-20T10:45:00Z",
+    "cliente_id": "CLI000789",
+    "credito_id": "CRE000789",
+    "dias_mora": 75,
+    "monto_vencido": 28500.00,
+    "tipo_gestion": "visita_domiciliaria",
+    "ejecutor": "COB-FIELD-005",
+    "resultado": "contacto_efectivo",
+    "ubicacion": {
+      "latitud": 19.4326,
+      "longitud": -99.1332,
+      "verificada": true
+    },
+    "compromiso_pago": {
+      "tipo": "plan_pagos",
+      "fecha_primer_pago": "2025-10-30",
+      "monto_primer_pago": 10000.00,
+      "pagos_subsecuentes": {
+        "monto": 9250.00,
+        "periodicidad": "quincenal",
+        "numero_pagos": 2
+      }
+    },
+    "evidencia": ["foto_domicilio.jpg", "acuerdo_firmado.pdf"],
+    "duracion_minutos": 45,
+    "siguiente_accion": "monitoreo_cumplimiento_plan"
+  }
+]
+
+
+

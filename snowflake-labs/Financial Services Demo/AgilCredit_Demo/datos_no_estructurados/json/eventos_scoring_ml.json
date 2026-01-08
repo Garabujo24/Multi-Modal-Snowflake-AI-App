@@ -1,0 +1,180 @@
+[
+  {
+    "event_id": "SCR-2025-0001",
+    "timestamp": "2025-10-20T14:30:45.123Z",
+    "client_id": "CLI000892",
+    "event_type": "score_calculation",
+    "model_version": "v2.5.1",
+    "input_features": {
+      "age": 35,
+      "monthly_income": 45000.00,
+      "employment_tenure_months": 48,
+      "bureau_score": 720,
+      "existing_debt": 125000.00,
+      "number_of_active_credits": 2,
+      "payment_history_score": 88.5,
+      "debt_to_income_ratio": 0.28,
+      "credit_inquiries_last_6m": 2,
+      "savings_balance": 85000.00
+    },
+    "scores": {
+      "credit_score": 82.5,
+      "fraud_score": 12.3,
+      "churn_probability": 15.8,
+      "default_probability": 3.2,
+      "ltv_estimate": 125000.00,
+      "profitability_score": 78.9
+    },
+    "risk_classification": "Low Risk",
+    "recommended_actions": [
+      "Approve credit application",
+      "Offer premium products",
+      "Set credit limit: $150,000"
+    ],
+    "model_confidence": 0.89,
+    "processing_time_ms": 245
+  },
+  {
+    "event_id": "SCR-2025-0002",
+    "timestamp": "2025-10-20T15:12:33.456Z",
+    "client_id": "CLI000423",
+    "event_type": "score_recalculation",
+    "trigger": "late_payment_detected",
+    "model_version": "v2.5.1",
+    "input_features": {
+      "age": 28,
+      "monthly_income": 18000.00,
+      "employment_tenure_months": 18,
+      "bureau_score": 650,
+      "existing_debt": 75000.00,
+      "number_of_active_credits": 3,
+      "payment_history_score": 65.2,
+      "debt_to_income_ratio": 0.42,
+      "days_late_current": 15,
+      "late_payments_last_12m": 2
+    },
+    "scores": {
+      "credit_score": 58.3,
+      "fraud_score": 8.5,
+      "churn_probability": 45.2,
+      "default_probability": 18.7,
+      "ltv_estimate": 42000.00,
+      "profitability_score": 35.1
+    },
+    "risk_classification": "Medium Risk",
+    "recommended_actions": [
+      "Increase collection effort",
+      "Restrict new credit applications",
+      "Enroll in payment reminder program"
+    ],
+    "model_confidence": 0.82,
+    "processing_time_ms": 198,
+    "score_change": {
+      "previous_credit_score": 72.5,
+      "change": -14.2,
+      "reason": "Recent late payment detected"
+    }
+  },
+  {
+    "event_id": "SCR-2025-0003",
+    "timestamp": "2025-10-20T16:45:18.789Z",
+    "client_id": "CLI000156",
+    "event_type": "fraud_alert",
+    "trigger": "unusual_transaction_pattern",
+    "model_version": "fraud-detector-v1.8",
+    "transaction_details": {
+      "transaction_id": "TXN9876543",
+      "amount": 95000.00,
+      "location": {
+        "city": "Tijuana",
+        "state": "Baja California"
+      },
+      "device_id": "UNKNOWN",
+      "ip_address": "200.35.89.124"
+    },
+    "fraud_indicators": {
+      "unusual_location": true,
+      "unusual_amount": true,
+      "new_device": true,
+      "velocity_check": "3 transactions in 1 hour",
+      "time_of_day_unusual": true
+    },
+    "scores": {
+      "fraud_score": 87.5,
+      "risk_level": "HIGH"
+    },
+    "recommended_actions": [
+      "Block transaction immediately",
+      "Contact client for verification",
+      "Review account for unauthorized access"
+    ],
+    "alert_sent_to": ["fraud@agilcredit.mx", "security-team@agilcredit.mx"],
+    "processing_time_ms": 89
+  },
+  {
+    "event_id": "SCR-2025-0004",
+    "timestamp": "2025-10-20T17:20:05.234Z",
+    "client_id": "CLI000678",
+    "event_type": "credit_limit_adjustment",
+    "trigger": "periodic_review",
+    "model_version": "v2.5.1",
+    "input_features": {
+      "months_as_customer": 24,
+      "payment_behavior_score": 95.8,
+      "current_credit_limit": 80000.00,
+      "utilization_rate": 0.35,
+      "monthly_income": 52000.00,
+      "income_growth_rate": 0.08,
+      "payment_punctuality_last_12m": 1.00
+    },
+    "scores": {
+      "credit_score": 89.2,
+      "profitability_score": 85.6,
+      "ltv_estimate": 185000.00
+    },
+    "recommendation": {
+      "action": "increase_limit",
+      "current_limit": 80000.00,
+      "proposed_limit": 120000.00,
+      "increase_percentage": 50.0,
+      "justification": "Excellent payment history and income growth"
+    },
+    "model_confidence": 0.91,
+    "processing_time_ms": 312
+  },
+  {
+    "event_id": "SCR-2025-0005",
+    "timestamp": "2025-10-20T18:05:42.567Z",
+    "client_id": "CLI000234",
+    "event_type": "churn_prediction",
+    "model_version": "churn-predictor-v3.1",
+    "input_features": {
+      "months_since_last_login": 2.5,
+      "months_since_last_transaction": 4.1,
+      "app_usage_frequency_decline": -65.0,
+      "customer_service_contacts_last_3m": 3,
+      "satisfaction_score_last_survey": 6.5,
+      "competing_offers_searched": true
+    },
+    "scores": {
+      "churn_probability": 72.3,
+      "risk_level": "HIGH",
+      "estimated_days_until_churn": 45
+    },
+    "recommended_actions": [
+      "Launch retention campaign immediately",
+      "Offer personalized incentive (rate reduction)",
+      "Schedule proactive customer service call",
+      "Send exclusive product offers"
+    ],
+    "retention_strategy": {
+      "priority": "high",
+      "budget_allocated": 2500.00,
+      "expected_retention_probability": 0.68
+    },
+    "processing_time_ms": 178
+  }
+]
+
+
+

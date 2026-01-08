@@ -1,0 +1,61 @@
+LLAMADA BANCARIA - Solicitud de Transferencia
+======================================================================
+
+Cliente: JOSÉ ROBERTO GARCÍA LÓPEZ
+RFC: GALR920327HG5
+Fecha: 02/11/2025 15:48
+Duración estimada: 3-4 minutos
+Categoría: Operaciones
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buenos días, le atiende Sofía Castillo del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Buenos días. Necesito hacer una transferencia.
+
+Ejecutivo: Con gusto le ayudo. ¿Me puede proporcionar su número de cuenta?
+
+Cliente: Sí, es ****1247.
+
+Ejecutivo: Gracias. ¿Y su nombre completo?
+
+Cliente: JOSÉ ROBERTO GARCÍA LÓPEZ.
+
+Ejecutivo: Perfecto. ¿Tiene la CLABE del beneficiario?
+
+Cliente: Sí, es 0121803002010639.
+
+Ejecutivo: Déjeme verificar. El beneficiario es Ana Cristina González Díaz. ¿Es correcto?
+
+Cliente: Sí, es correcto.
+
+Ejecutivo: ¿Qué monto desea transferir?
+
+Cliente: 32,422 pesos.
+
+Ejecutivo: Entiendo. Por seguridad, ¿me puede confirmar el concepto de la transferencia?
+
+Cliente: Es por pago de proveedor.
+
+Ejecutivo: Perfecto. La transferencia tiene un costo de 15 pesos. El beneficiario recibirá 32,407 pesos. ¿Desea continuar?
+
+Cliente: Sí, adelante.
+
+Ejecutivo: Excelente. Le voy a enviar un código de verificación a su celular registrado. ¿Me puede proporcionar el código cuando lo reciba?
+
+Cliente: Sí, el código es 194022.
+
+Ejecutivo: Gracias. La transferencia ha sido procesada exitosamente. El número de referencia es TR50863256. El beneficiario recibirá el dinero en un plazo máximo de 24 horas.
+
+Cliente: Perfecto, muchas gracias.
+
+Ejecutivo: A sus órdenes. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo.
+
+Ejecutivo: Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

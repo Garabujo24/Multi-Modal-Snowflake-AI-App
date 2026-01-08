@@ -1,0 +1,28 @@
+{
+  "id_llamada": 16,
+  "cliente": {
+    "nombre": "CARLOS EDUARDO RAMÍREZ FERNÁNDEZ",
+    "rfc": "RAFC900518KP9",
+    "tipo": "Persona Física",
+    "estado": "Querétaro"
+  },
+  "llamada": {
+    "tipo": "consulta_saldo",
+    "titulo": "Consulta de Saldo",
+    "categoria": "Información",
+    "fecha": "2025-10-23T15:52:26.900914",
+    "duracion_estimada": "2-3 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_016_RAFC900518KP9_consulta_saldo_20251023.mp3",
+    "transcripcion": "LLAMADA_016_RAFC900518KP9_consulta_saldo_20251023.txt",
+    "metadata": "LLAMADA_016_RAFC900518KP9_consulta_saldo_20251023.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Diana Morales",
+    "num_cuenta": "****3579",
+    "ultimos_rfc": "8KP9"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

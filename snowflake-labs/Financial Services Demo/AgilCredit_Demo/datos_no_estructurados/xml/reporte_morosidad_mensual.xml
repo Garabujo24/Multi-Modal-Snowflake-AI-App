@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteMorosidadMensual>
+    <MetadataReporte>
+        <TituloReporte>Reporte de Morosidad Mensual - AgilCredit</TituloReporte>
+        <Periodo>Septiembre 2025</Periodo>
+        <FechaGeneracion>2025-10-01</FechaGeneracion>
+        <Responsable>
+            <Nombre>Lic. Roberto Sánchez García</Nombre>
+            <Cargo>Gerente de Cobranza</Cargo>
+            <Departamento>Gestión de Cobranza y Recuperación</Departamento>
+        </Responsable>
+    </MetadataReporte>
+    
+    <ResumenEjecutivo>
+        <TotalCartera>148750250.75</TotalCartera>
+        <CarteraVigente>142279364.84</CarteraVigente>
+        <CarteraVencida>6470885.91</CarteraVencida>
+        <IndiceMorosidad>4.35</IndiceMorosidad>
+        <VariacionMensual>-0.28</VariacionMensual>
+        <TendenciaMes>Mejora</TendenciaMes>
+    </ResumenEjecutivo>
+    
+    <MorosidadPorDias>
+        <Tramo>
+            <Dias>1-30</Dias>
+            <NumeroCreditos>58</NumeroCreditos>
+            <MontoTotal>2845620.50</MontoTotal>
+            <PorcentajeCartera>1.91</PorcentajeCartera>
+        </Tramo>
+        <Tramo>
+            <Dias>31-60</Dias>
+            <NumeroCreditos>34</NumeroCreditos>
+            <MontoTotal>1891745.20</MontoTotal>
+            <PorcentajeCartera>1.27</PorcentajeCartera>
+        </Tramo>
+        <Tramo>
+            <Dias>61-90</Dias>
+            <NumeroCreditos>18</NumeroCreditos>
+            <MontoTotal>983520.21</MontoTotal>
+            <PorcentajeCartera>0.66</PorcentajeCartera>
+        </Tramo>
+        <Tramo>
+            <Dias>90+</Dias>
+            <NumeroCreditos>12</NumeroCreditos>
+            <MontoTotal>750000.00</MontoTotal>
+            <PorcentajeCartera>0.50</PorcentajeCartera>
+        </Tramo>
+    </MorosidadPorDias>
+    
+    <MorosidadPorProducto>
+        <Producto>
+            <Nombre>Crédito Personal Express</Nombre>
+            <CarteraTotal>45250125.30</CarteraTotal>
+            <CarteraVencida>1875250.15</CarteraVencida>
+            <IndiceMorosidad>4.14</IndiceMorosidad>
+            <NumeroClientesMorosos>45</NumeroClientesMorosos>
+        </Producto>
+        <Producto>
+            <Nombre>Crédito PyME</Nombre>
+            <CarteraTotal>58750380.45</CarteraTotal>
+            <CarteraVencida>2950125.80</CarteraVencida>
+            <IndiceMorosidad>5.02</IndiceMorosidad>
+            <NumeroClientesMorosos>38</NumeroClientesMorosos>
+        </Producto>
+        <Producto>
+            <Nombre>Crédito Nómina Plus</Nombre>
+            <CarteraTotal>32500250.00</CarteraTotal>
+            <CarteraVencida>1125380.50</CarteraVencida>
+            <IndiceMorosidad>3.46</IndiceMorosidad>
+            <NumeroClientesMorosos>28</NumeroClientesMorosos>
+        </Producto>
+    </MorosidadPorProducto>
+    
+    <AccionesCobranza>
+        <Gestion>
+            <Tipo>Llamadas Telefónicas</Tipo>
+            <Cantidad>1842</Cantidad>
+            <TasaContacto>68.5</TasaContacto>
+            <TasaRecuperacion>42.3</TasaRecuperacion>
+        </Gestion>
+        <Gestion>
+            <Tipo>Mensajes SMS</Tipo>
+            <Cantidad>3560</Cantidad>
+            <TasaContacto>95.2</TasaContacto>
+            <TasaRecuperacion>18.7</TasaRecuperacion>
+        </Gestion>
+        <Gestion>
+            <Tipo>Correos Electrónicos</Tipo>
+            <Cantidad>2945</Cantidad>
+            <TasaContacto>88.4</TasaContacto>
+            <TasaRecuperacion>22.1</TasaRecuperacion>
+        </Gestion>
+        <Gestion>
+            <Tipo>Visitas Domiciliarias</Tipo>
+            <Cantidad>128</Cantidad>
+            <TasaContacto>78.9</TasaContacto>
+            <TasaRecuperacion>65.2</TasaRecuperacion>
+        </Gestion>
+    </AccionesCobranza>
+    
+    <MontoRecuperado>
+        <TotalRecuperadoMes>3850250.75</TotalRecuperadoMes>
+        <PromedioRecuperacionDiaria>128341.69</PromedioRecuperacionDiaria>
+        <MetaMensual>4200000.00</MetaMensual>
+        <CumplimientoMeta>91.67</CumplimientoMeta>
+    </MontoRecuperado>
+    
+    <Proyeccion>
+        <ProximoMes>Octubre 2025</ProximoMes>
+        <IMOREsperado>4.15</IMOREsperado>
+        <AccionesPreventivas>Campaña de recordatorios preventivos, incentivos por pago anticipado</AccionesPreventivas>
+    </Proyeccion>
+</ReporteMorosidadMensual>
+
+
+

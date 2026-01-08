@@ -1,0 +1,28 @@
+{
+  "id_llamada": 10,
+  "cliente": {
+    "nombre": "CONSTRUCTORA INDUSTRIAL BAJÍO SA DE CV",
+    "rfc": "CIB150309MN2",
+    "tipo": "Persona Moral",
+    "estado": "Guanajuato"
+  },
+  "llamada": {
+    "tipo": "solicitud_credito",
+    "titulo": "Solicitud de Crédito",
+    "categoria": "Productos",
+    "fecha": "2025-10-21T15:39:07.579763",
+    "duracion_estimada": "5-7 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_010_CIB150309MN2_solicitud_credito_20251021.mp3",
+    "transcripcion": "LLAMADA_010_CIB150309MN2_solicitud_credito_20251021.txt",
+    "metadata": "LLAMADA_010_CIB150309MN2_solicitud_credito_20251021.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****4746",
+    "ultimos_rfc": "9MN2"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

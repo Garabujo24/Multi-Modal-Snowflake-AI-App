@@ -1,0 +1,28 @@
+{
+  "id_llamada": 13,
+  "cliente": {
+    "nombre": "SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV",
+    "rfc": "SLP190722BC4",
+    "tipo": "Persona Moral",
+    "estado": "Sinaloa"
+  },
+  "llamada": {
+    "tipo": "actualizacion_datos",
+    "titulo": "Actualización de Datos",
+    "categoria": "Administración",
+    "fecha": "2025-10-23T15:51:10.385223",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_013_SLP190722BC4_actualizacion_datos_20251023.mp3",
+    "transcripcion": "LLAMADA_013_SLP190722BC4_actualizacion_datos_20251023.txt",
+    "metadata": "LLAMADA_013_SLP190722BC4_actualizacion_datos_20251023.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Diana Morales",
+    "num_cuenta": "****3291",
+    "ultimos_rfc": "2BC4"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

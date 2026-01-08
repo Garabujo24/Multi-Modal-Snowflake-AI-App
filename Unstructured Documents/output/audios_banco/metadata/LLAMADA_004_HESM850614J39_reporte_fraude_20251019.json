@@ -1,0 +1,28 @@
+{
+  "id_llamada": 4,
+  "cliente": {
+    "nombre": "MARÍA GUADALUPE HERNÁNDEZ SÁNCHEZ",
+    "rfc": "HESM850614J39",
+    "tipo": "Persona Física",
+    "estado": "Jalisco"
+  },
+  "llamada": {
+    "tipo": "reporte_fraude",
+    "titulo": "Reporte de Fraude",
+    "categoria": "Seguridad",
+    "fecha": "2025-10-19T15:47:35.792620",
+    "duracion_estimada": "4-5 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_004_HESM850614J39_reporte_fraude_20251019.mp3",
+    "transcripcion": "LLAMADA_004_HESM850614J39_reporte_fraude_20251019.txt",
+    "metadata": "LLAMADA_004_HESM850614J39_reporte_fraude_20251019.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Patricia Gutiérrez",
+    "num_cuenta": "****1365",
+    "ultimos_rfc": "4J39"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

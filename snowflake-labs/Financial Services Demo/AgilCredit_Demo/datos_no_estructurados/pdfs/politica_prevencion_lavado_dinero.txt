@@ -1,0 +1,361 @@
+═══════════════════════════════════════════════════════════════════════════════
+                            AGILCREDIT SOFOM E.N.R.
+                 POLÍTICA DE PREVENCIÓN DE LAVADO DE DINERO
+                      Y FINANCIAMIENTO AL TERRORISMO
+═══════════════════════════════════════════════════════════════════════════════
+
+Versión: 3.1
+Fecha de Aprobación: 15 de Agosto de 2025
+Aprobado por: Consejo de Administración
+Oficial de Cumplimiento: Lic. Carmen Rodríguez Soto
+Vigencia: Agosto 2025 - Agosto 2026
+
+═══════════════════════════════════════════════════════════════════════════════
+ÍNDICE
+═══════════════════════════════════════════════════════════════════════════════
+
+1. OBJETIVO Y ALCANCE
+2. MARCO LEGAL Y REGULATORIO
+3. DEFINICIONES
+4. PRINCIPIOS GENERALES
+5. ESTRUCTURA DE GOBIERNO
+6. IDENTIFICACIÓN Y CONOCIMIENTO DEL CLIENTE (KYC)
+7. OPERACIONES INUSUALES Y PREOCUPANTES
+8. REPORTES REGULATORIOS
+9. LISTAS DE PERSONAS BLOQUEADAS
+10. CAPACITACIÓN Y ENTRENAMIENTO
+11. AUDITORÍA Y MONITOREO
+12. SANCIONES Y CONSECUENCIAS
+
+═══════════════════════════════════════════════════════════════════════════════
+1. OBJETIVO Y ALCANCE
+═══════════════════════════════════════════════════════════════════════════════
+
+OBJETIVO:
+Establecer los lineamientos y procedimientos para prevenir, detectar y reportar
+operaciones relacionadas con el lavado de dinero y financiamiento al terrorismo
+en cumplimiento con la legislación mexicana aplicable.
+
+ALCANCE:
+Esta política aplica a:
+- Todos los empleados de AgilCredit SOFOM E.N.R.
+- Consejeros y directivos
+- Terceros que actúen en nombre de la institución
+- Todas las operaciones y productos de la empresa
+
+═══════════════════════════════════════════════════════════════════════════════
+2. MARCO LEGAL Y REGULATORIO
+═══════════════════════════════════════════════════════════════════════════════
+
+• Ley Federal para la Prevención e Identificación de Operaciones con Recursos
+  de Procedencia Ilícita (LFPIORPI)
+• Disposiciones de Carácter General a que se refiere la LFPIORPI (SHCP)
+• Ley General de Organizaciones y Actividades Auxiliares del Crédito
+• Circular Única de Bancos (adaptada para SOFOM ENR)
+• Recomendaciones del GAFI (Grupo de Acción Financiera Internacional)
+
+═══════════════════════════════════════════════════════════════════════════════
+3. DEFINICIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+LAVADO DE DINERO:
+Proceso mediante el cual se busca ocultar el origen ilícito de recursos
+provenientes de actividades delictivas.
+
+FINANCIAMIENTO AL TERRORISMO:
+Actos destinados a proveer o recaudar fondos con la intención de que se
+utilicen para cometer actos terroristas.
+
+PERSONA POLÍTICAMENTE EXPUESTA (PEP):
+Individuos que desempeñan o han desempeñado funciones públicas destacadas
+en México o en el extranjero.
+
+OPERACIÓN INUSUAL:
+Operación realizada por un cliente que no concuerda con su perfil
+transaccional habitual.
+
+OPERACIÓN PREOCUPANTE:
+Operación inusual que además genera sospecha de lavado de dinero o
+financiamiento al terrorismo.
+
+═══════════════════════════════════════════════════════════════════════════════
+4. PRINCIPIOS GENERALES
+═══════════════════════════════════════════════════════════════════════════════
+
+1. ENFOQUE BASADO EN RIESGO
+   • Evaluar el riesgo de cada cliente, producto y operación
+   • Aplicar medidas proporcionales al nivel de riesgo identificado
+   • Revisar y actualizar la evaluación periódicamente
+
+2. DEBIDA DILIGENCIA
+   • Identificar y verificar la identidad de todos los clientes
+   • Conocer la naturaleza del negocio del cliente
+   • Monitorear continuamente las operaciones
+
+3. REPORTE OPORTUNO
+   • Reportar operaciones inusuales y preocupantes en tiempo y forma
+   • Mantener confidencialidad absoluta de los reportes
+   • Cooperar con las autoridades competentes
+
+4. CULTURA DE CUMPLIMIENTO
+   • Capacitación continua a todo el personal
+   • Ambiente de tolerancia cero al lavado de dinero
+   • Canales de denuncia anónimos y seguros
+
+═══════════════════════════════════════════════════════════════════════════════
+5. ESTRUCTURA DE GOBIERNO
+═══════════════════════════════════════════════════════════════════════════════
+
+OFICIAL DE CUMPLIMIENTO:
+Nombre: Lic. Carmen Rodríguez Soto
+Certificación CNBV: OC-2023-12345
+Responsabilidades:
+• Supervisar implementación de políticas PLD/FT
+• Autorizar reportes a autoridades
+• Capacitar al personal
+• Reportar al Consejo de Administración trimestralmente
+
+COMITÉ DE CUMPLIMIENTO:
+Integración:
+- Director General (Presidente)
+- Oficial de Cumplimiento (Secretario)
+- Director de Operaciones
+- Director Jurídico
+- Director de Riesgos
+
+Sesiones: Mensualmente o extraordinariamente cuando sea necesario
+
+LÍNEAS DE DEFENSA:
+1ra Línea: Áreas operativas (originación, cobranza)
+2da Línea: Oficial de Cumplimiento y equipo
+3ra Línea: Auditoría Interna
+
+═══════════════════════════════════════════════════════════════════════════════
+6. IDENTIFICACIÓN Y CONOCIMIENTO DEL CLIENTE (KYC)
+═══════════════════════════════════════════════════════════════════════════════
+
+6.1 DOCUMENTACIÓN REQUERIDA
+
+PERSONAS FÍSICAS:
+☑ Identificación oficial vigente (INE/IFE o Pasaporte)
+☑ Comprobante de domicilio (máximo 3 meses antigüedad)
+☑ Comprobante de ingresos
+☑ RFC y CURP
+☑ Cuestionario de perfil transaccional
+
+PERSONAS MORALES:
+☑ Acta constitutiva y modificaciones
+☑ Poder del representante legal
+☑ Identificación del representante
+☑ Comprobante de domicilio fiscal
+☑ RFC de la empresa
+☑ Estados financieros (últimos 2 años)
+☑ Lista de accionistas (10% o más)
+☑ Identificación de beneficiario controlador
+
+6.2 VERIFICACIÓN
+• Validar autenticidad de documentos
+• Confirmar identidad mediante bases de datos oficiales
+• Realizar visita ocular cuando aplique
+• Actualizar información cada 12 meses
+
+6.3 PERFIL TRANSACCIONAL
+Determinar para cada cliente:
+• Origen y destino de recursos
+• Monto promedio de operaciones mensuales
+• Frecuencia esperada de operaciones
+• Actividad económica y giro de negocio
+• Ubicación geográfica
+
+═══════════════════════════════════════════════════════════════════════════════
+7. OPERACIONES INUSUALES Y PREOCUPANTES
+═══════════════════════════════════════════════════════════════════════════════
+
+7.1 SEÑALES DE ALERTA
+
+COMPORTAMIENTO DEL CLIENTE:
+• Renuencia a proporcionar información
+• Proporcionar información falsa o contradictoria
+• Actitud nerviosa o evasiva durante entrevista
+• Desconocimiento del negocio declarado
+• Cambios frecuentes de domicilio o contacto
+
+OPERACIONES:
+• Monto significativamente mayor al perfil
+• Liquidación anticipada inusual
+• Múltiples solicitudes el mismo día
+• Operaciones en efectivo por montos elevados
+• Fraccionamiento de operaciones ("pitufeo")
+• Origen de fondos no justificado
+
+GEOGRAFÍA:
+• Domicilio o transacciones desde zonas de alto riesgo
+• Operaciones internacionales sin justificación
+• Países no cooperantes (GAFI lista negra)
+
+7.2 PROCEDIMIENTO DE REPORTE
+
+PASO 1: DETECCIÓN
+Área operativa identifica operación inusual
+
+PASO 2: DOCUMENTACIÓN
+Registrar detalles en Sistema de Alertas PLD
+
+PASO 3: ANÁLISIS
+Oficial de Cumplimiento evalúa si es preocupante
+
+PASO 4: REPORTE
+Si procede, enviar reporte a SHCP (UIF) dentro de 24 horas
+
+PASO 5: SEGUIMIENTO
+Monitoreo reforzado del cliente
+
+IMPORTANTE:
+• NO informar al cliente sobre reporte realizado
+• Mantener confidencialidad absoluta
+• Conservar evidencia documental por 10 años
+
+═══════════════════════════════════════════════════════════════════════════════
+8. REPORTES REGULATORIOS
+═══════════════════════════════════════════════════════════════════════════════
+
+8.1 REPORTE DE OPERACIONES RELEVANTES
+Operaciones en efectivo ≥ $166,600 MXN (500 UMAs)
+Plazo: 17 del mes siguiente
+Formato: Anexo 8 de Reglas de Carácter General
+
+8.2 REPORTE DE OPERACIONES INUSUALES
+Operaciones que no coinciden con perfil del cliente
+Plazo: Dentro del mes siguiente
+Formato: Anexo 9 de Reglas de Carácter General
+
+8.3 REPORTE DE OPERACIONES INTERNAS PREOCUPANTES
+Operaciones con sospecha fundada de PLD/FT
+Plazo: 24 horas desde detección
+Formato: Anexo 10 de Reglas de Carácter General
+Envío: Portal UIF (usuarios.pld.shcp.gob.mx)
+
+═══════════════════════════════════════════════════════════════════════════════
+9. LISTAS DE PERSONAS BLOQUEADAS
+═══════════════════════════════════════════════════════════════════════════════
+
+CONSULTA OBLIGATORIA:
+✓ Lista de Personas Bloqueadas (UIF - SHCP)
+✓ OFAC (Office of Foreign Assets Control - USA)
+✓ ONU - Sanciones del Consejo de Seguridad
+✓ Unión Europea - Lista de Sanciones
+
+FRECUENCIA:
+• Antes de establecer relación comercial
+• Semanalmente para cartera activa
+• Actualizaciones inmediatas cuando se publiquen nuevas listas
+
+ACCIÓN EN CASO DE COINCIDENCIA:
+1. Bloquear cuenta/operación inmediatamente
+2. Reportar a Oficial de Cumplimiento
+3. Reportar a UIF dentro de 24 horas
+4. NO informar al cliente
+5. Mantener fondos congelados hasta instrucción de autoridad
+
+═══════════════════════════════════════════════════════════════════════════════
+10. CAPACITACIÓN Y ENTRENAMIENTO
+═══════════════════════════════════════════════════════════════════════════════
+
+PROGRAMA ANUAL:
+• 15 horas mínimas de capacitación PLD/FT
+• Cursos presenciales y en línea
+• Casos prácticos y ejercicios
+• Evaluaciones de conocimiento
+
+TEMAS:
+✓ Marco legal y regulatorio vigente
+✓ Tipologías de lavado de dinero
+✓ Identificación de señales de alerta
+✓ Procedimientos de reporte
+✓ Consecuencias del incumplimiento
+✓ Casos reales y mejores prácticas
+
+OBLIGATORIO PARA:
+• Todo el personal de nuevo ingreso (dentro de 30 días)
+• Personal operativo (anualmente)
+• Directivos y consejeros (anualmente)
+• Oficial de Cumplimiento (40 horas anuales)
+
+═══════════════════════════════════════════════════════════════════════════════
+11. AUDITORÍA Y MONITOREO
+═══════════════════════════════════════════════════════════════════════════════
+
+AUDITORÍA INTERNA:
+• Revisión anual de cumplimiento PLD/FT
+• Pruebas de controles y procedimientos
+• Revisión de reportes emitidos
+• Evaluación de capacitación
+
+MONITOREO CONTINUO:
+• Sistema automatizado de detección de operaciones inusuales
+• Revisión manual de alertas generadas
+• Análisis de patrones transaccionales
+• Actualización de modelos de riesgo
+
+INDICADORES DE DESEMPEÑO (KPIs):
+• % de expedientes completos
+• Tiempo promedio de atención a alertas
+• Número de reportes emitidos vs alertas generadas
+• % de personal capacitado
+• Hallazgos de auditoría cerrados
+
+═══════════════════════════════════════════════════════════════════════════════
+12. SANCIONES Y CONSECUENCIAS
+═══════════════════════════════════════════════════════════════════════════════
+
+INCUMPLIMIENTO INTERNO:
+• Amonestación por escrito
+• Suspensión temporal
+• Despido justificado
+• Denuncia penal cuando aplique
+
+SANCIONES REGULATORIAS (SHCP/CNBV):
+• Multas de 200 a 65,000 UMAs ($166,600 a $54M MXN)
+• Revocación de autorización
+• Inhabilitación de funcionarios
+• Responsabilidad penal
+
+DELITOS RELACIONADOS:
+• Lavado de dinero: 5 a 15 años de prisión
+• Financiamiento al terrorismo: 15 a 30 años de prisión
+• Encubrimiento: 3 a 10 años de prisión
+
+═══════════════════════════════════════════════════════════════════════════════
+CANAL DE DENUNCIAS ANÓNIMAS
+═══════════════════════════════════════════════════════════════════════════════
+
+Si detectas una operación sospechosa o tienes dudas:
+
+Email: cumplimiento@agilcredit.mx
+Teléfono: 800-555-PLD1 (7531)
+Buzón físico: Oficinas corporativas (confidencial)
+
+Tu reporte será tratado con total confidencialidad y protección.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+APROBACIONES:
+
+_____________________________          _____________________________
+Director General                       Oficial de Cumplimiento
+Lic. Roberto Sánchez Martínez         Lic. Carmen Rodríguez Soto
+
+_____________________________
+Presidente del Consejo
+Ing. Fernando López Gutiérrez
+
+Fecha de Aprobación: 15 de Agosto de 2025
+Próxima Revisión: Agosto 2026
+
+═══════════════════════════════════════════════════════════════════════════════
+                         DOCUMENTO CONFIDENCIAL
+              USO EXCLUSIVO INTERNO - PROHIBIDA SU REPRODUCCIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+
+

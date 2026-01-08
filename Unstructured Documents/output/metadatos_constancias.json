@@ -1,0 +1,483 @@
+[
+  {
+    "id": 1,
+    "archivo": "CSF_01_TAS180523KL8.pdf",
+    "identificacion": {
+      "rfc": "TAS180523KL8",
+      "curp": null,
+      "nombre": "TECNOLOGÍA AVANZADA DEL SURESTE SA DE CV",
+      "tipo": "Persona Moral"
+    },
+    "regimen_fiscal": {
+      "codigo": "601",
+      "descripcion": "601 - General de Ley Personas Morales"
+    },
+    "domicilio": {
+      "calle": "Paseo de Montejo",
+      "numero_exterior": "485",
+      "numero_interior": "Piso 3",
+      "colonia": "Montejo",
+      "codigo_postal": "97000",
+      "municipio": "Mérida",
+      "estado": "Yucatán"
+    },
+    "contacto": {
+      "correo": "contacto@tecnologiasureste.com.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2018-05-23",
+      "años_operando": 7,
+      "sector": "Tecnología",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432725",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 2,
+    "archivo": "CSF_02_HESM850614J39.pdf",
+    "identificacion": {
+      "rfc": "HESM850614J39",
+      "curp": "HESM850614MDFRNR09",
+      "nombre": "MARÍA GUADALUPE HERNÁNDEZ SÁNCHEZ",
+      "tipo": "Persona Física"
+    },
+    "regimen_fiscal": {
+      "codigo": "612",
+      "descripcion": "612 - Personas Físicas con Actividades Empresariales y Profesionales"
+    },
+    "domicilio": {
+      "calle": "Avenida Américas",
+      "numero_exterior": "1234",
+      "numero_interior": null,
+      "colonia": "Americana",
+      "codigo_postal": "44160",
+      "municipio": "Guadalajara",
+      "estado": "Jalisco"
+    },
+    "contacto": {
+      "correo": "mhernandez@consultora.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2010-03-15",
+      "años_operando": 15,
+      "sector": "Servicios Profesionales",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432732",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 3,
+    "archivo": "CSF_03_CAN200815RT6.pdf",
+    "identificacion": {
+      "rfc": "CAN200815RT6",
+      "curp": null,
+      "nombre": "COMERCIALIZADORA DE ALIMENTOS DEL NORTE SA DE CV",
+      "tipo": "Persona Moral"
+    },
+    "regimen_fiscal": {
+      "codigo": "601",
+      "descripcion": "601 - General de Ley Personas Morales"
+    },
+    "domicilio": {
+      "calle": "Avenida Gómez Morín",
+      "numero_exterior": "2450",
+      "numero_interior": "Suite 100",
+      "colonia": "San Pedro",
+      "codigo_postal": "66260",
+      "municipio": "Monterrey",
+      "estado": "Nuevo León"
+    },
+    "contacto": {
+      "correo": "ventas@alimentosnorte.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2020-08-15",
+      "años_operando": 5,
+      "sector": "Alimentos",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432737",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 4,
+    "archivo": "CSF_04_GALR920327HG5.pdf",
+    "identificacion": {
+      "rfc": "GALR920327HG5",
+      "curp": "GALR920327HDFRPS06",
+      "nombre": "JOSÉ ROBERTO GARCÍA LÓPEZ",
+      "tipo": "Persona Física"
+    },
+    "regimen_fiscal": {
+      "codigo": "626",
+      "descripcion": "626 - Régimen Simplificado de Confianza"
+    },
+    "domicilio": {
+      "calle": "Eje 7 Sur",
+      "numero_exterior": "678",
+      "numero_interior": "Int 4",
+      "colonia": "Del Valle",
+      "codigo_postal": "03100",
+      "municipio": "Benito Juárez",
+      "estado": "Ciudad de México"
+    },
+    "contacto": {
+      "correo": "jrgarcia@servicios.com"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2022-01-01",
+      "años_operando": 3,
+      "sector": "Servicios",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432740",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 5,
+    "archivo": "CSF_05_CIB150309MN2.pdf",
+    "identificacion": {
+      "rfc": "CIB150309MN2",
+      "curp": null,
+      "nombre": "CONSTRUCTORA INDUSTRIAL BAJÍO SA DE CV",
+      "tipo": "Persona Moral"
+    },
+    "regimen_fiscal": {
+      "codigo": "601",
+      "descripcion": "601 - General de Ley Personas Morales"
+    },
+    "domicilio": {
+      "calle": "Boulevard Aeropuerto",
+      "numero_exterior": "3890",
+      "numero_interior": null,
+      "colonia": "Industrial",
+      "codigo_postal": "37290",
+      "municipio": "León",
+      "estado": "Guanajuato"
+    },
+    "contacto": {
+      "correo": "administracion@cibajio.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2015-03-09",
+      "años_operando": 10,
+      "sector": "Construcción",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432744",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 6,
+    "archivo": "CSF_06_MARA881205QT7.pdf",
+    "identificacion": {
+      "rfc": "MARA881205QT7",
+      "curp": "MARA881205MSLRDN02",
+      "nombre": "ANA PATRICIA MARTÍNEZ RODRÍGUEZ",
+      "tipo": "Persona Física"
+    },
+    "regimen_fiscal": {
+      "codigo": "605",
+      "descripcion": "605 - Sueldos y Salarios e Ingresos Asimilados a Salarios"
+    },
+    "domicilio": {
+      "calle": "Avenida Atlixcáyotl",
+      "numero_exterior": "5600",
+      "numero_interior": "Depto 302",
+      "colonia": "Angelópolis",
+      "codigo_postal": "72830",
+      "municipio": "Puebla",
+      "estado": "Puebla"
+    },
+    "contacto": {
+      "correo": "anamartinez@email.com"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2015-06-01",
+      "años_operando": 10,
+      "sector": "Empleado",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432748",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 7,
+    "archivo": "CSF_07_SLP190722BC4.pdf",
+    "identificacion": {
+      "rfc": "SLP190722BC4",
+      "curp": null,
+      "nombre": "SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV",
+      "tipo": "Persona Moral"
+    },
+    "regimen_fiscal": {
+      "codigo": "601",
+      "descripcion": "601 - General de Ley Personas Morales"
+    },
+    "domicilio": {
+      "calle": "Boulevard Emiliano Zapata",
+      "numero_exterior": "1500",
+      "numero_interior": null,
+      "colonia": "Desarrollo Urbano Tres Ríos",
+      "codigo_postal": "80020",
+      "municipio": "Culiacán",
+      "estado": "Sinaloa"
+    },
+    "contacto": {
+      "correo": "operaciones@logisticapacifico.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2019-07-22",
+      "años_operando": 6,
+      "sector": "Logística",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432752",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 8,
+    "archivo": "CSF_08_RAFC900518KP9.pdf",
+    "identificacion": {
+      "rfc": "RAFC900518KP9",
+      "curp": "RAFC900518HQTMRR04",
+      "nombre": "CARLOS EDUARDO RAMÍREZ FERNÁNDEZ",
+      "tipo": "Persona Física"
+    },
+    "regimen_fiscal": {
+      "codigo": "612",
+      "descripcion": "612 - Personas Físicas con Actividades Empresariales y Profesionales"
+    },
+    "domicilio": {
+      "calle": "Avenida Constituyentes",
+      "numero_exterior": "89",
+      "numero_interior": "Local 5",
+      "colonia": "Centro Sur",
+      "codigo_postal": "76090",
+      "municipio": "Querétaro",
+      "estado": "Querétaro"
+    },
+    "contacto": {
+      "correo": "cramirez.arquitecto@gmail.com"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2016-08-10",
+      "años_operando": 9,
+      "sector": "Servicios Profesionales",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432758",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 9,
+    "archivo": "CSF_09_DIC170411XY8.pdf",
+    "identificacion": {
+      "rfc": "DIC170411XY8",
+      "curp": null,
+      "nombre": "DESARROLLOS INMOBILIARIOS CANCÚN SA DE CV",
+      "tipo": "Persona Moral"
+    },
+    "regimen_fiscal": {
+      "codigo": "601",
+      "descripcion": "601 - General de Ley Personas Morales"
+    },
+    "domicilio": {
+      "calle": "Avenida Tulum",
+      "numero_exterior": "245",
+      "numero_interior": "Oficina 12",
+      "colonia": "Supermanzana 15",
+      "codigo_postal": "77500",
+      "municipio": "Benito Juárez",
+      "estado": "Quintana Roo"
+    },
+    "contacto": {
+      "correo": "info@inmobiliariacancun.com.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2017-04-11",
+      "años_operando": 8,
+      "sector": "Inmobiliario",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432762",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 10,
+    "archivo": "CSF_10_TOML870923FM2.pdf",
+    "identificacion": {
+      "rfc": "TOML870923FM2",
+      "curp": "TOML870923MCSRND08",
+      "nombre": "LAURA ISABEL TORRES MENDOZA",
+      "tipo": "Persona Física"
+    },
+    "regimen_fiscal": {
+      "codigo": "621",
+      "descripcion": "621 - Incorporación Fiscal"
+    },
+    "domicilio": {
+      "calle": "Calle Úrsulo Galván",
+      "numero_exterior": "34",
+      "numero_interior": null,
+      "colonia": "Rafael Lucio",
+      "codigo_postal": "91110",
+      "municipio": "Xalapa",
+      "estado": "Veracruz"
+    },
+    "contacto": {
+      "correo": "lauratorres.asesoria@hotmail.com"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2018-09-01",
+      "años_operando": 7,
+      "sector": "Servicios Profesionales",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432766",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 11,
+    "archivo": "CSF_11_MTO140627GH3.pdf",
+    "identificacion": {
+      "rfc": "MTO140627GH3",
+      "curp": null,
+      "nombre": "MANUFACTURAS TEXTILES DE OCCIDENTE SA DE CV",
+      "tipo": "Persona Moral"
+    },
+    "regimen_fiscal": {
+      "codigo": "601",
+      "descripcion": "601 - General de Ley Personas Morales"
+    },
+    "domicilio": {
+      "calle": "Carretera a Chapala",
+      "numero_exterior": "6700",
+      "numero_interior": null,
+      "colonia": "La Guadalupana",
+      "codigo_postal": "45588",
+      "municipio": "Tlaquepaque",
+      "estado": "Jalisco"
+    },
+    "contacto": {
+      "correo": "compras@textiloccidente.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2014-06-27",
+      "años_operando": 11,
+      "sector": "Textil",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432769",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 12,
+    "archivo": "CSF_12_LOCF830712MK6.pdf",
+    "identificacion": {
+      "rfc": "LOCF830712MK6",
+      "curp": "LOCF830712HSLPSR03",
+      "nombre": "FERNANDO JAVIER LÓPEZ CASTILLO",
+      "tipo": "Persona Física"
+    },
+    "regimen_fiscal": {
+      "codigo": "626",
+      "descripcion": "626 - Régimen Simplificado de Confianza"
+    },
+    "domicilio": {
+      "calle": "Avenida Venustiano Carranza",
+      "numero_exterior": "2315",
+      "numero_interior": null,
+      "colonia": "Tangamanga",
+      "codigo_postal": "78269",
+      "municipio": "San Luis Potosí",
+      "estado": "San Luis Potosí"
+    },
+    "contacto": {
+      "correo": "flopez@servicioscontables.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2022-01-01",
+      "años_operando": 3,
+      "sector": "Servicios Contables",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432773",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  },
+  {
+    "id": 13,
+    "archivo": "CSF_13_EAS160105PL9.pdf",
+    "identificacion": {
+      "rfc": "EAS160105PL9",
+      "curp": null,
+      "nombre": "EXPORTADORA AGRÍCOLA DE SONORA SA DE CV",
+      "tipo": "Persona Moral"
+    },
+    "regimen_fiscal": {
+      "codigo": "601",
+      "descripcion": "601 - General de Ley Personas Morales"
+    },
+    "domicilio": {
+      "calle": "Boulevard Luis Encinas",
+      "numero_exterior": "890",
+      "numero_interior": null,
+      "colonia": "San Benito",
+      "codigo_postal": "83190",
+      "municipio": "Hermosillo",
+      "estado": "Sonora"
+    },
+    "contacto": {
+      "correo": "exportaciones@agricolasonora.mx"
+    },
+    "datos_operativos": {
+      "fecha_inicio": "2016-01-05",
+      "años_operando": 9,
+      "sector": "Agricultura",
+      "estatus": "ACTIVO"
+    },
+    "metadata": {
+      "fecha_generacion": "2025-10-29T09:52:46.432776",
+      "version": "1.0",
+      "proposito": "Pruebas Cortex Search"
+    }
+  }
+]

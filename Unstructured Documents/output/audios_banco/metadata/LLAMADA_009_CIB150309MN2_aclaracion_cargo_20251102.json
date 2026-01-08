@@ -1,0 +1,28 @@
+{
+  "id_llamada": 9,
+  "cliente": {
+    "nombre": "CONSTRUCTORA INDUSTRIAL BAJÍO SA DE CV",
+    "rfc": "CIB150309MN2",
+    "tipo": "Persona Moral",
+    "estado": "Guanajuato"
+  },
+  "llamada": {
+    "tipo": "aclaracion_cargo",
+    "titulo": "Aclaración de Cargo",
+    "categoria": "Soporte",
+    "fecha": "2025-11-02T15:38:45.899237",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_009_CIB150309MN2_aclaracion_cargo_20251102.mp3",
+    "transcripcion": "LLAMADA_009_CIB150309MN2_aclaracion_cargo_20251102.txt",
+    "metadata": "LLAMADA_009_CIB150309MN2_aclaracion_cargo_20251102.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Sofía Castillo",
+    "num_cuenta": "****5744",
+    "ultimos_rfc": "9MN2"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

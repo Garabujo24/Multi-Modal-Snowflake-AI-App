@@ -1,0 +1,28 @@
+{
+  "id_llamada": 7,
+  "cliente": {
+    "nombre": "JOSÉ ROBERTO GARCÍA LÓPEZ",
+    "rfc": "GALR920327HG5",
+    "tipo": "Persona Física",
+    "estado": "Ciudad de México"
+  },
+  "llamada": {
+    "tipo": "aclaracion_cargo",
+    "titulo": "Aclaración de Cargo",
+    "categoria": "Soporte",
+    "fecha": "2025-10-12T15:37:57.900711",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_007_GALR920327HG5_aclaracion_cargo_20251012.mp3",
+    "transcripcion": "LLAMADA_007_GALR920327HG5_aclaracion_cargo_20251012.txt",
+    "metadata": "LLAMADA_007_GALR920327HG5_aclaracion_cargo_20251012.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Roberto Sánchez",
+    "num_cuenta": "****4377",
+    "ultimos_rfc": "7HG5"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

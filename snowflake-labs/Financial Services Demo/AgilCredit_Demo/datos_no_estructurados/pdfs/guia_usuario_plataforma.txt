@@ -1,0 +1,345 @@
+═══════════════════════════════════════════════════════════════════════════════
+                            AGILCREDIT SOFOM E.N.R.
+                   GUÍA DE USUARIO - PLATAFORMA WEB
+═══════════════════════════════════════════════════════════════════════════════
+
+Versión: 2.3
+Fecha: Octubre 2025
+www.agilcredit.mx
+
+═══════════════════════════════════════════════════════════════════════════════
+ÍNDICE
+═══════════════════════════════════════════════════════════════════════════════
+
+1. BIENVENIDO A AGILCREDIT
+2. REQUISITOS DEL SISTEMA
+3. CREACIÓN DE CUENTA
+4. INICIO DE SESIÓN
+5. SOLICITAR UN CRÉDITO
+6. CONSULTAR MI CRÉDITO
+7. REALIZAR PAGOS
+8. DOCUMENTOS Y DESCARGAS
+9. CONFIGURACIÓN DE CUENTA
+10. PREGUNTAS FRECUENTES
+11. SOPORTE TÉCNICO
+
+═══════════════════════════════════════════════════════════════════════════════
+1. BIENVENIDO A AGILCREDIT
+═══════════════════════════════════════════════════════════════════════════════
+
+¡Gracias por elegir AgilCredit!
+
+Nuestra plataforma web le permite:
+✓ Solicitar créditos en línea en minutos
+✓ Consultar su saldo y movimientos 24/7
+✓ Realizar pagos de forma segura
+✓ Descargar estados de cuenta y comprobantes
+✓ Actualizar su información personal
+✓ Contactar con nuestros asesores
+
+═══════════════════════════════════════════════════════════════════════════════
+2. REQUISITOS DEL SISTEMA
+═══════════════════════════════════════════════════════════════════════════════
+
+NAVEGADORES COMPATIBLES:
+✓ Google Chrome 90+
+✓ Mozilla Firefox 88+
+✓ Microsoft Edge 90+
+✓ Safari 14+
+
+RECOMENDACIONES:
+• Conexión a Internet: Mínimo 1 Mbps
+• Resolución mínima: 1024x768
+• Habilitar JavaScript y cookies
+• Evitar navegadores en modo incógnito para mejor experiencia
+
+═══════════════════════════════════════════════════════════════════════════════
+3. CREACIÓN DE CUENTA
+═══════════════════════════════════════════════════════════════════════════════
+
+PASO 1: ACCESO AL REGISTRO
+• Visite www.agilcredit.mx
+• Haga clic en "Crear Cuenta" o "Registrarse"
+
+PASO 2: INFORMACIÓN BÁSICA
+Complete el formulario con:
+□ Nombre completo
+□ RFC
+□ CURP
+□ Correo electrónico
+□ Número de teléfono móvil
+□ Crear contraseña (mín. 8 caracteres, incluir números y letras)
+
+REQUISITOS DE CONTRASEÑA:
+✓ Mínimo 8 caracteres
+✓ Al menos 1 letra mayúscula
+✓ Al menos 1 número
+✓ Al menos 1 caracter especial (@#$%&*)
+✗ No usar datos personales (nombre, fecha de nacimiento)
+
+PASO 3: VERIFICACIÓN
+• Se enviará un código de 6 dígitos a su correo y celular
+• Ingrese el código para verificar su identidad
+• Tiempo de validez: 10 minutos
+
+PASO 4: TÉRMINOS Y CONDICIONES
+□ Lea y acepte los Términos y Condiciones
+□ Lea y acepte el Aviso de Privacidad
+□ (Opcional) Autorizar recibir promociones
+
+¡LISTO! Su cuenta ha sido creada.
+
+═══════════════════════════════════════════════════════════════════════════════
+4. INICIO DE SESIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+4.1 ACCESO NORMAL
+1. Visite www.agilcredit.mx
+2. Haga clic en "Iniciar Sesión"
+3. Ingrese su correo electrónico
+4. Ingrese su contraseña
+5. Haga clic en "Entrar"
+
+4.2 AUTENTICACIÓN DE DOS FACTORES (2FA)
+Por seguridad, puede activar 2FA:
+1. Vaya a Configuración > Seguridad
+2. Active "Autenticación de Dos Factores"
+3. Cada inicio de sesión requerirá código enviado a su celular
+
+4.3 ¿OLVIDÓ SU CONTRASEÑA?
+1. En pantalla de inicio, haga clic en "¿Olvidó su contraseña?"
+2. Ingrese su correo electrónico registrado
+3. Recibirá un enlace para restablecer
+4. Cree una nueva contraseña
+5. Confirme la nueva contraseña
+
+═══════════════════════════════════════════════════════════════════════════════
+5. SOLICITAR UN CRÉDITO
+═══════════════════════════════════════════════════════════════════════════════
+
+5.1 SIMULADOR DE CRÉDITO (Opcional)
+Antes de solicitar, puede simular:
+1. Vaya a "Productos" > "Simular Crédito"
+2. Seleccione el producto deseado
+3. Ingrese monto y plazo
+4. Vea: pago mensual, tasa de interés, CAT
+5. Si le conviene, haga clic en "Solicitar"
+
+5.2 NUEVA SOLICITUD
+1. En el menú principal, seleccione "Solicitar Crédito"
+2. Elija el producto:
+   • Crédito Personal Express
+   • Crédito PyME
+   • Crédito Nómina Plus
+3. Complete el formulario con información:
+   - Datos personales
+   - Datos laborales
+   - Datos financieros
+   - Referencias personales
+
+5.3 SUBIR DOCUMENTOS
+Documentos requeridos:
+□ Identificación oficial (INE/IFE o Pasaporte)
+□ Comprobante de domicilio (máx. 3 meses)
+□ Comprobantes de ingresos (últimos 3 meses)
+□ Estados de cuenta bancarios (3 meses)
+
+FORMATO ACEPTADO:
+• PDF, JPG, PNG
+• Tamaño máximo: 5 MB por archivo
+• Imágenes claras y legibles
+
+TIPS:
+• Use escaneo o fotos con buena iluminación
+• Asegúrese que se lea toda la información
+• No recorte los documentos
+
+5.4 REVISIÓN Y ENVÍO
+1. Revise toda la información capturada
+2. Acepte los términos del producto
+3. Autorizar consulta a Buró de Crédito
+4. Haga clic en "Enviar Solicitud"
+
+5.5 SEGUIMIENTO
+• Recibirá número de folio
+• Respuesta en 24-48 horas hábiles
+• Notificación por correo y SMS
+• Puede consultar estatus en "Mis Solicitudes"
+
+═══════════════════════════════════════════════════════════════════════════════
+6. CONSULTAR MI CRÉDITO
+═══════════════════════════════════════════════════════════════════════════════
+
+6.1 RESUMEN DE CRÉDITO
+En el Dashboard verá:
+• Saldo actual
+• Próximo pago (fecha y monto)
+• Días para vencimiento
+• Total pagado a la fecha
+• Número de pagos realizados/pendientes
+
+6.2 DETALLE COMPLETO
+Acceda a "Mis Créditos" > Seleccione su crédito
+
+Información disponible:
+✓ Condiciones del crédito (monto, plazo, tasa)
+✓ Tabla de amortización completa
+✓ Historial de pagos realizados
+✓ Estado de cuenta mes actual
+✓ Proyección de liquidación
+
+6.3 GRÁFICAS Y REPORTES
+• Distribución capital vs intereses
+• Progreso de pagos
+• Evolución del saldo
+
+═══════════════════════════════════════════════════════════════════════════════
+7. REALIZAR PAGOS
+═══════════════════════════════════════════════════════════════════════════════
+
+7.1 PAGO EN LÍNEA
+1. Vaya a "Mis Créditos" > "Realizar Pago"
+2. Seleccione tipo de pago:
+   - Pago mensual regular
+   - Pago adelantado
+   - Liquidación total
+3. Elija método de pago:
+   □ Tarjeta de débito/crédito
+   □ Transferencia SPEI
+4. Ingrese los datos solicitados
+5. Confirme el monto
+6. Autorice el cargo
+
+SEGURIDAD:
+🔒 Conexión encriptada SSL
+🔒 No almacenamos datos de tarjetas
+🔒 Procesamiento mediante pasarela segura
+
+7.2 CONFIRMACIÓN
+• Recibirá comprobante por correo inmediatamente
+• Descargue su comprobante en PDF
+• El pago se reflejará en 24-48 horas
+
+7.3 PROGRAMAR PAGOS
+Active domiciliación automática:
+1. Vaya a "Configuración" > "Domiciliación"
+2. Ingrese datos de cuenta bancaria (CLABE)
+3. Seleccione día de cargo (recomendado: 15 de cada mes)
+4. Confirme y active
+
+Beneficios:
+✓ Nunca olvide un pago
+✓ Evite cargos por mora
+✓ Mantenga buen historial crediticio
+
+═══════════════════════════════════════════════════════════════════════════════
+8. DOCUMENTOS Y DESCARGAS
+═══════════════════════════════════════════════════════════════════════════════
+
+DISPONIBLES PARA DESCARGA:
+□ Estados de cuenta mensuales (PDF)
+□ Comprobantes de pago (PDF)
+□ Contrato de crédito firmado (PDF)
+□ Tabla de amortización (PDF/Excel)
+□ Constancia fiscal (si aplica)
+□ Cartas de finiquito (al liquidar)
+
+CÓMO DESCARGAR:
+1. Vaya a "Documentos"
+2. Seleccione el tipo de documento
+3. Elija el periodo o fecha
+4. Haga clic en el ícono de descarga 📥
+5. El archivo se descargará a su carpeta predeterminada
+
+═══════════════════════════════════════════════════════════════════════════════
+9. CONFIGURACIÓN DE CUENTA
+═══════════════════════════════════════════════════════════════════════════════
+
+9.1 DATOS PERSONALES
+Actualice:
+• Dirección
+• Teléfono
+• Correo electrónico
+• Datos laborales
+
+IMPORTANTE: Cambios en datos sensibles requieren validación.
+
+9.2 SEGURIDAD
+• Cambiar contraseña
+• Activar/desactivar 2FA
+• Ver dispositivos conectados
+• Cerrar sesiones activas
+
+9.3 PREFERENCIAS DE NOTIFICACIONES
+Configure cómo desea recibir notificaciones:
+□ Email
+□ SMS
+□ Push (app móvil)
+
+Tipos de notificaciones:
+✓ Recordatorios de pago
+✓ Confirmaciones de transacciones
+✓ Actualizaciones de solicitudes
+✓ Promociones (opcional)
+
+═══════════════════════════════════════════════════════════════════════════════
+10. PREGUNTAS FRECUENTES
+═══════════════════════════════════════════════════════════════════════════════
+
+P: ¿Cuánto tarda la aprobación de mi crédito?
+R: Típicamente 24-48 horas hábiles.
+
+P: ¿Puedo hacer pagos anticipados?
+R: Sí, sin penalización. Solo pagas intereses generados a la fecha.
+
+P: ¿Cómo actualizo mis datos personales?
+R: En Configuración > Datos Personales. Algunos cambios requieren validación.
+
+P: ¿Es segura la plataforma?
+R: Sí. Usamos encriptación SSL, 2FA y cumplimos con normativas de seguridad.
+
+P: ¿Puedo tener más de un crédito?
+R: Sí, sujeto a capacidad de pago y aprobación.
+
+═══════════════════════════════════════════════════════════════════════════════
+11. SOPORTE TÉCNICO
+═══════════════════════════════════════════════════════════════════════════════
+
+¿NECESITA AYUDA?
+
+CHAT EN LÍNEA:
+Haga clic en el ícono 💬 en la esquina inferior derecha
+Disponible: Lunes a Sábado 8:00 - 20:00 hrs
+
+CORREO ELECTRÓNICO:
+soporte@agilcredit.mx
+Tiempo de respuesta: 24 horas
+
+TELÉFONO:
+800-123-4567
+Lunes a Viernes 9:00 - 18:00 hrs
+Sábados 9:00 - 14:00 hrs
+
+WHATSAPP:
+55-1234-5678
+Respuesta en horario de oficina
+
+VISÍTANOS:
+Av. Paseo de la Reforma 505, Piso 15
+Col. Cuauhtémoc, Ciudad de México
+C.P. 06500
+
+═══════════════════════════════════════════════════════════════════════════════
+                            ¡GRACIAS POR CONFIAR EN NOSOTROS!
+═══════════════════════════════════════════════════════════════════════════════
+
+AgilCredit SOFOM E.N.R.
+RFC: AGC150720AB3
+www.agilcredit.mx
+
+© 2025 AgilCredit. Todos los derechos reservados.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+
+

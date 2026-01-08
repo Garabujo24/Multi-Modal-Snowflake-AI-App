@@ -1,0 +1,49 @@
+Manual de Usuario - OMNIGOODS Auriculares Inalámbricos Elite
+
+## 1. Introducción
+Gracias por elegir los OMNIGOODS Auriculares Inalámbricos Elite. Este manual le guiará para obtener la mejor experiencia de audio.
+
+## 2. Contenido de la Caja
+- 1 par de auriculares OMNIGOODS Elite
+- Cable de carga USB-C
+- Estuche de transporte rígido
+- 3 pares de almohadillas de silicona (S, M, L)
+- Guía de inicio rápido
+
+## 3. Configuración Inicial
+- Carga: Conecte el cable USB-C al puerto de carga. Una carga completa tarda aproximadamente 1.5 horas y proporciona hasta 30 horas de reproducción continua.
+- Encendido: Mantenga presionado el botón de encendido durante 2 segundos hasta que el LED parpadee en azul.
+- Emparejamiento Bluetooth: Active el Bluetooth en su dispositivo y seleccione "OMNIGOODS Elite" de la lista. Se conectarán automáticamente en futuros usos.
+
+## 4. Controles y Funciones
+- Botón Multifunción: Reproducir/pausar música (1 toque), Responder/finalizar llamadas (1 toque), Activar asistente de voz (mantener 2 seg).
+- Control de Volumen: Deslice hacia arriba (auricular derecho) para subir volumen, hacia abajo para bajar.
+- Cancelación Activa de Ruido (ANC): Presione el botón ANC para activar o desactivar. El LED verde indica que ANC está activo.
+- Modo Transparencia: Presione dos veces el botón ANC para activar el modo ambiente y escuchar sonidos externos sin quitarse los auriculares.
+
+## 5. Especificaciones Técnicas
+- Conectividad: Bluetooth 5.2
+- Alcance: hasta 15 metros en espacio abierto
+- Respuesta de frecuencia: 20Hz - 20kHz
+- Códecs soportados: SBC, AAC, aptX
+- Resistencia: IPX4 (resistentes a salpicaduras)
+- Peso: 245 gramos
+
+## 6. Solución de Problemas
+- Problema: No se conectan al dispositivo.
+- Solución: Reinicie los auriculares manteniéndolos apagados durante 10 segundos. Elimine el emparejamiento previo de su dispositivo e intente conectar de nuevo.
+
+- Problema: La cancelación de ruido no funciona bien.
+- Solución: Asegúrese de usar las almohadillas del tamaño correcto para un ajuste hermético. Verifique que el modo ANC esté activado (LED verde).
+
+- Problema: Baja calidad de audio en llamadas.
+- Solución: Limpie los micrófonos con un paño seco. Asegúrese de estar en un entorno con poco ruido o active ANC.
+
+## 7. Mantenimiento y Cuidado
+- Limpie regularmente las almohadillas con un paño húmedo.
+- No exponga los auriculares a temperaturas extremas (por debajo de 0°C o por encima de 45°C).
+- Guarde los auriculares en su estuche cuando no los use para protegerlos de golpes.
+
+## 8. Garantía
+Este producto tiene una garantía limitada de 2 años contra defectos de fabricación. La garantía no cubre daños por mal uso, caídas o exposición excesiva a líquidos. Para soporte técnico, visite support.omnigoods.com o escriba a soporte@omnigoods.com.
+

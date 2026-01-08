@@ -1,0 +1,28 @@
+{
+  "id_llamada": 23,
+  "cliente": {
+    "nombre": "FERNANDO JAVIER LÓPEZ CASTILLO",
+    "rfc": "LOCF830712MK6",
+    "tipo": "Persona Física",
+    "estado": "San Luis Potosí"
+  },
+  "llamada": {
+    "tipo": "transferencia",
+    "titulo": "Solicitud de Transferencia",
+    "categoria": "Operaciones",
+    "fecha": "2025-10-18T15:55:07.765417",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_023_LOCF830712MK6_transferencia_20251018.mp3",
+    "transcripcion": "LLAMADA_023_LOCF830712MK6_transferencia_20251018.txt",
+    "metadata": "LLAMADA_023_LOCF830712MK6_transferencia_20251018.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Jorge Ramírez",
+    "num_cuenta": "****8461",
+    "ultimos_rfc": "2MK6"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

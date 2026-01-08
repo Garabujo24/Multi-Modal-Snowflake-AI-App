@@ -1,0 +1,28 @@
+{
+  "id_llamada": 22,
+  "cliente": {
+    "nombre": "MANUFACTURAS TEXTILES DE OCCIDENTE SA DE CV",
+    "rfc": "MTO140627GH3",
+    "tipo": "Persona Moral",
+    "estado": "Jalisco"
+  },
+  "llamada": {
+    "tipo": "reporte_fraude",
+    "titulo": "Reporte de Fraude",
+    "categoria": "Seguridad",
+    "fecha": "2025-11-04T15:44:17.566418",
+    "duracion_estimada": "4-5 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_022_MTO140627GH3_reporte_fraude_20251104.mp3",
+    "transcripcion": "LLAMADA_022_MTO140627GH3_reporte_fraude_20251104.txt",
+    "metadata": "LLAMADA_022_MTO140627GH3_reporte_fraude_20251104.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Carlos Mendoza",
+    "num_cuenta": "****2109",
+    "ultimos_rfc": "7GH3"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

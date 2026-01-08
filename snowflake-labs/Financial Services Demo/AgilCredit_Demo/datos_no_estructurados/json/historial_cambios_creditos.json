@@ -1,0 +1,78 @@
+[
+  {
+    "change_id": "CHG-2025-001",
+    "timestamp": "2025-10-15T10:30:00Z",
+    "credit_id": "CRE000145",
+    "client_id": "CLI000145",
+    "change_type": "interest_rate_adjustment",
+    "changed_by": "SYSTEM",
+    "reason": "Annual rate review - good payment history",
+    "previous_values": {
+      "interest_rate": 24.5,
+      "monthly_payment": 5800.00
+    },
+    "new_values": {
+      "interest_rate": 22.0,
+      "monthly_payment": 5550.00
+    },
+    "impact": {
+      "monthly_savings": 250.00,
+      "total_savings_remaining_term": 6000.00
+    },
+    "approved_by": "risk_committee",
+    "notification_sent": true
+  },
+  {
+    "change_id": "CHG-2025-002",
+    "timestamp": "2025-10-16T14:45:00Z",
+    "credit_id": "CRE000234",
+    "client_id": "CLI000234",
+    "change_type": "payment_extension",
+    "changed_by": "ANA015",
+    "reason": "Client requested due to temporary income reduction",
+    "previous_values": {
+      "due_date": "2025-10-20",
+      "late_fee": 0.00
+    },
+    "new_values": {
+      "due_date": "2025-10-31",
+      "late_fee": 0.00,
+      "extension_days": 11
+    },
+    "conditions": [
+      "One-time courtesy extension",
+      "No impact on credit score",
+      "Next payment must be on time"
+    ],
+    "approved_by": "collection_manager",
+    "notification_sent": true
+  },
+  {
+    "change_id": "CHG-2025-003",
+    "timestamp": "2025-10-17T09:15:00Z",
+    "credit_id": "CRE000423",
+    "client_id": "CLI000423",
+    "change_type": "credit_restructuring",
+    "changed_by": "ANA003",
+    "reason": "Payment difficulties - prevent default",
+    "previous_values": {
+      "remaining_balance": 85000.00,
+      "monthly_payment": 4250.00,
+      "remaining_term_months": 20,
+      "interest_rate": 28.0
+    },
+    "new_values": {
+      "remaining_balance": 85000.00,
+      "monthly_payment": 3100.00,
+      "remaining_term_months": 30,
+      "interest_rate": 26.0
+    },
+    "restructuring_fee": 850.00,
+    "approved_by": "credit_committee",
+    "notification_sent": true,
+    "documentation_signed": true
+  }
+]
+
+
+

@@ -1,0 +1,350 @@
+[
+  {
+    "log_id": "LOG0000001",
+    "timestamp": "2025-10-15T14:23:45.123Z",
+    "evento": "solicitud_credito",
+    "cliente_id": "CLI000145",
+    "producto_id": "PROD001",
+    "monto_solicitado": 35000.00,
+    "plazo_meses": 18,
+    "ip_origen": "189.203.45.78",
+    "dispositivo": {
+      "tipo": "smartphone",
+      "marca": "Apple",
+      "modelo": "iPhone 14",
+      "sistema_operativo": "iOS 17.1",
+      "navegador": "Safari 17.0"
+    },
+    "ubicacion": {
+      "latitud": 19.4326,
+      "longitud": -99.1332,
+      "ciudad": "Ciudad de México",
+      "estado": "CDMX",
+      "codigo_postal": "06600"
+    },
+    "metadata": {
+      "sesion_id": "sess_abc123xyz789",
+      "referencia_origen": "app_movil",
+      "utm_source": "google_ads",
+      "utm_campaign": "credito_personal_q4"
+    },
+    "resultado": "aprobado",
+    "tiempo_procesamiento_ms": 2847
+  },
+  {
+    "log_id": "LOG0000002",
+    "timestamp": "2025-10-15T15:45:12.456Z",
+    "evento": "transaccion_pago",
+    "transaccion_id": "TXN0002341",
+    "cliente_id": "CLI000287",
+    "credito_id": "CRE000432",
+    "tipo_transaccion": "pago_mensual",
+    "monto": 2850.50,
+    "metodo_pago": "transferencia_spei",
+    "banco_origen": "BBVA México",
+    "cuenta_origen": "012180001234567890",
+    "referencia": "REF98765432100",
+    "ip_origen": "187.141.78.234",
+    "dispositivo": {
+      "tipo": "desktop",
+      "sistema_operativo": "Windows 11",
+      "navegador": "Chrome 118.0"
+    },
+    "verificacion_seguridad": {
+      "autenticacion_2fa": true,
+      "token_dispositivo": "verified",
+      "score_riesgo": 15.3,
+      "reglas_evaluadas": ["IP_conocida", "dispositivo_reconocido", "hora_habitual", "monto_esperado"]
+    },
+    "resultado": "exitoso",
+    "tiempo_procesamiento_ms": 4523
+  },
+  {
+    "log_id": "LOG0000003",
+    "timestamp": "2025-10-15T18:12:33.789Z",
+    "evento": "alerta_fraude",
+    "alerta_id": "ALT000089",
+    "transaccion_id": "TXN0002987",
+    "cliente_id": "CLI000521",
+    "tipo_alerta": "ubicacion_geografica_sospechosa",
+    "nivel_riesgo": "alto",
+    "score_fraude": 87.5,
+    "detalles": {
+      "ultima_transaccion_exitosa": {
+        "timestamp": "2025-10-15T14:30:00.000Z",
+        "ubicacion": "Ciudad de México, CDMX",
+        "ip": "189.203.45.78"
+      },
+      "transaccion_sospechosa": {
+        "timestamp": "2025-10-15T18:12:30.000Z",
+        "ubicacion": "Tijuana, Baja California",
+        "ip": "201.145.87.92",
+        "distancia_km": 2784,
+        "tiempo_transcurrido_horas": 3.7
+      },
+      "reglas_activadas": [
+        "velocidad_desplazamiento_imposible",
+        "cambio_ip_drastico",
+        "patron_geografico_anomalo"
+      ]
+    },
+    "accion_automatica": "transaccion_bloqueada",
+    "analista_asignado": "ANALISTA_FRAUDE_03",
+    "tiempo_procesamiento_ms": 145
+  },
+  {
+    "log_id": "LOG0000004",
+    "timestamp": "2025-10-16T09:15:22.234Z",
+    "evento": "verificacion_kyc",
+    "evento_id": "EVT000678",
+    "cliente_id": "CLI000892",
+    "tipo_verificacion": "validacion_identidad",
+    "documentos_procesados": [
+      {
+        "tipo": "INE",
+        "numero": "ABCD1234567890",
+        "fecha_emision": "2022-03-15",
+        "vigencia": "2032-03-15",
+        "validacion_ocr": {
+          "confianza": 98.7,
+          "campos_extraidos": ["nombre", "fecha_nacimiento", "curp", "domicilio", "foto"],
+          "coincidencia_datos": true
+        }
+      },
+      {
+        "tipo": "comprobante_domicilio",
+        "proveedor": "CFE",
+        "fecha_emision": "2025-09-28",
+        "antiguedad_dias": 18,
+        "validacion": {
+          "domicilio_coincide": true,
+          "vigencia_aceptable": true
+        }
+      }
+    ],
+    "verificacion_listas": {
+      "OFAC": {
+        "consultado": true,
+        "resultado": "sin_coincidencias",
+        "timestamp": "2025-10-16T09:15:18.123Z"
+      },
+      "PEP": {
+        "consultado": true,
+        "resultado": "sin_coincidencias",
+        "timestamp": "2025-10-16T09:15:19.456Z"
+      },
+      "lista_bloqueados_CNBV": {
+        "consultado": true,
+        "resultado": "sin_coincidencias",
+        "timestamp": "2025-10-16T09:15:20.789Z"
+      }
+    },
+    "validacion_biometrica": {
+      "selfie_match": 96.4,
+      "liveness_detection": true,
+      "confianza": 97.8
+    },
+    "resultado": "aprobado",
+    "oficial_cumplimiento": "OFICIAL_CUMPLIMIENTO_07",
+    "tiempo_procesamiento_ms": 8945
+  },
+  {
+    "log_id": "LOG0000005",
+    "timestamp": "2025-10-16T11:30:45.567Z",
+    "evento": "desembolso_credito",
+    "credito_id": "CRE000789",
+    "cliente_id": "CLI000234",
+    "solicitud_id": "SOL001456",
+    "monto_desembolsado": 125000.00,
+    "cuenta_destino": {
+      "banco": "Citibanamex",
+      "clabe": "002180012345678901",
+      "titular": "María Elena Rodríguez García",
+      "validacion_titular": true
+    },
+    "comisiones": {
+      "apertura": 3750.00,
+      "disposicion": 0.00,
+      "iva": 600.00,
+      "total_comisiones": 4350.00
+    },
+    "monto_neto_cliente": 120650.00,
+    "contrato_firmado": {
+      "metodo": "firma_electronica",
+      "timestamp": "2025-10-16T10:45:23.234Z",
+      "certificado": "SHA256:abc123def456...",
+      "documento_pdf": "contratos/CRE000789_contrato_firmado.pdf"
+    },
+    "resultado": "exitoso",
+    "referencia_bancaria": "SPEI789456123",
+    "tiempo_procesamiento_ms": 15678
+  },
+  {
+    "log_id": "LOG0000006",
+    "timestamp": "2025-10-16T16:22:18.890Z",
+    "evento": "cambio_dispositivo",
+    "cliente_id": "CLI000445",
+    "dispositivo_anterior": {
+      "id": "dev_old_12345",
+      "tipo": "smartphone",
+      "marca": "Samsung",
+      "modelo": "Galaxy S21",
+      "ultima_actividad": "2025-10-10T14:20:00.000Z"
+    },
+    "dispositivo_nuevo": {
+      "id": "dev_new_67890",
+      "tipo": "smartphone",
+      "marca": "Apple",
+      "modelo": "iPhone 15 Pro",
+      "primer_acceso": "2025-10-16T16:22:15.000Z",
+      "ip": "187.190.34.123",
+      "ubicacion": "Guadalajara, Jalisco"
+    },
+    "validacion_adicional": {
+      "codigo_sms_enviado": true,
+      "codigo_verificado": true,
+      "email_notificacion": true,
+      "bloqueo_temporal_transacciones": true,
+      "duracion_bloqueo_horas": 24
+    },
+    "nivel_riesgo": "medio",
+    "score_riesgo": 42.3,
+    "resultado": "dispositivo_registrado_con_restricciones"
+  },
+  {
+    "log_id": "LOG0000007",
+    "timestamp": "2025-10-17T08:45:30.123Z",
+    "evento": "pago_anticipado",
+    "transaccion_id": "TXN0003456",
+    "cliente_id": "CLI000678",
+    "credito_id": "CRE000512",
+    "tipo_transaccion": "pago_total_anticipado",
+    "saldo_anterior": 48750.25,
+    "monto_pago": 48750.25,
+    "descuentos": {
+      "intereses_no_devengados": 2340.50,
+      "comision_prepago": 0.00,
+      "bonificacion": 150.00,
+      "total_descuentos": 2490.50
+    },
+    "monto_final": 46259.75,
+    "saldo_nuevo": 0.00,
+    "metodo_pago": "transferencia_spei",
+    "banco_origen": "Santander México",
+    "resultado": "exitoso",
+    "estatus_credito_actualizado": "liquidado",
+    "tiempo_procesamiento_ms": 3421
+  },
+  {
+    "log_id": "LOG0000008",
+    "timestamp": "2025-10-17T13:18:42.456Z",
+    "evento": "actualizacion_score_riesgo",
+    "cliente_id": "CLI000912",
+    "score_anterior": 72.5,
+    "score_nuevo": 68.3,
+    "factores_cambio": [
+      {
+        "factor": "historial_pagos",
+        "impacto": -2.5,
+        "razon": "1 pago atrasado en últimos 30 días"
+      },
+      {
+        "factor": "utilizacion_credito",
+        "impacto": -1.2,
+        "razon": "Incremento en utilización de línea revolvente"
+      },
+      {
+        "factor": "consultas_buro",
+        "impacto": -0.5,
+        "razon": "2 nuevas consultas de crédito detectadas"
+      }
+    ],
+    "evaluacion_buro": {
+      "calificacion_anterior": 720,
+      "calificacion_nueva": 712,
+      "fecha_consulta": "2025-10-17T13:15:00.000Z",
+      "tipo_consulta": "automatica_mensual"
+    },
+    "acciones_recomendadas": [
+      "monitoreo_cercano",
+      "revision_capacidad_pago"
+    ],
+    "analista_responsable": "ANALISTA_RIESGO_05"
+  },
+  {
+    "log_id": "LOG0000009",
+    "timestamp": "2025-10-17T17:55:10.789Z",
+    "evento": "intento_login_fallido",
+    "cliente_id": "CLI000334",
+    "intentos_consecutivos": 3,
+    "detalles_intentos": [
+      {
+        "intento": 1,
+        "timestamp": "2025-10-17T17:50:15.123Z",
+        "ip": "200.57.88.144",
+        "razon_fallo": "contraseña_incorrecta"
+      },
+      {
+        "intento": 2,
+        "timestamp": "2025-10-17T17:52:30.456Z",
+        "ip": "200.57.88.144",
+        "razon_fallo": "contraseña_incorrecta"
+      },
+      {
+        "intento": 3,
+        "timestamp": "2025-10-17T17:55:10.789Z",
+        "ip": "200.57.88.144",
+        "razon_fallo": "contraseña_incorrecta"
+      }
+    ],
+    "ubicacion_intentos": {
+      "ip": "200.57.88.144",
+      "ciudad": "Monterrey",
+      "estado": "Nuevo León",
+      "pais": "México"
+    },
+    "ubicacion_esperada": {
+      "ciudad": "Querétaro",
+      "estado": "Querétaro"
+    },
+    "accion_automatica": "cuenta_bloqueada_temporalmente",
+    "duracion_bloqueo_minutos": 30,
+    "notificacion_enviada": {
+      "email": true,
+      "sms": true,
+      "push": false
+    },
+    "nivel_riesgo": "alto",
+    "score_riesgo": 78.9
+  },
+  {
+    "log_id": "LOG0000010",
+    "timestamp": "2025-10-18T10:30:25.345Z",
+    "evento": "reporte_regulatorio_generado",
+    "tipo_reporte": "operaciones_inusuales",
+    "periodo": {
+      "fecha_inicio": "2025-10-01",
+      "fecha_fin": "2025-10-15"
+    },
+    "estadisticas": {
+      "total_operaciones_analizadas": 9847,
+      "operaciones_inusuales_detectadas": 23,
+      "operaciones_reportadas": 5,
+      "falsos_positivos": 18
+    },
+    "autoridad_destino": "CNBV",
+    "formato": "XML",
+    "archivo_generado": "reportes_regulatorios/CNBV_OpInusuales_202510_15.xml",
+    "oficial_cumplimiento": "OFICIAL_CUMPLIMIENTO_02",
+    "validacion_formato": {
+      "esquema_xml": "valido",
+      "firmas_digitales": "completas",
+      "checksums": "verificados"
+    },
+    "resultado": "reporte_enviado",
+    "timestamp_envio": "2025-10-18T10:35:45.678Z"
+  }
+]
+
+
+

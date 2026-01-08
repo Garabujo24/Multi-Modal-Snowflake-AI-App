@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Negocio - Migración Digital de Sucursales | Banamex</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primario: #003366;
+            --secundario: #0066cc;
+            --acento: #00c4b4;
+            --acento-dorado: #d4af37;
+            --fondo: #f8fafc;
+            --texto: #1e293b;
+            --texto-claro: #64748b;
+            --blanco: #ffffff;
+            --borde: #e2e8f0;
+            --gradiente-hero: linear-gradient(135deg, #003366 0%, #0066cc 50%, #00c4b4 100%);
+            --sombra: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --sombra-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        /* Header Hero */
+        .hero {
+            background: var(--gradiente-hero);
+            color: var(--blanco);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitulo {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--acento-dorado);
+            color: var(--primario);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Secciones */
+        .seccion {
+            margin-bottom: 3rem;
+        }
+
+        .seccion-titulo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .seccion-titulo .icono {
+            width: 50px;
+            height: 50px;
+            background: var(--gradiente-hero);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--blanco);
+        }
+
+        .seccion-titulo h2 {
+            font-size: 1.8rem;
+            color: var(--primario);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--sombra);
+            border: 1px solid var(--borde);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .card-icono {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: var(--primario);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--texto-claro);
+            font-size: 0.95rem;
+        }
+
+        /* Problema Cards */
+        .problema-card {
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Pregunta Cards */
+        .pregunta-card {
+            border-left: 4px solid var(--secundario);
+            position: relative;
+        }
+
+        .pregunta-numero {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 30px;
+            height: 30px;
+            background: var(--secundario);
+            color: var(--blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Resultado Cards */
+        .resultado-card {
+            border-left: 4px solid var(--acento);
+            background: linear-gradient(135deg, var(--blanco) 0%, #f0fdf9 100%);
+        }
+
+        /* Arquitectura */
+        .arquitectura {
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--sombra);
+            margin-bottom: 2rem;
+        }
+
+        .arquitectura-diagrama {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .capa {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .capa.fuentes {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+        }
+
+        .capa.snowflake {
+            background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+            border: 2px solid #3b82f6;
+            min-width: 350px;
+        }
+
+        .capa.analitica {
+            background: linear-gradient(135deg, #d1fae5 0%, #6ee7b7 100%);
+            border: 2px solid #10b981;
+        }
+
+        .capa.accion {
+            background: linear-gradient(135deg, #fce7f3 0%, #f9a8d4 100%);
+            border: 2px solid #ec4899;
+        }
+
+        .capa h4 {
+            font-size: 0.9rem;
+            color: var(--texto-claro);
+            margin-bottom: 0.5rem;
+        }
+
+        .capa h3 {
+            font-size: 1.1rem;
+            color: var(--primario);
+        }
+
+        .capa ul {
+            list-style: none;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .capa li {
+            padding: 0.3rem 0;
+            color: var(--texto);
+        }
+
+        .flecha {
+            font-size: 2rem;
+            color: var(--secundario);
+        }
+
+        /* Código SQL */
+        .codigo-container {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .codigo-header {
+            background: #334155;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .codigo-header span {
+            color: #94a3b8;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .codigo-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .codigo-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .codigo-dots span:nth-child(1) { background: #ef4444; }
+        .codigo-dots span:nth-child(2) { background: #f59e0b; }
+        .codigo-dots span:nth-child(3) { background: #22c55e; }
+
+        pre {
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        code {
+            color: #e2e8f0;
+        }
+
+        .sql-keyword { color: #818cf8; }
+        .sql-function { color: #22d3ee; }
+        .sql-string { color: #4ade80; }
+        .sql-comment { color: #64748b; font-style: italic; }
+        .sql-table { color: #fbbf24; }
+        .sql-number { color: #f472b6; }
+
+        /* Métricas */
+        .metricas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metrica {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--sombra);
+            border-top: 4px solid var(--acento);
+        }
+
+        .metrica-valor {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradiente-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metrica-label {
+            color: var(--texto-claro);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primario), var(--acento));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--blanco);
+            border: 4px solid var(--secundario);
+            border-radius: 50%;
+            transform: translateX(-8px);
+        }
+
+        .timeline-item h4 {
+            color: var(--primario);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--texto-claro);
+            font-size: 0.95rem;
+        }
+
+        .timeline-duracion {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--secundario);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tablas */
+        .tabla-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--blanco);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+        }
+
+        th {
+            background: var(--primario);
+            color: var(--blanco);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--borde);
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag-alto { background: #fee2e2; color: #dc2626; }
+        .tag-medio { background: #fef3c7; color: #d97706; }
+        .tag-bajo { background: #dcfce7; color: #16a34a; }
+
+        /* Footer */
+        footer {
+            background: var(--primario);
+            color: var(--blanco);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .arquitectura-diagrama { flex-direction: column; }
+            .flecha { transform: rotate(90deg); }
+        }
+
+        /* Animaciones entrada */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="badge">📊 Caso de Negocio - Snowflake</span>
+            <h1>Migración Digital de Sucursales</h1>
+            <p class="subtitulo">Detectar y clasificar clientes que visitan la sucursal para transacciones digitales, orientando campañas de migración precisas y habilitando acompañamiento personalizado.</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Contexto del Problema -->
+        <section class="seccion fade-in">
+            <div class="seccion-titulo">
+                <div class="icono">⚠️</div>
+                <h2>Contexto del Problema</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card problema-card">
+                    <div class="card-icono">👥</div>
+                    <h3>Alto Volumen en Sucursales</h3>
+                    <p>Gran cantidad de clientes acude a sucursal para operaciones que ya existen en App/Web, generando congestión innecesaria.</p>
+                </div>
+                <div class="card problema-card">
+                    <div class="card-icono">⏱️</div>
+                    <h3>Saturación y Espera</h3>
+                    <p>Filas saturadas y tiempos de espera elevados que impactan negativamente la experiencia del cliente.</p>
+                </div>
+                <div class="card problema-card">
+                    <div class="card-icono">💰</div>
+                    <h3>Costos Operativos Elevados</h3>
+                    <p>Cada transacción en sucursal tiene un costo significativamente mayor que en canales digitales.</p>
+                </div>
+                <div class="card problema-card">
+                    <div class="card-icono">📉</div>
+                    <h3>Experiencia Inconsistente</h3>
+                    <p>Variabilidad en la calidad de atención entre sucursales afecta la percepción del cliente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preguntas a Responder -->
+        <section class="seccion fade-in delay-1">
+            <div class="seccion-titulo">
+                <div class="icono">❓</div>
+                <h2>Preguntas a Responder</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card pregunta-card">
+                    <span class="pregunta-numero">1</span>
+                    <h3>Perfil de Clientes</h3>
+                    <p>¿Qué tipo de clientes siguen utilizando la sucursal para operaciones digitales? Identificar perfiles demográficos, segmentos, antigüedad y comportamiento transaccional.</p>
+                </div>
+                <div class="card pregunta-card">
+                    <span class="pregunta-numero">2</span>
+                    <h3>Operaciones Migrables</h3>
+                    <p>¿Cuáles operaciones son las más repetitivas o tienen mayor potencial de migración a canales digitales?</p>
+                </div>
+                <div class="card pregunta-card">
+                    <span class="pregunta-numero">3</span>
+                    <h3>Barreras de Adopción</h3>
+                    <p>¿Qué barreras tienen para adoptar la App? Detectar fallas previas, bloqueos, problemas técnicos o desconocimiento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados Esperados -->
+        <section class="seccion fade-in delay-2">
+            <div class="seccion-titulo">
+                <div class="icono">🎯</div>
+                <h2>Resultados Esperados</h2>
+            </div>
+            <div class="metricas-grid">
+                <div class="metrica">
+                    <div class="metrica-valor">↓30%</div>
+                    <div class="metrica-label">Reducción de visitas por operaciones migrables</div>
+                </div>
+                <div class="metrica">
+                    <div class="metrica-valor">↓25%</div>
+                    <div class="metrica-label">Reducción de costos operativos</div>
+                </div>
+                <div class="metrica">
+                    <div class="metrica-valor">+15pts</div>
+                    <div class="metrica-label">Mejora de NPS Sucursal</div>
+                </div>
+                <div class="metrica">
+                    <div class="metrica-valor">↑40%</div>
+                    <div class="metrica-label">Incremento uso canales digitales</div>
+                </div>
+            </div>
+            <div class="cards-grid">
+                <div class="card resultado-card">
+                    <div class="card-icono">📧</div>
+                    <h3>Campañas de Migración Precisas</h3>
+                    <p>Segmentación inteligente para comunicaciones personalizadas según perfil y barrera detectada.</p>
+                </div>
+                <div class="card resultado-card">
+                    <div class="card-icono">🤝</div>
+                    <h3>Acompañamiento Proactivo</h3>
+                    <p>Diseño de procesos de onboarding digital y resolución de problemas técnicos detectados.</p>
+                </div>
+                <div class="card resultado-card">
+                    <div class="card-icono">📊</div>
+                    <h3>Dashboard de Seguimiento</h3>
+                    <p>Monitoreo en tiempo real de la migración y efectividad de las campañas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arquitectura Snowflake -->
+        <section class="seccion fade-in delay-3">
+            <div class="seccion-titulo">
+                <div class="icono">❄️</div>
+                <h2>Arquitectura Propuesta en Snowflake</h2>
+            </div>
+            
+            <div class="arquitectura">
+                <div class="arquitectura-diagrama">
+                    <div class="capa fuentes">
+                        <h4>📥 FUENTES DE DATOS</h4>
+                        <h3>Data Sources</h3>
+                        <ul>
+                            <li>Transacciones Sucursal</li>
+                            <li>Transacciones App/Web</li>
+                            <li>CRM Clientes</li>
+                            <li>Tickets Soporte</li>
+                            <li>Logs de Errores App</li>
+                        </ul>
+                    </div>
+                    <span class="flecha">→</span>
+                    <div class="capa snowflake">
+                        <h4>❄️ SNOWFLAKE</h4>
+                        <h3>Data Platform</h3>
+                        <ul>
+                            <li>📦 BANAMEX_RAW (Staging)</li>
+                            <li>🔄 BANAMEX_CURATED (Transformado)</li>
+                            <li>📊 BANAMEX_ANALYTICS (Modelos)</li>
+                            <li>🤖 Snowpark ML (Segmentación)</li>
+                        </ul>
+                    </div>
+                    <span class="flecha">→</span>
+                    <div class="capa analitica">
+                        <h4>📈 ANALÍTICA</h4>
+                        <h3>Insights</h3>
+                        <ul>
+                            <li>Perfiles de Cliente</li>
+                            <li>Análisis de Barreras</li>
+                            <li>Scoring Migración</li>
+                            <li>Dashboards</li>
+                        </ul>
+                    </div>
+                    <span class="flecha">→</span>
+                    <div class="capa accion">
+                        <h4>🚀 ACCIÓN</h4>
+                        <h3>Ejecución</h3>
+                        <ul>
+                            <li>Campañas Marketing</li>
+                            <li>Alertas Sucursal</li>
+                            <li>Onboarding Digital</li>
+                            <li>Resolución Tickets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modelo de Datos -->
+        <section class="seccion fade-in delay-4">
+            <div class="seccion-titulo">
+                <div class="icono">🗄️</div>
+                <h2>Modelo de Datos Propuesto</h2>
+            </div>
+
+            <div class="codigo-container">
+                <div class="codigo-header">
+                    <div class="codigo-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span>snowflake_modelo_datos.sql</span>
+                </div>
+                <pre><code><span class="sql-comment">-- ============================================================</span>
+<span class="sql-comment">-- SECCIÓN 0: CASO DE NEGOCIO - MIGRACIÓN DIGITAL SUCURSALES</span>
+<span class="sql-comment">-- Cliente: BANAMEX</span>
+<span class="sql-comment">-- Objetivo: Identificar clientes para campañas de migración</span>
+<span class="sql-comment">-- ============================================================</span>
+
+<span class="sql-comment">-- SECCIÓN 1: CONFIGURACIÓN DE RECURSOS</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> DATABASE <span class="sql-table">BANAMEX_MIGRACION_DIGITAL</span>;
+<span class="sql-keyword">CREATE OR REPLACE</span> SCHEMA <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS</span>;
+
+<span class="sql-keyword">CREATE OR REPLACE</span> WAREHOUSE <span class="sql-table">BANAMEX_WH</span>
+    <span class="sql-keyword">WITH</span> WAREHOUSE_SIZE = <span class="sql-string">'SMALL'</span>
+    AUTO_SUSPEND = <span class="sql-number">60</span>
+    AUTO_RESUME = <span class="sql-keyword">TRUE</span>;
+
+<span class="sql-comment">-- Tabla de Clientes con perfil completo</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> TABLE <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS.DIM_CLIENTES</span> (
+    cliente_id              <span class="sql-function">VARCHAR</span>(<span class="sql-number">20</span>) PRIMARY KEY,
+    nombre                  <span class="sql-function">VARCHAR</span>(<span class="sql-number">100</span>),
+    segmento                <span class="sql-function">VARCHAR</span>(<span class="sql-number">50</span>),      <span class="sql-comment">-- Premium, Personal, Pyme</span>
+    edad                    <span class="sql-function">INTEGER</span>,
+    rango_edad              <span class="sql-function">VARCHAR</span>(<span class="sql-number">20</span>),      <span class="sql-comment">-- 18-25, 26-35, 36-50, 51+</span>
+    antiguedad_anios        <span class="sql-function">INTEGER</span>,
+    tiene_app_instalada     <span class="sql-function">BOOLEAN</span>,
+    tiene_banca_web         <span class="sql-function">BOOLEAN</span>,
+    ultimo_login_app        <span class="sql-function">TIMESTAMP</span>,
+    sucursal_preferida      <span class="sql-function">VARCHAR</span>(<span class="sql-number">50</span>),
+    region                  <span class="sql-function">VARCHAR</span>(<span class="sql-number">50</span>)
+);
+
+<span class="sql-comment">-- Tabla de Transacciones (Sucursal + Digital)</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> TABLE <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS.FACT_TRANSACCIONES</span> (
+    transaccion_id          <span class="sql-function">VARCHAR</span>(<span class="sql-number">30</span>) PRIMARY KEY,
+    cliente_id              <span class="sql-function">VARCHAR</span>(<span class="sql-number">20</span>),
+    fecha_transaccion       <span class="sql-function">TIMESTAMP</span>,
+    canal                   <span class="sql-function">VARCHAR</span>(<span class="sql-number">20</span>),      <span class="sql-comment">-- SUCURSAL, APP, WEB</span>
+    tipo_operacion          <span class="sql-function">VARCHAR</span>(<span class="sql-number">50</span>),      <span class="sql-comment">-- TRANSFERENCIA, PAGO_SERVICIOS, RETIRO, etc.</span>
+    es_migrable_digital     <span class="sql-function">BOOLEAN</span>,          <span class="sql-comment">-- Indica si existe en canales digitales</span>
+    monto                   <span class="sql-function">DECIMAL</span>(<span class="sql-number">15,2</span>),
+    tiempo_atencion_min     <span class="sql-function">INTEGER</span>,          <span class="sql-comment">-- Solo para sucursal</span>
+    sucursal_id             <span class="sql-function">VARCHAR</span>(<span class="sql-number">20</span>)
+);
+
+<span class="sql-comment">-- Tabla de Incidencias/Barreras detectadas</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> TABLE <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS.DIM_BARRERAS</span> (
+    barrera_id              <span class="sql-function">VARCHAR</span>(<span class="sql-number">20</span>) PRIMARY KEY,
+    cliente_id              <span class="sql-function">VARCHAR</span>(<span class="sql-number">20</span>),
+    fecha_incidencia        <span class="sql-function">TIMESTAMP</span>,
+    tipo_barrera            <span class="sql-function">VARCHAR</span>(<span class="sql-number">50</span>),      <span class="sql-comment">-- BLOQUEO_APP, ERROR_TECNICO, DESCONOCIMIENTO, DESCONFIANZA</span>
+    descripcion             <span class="sql-function">VARCHAR</span>(<span class="sql-number">500</span>),
+    fue_resuelta            <span class="sql-function">BOOLEAN</span>,
+    canal_reporte           <span class="sql-function">VARCHAR</span>(<span class="sql-number">30</span>)       <span class="sql-comment">-- CALL_CENTER, SUCURSAL, APP</span>
+);</code></pre>
+            </div>
+
+            <div class="codigo-container">
+                <div class="codigo-header">
+                    <div class="codigo-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span>snowflake_queries_analiticas.sql</span>
+                </div>
+                <pre><code><span class="sql-comment">-- ============================================================</span>
+<span class="sql-comment">-- SECCIÓN 3: QUERIES ANALÍTICAS - RESPONDIENDO LAS PREGUNTAS</span>
+<span class="sql-comment">-- ============================================================</span>
+
+<span class="sql-comment">-- PREGUNTA 1: ¿Qué tipo de clientes visitan sucursal para ops digitales?</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> VIEW <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS.V_PERFIL_CLIENTES_SUCURSAL</span> AS
+<span class="sql-keyword">SELECT</span>
+    c.segmento,
+    c.rango_edad,
+    c.tiene_app_instalada,
+    <span class="sql-function">COUNT</span>(<span class="sql-keyword">DISTINCT</span> c.cliente_id) <span class="sql-keyword">AS</span> total_clientes,
+    <span class="sql-function">SUM</span>(<span class="sql-keyword">CASE WHEN</span> t.es_migrable_digital <span class="sql-keyword">THEN</span> <span class="sql-number">1</span> <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) <span class="sql-keyword">AS</span> ops_migrables,
+    <span class="sql-function">ROUND</span>(<span class="sql-function">AVG</span>(t.tiempo_atencion_min), <span class="sql-number">1</span>) <span class="sql-keyword">AS</span> tiempo_prom_atencion
+<span class="sql-keyword">FROM</span> <span class="sql-table">ANALYTICS.DIM_CLIENTES</span> c
+<span class="sql-keyword">JOIN</span> <span class="sql-table">ANALYTICS.FACT_TRANSACCIONES</span> t <span class="sql-keyword">ON</span> c.cliente_id = t.cliente_id
+<span class="sql-keyword">WHERE</span> t.canal = <span class="sql-string">'SUCURSAL'</span>
+  <span class="sql-keyword">AND</span> t.fecha_transaccion >= <span class="sql-function">DATEADD</span>(<span class="sql-string">'MONTH'</span>, <span class="sql-number">-3</span>, <span class="sql-function">CURRENT_DATE</span>())
+<span class="sql-keyword">GROUP BY</span> c.segmento, c.rango_edad, c.tiene_app_instalada
+<span class="sql-keyword">ORDER BY</span> ops_migrables <span class="sql-keyword">DESC</span>;
+
+<span class="sql-comment">-- PREGUNTA 2: Operaciones más repetitivas/migrables</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> VIEW <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS.V_OPERACIONES_MIGRABLES</span> AS
+<span class="sql-keyword">SELECT</span>
+    tipo_operacion,
+    <span class="sql-function">COUNT</span>(*) <span class="sql-keyword">AS</span> total_transacciones,
+    <span class="sql-function">COUNT</span>(<span class="sql-keyword">DISTINCT</span> cliente_id) <span class="sql-keyword">AS</span> clientes_unicos,
+    <span class="sql-function">SUM</span>(monto) <span class="sql-keyword">AS</span> monto_total,
+    <span class="sql-function">ROUND</span>(<span class="sql-function">AVG</span>(tiempo_atencion_min), <span class="sql-number">1</span>) <span class="sql-keyword">AS</span> tiempo_prom,
+    <span class="sql-comment">-- Costo estimado por transacción en sucursal: $45 MXN</span>
+    <span class="sql-function">COUNT</span>(*) * <span class="sql-number">45</span> <span class="sql-keyword">AS</span> costo_operativo_total
+<span class="sql-keyword">FROM</span> <span class="sql-table">ANALYTICS.FACT_TRANSACCIONES</span>
+<span class="sql-keyword">WHERE</span> canal = <span class="sql-string">'SUCURSAL'</span>
+  <span class="sql-keyword">AND</span> es_migrable_digital = <span class="sql-keyword">TRUE</span>
+<span class="sql-keyword">GROUP BY</span> tipo_operacion
+<span class="sql-keyword">ORDER BY</span> total_transacciones <span class="sql-keyword">DESC</span>;
+
+<span class="sql-comment">-- PREGUNTA 3: Barreras de adopción identificadas</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> VIEW <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS.V_BARRERAS_ADOPCION</span> AS
+<span class="sql-keyword">SELECT</span>
+    b.tipo_barrera,
+    <span class="sql-function">COUNT</span>(*) <span class="sql-keyword">AS</span> incidencias,
+    <span class="sql-function">COUNT</span>(<span class="sql-keyword">DISTINCT</span> b.cliente_id) <span class="sql-keyword">AS</span> clientes_afectados,
+    <span class="sql-function">SUM</span>(<span class="sql-keyword">CASE WHEN</span> b.fue_resuelta <span class="sql-keyword">THEN</span> <span class="sql-number">1</span> <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) <span class="sql-keyword">AS</span> resueltas,
+    <span class="sql-function">ROUND</span>(<span class="sql-function">SUM</span>(<span class="sql-keyword">CASE WHEN</span> b.fue_resuelta <span class="sql-keyword">THEN</span> <span class="sql-number">1</span> <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) * <span class="sql-number">100.0</span> / <span class="sql-function">COUNT</span>(*), <span class="sql-number">1</span>) <span class="sql-keyword">AS</span> tasa_resolucion
+<span class="sql-keyword">FROM</span> <span class="sql-table">ANALYTICS.DIM_BARRERAS</span> b
+<span class="sql-keyword">GROUP BY</span> b.tipo_barrera
+<span class="sql-keyword">ORDER BY</span> incidencias <span class="sql-keyword">DESC</span>;
+
+<span class="sql-comment">-- MODELO DE SCORING: Priorización para campañas de migración</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> VIEW <span class="sql-table">BANAMEX_MIGRACION_DIGITAL.ANALYTICS.V_SCORING_MIGRACION</span> AS
+<span class="sql-keyword">SELECT</span>
+    c.cliente_id,
+    c.nombre,
+    c.segmento,
+    c.rango_edad,
+    c.tiene_app_instalada,
+    <span class="sql-function">COALESCE</span>(trx.ops_sucursal_migrables, <span class="sql-number">0</span>) <span class="sql-keyword">AS</span> ops_sucursal_migrables,
+    <span class="sql-function">COALESCE</span>(bar.barreras_activas, <span class="sql-number">0</span>) <span class="sql-keyword">AS</span> barreras_activas,
+    <span class="sql-comment">-- Score de 0-100 (mayor = más prioritario para migrar)</span>
+    <span class="sql-function">LEAST</span>(<span class="sql-number">100</span>,
+        (<span class="sql-function">COALESCE</span>(trx.ops_sucursal_migrables, <span class="sql-number">0</span>) * <span class="sql-number">10</span>) +
+        (<span class="sql-keyword">CASE WHEN</span> c.tiene_app_instalada <span class="sql-keyword">THEN</span> <span class="sql-number">30</span> <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) +
+        (<span class="sql-keyword">CASE WHEN</span> c.rango_edad <span class="sql-keyword">IN</span> (<span class="sql-string">'26-35'</span>, <span class="sql-string">'36-50'</span>) <span class="sql-keyword">THEN</span> <span class="sql-number">20</span> <span class="sql-keyword">ELSE</span> <span class="sql-number">10</span> <span class="sql-keyword">END</span>) -
+        (<span class="sql-function">COALESCE</span>(bar.barreras_activas, <span class="sql-number">0</span>) * <span class="sql-number">15</span>)
+    ) <span class="sql-keyword">AS</span> score_migracion,
+    <span class="sql-keyword">CASE</span>
+        <span class="sql-keyword">WHEN</span> bar.barreras_activas > <span class="sql-number">0</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'RESOLVER_BARRERA'</span>
+        <span class="sql-keyword">WHEN</span> c.tiene_app_instalada <span class="sql-keyword">AND</span> trx.ops_sucursal_migrables > <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'CAMPAÑA_REACTIVACION'</span>
+        <span class="sql-keyword">WHEN NOT</span> c.tiene_app_instalada <span class="sql-keyword">THEN</span> <span class="sql-string">'CAMPAÑA_ONBOARDING'</span>
+        <span class="sql-keyword">ELSE</span> <span class="sql-string">'MONITOREAR'</span>
+    <span class="sql-keyword">END AS</span> accion_recomendada
+<span class="sql-keyword">FROM</span> <span class="sql-table">ANALYTICS.DIM_CLIENTES</span> c
+<span class="sql-keyword">LEFT JOIN</span> (
+    <span class="sql-keyword">SELECT</span> cliente_id, <span class="sql-function">COUNT</span>(*) <span class="sql-keyword">AS</span> ops_sucursal_migrables
+    <span class="sql-keyword">FROM</span> <span class="sql-table">ANALYTICS.FACT_TRANSACCIONES</span>
+    <span class="sql-keyword">WHERE</span> canal = <span class="sql-string">'SUCURSAL'</span> <span class="sql-keyword">AND</span> es_migrable_digital = <span class="sql-keyword">TRUE</span>
+    <span class="sql-keyword">GROUP BY</span> cliente_id
+) trx <span class="sql-keyword">ON</span> c.cliente_id = trx.cliente_id
+<span class="sql-keyword">LEFT JOIN</span> (
+    <span class="sql-keyword">SELECT</span> cliente_id, <span class="sql-function">COUNT</span>(*) <span class="sql-keyword">AS</span> barreras_activas
+    <span class="sql-keyword">FROM</span> <span class="sql-table">ANALYTICS.DIM_BARRERAS</span>
+    <span class="sql-keyword">WHERE</span> fue_resuelta = <span class="sql-keyword">FALSE</span>
+    <span class="sql-keyword">GROUP BY</span> cliente_id
+) bar <span class="sql-keyword">ON</span> c.cliente_id = bar.cliente_id
+<span class="sql-keyword">ORDER BY</span> score_migracion <span class="sql-keyword">DESC</span>;</code></pre>
+            </div>
+        </section>
+
+        <!-- Operaciones Migrables -->
+        <section class="seccion">
+            <div class="seccion-titulo">
+                <div class="icono">📋</div>
+                <h2>Catálogo de Operaciones Migrables</h2>
+            </div>
+            <div class="tabla-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operación</th>
+                            <th>Volumen Estimado</th>
+                            <th>Disponible en App</th>
+                            <th>Disponible en Web</th>
+                            <th>Prioridad Migración</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transferencias a terceros</td>
+                            <td>45,000/mes</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td><span class="tag tag-alto">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pago de servicios</td>
+                            <td>38,000/mes</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td><span class="tag tag-alto">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td>Consulta de saldos</td>
+                            <td>52,000/mes</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td><span class="tag tag-alto">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pago de tarjeta de crédito</td>
+                            <td>28,000/mes</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td><span class="tag tag-alto">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cambio de NIP</td>
+                            <td>12,000/mes</td>
+                            <td>✅</td>
+                            <td>⚠️ Parcial</td>
+                            <td><span class="tag tag-medio">Media</span></td>
+                        </tr>
+                        <tr>
+                            <td>Solicitud de estados de cuenta</td>
+                            <td>15,000/mes</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td><span class="tag tag-medio">Media</span></td>
+                        </tr>
+                        <tr>
+                            <td>Retiro sin tarjeta</td>
+                            <td>8,000/mes</td>
+                            <td>✅</td>
+                            <td>❌</td>
+                            <td><span class="tag tag-bajo">Baja</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section class="seccion">
+            <div class="seccion-titulo">
+                <div class="icono">🗺️</div>
+                <h2>Roadmap de Implementación</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-duracion">Semanas 1-2</span>
+                    <h4>Fase 1: Integración de Datos</h4>
+                    <p>Configurar pipelines de ingesta en Snowflake. Cargar datos de transacciones, CRM y tickets de soporte. Validar calidad de datos.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-duracion">Semanas 3-4</span>
+                    <h4>Fase 2: Modelo Analítico</h4>
+                    <p>Crear vistas y tablas analíticas. Implementar scoring de migración. Identificar segmentos prioritarios.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-duracion">Semanas 5-6</span>
+                    <h4>Fase 3: Dashboards y Reportes</h4>
+                    <p>Construir dashboards en herramienta de BI conectada a Snowflake. Configurar alertas y métricas de seguimiento.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-duracion">Semanas 7-8</span>
+                    <h4>Fase 4: Activación de Campañas</h4>
+                    <p>Exportar segmentos a plataforma de marketing. Lanzar campañas piloto. Medir resultados iniciales.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-duracion">Continuo</span>
+                    <h4>Fase 5: Optimización</h4>
+                    <p>Ajustar modelo de scoring basado en resultados. Escalar a más segmentos. Automatizar procesos recurrentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prueba Guiada -->
+        <section class="seccion">
+            <div class="seccion-titulo">
+                <div class="icono">🧪</div>
+                <h2>Prueba Guiada de la Plataforma</h2>
+            </div>
+            <p style="color: var(--texto-claro); margin-bottom: 1.5rem;">
+                Para validar la solución propuesta, realizaremos una <strong>prueba guiada de la plataforma Snowflake</strong> con datos representativos del banco. Esta sesión permitirá al equipo experimentar las capacidades analíticas y validar los insights antes de una implementación completa.
+            </p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icono">📊</div>
+                    <h3>Exploración de Datos</h3>
+                    <p>Visualización interactiva de los perfiles de clientes que visitan sucursal para operaciones digitales.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icono">🔍</div>
+                    <h3>Análisis de Barreras</h3>
+                    <p>Identificación de patrones en bloqueos, errores técnicos y otras barreras de adopción digital.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icono">🎯</div>
+                    <h3>Scoring en Vivo</h3>
+                    <p>Demostración del modelo de priorización para campañas de migración con datos de prueba.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icono">📈</div>
+                    <h3>Proyección de Impacto</h3>
+                    <p>Simulación de reducción de costos y mejora de NPS basada en tasas de migración esperadas.</p>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 16px; padding: 2rem; margin-top: 2rem; border: 2px solid #3b82f6;">
+                <h3 style="color: var(--primario); margin-bottom: 1rem;">📅 Agenda de la Prueba Guiada</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <strong style="color: var(--secundario);">Módulo 1 (30 min)</strong>
+                        <p style="font-size: 0.9rem; color: var(--texto-claro);">Introducción a Snowflake y carga de datos de muestra</p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--secundario);">Módulo 2 (45 min)</strong>
+                        <p style="font-size: 0.9rem; color: var(--texto-claro);">Ejecución de queries analíticas y exploración de perfiles</p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--secundario);">Módulo 3 (30 min)</strong>
+                        <p style="font-size: 0.9rem; color: var(--texto-claro);">Modelo de scoring y segmentación para campañas</p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--secundario);">Módulo 4 (15 min)</strong>
+                        <p style="font-size: 0.9rem; color: var(--texto-claro);">Q&A y próximos pasos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FinOps -->
+        <section class="seccion">
+            <div class="seccion-titulo">
+                <div class="icono">💵</div>
+                <h2>Consideraciones FinOps</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icono">⚙️</div>
+                    <h3>Warehouse Sizing</h3>
+                    <p>Usar SMALL para desarrollo y MEDIUM para producción. Auto-suspend a 60 segundos para optimizar costos.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icono">📅</div>
+                    <h3>Procesamiento Batch</h3>
+                    <p>Ejecutar transformaciones pesadas en horarios de baja demanda (noche/madrugada).</p>
+                </div>
+                <div class="card">
+                    <div class="card-icono">🔍</div>
+                    <h3>Monitoreo de Costos</h3>
+                    <p>Configurar alertas de consumo con RESOURCE_MONITORS. Revisar QUERY_HISTORY semanalmente.</p>
+                </div>
+            </div>
+
+            <div class="codigo-container">
+                <div class="codigo-header">
+                    <div class="codigo-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span>finops_monitoreo.sql</span>
+                </div>
+                <pre><code><span class="sql-comment">-- SECCIÓN 4: QUERIES DE DIAGNÓSTICO Y FINOPS</span>
+
+<span class="sql-comment">-- Monitor de recursos para controlar costos</span>
+<span class="sql-keyword">CREATE OR REPLACE</span> RESOURCE MONITOR <span class="sql-table">BANAMEX_MONITOR</span>
+    <span class="sql-keyword">WITH</span> CREDIT_QUOTA = <span class="sql-number">100</span>
+    FREQUENCY = MONTHLY
+    START_TIMESTAMP = IMMEDIATELY
+    TRIGGERS
+        <span class="sql-keyword">ON</span> <span class="sql-number">75</span> PERCENT <span class="sql-keyword">DO</span> NOTIFY
+        <span class="sql-keyword">ON</span> <span class="sql-number">90</span> PERCENT <span class="sql-keyword">DO</span> NOTIFY
+        <span class="sql-keyword">ON</span> <span class="sql-number">100</span> PERCENT <span class="sql-keyword">DO</span> SUSPEND;
+
+<span class="sql-comment">-- Asignar monitor al warehouse</span>
+<span class="sql-keyword">ALTER</span> WAREHOUSE <span class="sql-table">BANAMEX_WH</span> <span class="sql-keyword">SET</span> RESOURCE_MONITOR = <span class="sql-table">BANAMEX_MONITOR</span>;
+
+<span class="sql-comment">-- Query para revisar consumo</span>
+<span class="sql-keyword">SELECT</span>
+    <span class="sql-function">DATE_TRUNC</span>(<span class="sql-string">'DAY'</span>, start_time) <span class="sql-keyword">AS</span> fecha,
+    warehouse_name,
+    <span class="sql-function">SUM</span>(credits_used) <span class="sql-keyword">AS</span> creditos_consumidos
+<span class="sql-keyword">FROM</span> <span class="sql-table">SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_METERING_HISTORY</span>
+<span class="sql-keyword">WHERE</span> start_time >= <span class="sql-function">DATEADD</span>(<span class="sql-string">'DAY'</span>, <span class="sql-number">-30</span>, <span class="sql-function">CURRENT_DATE</span>())
+<span class="sql-keyword">GROUP BY</span> fecha, warehouse_name
+<span class="sql-keyword">ORDER BY</span> fecha <span class="sql-keyword">DESC</span>;
+
+<span class="sql-comment">-- Suspender warehouse al terminar (buena práctica)</span>
+<span class="sql-keyword">ALTER</span> WAREHOUSE <span class="sql-table">BANAMEX_WH</span> SUSPEND;</code></pre>
+            </div>
+        </section>
+
+        <!-- Próximos Pasos -->
+        <section class="seccion">
+            <div class="seccion-titulo">
+                <div class="icono">✅</div>
+                <h2>Próximos Pasos para Revisión</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>1. Validar Fuentes de Datos</h3>
+                    <p>Confirmar disponibilidad y calidad de datos de transacciones, CRM y tickets de soporte.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Definir Métricas Baseline</h3>
+                    <p>Establecer métricas actuales de visitas, costos y NPS para medir impacto.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Identificar Stakeholders</h3>
+                    <p>Marketing, Operaciones de Sucursal, TI, Experiencia del Cliente.</p>
+                </div>
+                <div class="card">
+                    <h3>4. Agendar Prueba Guiada</h3>
+                    <p>Coordinar sesión de prueba guiada de la plataforma con el equipo técnico y de negocio.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>📊 Caso de Negocio: Migración Digital de Sucursales | Powered by Snowflake ❄️</p>
+        <p style="margin-top: 0.5rem;">Documento preparado para revisión - Diciembre 2024</p>
+    </footer>
+
+    <script>
+        // Animación de entrada al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.seccion').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
+
+

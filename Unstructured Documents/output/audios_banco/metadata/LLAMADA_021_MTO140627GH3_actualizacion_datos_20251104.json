@@ -1,0 +1,28 @@
+{
+  "id_llamada": 21,
+  "cliente": {
+    "nombre": "MANUFACTURAS TEXTILES DE OCCIDENTE SA DE CV",
+    "rfc": "MTO140627GH3",
+    "tipo": "Persona Moral",
+    "estado": "Jalisco"
+  },
+  "llamada": {
+    "tipo": "actualizacion_datos",
+    "titulo": "Actualización de Datos",
+    "categoria": "Administración",
+    "fecha": "2025-11-04T15:43:53.214491",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_021_MTO140627GH3_actualizacion_datos_20251104.mp3",
+    "transcripcion": "LLAMADA_021_MTO140627GH3_actualizacion_datos_20251104.txt",
+    "metadata": "LLAMADA_021_MTO140627GH3_actualizacion_datos_20251104.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****1612",
+    "ultimos_rfc": "7GH3"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

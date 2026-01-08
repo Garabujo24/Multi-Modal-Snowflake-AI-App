@@ -1,0 +1,41 @@
+LLAMADA BANCARIA - Consulta de Saldo
+======================================================================
+
+Cliente: EXPORTADORA AGRÍCOLA DE SONORA SA DE CV
+RFC: EAS160105PL9
+Fecha: 06/10/2025 15:56
+Duración estimada: 2-3 minutos
+Categoría: Información
+
+======================================================================
+
+TRANSCRIPCIÓN:
+
+Ejecutivo: Buen día, le atiende Sofía Castillo del Banco Nacional. ¿En qué puedo ayudarle?
+
+Cliente: Hola, buenos días. Quisiera consultar el saldo de mi cuenta.
+
+Ejecutivo: Con gusto le ayudo. ¿Me podría proporcionar su número de cuenta o tarjeta, por favor?
+
+Cliente: Sí, claro. Mi número de cuenta es ****2132.
+
+Ejecutivo: Perfecto. ¿Me puede confirmar su nombre completo?
+
+Cliente: EXPORTADORA AGRÍCOLA DE SONORA SA DE CV.
+
+Ejecutivo: Gracias. Por seguridad, ¿me podría proporcionar los últimos cuatro dígitos de su RFC?
+
+Cliente: Sí, son 5PL9.
+
+Ejecutivo: Excelente, gracias por confirmar. Su saldo actual es de 199,138 pesos con 72 centavos. Su último movimiento fue un pago de servicio por 14,303 pesos.
+
+Cliente: Perfecto, muchas gracias. ¿Y cuál es mi saldo disponible?
+
+Ejecutivo: Su saldo disponible es de 167,638 pesos. ¿Hay algo más en lo que pueda ayudarle?
+
+Cliente: No, eso es todo. Muchas gracias.
+
+Ejecutivo: A usted. Que tenga un excelente día.
+
+======================================================================
+*** TRANSCRIPCIÓN SINTÉTICA - SOLO PARA PRUEBAS ***

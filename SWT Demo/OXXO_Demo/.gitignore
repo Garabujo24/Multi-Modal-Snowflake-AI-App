@@ -1,0 +1,88 @@
+# ============================================================================
+# .gitignore para OXXO_Demo
+# ============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Modelos serializados
+*.pkl
+*.joblib
+*.h5
+*.model
+
+# Datos
+*.csv
+*.parquet
+*.json
+data/
+*.db
+*.sqlite
+
+# Visualizaciones generadas
+*.png
+*.jpg
+*.jpeg
+*.pdf
+plots/
+
+# Logs
+*.log
+logs/
+
+# Credenciales (¡NUNCA subir credenciales!)
+.env
+.env.local
+credentials.json
+snowflake_credentials.py
+*_credentials.py
+config.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Snowflake
+.snowsql/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+

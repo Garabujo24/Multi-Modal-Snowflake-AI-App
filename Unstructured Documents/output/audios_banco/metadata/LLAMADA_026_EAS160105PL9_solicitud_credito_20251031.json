@@ -1,0 +1,28 @@
+{
+  "id_llamada": 26,
+  "cliente": {
+    "nombre": "EXPORTADORA AGRÍCOLA DE SONORA SA DE CV",
+    "rfc": "EAS160105PL9",
+    "tipo": "Persona Moral",
+    "estado": "Sonora"
+  },
+  "llamada": {
+    "tipo": "solicitud_credito",
+    "titulo": "Solicitud de Crédito",
+    "categoria": "Productos",
+    "fecha": "2025-10-31T15:45:53.442088",
+    "duracion_estimada": "5-7 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_026_EAS160105PL9_solicitud_credito_20251031.mp3",
+    "transcripcion": "LLAMADA_026_EAS160105PL9_solicitud_credito_20251031.txt",
+    "metadata": "LLAMADA_026_EAS160105PL9_solicitud_credito_20251031.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****4871",
+    "ultimos_rfc": "5PL9"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

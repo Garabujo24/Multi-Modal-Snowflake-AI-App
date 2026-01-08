@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteOperacionesInusuales xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Encabezado>
+        <Institucion>
+            <RazonSocial>AgilCredit S.A.P.I. de C.V. SOFOM E.N.R.</RazonSocial>
+            <RFC>AGC201020AB1</RFC>
+            <Domicilio>
+                <Calle>Paseo de la Reforma</Calle>
+                <NumeroExterior>505</NumeroExterior>
+                <NumeroInterior>Piso 15</NumeroInterior>
+                <Colonia>Cuauhtémoc</Colonia>
+                <CodigoPostal>06500</CodigoPostal>
+                <Municipio>Ciudad de México</Municipio>
+                <Estado>CDMX</Estado>
+            </Domicilio>
+            <Telefono>5555678900</Telefono>
+            <Email>cumplimiento@agilcredit.mx</Email>
+        </Institucion>
+        <Periodo>
+            <FechaInicio>2025-10-01</FechaInicio>
+            <FechaFin>2025-10-15</FechaFin>
+        </Periodo>
+        <FechaGeneracion>2025-10-18T10:30:25</FechaGeneracion>
+        <OficialCumplimiento>
+            <Nombre>Lic. Roberto Sánchez Méndez</Nombre>
+            <Cargo>Oficial de Cumplimiento</Cargo>
+            <Cedula>3456789</Cedula>
+            <Email>roberto.sanchez@agilcredit.mx</Email>
+        </OficialCumplimiento>
+    </Encabezado>
+    
+    <ResumenEjecutivo>
+        <TotalOperacionesAnalizadas>9847</TotalOperacionesAnalizadas>
+        <OperacionesInusualesDetectadas>23</OperacionesInusualesDetectadas>
+        <OperacionesReportadas>5</OperacionesReportadas>
+        <FalsosPositivos>18</FalsosPositivos>
+    </ResumenEjecutivo>
+    
+    <OperacionesInusuales>
+        <Operacion id="1">
+            <FolioInterno>OPI-2025-0001</FolioInterno>
+            <FechaDeteccion>2025-10-03T14:25:30</FechaDeteccion>
+            <TipoOperacion>Solicitud de Crédito</TipoOperacion>
+            <Cliente>
+                <NumeroCliente>CLI000234</NumeroCliente>
+                <Nombre>Juan Carlos</Nombre>
+                <ApellidoPaterno>Martínez</ApellidoPaterno>
+                <ApellidoMaterno>López</ApellidoMaterno>
+                <FechaNacimiento>1985-06-15</FechaNacimiento>
+                <RFC>MALJ850615HDF</RFC>
+                <CURP>MALJ850615HDFPNS07</CURP>
+                <Nacionalidad>Mexicana</Nacionalidad>
+                <Domicilio>
+                    <Calle>Insurgentes Sur</Calle>
+                    <NumeroExterior>1234</NumeroExterior>
+                    <Colonia>Del Valle</Colonia>
+                    <CodigoPostal>03100</CodigoPostal>
+                    <Municipio>Benito Juárez</Municipio>
+                    <Estado>CDMX</Estado>
+                </Domicilio>
+                <Telefono>5551234567</Telefono>
+                <Email>juan.martinez@email.com</Email>
+                <Ocupacion>Comerciante</Ocupacion>
+                <IngresoMensual>32000.00</IngresoMensual>
+            </Cliente>
+            <DetallesOperacion>
+                <MontoSolicitado>450000.00</MontoSolicitado>
+                <MontoAprobado>0.00</MontoAprobado>
+                <Plazo>48</Plazo>
+                <Producto>Crédito PyME Crecimiento</Producto>
+                <Proposito>Capital de trabajo</Proposito>
+            </DetallesOperacion>
+            <Irregularidades>
+                <Irregularidad>
+                    <Tipo>Inconsistencia en documentación</Tipo>
+                    <Descripcion>El ingreso mensual declarado ($32,000) no es consistente con el monto solicitado ($450,000). La capacidad de pago estimada es insuficiente.</Descripcion>
+                    <NivelRiesgo>Alto</NivelRiesgo>
+                </Irregularidad>
+                <Irregularidad>
+                    <Tipo>Documentación sospechosa</Tipo>
+                    <Descripcion>Los comprobantes de ingresos presentados muestran inconsistencias en formato y sellos. Se solicitó verificación adicional con el empleador pero no fue posible contactarlo.</Descripcion>
+                    <NivelRiesgo>Alto</NivelRiesgo>
+                </Irregularidad>
+            </Irregularidades>
+            <AccionesTomadas>
+                <Accion>Solicitud rechazada por falta de capacidad de pago demostrable</Accion>
+                <Accion>Cliente agregado a lista de monitoreo especial</Accion>
+                <Accion>Se realizó consulta a Buró de Crédito - Score: 645</Accion>
+            </AccionesTomadas>
+            <ClasificacionPLD>Operación Inusual - Posible fraude documental</ClasificacionPLD>
+            <EstatusReporte>Reportado a CNBV</EstatusReporte>
+        </Operacion>
+        
+        <Operacion id="2">
+            <FolioInterno>OPI-2025-0002</FolioInterno>
+            <FechaDeteccion>2025-10-05T09:45:12</FechaDeteccion>
+            <TipoOperacion>Múltiples Solicitudes en Corto Tiempo</TipoOperacion>
+            <Cliente>
+                <NumeroCliente>CLI000567</NumeroCliente>
+                <Nombre>María Elena</Nombre>
+                <ApellidoPaterno>Fernández</ApellidoPaterno>
+                <ApellidoMaterno>Ruiz</ApellidoMaterno>
+                <FechaNacimiento>1992-03-22</FechaNacimiento>
+                <RFC>FERM920322MDF</RFC>
+                <CURP>FERM920322MDFRLS04</CURP>
+                <Nacionalidad>Mexicana</Nacionalidad>
+                <Domicilio>
+                    <Calle>Avenida Juárez</Calle>
+                    <NumeroExterior>456</NumeroExterior>
+                    <Colonia>Centro</Colonia>
+                    <CodigoPostal>44100</CodigoPostal>
+                    <Municipio>Guadalajara</Municipio>
+                    <Estado>Jalisco</Estado>
+                </Domicilio>
+                <Telefono>3339876543</Telefono>
+                <Email>maria.fernandez@email.com</Email>
+                <Ocupacion>Empleada</Ocupacion>
+                <IngresoMensual>18000.00</IngresoMensual>
+            </Cliente>
+            <DetallesOperacion>
+                <NumeroSolicitudes>5</NumeroSolicitudes>
+                <PeriodoSolicitudes>3 días</PeriodoSolicitudes>
+                <MontoTotalSolicitado>185000.00</MontoTotalSolicitado>
+                <SolicitudesAprobadas>0</SolicitudesAprobadas>
+            </DetallesOperacion>
+            <Irregularidades>
+                <Irregularidad>
+                    <Tipo>Patrón de solicitudes anómalo</Tipo>
+                    <Descripcion>Cliente realizó 5 solicitudes de crédito en un periodo de 3 días, con montos variables entre $30,000 y $50,000. Comportamiento inconsistente con perfil.</Descripcion>
+                    <NivelRiesgo>Medio</NivelRiesgo>
+                </Irregularidad>
+                <Irregularidad>
+                    <Tipo>Posible necesidad urgente de liquidez</Tipo>
+                    <Descripcion>El patrón sugiere necesidad urgente de fondos. Se detectaron también 8 consultas de otras instituciones financieras en el mismo periodo.</Descripcion>
+                    <NivelRiesgo>Medio</NivelRiesgo>
+                </Irregularidad>
+            </Irregularidades>
+            <AccionesTomadas>
+                <Accion>Todas las solicitudes fueron rechazadas por sobre-endeudamiento potencial</Accion>
+                <Accion>Se contactó al cliente para ofrecerle orientación financiera</Accion>
+                <Accion>Cliente incluido en programa de educación financiera</Accion>
+            </AccionesTomadas>
+            <ClasificacionPLD>Operación Inusual - Patrón de solicitudes sospechoso</ClasificacionPLD>
+            <EstatusReporte>Reportado a CNBV</EstatusReporte>
+        </Operacion>
+        
+        <Operacion id="3">
+            <FolioInterno>OPI-2025-0003</FolioInterno>
+            <FechaDeteccion>2025-10-08T16:30:45</FechaDeteccion>
+            <TipoOperacion>Transacción de Pago Inusual</TipoOperacion>
+            <Cliente>
+                <NumeroCliente>CLI000789</NumeroCliente>
+                <Nombre>Roberto</Nombre>
+                <ApellidoPaterno>Gutiérrez</ApellidoPaterno>
+                <ApellidoMaterno>Morales</ApellidoMaterno>
+                <FechaNacimiento>1978-11-08</FechaNacimiento>
+                <RFC>GUMR781108HDF</RFC>
+                <CURP>GUMR781108HDFTRB03</CURP>
+                <Nacionalidad>Mexicana</Nacionalidad>
+                <Domicilio>
+                    <Calle>Boulevard Díaz Ordaz</Calle>
+                    <NumeroExterior>789</NumeroExterior>
+                    <Colonia>Santa María</Colonia>
+                    <CodigoPostal>64650</CodigoPostal>
+                    <Municipio>Monterrey</Municipio>
+                    <Estado>Nuevo León</Estado>
+                </Domicilio>
+                <Telefono>8187654321</Telefono>
+                <Email>roberto.gutierrez@email.com</Email>
+                <Ocupacion>Empresario</Ocupacion>
+                <IngresoMensual>75000.00</IngresoMensual>
+            </Cliente>
+            <DetallesOperacion>
+                <CreditoID>CRE000345</CreditoID>
+                <SaldoPrevio>95000.00</SaldoPrevio>
+                <MontoPago>95000.00</MontoPago>
+                <TipoPago>Pago Total Anticipado</TipoPago>
+                <FuenteFondos>Transferencia de cuenta de tercero</FuenteFondos>
+                <OrigenFondos>
+                    <NombreTitular>Constructora del Norte S.A. de C.V.</NombreTitular>
+                    <RFC>CDN180523ABC</RFC>
+                    <Banco>Banorte</Banco>
+                    <ConceptoTransferencia>Liquidación Crédito Personal</ConceptoTransferencia>
+                </OrigenFondos>
+            </DetallesOperacion>
+            <Irregularidades>
+                <Irregularidad>
+                    <Tipo>Pago desde cuenta de tercero</Tipo>
+                    <Descripcion>El pago total del crédito se realizó desde una cuenta corporativa sin relación aparente con el acreditado. No se proporcionó carta de autorización previa.</Descripcion>
+                    <NivelRiesgo>Alto</NivelRiesgo>
+                </Irregularidad>
+                <Irregularidad>
+                    <Tipo>Liquidación anticipada inusual</Tipo>
+                    <Descripcion>El crédito tenía solo 4 meses de antigüedad y el cliente siempre había pagado el mínimo. La liquidación total no es consistente con el comportamiento histórico.</Descripcion>
+                    <NivelRiesgo>Medio</NivelRiesgo>
+                </Irregularidad>
+            </Irregularidades>
+            <AccionesTomadas>
+                <Accion>Se retuvo el pago temporalmente para investigación</Accion>
+                <Accion>Se solicitó al cliente documentación que justifique el origen de los fondos</Accion>
+                <Accion>Se verificó la relación entre el cliente y la empresa pagadora</Accion>
+                <Accion>Después de verificación, se liberó el pago y se liquidó el crédito</Accion>
+            </AccionesTomadas>
+            <ClasificacionPLD>Operación Inusual - Origen de fondos requiere verificación</ClasificacionPLD>
+            <EstatusReporte>Reportado a CNBV</EstatusReporte>
+        </Operacion>
+        
+        <Operacion id="4">
+            <FolioInterno>OPI-2025-0004</FolioInterno>
+            <FechaDeteccion>2025-10-12T11:20:15</FechaDeteccion>
+            <TipoOperacion>Cambio Súbito de Perfil Transaccional</TipoOperacion>
+            <Cliente>
+                <NumeroCliente>CLI000445</NumeroCliente>
+                <Nombre>Ana Patricia</Nombre>
+                <ApellidoPaterno>Ramírez</ApellidoPaterno>
+                <ApellidoMaterno>Santos</ApellidoMaterno>
+                <FechaNacimiento>1988-07-30</FechaNacimiento>
+                <RFC>RASA880730MDF</RFC>
+                <CURP>RASA880730MDFMNT02</CURP>
+                <Nacionalidad>Mexicana</Nacionalidad>
+                <Domicilio>
+                    <Calle>Calzada Zavaleta</Calle>
+                    <NumeroExterior>321</NumeroExterior>
+                    <Colonia>Santa Cruz Buenavista</Colonia>
+                    <CodigoPostal>72150</CodigoPostal>
+                    <Municipio>Puebla</Municipio>
+                    <Estado>Puebla</Estado>
+                </Domicilio>
+                <Telefono>2224567890</Telefono>
+                <Email>ana.ramirez@email.com</Email>
+                <Ocupacion>Contadora</Ocupacion>
+                <IngresoMensual>35000.00</IngresoMensual>
+            </Cliente>
+            <DetallesOperacion>
+                <PerfilHistorico>
+                    <PromedioTransaccionesMensuales>2</PromedioTransaccionesMensuales>
+                    <MontoPromedioTransaccion>3500.00</MontoPromedioTransaccion>
+                    <Regularidad>Pagos puntuales mensuales</Regularidad>
+                </PerfilHistorico>
+                <ComportamientoReciente>
+                    <TransaccionesUltimoMes>15</TransaccionesUltimoMes>
+                    <MontoPromedioNuevo>12000.00</MontoPromedioNuevo>
+                    <PatronCambio>Múltiples pagos parciales desde diferentes cuentas</PatronCambio>
+                </ComportamientoReciente>
+            </DetallesOperacion>
+            <Irregularidades>
+                <Irregularidad>
+                    <Tipo>Cambio drástico en patrón transaccional</Tipo>
+                    <Descripcion>Cliente históricamente realizaba 1-2 pagos mensuales puntuales. En el último mes realizó 15 transacciones desde 7 cuentas bancarias diferentes.</Descripcion>
+                    <NivelRiesgo>Medio</NivelRiesgo>
+                </Irregularidad>
+                <Irregularidad>
+                    <Tipo>Múltiples fuentes de pago</Tipo>
+                    <Descripcion>Los pagos provienen de 7 cuentas bancarias diferentes, algunas a nombre de terceros. No existe patrón consistente con comportamiento anterior.</Descripcion>
+                    <NivelRiesgo>Medio</NivelRiesgo>
+                </Irregularidad>
+            </Irregularidades>
+            <AccionesTomadas>
+                <Accion>Se contactó al cliente para entrevista de actualización de datos</Accion>
+                <Accion>Cliente explicó que cambió de empleo y ahora maneja cuentas de diferentes clientes (contador independiente)</Accion>
+                <Accion>Se solicitó y verificó nueva documentación de ingresos</Accion>
+                <Accion>Perfil actualizado y monitoreo continuo activado</Accion>
+            </AccionesTomadas>
+            <ClasificacionPLD>Operación Inusual - Cambio de perfil transaccional</ClasificacionPLD>
+            <EstatusReporte>Reportado a CNBV</EstatusReporte>
+        </Operacion>
+        
+        <Operacion id="5">
+            <FolioInterno>OPI-2025-0005</FolioInterno>
+            <FechaDeteccion>2025-10-14T14:55:30</FechaDeteccion>
+            <TipoOperacion>Intento de Fraude de Identidad</TipoOperacion>
+            <Cliente>
+                <NumeroCliente>CLI000923</NumeroCliente>
+                <Nombre>Luis Fernando</Nombre>
+                <ApellidoPaterno>Velázquez</ApellidoPaterno>
+                <ApellidoMaterno>Cruz</ApellidoMaterno>
+                <FechaNacimiento>1995-02-18</FechaNacimiento>
+                <RFC>VECL950218HDF</RFC>
+                <CURP>VECL950218HDFCRS09</CURP>
+                <Nacionalidad>Mexicana</Nacionalidad>
+                <Domicilio>
+                    <Calle>Avenida Tecnológico</Calle>
+                    <NumeroExterior>567</NumeroExterior>
+                    <Colonia>San Ángel</Colonia>
+                    <CodigoPostal>76030</CodigoPostal>
+                    <Municipio>Querétaro</Municipio>
+                    <Estado>Querétaro</Estado>
+                </Domicilio>
+                <Telefono>4421234567</Telefono>
+                <Email>luis.velazquez@email.com</Email>
+                <Ocupacion>Ingeniero</Ocupacion>
+                <IngresoMensual>45000.00</IngresoMensual>
+            </Cliente>
+            <DetallesOperacion>
+                <TipoSolicitud>Crédito Personal Express</TipoSolicitud>
+                <MontoSolicitado>48000.00</MontoSolicitado>
+                <CanalSolicitud>App Móvil</CanalSolicitud>
+                <DispositivoUtilizado>
+                    <Tipo>Smartphone</Tipo>
+                    <Marca>Xiaomi</Marca>
+                    <Modelo>Redmi Note 11</Modelo>
+                    <IP>203.45.67.89</IP>
+                    <Ubicacion>Tijuana, Baja California</Ubicacion>
+                </DispositivoUtilizado>
+            </DetallesOperacion>
+            <Irregularidades>
+                <Irregularidad>
+                    <Tipo>Suplantación de identidad detectada</Tipo>
+                    <Descripcion>La validación biométrica falló. La selfie proporcionada no coincide con la fotografía de la INE en archivo. Score de coincidencia: 34.2% (umbral mínimo: 85%).</Descripcion>
+                    <NivelRiesgo>Crítico</NivelRiesgo>
+                </Irregularidad>
+                <Irregularidad>
+                    <Tipo>Ubicación inconsistente</Tipo>
+                    <Descripcion>El cliente registrado reside en Querétaro. La solicitud se originó desde Tijuana sin notificación previa de viaje. IP asociada a VPN.</Descripcion>
+                    <NivelRiesgo>Alto</NivelRiesgo>
+                </Irregularidad>
+                <Irregularidad>
+                    <Tipo>Dispositivo no reconocido</Tipo>
+                    <Descripcion>El dispositivo utilizado nunca había sido asociado con esta cuenta. No se completó el proceso de vinculación 2FA.</Descripcion>
+                    <NivelRiesgo>Alto</NivelRiesgo>
+                </Irregularidad>
+            </Irregularidades>
+            <AccionesTomadas>
+                <Accion>Solicitud rechazada inmediatamente</Accion>
+                <Accion>Cuenta del cliente bloqueada por seguridad</Accion>
+                <Accion>Se notificó al cliente titular vía SMS y email sobre intento de acceso no autorizado</Accion>
+                <Accion>Se generó reporte de intento de fraude</Accion>
+                <Accion>Se guardó evidencia digital (screenshots, logs, metadata)</Accion>
+                <Accion>Se presentó denuncia ante la Fiscalía Especializada en Delitos Cibernéticos</Accion>
+            </AccionesTomadas>
+            <ClasificacionPLD>Operación Preocupante - Intento de fraude confirmado</ClasificacionPLD>
+            <EstatusReporte>Reportado a CNBV y autoridades correspondientes</EstatusReporte>
+        </Operacion>
+    </OperacionesInusuales>
+    
+    <Conclusiones>
+        <Conclusion>Durante el periodo reportado se detectaron 23 operaciones inusuales, de las cuales 5 fueron clasificadas como de alto riesgo y reportadas formalmente a la CNBV.</Conclusion>
+        <Conclusion>Se identificaron patrones de fraude documental, suplantación de identidad y operaciones con fondos de origen no comprobado.</Conclusion>
+        <Conclusion>Los sistemas automatizados de detección mostraron un 78% de efectividad en la identificación temprana de operaciones sospechosas.</Conclusion>
+        <Conclusion>Se implementaron medidas correctivas y preventivas en todos los casos detectados.</Conclusion>
+        <Conclusion>El personal de cumplimiento mantiene capacitación continua en identificación de operaciones de PLD/FT.</Conclusion>
+    </Conclusiones>
+    
+    <FirmaDigital>
+        <Algoritmo>SHA-256</Algoritmo>
+        <Hash>a3f5c8e2d9b1f7a4c6e8d2b5f9a1c3e5d7b9f1a3c5e7d9b1f3a5c7e9d1b3f5a7</Hash>
+        <Timestamp>2025-10-18T10:35:45.678Z</Timestamp>
+        <CertificadoDigital>MIIDXTCCAkWgAwIBAgIJAKZ5...</CertificadoDigital>
+    </FirmaDigital>
+</ReporteOperacionesInusuales>
+
+
+

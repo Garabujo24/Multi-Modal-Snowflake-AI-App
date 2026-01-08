@@ -1,0 +1,28 @@
+{
+  "id_llamada": 6,
+  "cliente": {
+    "nombre": "COMERCIALIZADORA DE ALIMENTOS DEL NORTE SA DE CV",
+    "rfc": "CAN200815RT6",
+    "tipo": "Persona Moral",
+    "estado": "Nuevo León"
+  },
+  "llamada": {
+    "tipo": "solicitud_credito",
+    "titulo": "Solicitud de Crédito",
+    "categoria": "Productos",
+    "fecha": "2025-11-01T15:37:31.001268",
+    "duracion_estimada": "5-7 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_006_CAN200815RT6_solicitud_credito_20251101.mp3",
+    "transcripcion": "LLAMADA_006_CAN200815RT6_solicitud_credito_20251101.txt",
+    "metadata": "LLAMADA_006_CAN200815RT6_solicitud_credito_20251101.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Laura Fernández",
+    "num_cuenta": "****7188",
+    "ultimos_rfc": "5RT6"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

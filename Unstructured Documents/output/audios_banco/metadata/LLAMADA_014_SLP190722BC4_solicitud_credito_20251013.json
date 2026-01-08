@@ -1,0 +1,28 @@
+{
+  "id_llamada": 14,
+  "cliente": {
+    "nombre": "SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV",
+    "rfc": "SLP190722BC4",
+    "tipo": "Persona Moral",
+    "estado": "Sinaloa"
+  },
+  "llamada": {
+    "tipo": "solicitud_credito",
+    "titulo": "Solicitud de Crédito",
+    "categoria": "Productos",
+    "fecha": "2025-10-13T15:40:46.287582",
+    "duracion_estimada": "5-7 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_014_SLP190722BC4_solicitud_credito_20251013.mp3",
+    "transcripcion": "LLAMADA_014_SLP190722BC4_solicitud_credito_20251013.txt",
+    "metadata": "LLAMADA_014_SLP190722BC4_solicitud_credito_20251013.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Miguel Ángel Ruiz",
+    "num_cuenta": "****7816",
+    "ultimos_rfc": "2BC4"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

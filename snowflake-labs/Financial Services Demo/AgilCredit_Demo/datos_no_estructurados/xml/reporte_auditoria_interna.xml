@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteAuditoriaInterna>
+    <Metadata>
+        <NumeroAuditoria>AI-2025-09</NumeroAuditoria>
+        <TipoAuditoria>Auditoría de Procesos Crediticios</TipoAuditoria>
+        <FechaInicio>2025-09-01</FechaInicio>
+        <FechaTermino>2025-09-25</FechaTermino>
+        <Auditor>C.P. Jorge Alberto Ramírez Mendoza</Auditor>
+    </Metadata>
+    
+    <AlcanceAuditoria>
+        <AreaRevisada>Gestión de Crédito y Cobranza</AreaRevisada>
+        <Objetivo>Evaluar cumplimiento de políticas internas y normativa CNBV en otorgamiento y seguimiento de créditos</Objetivo>
+        <PeriodoRevisado>Enero - Agosto 2025</PeriodoRevisado>
+        <MuestreoCreditos>180 expedientes</MuestreoCreditos>
+    </AlcanceAuditoria>
+    
+    <Hallazgos>
+        <Hallazgo>
+            <Numero>1</Numero>
+            <Severidad>Media</Severidad>
+            <Area>Originación de Crédito</Area>
+            <Descripcion>12% de expedientes sin documentación completa de comprobantes de ingresos actualizados</Descripcion>
+            <Riesgo>Potencial deterioro en calidad de cartera por análisis incompleto</Riesgo>
+            <Recomendacion>Implementar checklist digital obligatorio antes de autorización final</Recomendacion>
+            <ResponsableAtencion>Gerente de Originación</ResponsableAtencion>
+            <FechaCompromiso>2025-10-31</FechaCompromiso>
+        </Hallazgo>
+        <Hallazgo>
+            <Numero>2</Numero>
+            <Severidad>Baja</Severidad>
+            <Area>Cobranza</Area>
+            <Descripcion>Gestiones de cobranza no documentadas consistentemente en 8% de casos revisados</Descripcion>
+            <Riesgo>Falta de evidencia en caso de disputas legales</Riesgo>
+            <Recomendacion>Automatizar registro de gestiones en CRM con campos obligatorios</Recomendacion>
+            <ResponsableAtencion>Gerente de Cobranza</ResponsableAtencion>
+            <FechaCompromiso>2025-11-15</FechaCompromiso>
+        </Hallazgo>
+        <Hallazgo>
+            <Numero>3</Numero>
+            <Severidad>Alta</Severidad>
+            <Area>Cumplimiento Normativo</Area>
+            <Descripcion>5 casos sin evidencia documentada de PLD (Prevención de Lavado de Dinero) completa</Descripcion>
+            <Riesgo>Incumplimiento regulatorio con posibles sanciones CNBV</Riesgo>
+            <Recomendacion>Revisión inmediata de expedientes y reforzamiento de capacitación en PLD</Recomendacion>
+            <ResponsableAtencion>Director de Cumplimiento</ResponsableAtencion>
+            <FechaCompromiso>2025-10-15</FechaCompromiso>
+        </Hallazgo>
+    </Hallazgos>
+    
+    <FortalezasIdentificadas>
+        <Fortaleza>Proceso de scoring automatizado funcionando eficientemente con 98% de precisión</Fortaleza>
+        <Fortaleza>Sistema de alertas tempranas de morosidad operando adecuadamente</Fortaleza>
+        <Fortaleza>Segregación de funciones bien implementada entre áreas</Fortaleza>
+    </FortalezasIdentificadas>
+    
+    <Conclusion>
+        <Calificacion>Satisfactorio con Observaciones</Calificacion>
+        <Resumen>Los procesos crediticios operan en general de manera adecuada. Se requiere atención a hallazgos identificados, particularmente en completitud documental y cumplimiento PLD.</Resumen>
+    </Conclusion>
+    
+    <SeguimientoRecomendaciones>
+        <ProximaRevision>2025-12-15</ProximaRevision>
+        <ResponsableSeguimiento>Auditor Interno</ResponsableSeguimiento>
+    </SeguimientoRecomendaciones>
+</ReporteAuditoriaInterna>
+
+
+

@@ -1,0 +1,103 @@
+[
+  {
+    "producto_id": "CP-001",
+    "nombre": "Crédito Personal Express",
+    "version_reglas": "v3.2",
+    "fecha_actualizacion": "2025-09-01",
+    "reglas_originacion": {
+      "edad_minima": 18,
+      "edad_maxima": 70,
+      "ingreso_minimo": 5000.00,
+      "score_minimo": 550,
+      "score_optimo": 700,
+      "antiguedad_laboral_minima_meses": 3,
+      "documentos_requeridos": [
+        "identificacion_oficial",
+        "comprobante_domicilio",
+        "comprobante_ingresos"
+      ],
+      "verificaciones_obligatorias": [
+        "buro_credito",
+        "lista_pld",
+        "validacion_identidad"
+      ]
+    },
+    "reglas_calculo": {
+      "tasa_base": 18.00,
+      "tasa_maxima": 45.00,
+      "formula_tasa": "tasa_base + (850 - score) * 0.05",
+      "monto_minimo": 10000.00,
+      "monto_maximo": 150000.00,
+      "formula_monto_maximo": "min(ingreso_mensual * 15, 150000)",
+      "plazo_minimo_meses": 6,
+      "plazo_maximo_meses": 48,
+      "comision_apertura_porcentaje": 3.5,
+      "iva_aplicable": true
+    },
+    "reglas_aprobacion_automatica": {
+      "habilitada": true,
+      "monto_maximo_auto_aprobacion": 50000.00,
+      "condiciones": [
+        "score >= 680",
+        "deuda_ingreso_ratio < 0.35",
+        "sin_atrasos_ultimos_12_meses",
+        "cliente_existente_con_buen_historial"
+      ],
+      "analista_requerido_si": [
+        "monto > 50000",
+        "score < 680",
+        "primera_vez_cliente",
+        "alerta_fraude_activa"
+      ]
+    },
+    "politicas_cobranza": {
+      "dias_gracia": 5,
+      "mora_diaria_porcentaje": 0.05,
+      "contacto_preventivo_dias_antes": 7,
+      "escalamiento": [
+        {"dias": 1, "accion": "sms_recordatorio"},
+        {"dias": 5, "accion": "llamada_telefonica"},
+        {"dias": 15, "accion": "email_formal"},
+        {"dias": 30, "accion": "visita_domiciliaria"},
+        {"dias": 90, "accion": "proceso_legal"}
+      ]
+    }
+  },
+  {
+    "producto_id": "CP-002",
+    "nombre": "Crédito PyME",
+    "version_reglas": "v2.8",
+    "fecha_actualizacion": "2025-08-15",
+    "reglas_originacion": {
+      "antiguedad_negocio_minima_meses": 12,
+      "ventas_mensuales_minimas": 50000.00,
+      "score_minimo": 600,
+      "documentos_requeridos": [
+        "acta_constitutiva",
+        "estados_financieros_12m",
+        "declaraciones_fiscales",
+        "identificacion_representante_legal",
+        "comprobante_domicilio_fiscal"
+      ],
+      "garantias_requeridas": true,
+      "tipos_garantia_aceptados": [
+        "facturas_por_cobrar",
+        "inventario",
+        "maquinaria",
+        "inmuebles"
+      ]
+    },
+    "reglas_calculo": {
+      "tasa_base": 16.00,
+      "tasa_maxima": 38.00,
+      "formula_tasa": "tasa_base + riesgo_sector + riesgo_credito",
+      "monto_minimo": 50000.00,
+      "monto_maximo": 500000.00,
+      "relacion_deuda_ebitda_maxima": 3.5,
+      "cobertura_servicio_deuda_minima": 1.25
+    }
+  }
+]
+
+
+

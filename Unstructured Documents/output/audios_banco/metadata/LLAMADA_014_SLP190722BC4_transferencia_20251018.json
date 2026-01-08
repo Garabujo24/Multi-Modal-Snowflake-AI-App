@@ -1,0 +1,28 @@
+{
+  "id_llamada": 14,
+  "cliente": {
+    "nombre": "SERVICIOS LOGÍSTICOS DEL PACÍFICO SA DE CV",
+    "rfc": "SLP190722BC4",
+    "tipo": "Persona Moral",
+    "estado": "Sinaloa"
+  },
+  "llamada": {
+    "tipo": "transferencia",
+    "titulo": "Solicitud de Transferencia",
+    "categoria": "Operaciones",
+    "fecha": "2025-10-18T15:51:34.381007",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_014_SLP190722BC4_transferencia_20251018.mp3",
+    "transcripcion": "LLAMADA_014_SLP190722BC4_transferencia_20251018.txt",
+    "metadata": "LLAMADA_014_SLP190722BC4_transferencia_20251018.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Diana Morales",
+    "num_cuenta": "****6818",
+    "ultimos_rfc": "2BC4"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

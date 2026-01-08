@@ -1,0 +1,28 @@
+{
+  "id_llamada": 7,
+  "cliente": {
+    "nombre": "JOSÉ ROBERTO GARCÍA LÓPEZ",
+    "rfc": "GALR920327HG5",
+    "tipo": "Persona Física",
+    "estado": "Ciudad de México"
+  },
+  "llamada": {
+    "tipo": "transferencia",
+    "titulo": "Solicitud de Transferencia",
+    "categoria": "Operaciones",
+    "fecha": "2025-11-02T15:48:53.757090",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_007_GALR920327HG5_transferencia_20251102.mp3",
+    "transcripcion": "LLAMADA_007_GALR920327HG5_transferencia_20251102.txt",
+    "metadata": "LLAMADA_007_GALR920327HG5_transferencia_20251102.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Sofía Castillo",
+    "num_cuenta": "****1247",
+    "ultimos_rfc": "7HG5"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

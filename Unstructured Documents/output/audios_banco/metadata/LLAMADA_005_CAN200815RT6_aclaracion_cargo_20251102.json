@@ -1,0 +1,28 @@
+{
+  "id_llamada": 5,
+  "cliente": {
+    "nombre": "COMERCIALIZADORA DE ALIMENTOS DEL NORTE SA DE CV",
+    "rfc": "CAN200815RT6",
+    "tipo": "Persona Moral",
+    "estado": "Nuevo León"
+  },
+  "llamada": {
+    "tipo": "aclaracion_cargo",
+    "titulo": "Aclaración de Cargo",
+    "categoria": "Soporte",
+    "fecha": "2025-11-02T15:48:01.861052",
+    "duracion_estimada": "3-4 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_005_CAN200815RT6_aclaracion_cargo_20251102.mp3",
+    "transcripcion": "LLAMADA_005_CAN200815RT6_aclaracion_cargo_20251102.txt",
+    "metadata": "LLAMADA_005_CAN200815RT6_aclaracion_cargo_20251102.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Miguel Ángel Ruiz",
+    "num_cuenta": "****2450",
+    "ultimos_rfc": "5RT6"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

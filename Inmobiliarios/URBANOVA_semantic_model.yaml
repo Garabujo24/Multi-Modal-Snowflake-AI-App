@@ -1,0 +1,1120 @@
+name: URBANOVA_Inmobiliaria
+description: >
+  Modelo semántico para análisis de inventario, precios y ventas de 
+  URBANOVA - Desarrollos Inmobiliarios. Incluye propiedades, desarrollos, 
+  ciudades y análisis de mercado mexicano.
+
+tables:
+  - name: PROPIEDADES
+    description: >
+      Inventario completo de propiedades disponibles, apartadas, vendidas y 
+      escrituradas en todos los desarrollos de URBANOVA.
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: PROPIEDADES
+    primary_key:
+      columns:
+        - PROPIEDAD_ID
+    dimensions:
+      - name: PROPIEDAD_ID
+        synonyms:
+          - id de propiedad
+          - código de propiedad
+        description: Identificador único de cada propiedad
+        data_type: NUMBER
+        expr: PROPIEDAD_ID
+        unique: true
+      
+      - name: DESARROLLO_ID
+        synonyms:
+          - id de desarrollo
+          - desarrollo
+        description: Identificador del desarrollo al que pertenece
+        data_type: NUMBER
+        expr: DESARROLLO_ID
+      
+      - name: TIPO_PROPIEDAD
+        synonyms:
+          - tipo de inmueble
+          - tipo de unidad
+          - categoría de propiedad
+        description: >
+          Tipo de propiedad: Departamento, Casa, Townhouse, Penthouse, 
+          Terreno, Local Comercial
+        data_type: TEXT
+        expr: TIPO_PROPIEDAD
+      
+      - name: NUMERO_UNIDAD
+        synonyms:
+          - número de unidad
+          - identificador de unidad
+        description: Número o código de la unidad dentro del desarrollo
+        data_type: TEXT
+        expr: NUMERO_UNIDAD
+      
+      - name: NIVEL_PISO
+        synonyms:
+          - piso
+          - nivel
+          - planta
+        description: Nivel o piso donde se ubica la propiedad (0 para planta baja)
+        data_type: NUMBER
+        expr: NIVEL_PISO
+      
+      - name: SUPERFICIE_M2
+        synonyms:
+          - superficie
+          - metros cuadrados
+          - tamaño
+          - área
+        description: Superficie construida en metros cuadrados
+        data_type: NUMBER
+        expr: SUPERFICIE_M2
+      
+      - name: RECAMARAS
+        synonyms:
+          - recámaras
+          - habitaciones
+          - dormitorios
+          - cuartos
+        description: Número de recámaras
+        data_type: NUMBER
+        expr: RECAMARAS
+      
+      - name: BANOS
+        synonyms:
+          - baños
+          - sanitarios
+        description: Número de baños (puede incluir medios baños como 2.5)
+        data_type: NUMBER
+        expr: BANOS
+      
+      - name: ESTACIONAMIENTOS
+        synonyms:
+          - cajones de estacionamiento
+          - lugares de estacionamiento
+          - parking
+        description: Número de cajones de estacionamiento incluidos
+        data_type: NUMBER
+        expr: ESTACIONAMIENTOS
+      
+      - name: PRECIO_LISTA_MXN
+        synonyms:
+          - precio de lista
+          - precio
+          - valor
+          - costo
+          - precio en pesos
+        description: Precio de lista en pesos mexicanos (MXN)
+        data_type: NUMBER
+        expr: PRECIO_LISTA_MXN
+      
+      - name: PRECIO_M2_MXN
+        synonyms:
+          - precio por metro cuadrado
+          - precio m2
+          - costo por m2
+        description: Precio por metro cuadrado en pesos mexicanos
+        data_type: NUMBER
+        expr: PRECIO_M2_MXN
+      
+      - name: ESTATUS_INVENTARIO
+        synonyms:
+          - estatus
+          - estado
+          - disponibilidad
+          - situación
+        description: >
+          Estatus actual: Disponible, Apartado, Vendido, Escriturado
+        data_type: TEXT
+        expr: ESTATUS_INVENTARIO
+      
+      - name: COMENTARIO
+        synonyms:
+          - observaciones
+          - notas
+          - descripción adicional
+        description: Comentarios y características especiales de la propiedad
+        data_type: TEXT
+        expr: COMENTARIO
+    
+    time_dimensions:
+      - name: FECHA_ACTUALIZACION
+        synonyms:
+          - fecha de actualización
+          - última actualización
+          - fecha de modificación
+        description: Fecha de última actualización del estatus de la propiedad
+        data_type: DATE
+        expr: FECHA_ACTUALIZACION
+
+  - name: DESARROLLOS
+    description: >
+      Catálogo de desarrollos inmobiliarios activos de URBANOVA en 
+      diferentes ciudades de México.
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: DESARROLLOS
+    primary_key:
+      columns:
+        - DESARROLLO_ID
+    dimensions:
+      - name: DESARROLLO_ID
+        synonyms:
+          - id de desarrollo
+          - identificador de proyecto
+        description: Identificador único del desarrollo
+        data_type: NUMBER
+        expr: DESARROLLO_ID
+        unique: true
+      
+      - name: CIUDAD_ID
+        synonyms:
+          - id de ciudad
+          - ciudad
+        description: Identificador de la ciudad donde se ubica
+        data_type: NUMBER
+        expr: CIUDAD_ID
+      
+      - name: NOMBRE_DESARROLLO
+        synonyms:
+          - nombre del proyecto
+          - desarrollo
+          - proyecto
+          - nombre del desarrollo
+        description: Nombre comercial del desarrollo inmobiliario
+        data_type: TEXT
+        expr: NOMBRE_DESARROLLO
+      
+      - name: COLONIA
+        synonyms:
+          - colonia
+          - barrio
+          - zona
+        description: Colonia o barrio donde se ubica el desarrollo
+        data_type: TEXT
+        expr: COLONIA
+      
+      - name: DELEGACION_MUNICIPIO
+        synonyms:
+          - delegación
+          - municipio
+          - alcaldía
+        description: Delegación o municipio
+        data_type: TEXT
+        expr: DELEGACION_MUNICIPIO
+      
+      - name: TIPO_DESARROLLO
+        synonyms:
+          - tipo de desarrollo
+          - categoría de proyecto
+        description: Tipo de desarrollo (Residencial, Mixto, Comercial)
+        data_type: TEXT
+        expr: TIPO_DESARROLLO
+      
+      - name: TOTAL_UNIDADES
+        synonyms:
+          - total de unidades
+          - número de unidades
+          - cantidad de propiedades
+        description: Número total de unidades en el desarrollo
+        data_type: NUMBER
+        expr: TOTAL_UNIDADES
+      
+      - name: ESTATUS
+        synonyms:
+          - estatus del desarrollo
+          - estado del proyecto
+        description: >
+          Estatus del desarrollo: En Construcción, Preventa, Entregado
+        data_type: TEXT
+        expr: ESTATUS
+    
+    time_dimensions:
+      - name: FECHA_INICIO
+        synonyms:
+          - fecha de inicio
+          - inicio de construcción
+        description: Fecha de inicio del proyecto
+        data_type: DATE
+        expr: FECHA_INICIO
+      
+      - name: FECHA_ENTREGA_ESTIMADA
+        synonyms:
+          - fecha de entrega
+          - entrega estimada
+          - fecha estimada de terminación
+        description: Fecha estimada de entrega del desarrollo
+        data_type: DATE
+        expr: FECHA_ENTREGA_ESTIMADA
+
+  - name: CIUDADES
+    description: Catálogo de ciudades donde URBANOVA tiene presencia
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: CIUDADES
+    primary_key:
+      columns:
+        - CIUDAD_ID
+    dimensions:
+      - name: CIUDAD_ID
+        synonyms:
+          - id de ciudad
+          - identificador de ciudad
+        description: Identificador único de la ciudad
+        data_type: NUMBER
+        expr: CIUDAD_ID
+        unique: true
+      
+      - name: NOMBRE_CIUDAD
+        synonyms:
+          - ciudad
+          - nombre de ciudad
+          - ubicación
+        description: Nombre de la ciudad
+        data_type: TEXT
+        expr: NOMBRE_CIUDAD
+      
+      - name: ESTADO
+        synonyms:
+          - estado
+          - entidad federativa
+        description: Estado de la República Mexicana
+        data_type: TEXT
+        expr: ESTADO
+      
+      - name: ZONA_METROPOLITANA
+        synonyms:
+          - zona metropolitana
+          - área metropolitana
+        description: Nombre de la zona metropolitana
+        data_type: TEXT
+        expr: ZONA_METROPOLITANA
+      
+      - name: POBLACION_APROX
+        synonyms:
+          - población
+          - habitantes
+          - población aproximada
+        description: Población aproximada de la ciudad
+        data_type: NUMBER
+        expr: POBLACION_APROX
+
+  - name: VENTAS
+    description: >
+      Registro histórico de ventas realizadas con información de 
+      financiamiento y tipo de cliente.
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: VENTAS
+    primary_key:
+      columns:
+        - VENTA_ID
+    dimensions:
+      - name: VENTA_ID
+        synonyms:
+          - id de venta
+          - identificador de venta
+        description: Identificador único de la venta
+        data_type: NUMBER
+        expr: VENTA_ID
+        unique: true
+      
+      - name: PROPIEDAD_ID
+        synonyms:
+          - id de propiedad
+          - propiedad
+        description: Identificador de la propiedad vendida
+        data_type: NUMBER
+        expr: PROPIEDAD_ID
+      
+      - name: PRECIO_VENTA_MXN
+        synonyms:
+          - precio de venta
+          - monto de venta
+          - importe vendido
+        description: Precio final de venta en pesos mexicanos
+        data_type: NUMBER
+        expr: PRECIO_VENTA_MXN
+      
+      - name: DESCUENTO_APLICADO_PCT
+        synonyms:
+          - descuento
+          - porcentaje de descuento
+          - descuento aplicado
+        description: Porcentaje de descuento aplicado sobre precio de lista
+        data_type: NUMBER
+        expr: DESCUENTO_APLICADO_PCT
+      
+      - name: METODO_FINANCIAMIENTO
+        synonyms:
+          - método de financiamiento
+          - tipo de financiamiento
+          - forma de pago
+        description: >
+          Método de financiamiento: Contado, Hipoteca, Crédito Infonavit, Mixto
+        data_type: TEXT
+        expr: METODO_FINANCIAMIENTO
+      
+      - name: ENGANCHE_MXN
+        synonyms:
+          - enganche
+          - anticipo
+          - pago inicial
+        description: Monto del enganche en pesos mexicanos
+        data_type: NUMBER
+        expr: ENGANCHE_MXN
+      
+      - name: MESES_FINANCIAMIENTO
+        synonyms:
+          - plazo
+          - meses de financiamiento
+          - duración del crédito
+        description: Número de meses del financiamiento
+        data_type: NUMBER
+        expr: MESES_FINANCIAMIENTO
+      
+      - name: TIPO_CLIENTE
+        synonyms:
+          - tipo de cliente
+          - perfil de cliente
+          - categoría de comprador
+        description: >
+          Tipo de cliente: Inversionista, Usuario Final, Extranjero
+        data_type: TEXT
+        expr: TIPO_CLIENTE
+    
+    time_dimensions:
+      - name: FECHA_VENTA
+        synonyms:
+          - fecha de venta
+          - fecha de operación
+          - fecha de cierre
+        description: Fecha en que se realizó la venta
+        data_type: DATE
+        expr: FECHA_VENTA
+
+  - name: COSTOS_CONSTRUCCION
+    description: >
+      Registro detallado de costos de construcción por desarrollo incluyendo 
+      terreno, obra, permisos, marketing y financiamiento.
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: COSTOS_CONSTRUCCION
+    primary_key:
+      columns:
+        - COSTO_ID
+    dimensions:
+      - name: COSTO_ID
+        synonyms:
+          - id de costo
+          - identificador de costo
+        description: Identificador único del registro de costo
+        data_type: NUMBER
+        expr: COSTO_ID
+        unique: true
+      
+      - name: DESARROLLO_ID
+        synonyms:
+          - id de desarrollo
+          - desarrollo
+        description: Identificador del desarrollo asociado
+        data_type: NUMBER
+        expr: DESARROLLO_ID
+      
+      - name: TIPO_COSTO
+        synonyms:
+          - tipo de costo
+          - categoría de costo
+          - rubro de costo
+        description: >
+          Tipo de costo: Terreno, Construcción, Permisos, Marketing, 
+          Financiero, Otros
+        data_type: TEXT
+        expr: TIPO_COSTO
+      
+      - name: DESCRIPCION
+        synonyms:
+          - descripción del costo
+          - detalle del costo
+          - concepto
+        description: Descripción detallada del concepto de costo
+        data_type: TEXT
+        expr: DESCRIPCION
+      
+      - name: MONTO_MXN
+        synonyms:
+          - monto
+          - importe
+          - costo en pesos
+          - valor del costo
+        description: Monto del costo en pesos mexicanos
+        data_type: NUMBER
+        expr: MONTO_MXN
+      
+      - name: PORCENTAJE_TOTAL
+        synonyms:
+          - porcentaje del total
+          - proporción del costo
+          - peso porcentual
+        description: Porcentaje que representa del costo total del desarrollo
+        data_type: NUMBER
+        expr: PORCENTAJE_TOTAL
+      
+      - name: ESTATUS_PAGO
+        synonyms:
+          - estatus de pago
+          - estado de pago
+          - situación de pago
+        description: Estatus del pago (Pagado, Pendiente, Parcial)
+        data_type: TEXT
+        expr: ESTATUS_PAGO
+    
+    time_dimensions:
+      - name: FECHA_REGISTRO
+        synonyms:
+          - fecha de registro
+          - fecha del costo
+        description: Fecha en que se registró el costo
+        data_type: DATE
+        expr: FECHA_REGISTRO
+
+  - name: INDICADORES_MERCADO
+    description: >
+      Indicadores macroeconómicos y variables externas que impactan el 
+      mercado inmobiliario mexicano (tasas, inflación, tipo de cambio, precios 
+      de insumos, confianza del consumidor, etc.)
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: INDICADORES_MERCADO
+    primary_key:
+      columns:
+        - INDICADOR_ID
+    dimensions:
+      - name: INDICADOR_ID
+        synonyms:
+          - id de indicador
+          - identificador
+        description: Identificador único del registro de indicadores
+        data_type: NUMBER
+        expr: INDICADOR_ID
+        unique: true
+      
+      - name: TASA_INTERES_HIPOTECARIO
+        synonyms:
+          - tasa de interés
+          - tasa hipotecaria
+          - tasa de crédito
+        description: Tasa promedio de interés hipotecario en México (%)
+        data_type: NUMBER
+        expr: TASA_INTERES_HIPOTECARIO
+      
+      - name: INFLACION_ANUAL_PCT
+        synonyms:
+          - inflación
+          - inflación anual
+          - tasa de inflación
+        description: Inflación anual en porcentaje
+        data_type: NUMBER
+        expr: INFLACION_ANUAL_PCT
+      
+      - name: TIPO_CAMBIO_USD_MXN
+        synonyms:
+          - tipo de cambio
+          - cambio dólar peso
+          - precio del dólar
+        description: Tipo de cambio Dólar/Peso mexicano
+        data_type: NUMBER
+        expr: TIPO_CAMBIO_USD_MXN
+      
+      - name: PRECIO_CEMENTO_TON
+        synonyms:
+          - precio del cemento
+          - costo del cemento
+          - cemento por tonelada
+        description: Precio promedio del cemento por tonelada en MXN
+        data_type: NUMBER
+        expr: PRECIO_CEMENTO_TON
+      
+      - name: PRECIO_ACERO_TON
+        synonyms:
+          - precio del acero
+          - costo del acero
+          - acero por tonelada
+        description: Precio promedio del acero por tonelada en MXN
+        data_type: NUMBER
+        expr: PRECIO_ACERO_TON
+      
+      - name: INDICE_CONFIANZA_CONSUMIDOR
+        synonyms:
+          - confianza del consumidor
+          - índice de confianza
+          - confianza económica
+        description: Índice de confianza del consumidor
+        data_type: NUMBER
+        expr: INDICE_CONFIANZA_CONSUMIDOR
+      
+      - name: PIB_CONSTRUCCION_VAR_PCT
+        synonyms:
+          - PIB construcción
+          - variación PIB
+          - crecimiento sector construcción
+        description: Variación porcentual del PIB del sector construcción
+        data_type: NUMBER
+        expr: PIB_CONSTRUCCION_VAR_PCT
+      
+      - name: PERMISOS_CONSTRUCCION_TOTAL
+        synonyms:
+          - permisos de construcción
+          - total de permisos
+          - licencias otorgadas
+        description: Total de permisos de construcción otorgados en el mes
+        data_type: NUMBER
+        expr: PERMISOS_CONSTRUCCION_TOTAL
+      
+      - name: CREDITOS_HIPOTECARIOS_OTORGADOS
+        synonyms:
+          - créditos hipotecarios
+          - hipotecas otorgadas
+          - financiamientos
+        description: Número de créditos hipotecarios otorgados en el mes
+        data_type: NUMBER
+        expr: CREDITOS_HIPOTECARIOS_OTORGADOS
+    
+    time_dimensions:
+      - name: MES_REFERENCIA
+        synonyms:
+          - mes de referencia
+          - mes
+          - periodo
+        description: Mes de referencia de los indicadores
+        data_type: DATE
+        expr: MES_REFERENCIA
+
+  # ============================================================================
+  # TABLAS DE GESTIÓN DE PROVEEDORES Y MATERIALES
+  # ============================================================================
+
+  - name: PROVEEDORES
+    description: >
+      Catálogo de proveedores de materiales y servicios clasificados por 
+      categoría: Albañilería, Pintura, Plomería y Mantenimiento.
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: PROVEEDORES
+    primary_key:
+      columns:
+        - PROVEEDOR_ID
+    dimensions:
+      - name: PROVEEDOR_ID
+        synonyms:
+          - id de proveedor
+          - código de proveedor
+        description: Identificador único del proveedor
+        data_type: NUMBER
+        expr: PROVEEDOR_ID
+        unique: true
+      
+      - name: RAZON_SOCIAL
+        synonyms:
+          - razón social
+          - nombre legal
+          - empresa
+        description: Razón social del proveedor
+        data_type: TEXT
+        expr: RAZON_SOCIAL
+      
+      - name: NOMBRE_COMERCIAL
+        synonyms:
+          - nombre comercial
+          - marca
+        description: Nombre comercial del proveedor
+        data_type: TEXT
+        expr: NOMBRE_COMERCIAL
+      
+      - name: RFC
+        synonyms:
+          - rfc
+          - registro federal
+        description: RFC del proveedor
+        data_type: TEXT
+        expr: RFC
+      
+      - name: CATEGORIA
+        synonyms:
+          - categoría
+          - tipo de proveedor
+          - ramo
+        description: >
+          Categoría del proveedor: Albañilería, Pintura, Plomería, Mantenimiento
+        data_type: TEXT
+        expr: CATEGORIA
+      
+      - name: ESPECIALIDAD
+        synonyms:
+          - especialidad
+          - giro
+        description: Especialidad específica del proveedor
+        data_type: TEXT
+        expr: ESPECIALIDAD
+      
+      - name: CIUDAD_ID
+        synonyms:
+          - ciudad
+          - ubicación
+        description: Ciudad donde se ubica el proveedor
+        data_type: NUMBER
+        expr: CIUDAD_ID
+      
+      - name: ESTATUS
+        synonyms:
+          - estatus
+          - estado
+          - activo
+        description: Estatus del proveedor (Activo, Suspendido, Inactivo)
+        data_type: TEXT
+        expr: ESTATUS
+      
+      - name: CONTACTO_PRINCIPAL
+        synonyms:
+          - contacto
+          - persona de contacto
+        description: Nombre del contacto principal
+        data_type: TEXT
+        expr: CONTACTO_PRINCIPAL
+    
+    measures:
+      - name: TOTAL_PROVEEDORES
+        synonyms:
+          - cantidad de proveedores
+          - número de proveedores
+        description: Conteo total de proveedores
+        data_type: NUMBER
+        expr: COUNT(PROVEEDOR_ID)
+        default_aggregation: count
+      
+      - name: LIMITE_CREDITO_MXN
+        synonyms:
+          - límite de crédito
+          - crédito disponible
+        description: Límite de crédito del proveedor en pesos mexicanos
+        data_type: NUMBER
+        expr: LIMITE_CREDITO_MXN
+        default_aggregation: sum
+      
+      - name: CALIFICACION_PROVEEDOR
+        synonyms:
+          - calificación
+          - rating
+          - evaluación
+        description: Calificación del proveedor (1.0 a 5.0)
+        data_type: NUMBER
+        expr: CALIFICACION_PROVEEDOR
+        default_aggregation: avg
+      
+      - name: DIAS_CREDITO
+        synonyms:
+          - días de crédito
+          - plazo de pago
+        description: Días de crédito otorgados por el proveedor
+        data_type: NUMBER
+        expr: DIAS_CREDITO
+        default_aggregation: avg
+
+  - name: CATALOGO_MATERIALES
+    description: >
+      Catálogo completo de materiales disponibles por proveedor, incluyendo 
+      materiales de albañilería, pintura, plomería y mantenimiento.
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: CATALOGO_MATERIALES
+    primary_key:
+      columns:
+        - MATERIAL_ID
+    dimensions:
+      - name: MATERIAL_ID
+        synonyms:
+          - id de material
+          - código de material
+        description: Identificador único del material
+        data_type: NUMBER
+        expr: MATERIAL_ID
+        unique: true
+      
+      - name: PROVEEDOR_ID
+        synonyms:
+          - proveedor
+        description: Proveedor que suministra el material
+        data_type: NUMBER
+        expr: PROVEEDOR_ID
+      
+      - name: CODIGO_SKU
+        synonyms:
+          - sku
+          - código sku
+          - código de producto
+        description: Código SKU del material
+        data_type: TEXT
+        expr: CODIGO_SKU
+      
+      - name: DESCRIPCION
+        synonyms:
+          - descripción
+          - nombre del material
+          - producto
+        description: Descripción del material
+        data_type: TEXT
+        expr: DESCRIPCION
+      
+      - name: CATEGORIA
+        synonyms:
+          - categoría
+          - tipo de material
+        description: >
+          Categoría del material: Albañilería, Pintura, Plomería, Mantenimiento
+        data_type: TEXT
+        expr: CATEGORIA
+      
+      - name: UNIDAD_MEDIDA
+        synonyms:
+          - unidad
+          - unidad de medida
+        description: Unidad de medida (Pieza, Kg, M², M³, Litro, Bulto, Cubeta)
+        data_type: TEXT
+        expr: UNIDAD_MEDIDA
+      
+      - name: ESTATUS
+        synonyms:
+          - estatus
+          - disponibilidad
+        description: Estatus del material (Disponible, Agotado, Descontinuado)
+        data_type: TEXT
+        expr: ESTATUS
+    
+    measures:
+      - name: TOTAL_MATERIALES
+        synonyms:
+          - cantidad de materiales
+          - número de productos
+        description: Conteo total de materiales
+        data_type: NUMBER
+        expr: COUNT(MATERIAL_ID)
+        default_aggregation: count
+      
+      - name: PRECIO_UNITARIO_MXN
+        synonyms:
+          - precio unitario
+          - precio
+          - costo
+        description: Precio unitario del material en pesos mexicanos
+        data_type: NUMBER
+        expr: PRECIO_UNITARIO_MXN
+        default_aggregation: avg
+      
+      - name: TIEMPO_ENTREGA_DIAS
+        synonyms:
+          - tiempo de entrega
+          - días de entrega
+        description: Tiempo de entrega en días
+        data_type: NUMBER
+        expr: TIEMPO_ENTREGA_DIAS
+        default_aggregation: avg
+
+  - name: SOLICITUDES_REPARACION
+    description: >
+      Registro de solicitudes de reparación y mantenimiento para propiedades 
+      de URBANOVA, con seguimiento de atención y cierre.
+    base_table:
+      database: URBANOVA_DB
+      schema: URBANOVA_SCHEMA
+      table: SOLICITUDES_REPARACION
+    primary_key:
+      columns:
+        - SOLICITUD_ID
+    dimensions:
+      - name: SOLICITUD_ID
+        synonyms:
+          - id de solicitud
+          - número de solicitud
+        description: Identificador único de la solicitud
+        data_type: NUMBER
+        expr: SOLICITUD_ID
+        unique: true
+      
+      - name: PROPIEDAD_ID
+        synonyms:
+          - propiedad
+          - departamento
+        description: Propiedad donde se requiere la reparación
+        data_type: NUMBER
+        expr: PROPIEDAD_ID
+      
+      - name: NUMERO_SOLICITUD
+        synonyms:
+          - folio
+          - número de folio
+        description: Número de folio de la solicitud
+        data_type: TEXT
+        expr: NUMERO_SOLICITUD
+      
+      - name: TIPO_REPARACION
+        synonyms:
+          - tipo de reparación
+          - tipo de servicio
+          - categoría de reparación
+        description: >
+          Tipo de reparación: Plomería, Electricidad, Pintura, Carpintería, Mantenimiento
+        data_type: TEXT
+        expr: TIPO_REPARACION
+      
+      - name: PRIORIDAD
+        synonyms:
+          - prioridad
+          - urgencia
+        description: Prioridad de la solicitud (Alta, Media, Baja)
+        data_type: TEXT
+        expr: PRIORIDAD
+      
+      - name: DESCRIPCION_PROBLEMA
+        synonyms:
+          - descripción
+          - problema
+          - detalle
+        description: Descripción detallada del problema reportado
+        data_type: TEXT
+        expr: DESCRIPCION_PROBLEMA
+      
+      - name: PROVEEDOR_ASIGNADO_ID
+        synonyms:
+          - proveedor asignado
+          - técnico asignado
+        description: Proveedor asignado para atender la solicitud
+        data_type: NUMBER
+        expr: PROVEEDOR_ASIGNADO_ID
+      
+      - name: ESTATUS
+        synonyms:
+          - estatus
+          - estado
+        description: Estatus de la solicitud (Abierta, En Proceso, Cerrada, Cancelada)
+        data_type: TEXT
+        expr: ESTATUS
+    
+    time_dimensions:
+      - name: FECHA_SOLICITUD
+        synonyms:
+          - fecha de solicitud
+          - fecha de reporte
+        description: Fecha en que se registró la solicitud
+        data_type: DATE
+        expr: FECHA_SOLICITUD
+      
+      - name: FECHA_ATENCION
+        synonyms:
+          - fecha de atención
+          - fecha de inicio
+        description: Fecha en que se inició la atención
+        data_type: DATE
+        expr: FECHA_ATENCION
+      
+      - name: FECHA_CIERRE
+        synonyms:
+          - fecha de cierre
+          - fecha de término
+        description: Fecha en que se cerró la solicitud
+        data_type: DATE
+        expr: FECHA_CIERRE
+    
+    measures:
+      - name: TOTAL_SOLICITUDES
+        synonyms:
+          - cantidad de solicitudes
+          - número de reportes
+        description: Conteo total de solicitudes
+        data_type: NUMBER
+        expr: COUNT(SOLICITUD_ID)
+        default_aggregation: count
+      
+      - name: COSTO_REPARACION_MXN
+        synonyms:
+          - costo de reparación
+          - costo de mantenimiento
+          - gasto
+        description: Costo de la reparación en pesos mexicanos
+        data_type: NUMBER
+        expr: COSTO_REPARACION_MXN
+        default_aggregation: sum
+      
+      - name: CALIFICACION_SERVICIO
+        synonyms:
+          - calificación del servicio
+          - satisfacción
+        description: Calificación del servicio (1.0 a 5.0)
+        data_type: NUMBER
+        expr: CALIFICACION_SERVICIO
+        default_aggregation: avg
+
+# ============================================================================
+# RELACIONES ENTRE TABLAS
+# ============================================================================
+
+relationships:
+  - name: PROPIEDADES_A_DESARROLLOS
+    relationshipType: many_to_one
+    leftTable: PROPIEDADES
+    rightTable: DESARROLLOS
+    relationshipColumns:
+      - leftColumn: DESARROLLO_ID
+        rightColumn: DESARROLLO_ID
+
+  - name: DESARROLLOS_A_CIUDADES
+    relationshipType: many_to_one
+    leftTable: DESARROLLOS
+    rightTable: CIUDADES
+    relationshipColumns:
+      - leftColumn: CIUDAD_ID
+        rightColumn: CIUDAD_ID
+
+  - name: VENTAS_A_PROPIEDADES
+    relationshipType: many_to_one
+    leftTable: VENTAS
+    rightTable: PROPIEDADES
+    relationshipColumns:
+      - leftColumn: PROPIEDAD_ID
+        rightColumn: PROPIEDAD_ID
+
+  - name: COSTOS_A_DESARROLLOS
+    relationshipType: many_to_one
+    leftTable: COSTOS_CONSTRUCCION
+    rightTable: DESARROLLOS
+    relationshipColumns:
+      - leftColumn: DESARROLLO_ID
+        rightColumn: DESARROLLO_ID
+
+  - name: PROVEEDORES_A_CIUDADES
+    relationshipType: many_to_one
+    leftTable: PROVEEDORES
+    rightTable: CIUDADES
+    relationshipColumns:
+      - leftColumn: CIUDAD_ID
+        rightColumn: CIUDAD_ID
+
+  - name: MATERIALES_A_PROVEEDORES
+    relationshipType: many_to_one
+    leftTable: CATALOGO_MATERIALES
+    rightTable: PROVEEDORES
+    relationshipColumns:
+      - leftColumn: PROVEEDOR_ID
+        rightColumn: PROVEEDOR_ID
+
+  - name: SOLICITUDES_A_PROPIEDADES
+    relationshipType: many_to_one
+    leftTable: SOLICITUDES_REPARACION
+    rightTable: PROPIEDADES
+    relationshipColumns:
+      - leftColumn: PROPIEDAD_ID
+        rightColumn: PROPIEDAD_ID
+
+  - name: SOLICITUDES_A_PROVEEDORES
+    relationshipType: many_to_one
+    leftTable: SOLICITUDES_REPARACION
+    rightTable: PROVEEDORES
+    relationshipColumns:
+      - leftColumn: PROVEEDOR_ASIGNADO_ID
+        rightColumn: PROVEEDOR_ID
+
+verified_queries:
+  - name: Propiedades disponibles por ciudad
+    question: ¿Cuántas propiedades disponibles hay por ciudad?
+    sql: >
+      SELECT 
+        c.nombre_ciudad, 
+        COUNT(p.propiedad_id) AS total_disponibles 
+      FROM __propiedades AS p 
+      INNER JOIN __desarrollos AS d 
+        ON p.desarrollo_id = d.desarrollo_id 
+      INNER JOIN __ciudades AS c 
+        ON d.ciudad_id = c.ciudad_id 
+      WHERE p.estatus_inventario = 'Disponible' 
+      GROUP BY c.nombre_ciudad 
+      ORDER BY total_disponibles DESC
+
+  - name: Precio promedio por tipo de propiedad
+    question: ¿Cuál es el precio promedio por tipo de propiedad?
+    sql: >
+      SELECT 
+        p.tipo_propiedad, 
+        AVG(p.precio_lista_mxn) AS precio_promedio 
+      FROM __propiedades AS p 
+      WHERE p.estatus_inventario = 'Disponible' 
+      GROUP BY p.tipo_propiedad 
+      ORDER BY precio_promedio DESC
+
+  - name: Desarrollos por ciudad
+    question: ¿Cuántos desarrollos hay en cada ciudad?
+    sql: >
+      SELECT 
+        c.nombre_ciudad, 
+        COUNT(d.desarrollo_id) AS total_desarrollos 
+      FROM __desarrollos AS d 
+      INNER JOIN __ciudades AS c 
+        ON d.ciudad_id = c.ciudad_id 
+      GROUP BY c.nombre_ciudad 
+      ORDER BY total_desarrollos DESC
+
+  - name: Proveedores por categoría
+    question: ¿Cuántos proveedores hay por categoría?
+    sql: >
+      SELECT 
+        p.categoria, 
+        COUNT(p.proveedor_id) AS total_proveedores,
+        ROUND(AVG(p.calificacion_proveedor), 2) AS calificacion_promedio
+      FROM __proveedores AS p 
+      WHERE p.estatus = 'Activo'
+      GROUP BY p.categoria 
+      ORDER BY total_proveedores DESC
+
+  - name: Materiales por categoría
+    question: ¿Cuántos materiales hay disponibles por categoría?
+    sql: >
+      SELECT 
+        m.categoria,
+        COUNT(m.material_id) AS total_materiales,
+        ROUND(AVG(m.precio_unitario_mxn), 2) AS precio_promedio
+      FROM __catalogo_materiales AS m
+      WHERE m.estatus = 'Disponible'
+      GROUP BY m.categoria
+      ORDER BY total_materiales DESC
+
+  - name: Solicitudes de reparación por tipo
+    question: ¿Cuántas solicitudes de reparación hay por tipo?
+    sql: >
+      SELECT 
+        s.tipo_reparacion,
+        COUNT(s.solicitud_id) AS total_solicitudes,
+        SUM(s.costo_reparacion_mxn) AS costo_total,
+        ROUND(AVG(s.calificacion_servicio), 2) AS calificacion_promedio
+      FROM __solicitudes_reparacion AS s
+      GROUP BY s.tipo_reparacion
+      ORDER BY total_solicitudes DESC
+
+  - name: Top proveedores por calificación
+    question: ¿Cuáles son los proveedores mejor calificados?
+    sql: >
+      SELECT 
+        p.nombre_comercial,
+        p.categoria,
+        p.especialidad,
+        p.calificacion_proveedor
+      FROM __proveedores AS p
+      WHERE p.estatus = 'Activo'
+      ORDER BY p.calificacion_proveedor DESC
+      LIMIT 10

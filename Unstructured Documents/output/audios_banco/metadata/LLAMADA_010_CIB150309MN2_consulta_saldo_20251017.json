@@ -1,0 +1,28 @@
+{
+  "id_llamada": 10,
+  "cliente": {
+    "nombre": "CONSTRUCTORA INDUSTRIAL BAJÍO SA DE CV",
+    "rfc": "CIB150309MN2",
+    "tipo": "Persona Moral",
+    "estado": "Guanajuato"
+  },
+  "llamada": {
+    "tipo": "consulta_saldo",
+    "titulo": "Consulta de Saldo",
+    "categoria": "Información",
+    "fecha": "2025-10-17T15:50:09.386225",
+    "duracion_estimada": "2-3 minutos"
+  },
+  "archivos": {
+    "audio": "LLAMADA_010_CIB150309MN2_consulta_saldo_20251017.mp3",
+    "transcripcion": "LLAMADA_010_CIB150309MN2_consulta_saldo_20251017.txt",
+    "metadata": "LLAMADA_010_CIB150309MN2_consulta_saldo_20251017.json"
+  },
+  "datos_extraidos": {
+    "ejecutivo": "Patricia Gutiérrez",
+    "num_cuenta": "****9161",
+    "ultimos_rfc": "9MN2"
+  },
+  "proposito": "Pruebas de Cortex Search y Speech-to-Text",
+  "nota": "Contenido sintético sin validez real"
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "metric_id": "PERF-2025-10-20-00",
+    "timestamp": "2025-10-20T00:00:00Z",
+    "period": "hourly",
+    "sistema": "api_gateway",
+    "metricas": {
+      "requests_total": 8542,
+      "requests_successful": 8489,
+      "requests_failed": 53,
+      "success_rate": 99.38,
+      "avg_response_time_ms": 145,
+      "p95_response_time_ms": 320,
+      "p99_response_time_ms": 580,
+      "max_response_time_ms": 1250
+    },
+    "endpoints_top_used": [
+      {
+        "endpoint": "/api/v1/auth/login",
+        "requests": 2341,
+        "avg_time_ms": 89
+      },
+      {
+        "endpoint": "/api/v1/credits/status",
+        "requests": 1876,
+        "avg_time_ms": 156
+      },
+      {
+        "endpoint": "/api/v1/payments/process",
+        "requests": 1234,
+        "avg_time_ms": 345
+      }
+    ],
+    "errors": {
+      "error_rate": 0.62,
+      "error_types": [
+        {"type": "timeout", "count": 28},
+        {"type": "validation_error", "count": 15},
+        {"type": "service_unavailable", "count": 10}
+      ]
+    }
+  },
+  {
+    "metric_id": "PERF-2025-10-20-01",
+    "timestamp": "2025-10-20T00:00:00Z",
+    "period": "hourly",
+    "sistema": "database",
+    "metricas": {
+      "queries_executed": 45623,
+      "avg_query_time_ms": 23.5,
+      "slow_queries": 12,
+      "slow_query_threshold_ms": 1000,
+      "connections_active": 45,
+      "connections_idle": 15,
+      "connections_max": 100,
+      "connection_pool_usage": 60.0,
+      "cache_hit_rate": 94.5,
+      "index_usage_rate": 98.2
+    },
+    "top_slow_queries": [
+      {
+        "query_hash": "a1b2c3d4e5",
+        "table": "TRANSACCIONES",
+        "avg_time_ms": 1850,
+        "executions": 5
+      },
+      {
+        "query_hash": "f6g7h8i9j0",
+        "table": "CREDITOS",
+        "avg_time_ms": 1245,
+        "executions": 7
+      }
+    ],
+    "storage": {
+      "total_size_gb": 125.8,
+      "growth_rate_gb_per_day": 0.85,
+      "backup_size_gb": 118.2,
+      "last_backup": "2025-10-20T03:00:00Z"
+    }
+  },
+  {
+    "metric_id": "PERF-2025-10-20-02",
+    "timestamp": "2025-10-20T00:00:00Z",
+    "period": "hourly",
+    "sistema": "aplicacion_movil",
+    "metricas": {
+      "usuarios_activos": 1234,
+      "sesiones_iniciadas": 2156,
+      "sesiones_promedio_duracion_min": 8.5,
+      "crashes": 3,
+      "crash_rate": 0.14,
+      "tasa_retencion_diaria": 78.5
+    },
+    "performance_screens": [
+      {
+        "screen": "login",
+        "avg_load_time_ms": 850,
+        "visits": 2156
+      },
+      {
+        "screen": "dashboard",
+        "avg_load_time_ms": 1250,
+        "visits": 2001
+      },
+      {
+        "screen": "payment",
+        "avg_load_time_ms": 1890,
+        "visits": 856
+      }
+    ],
+    "network": {
+      "avg_request_time_ms": 245,
+      "failed_requests": 45,
+      "failed_requests_rate": 0.52,
+      "bandwidth_usage_mb": 1250.5
+    }
+  },
+  {
+    "metric_id": "PERF-2025-10-20-03",
+    "timestamp": "2025-10-20T00:00:00Z",
+    "period": "hourly",
+    "sistema": "ml_models",
+    "metricas": {
+      "scoring_requests": 452,
+      "avg_inference_time_ms": 245,
+      "model_accuracy": 0.89,
+      "model_version": "v2.5.1",
+      "predictions_high_confidence": 398,
+      "predictions_low_confidence": 54,
+      "model_drift_score": 0.023,
+      "retraining_recommended": false
+    },
+    "resource_usage": {
+      "cpu_avg": 45.2,
+      "memory_avg_mb": 2840,
+      "gpu_usage_avg": 23.5
+    }
+  }
+]
+
+
+

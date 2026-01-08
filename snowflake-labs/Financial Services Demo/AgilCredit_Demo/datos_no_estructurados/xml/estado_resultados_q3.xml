@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EstadoResultados>
+    <Metadata>
+        <Periodo>Julio - Septiembre 2025</Periodo>
+        <FechaCorte>2025-09-30</FechaCorte>
+        <Moneda>MXN</Moneda>
+    </Metadata>
+    
+    <Ingresos>
+        <InteresesCredito>12850000.00</InteresesCredito>
+        <ComisionesOriginacion>1250000.00</ComisionesOriginacion>
+        <ComisionesAdministracion>850000.00</ComisionesAdministracion>
+        <OtrosIngresos>450000.00</OtrosIngresos>
+        <TotalIngresos>15400000.00</TotalIngresos>
+    </Ingresos>
+    
+    <CostosFinancieros>
+        <InteresesPrestamos>2150000.00</InteresesPrestamos>
+        <ComisionesBancarias>350000.00</ComisionesBancarias>
+        <TotalCostosFinancieros>2500000.00</TotalCostosFinancieros>
+        <MargeBrutoFinanciero>12900000.00</MargeBrutoFinanciero>
+    </CostosFinancieros>
+    
+    <EstimacionPreventiva>
+        <Estimaciones>1950000.00</Estimaciones>
+        <MargenFinancieroNeto>10950000.00</MargenFinancieroNeto>
+    </EstimacionPreventiva>
+    
+    <GastosOperacion>
+        <GastosPersonal>3850000.00</GastosPersonal>
+        <GastosAdministracion>1250000.00</GastosAdministracion>
+        <GastosTecnologia>950000.00</GastosTecnologia>
+        <GastosMarketing>650000.00</GastosMarketing>
+        <DepreciacionAmortizacion>450000.00</DepreciacionAmortizacion>
+        <OtrosGastos>350000.00</OtrosGastos>
+        <TotalGastosOperacion>7500000.00</TotalGastosOperacion>
+    </GastosOperacion>
+    
+    <ResultadoOperacion>3450000.00</ResultadoOperacion>
+    
+    <OtrosIngresosGastos>
+        <ProductosFinancieros>180000.00</ProductosFinancieros>
+        <GastosFinancieros>-120000.00</GastosFinancieros>
+        <Total>60000.00</Total>
+    </OtrosIngresosGastos>
+    
+    <UtilidadAntesImpuestos>3510000.00</UtilidadAntesImpuestos>
+    <ImpuestoSobreRenta>1054000.00</ImpuestoSobreRenta>
+    <UtilidadNeta>2456000.00</UtilidadNeta>
+    
+    <Indicadores>
+        <ROE>2.27</ROE>
+        <ROA>1.21</ROA>
+        <MargenNeto>15.95</MargenNeto>
+        <EficienciaOperativa>48.70</EficienciaOperativa>
+    </Indicadores>
+</EstadoResultados>
+
+
+

@@ -1,0 +1,173 @@
+Política de Privacidad - OMNIGOODS
+
+Última actualización: Septiembre 2025
+
+## 1. Introducción
+
+En OMNIGOODS ("nosotros", "nuestro", "la empresa"), respetamos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad explica cómo recopilamos, usamos, compartimos y protegemos su información personal cuando utiliza nuestros productos, sitio web, aplicación móvil y servicios.
+
+OMNIGOODS cumple con el Reglamento General de Protección de Datos (RGPD) de la Unión Europea y la Ley Orgánica de Protección de Datos (LOPD) de España.
+
+## 2. Información que Recopilamos
+
+### 2.1 Información que Usted Proporciona:
+- **Datos de cuenta**: Nombre, dirección de email, contraseña, teléfono
+- **Información de envío**: Dirección postal, ciudad, código postal, país
+- **Información de pago**: Los datos de tarjeta se procesan a través de proveedores externos certificados (Stripe, PayPal). No almacenamos números completos de tarjeta.
+- **Perfil de usuario**: Edad, género, altura, peso (opcional, para funciones de fitness)
+- **Comunicaciones**: Emails, mensajes de chat, reseñas de productos
+
+### 2.2 Información Recopilada Automáticamente:
+- **Datos del dispositivo**: Modelo, sistema operativo, identificadores únicos
+- **Datos de uso**: Páginas visitadas, productos visualizados, tiempo en el sitio
+- **Datos de ubicación**: Con su consentimiento, ubicación aproximada basada en IP o GPS
+- **Cookies y tecnologías similares**: Ver nuestra Política de Cookies
+
+### 2.3 Información de Productos Inteligentes:
+Si usa nuestros productos conectados (Smartwatch, app OmniConnect):
+- Datos de actividad física (pasos, distancia, calorías)
+- Datos de salud (frecuencia cardíaca, patrones de sueño)
+- Datos de ubicación GPS de actividades
+- Preferencias y configuraciones del dispositivo
+
+Esta información solo se recopila con su consentimiento explícito y puede desactivarse en la configuración de la app.
+
+## 3. Cómo Usamos su Información
+
+Usamos sus datos personales para:
+
+### 3.1 Procesar Pedidos:
+- Gestionar y procesar compras
+- Enviar confirmaciones y actualizaciones de pedidos
+- Gestionar pagos y facturación
+- Facilitar entregas y devoluciones
+
+### 3.2 Mejorar Nuestros Servicios:
+- Personalizar su experiencia de compra
+- Recomendar productos relevantes
+- Mejorar funcionalidades de productos y servicios
+- Realizar análisis y estudios de mercado
+
+### 3.3 Comunicaciones:
+- Enviar confirmaciones de pedido y notificaciones de envío
+- Responder a consultas y solicitudes de soporte
+- Enviar newsletters (solo si se suscribió)
+- Informar sobre actualizaciones de productos
+
+### 3.4 Seguridad y Cumplimiento Legal:
+- Prevenir fraude y proteger contra actividades ilícitas
+- Cumplir con obligaciones legales
+- Resolver disputas y hacer cumplir nuestros acuerdos
+
+## 4. Base Legal para el Procesamiento (RGPD)
+
+Procesamos sus datos basándonos en:
+- **Consentimiento**: Cuando acepta explícitamente (newsletters, cookies opcionales)
+- **Contrato**: Para cumplir con pedidos y servicios solicitados
+- **Interés legítimo**: Para mejorar servicios, prevenir fraude, análisis de negocio
+- **Obligación legal**: Para cumplir con leyes fiscales y de protección al consumidor
+
+## 5. Compartir su Información
+
+No vendemos sus datos personales a terceros. Solo compartimos información con:
+
+### 5.1 Proveedores de Servicios:
+- Procesadores de pago (Stripe, PayPal)
+- Empresas de mensajería y logística
+- Proveedores de hosting y servicios en la nube (AWS, Google Cloud)
+- Servicios de email marketing (con su consentimiento)
+
+Todos los proveedores están obligados contractualmente a proteger sus datos.
+
+### 5.2 Cumplimiento Legal:
+Podemos divulgar información si es requerido por ley, orden judicial o para proteger nuestros derechos legales.
+
+### 5.3 Transferencias Empresariales:
+En caso de fusión, adquisición o venta de activos, sus datos pueden transferirse al nuevo propietario.
+
+## 6. Sus Derechos (RGPD)
+
+Usted tiene derecho a:
+
+- **Acceso**: Solicitar una copia de sus datos personales
+- **Rectificación**: Corregir datos inexactos o incompletos
+- **Supresión**: Solicitar la eliminación de sus datos ("derecho al olvido")
+- **Limitación**: Restringir el procesamiento de sus datos
+- **Portabilidad**: Recibir sus datos en formato estructurado y legible
+- **Oposición**: Oponerse al procesamiento basado en interés legítimo
+- **Retirar consentimiento**: En cualquier momento, sin afectar procesamientos previos
+- **Presentar reclamación**: Ante la Agencia Española de Protección de Datos (AEPD)
+
+Para ejercer estos derechos, contacte: privacidad@omnigoods.com
+
+Responderemos en un plazo máximo de 30 días.
+
+## 7. Retención de Datos
+
+Conservamos sus datos personales mientras:
+- Mantenga una cuenta activa con nosotros
+- Sea necesario para cumplir con obligaciones legales (ej: registros fiscales por 7 años)
+- Exista una base legal para su retención
+
+Cuando solicite la eliminación, anonimizaremos o eliminaremos sus datos, salvo obligaciones legales de retención.
+
+## 8. Seguridad de Datos
+
+Implementamos medidas de seguridad técnicas y organizativas:
+- Encriptación SSL/TLS para transmisión de datos
+- Encriptación de datos sensibles en reposo
+- Controles de acceso basados en roles
+- Auditorías de seguridad regulares
+- Capacitación del personal en protección de datos
+
+Sin embargo, ningún sistema es 100% seguro. Le recomendamos usar contraseñas fuertes y únicas.
+
+## 9. Cookies y Tecnologías de Seguimiento
+
+Usamos cookies y tecnologías similares. Consulte nuestra Política de Cookies completa en www.omnigoods.com/cookies para más detalles.
+
+Tipos de cookies:
+- **Esenciales**: Necesarias para el funcionamiento del sitio
+- **Funcionales**: Recordar preferencias
+- **Analíticas**: Entender cómo usa el sitio (Google Analytics)
+- **Marketing**: Personalizar anuncios (con su consentimiento)
+
+Puede gestionar preferencias de cookies en la configuración de su navegador.
+
+## 10. Privacidad de Menores
+
+Nuestros servicios no están dirigidos a menores de 14 años. No recopilamos intencionalmente datos de menores. Si descubre que un menor ha proporcionado información, contacte: privacidad@omnigoods.com
+
+## 11. Enlaces a Sitios de Terceros
+
+Nuestro sitio puede contener enlaces a sitios externos. No somos responsables de las prácticas de privacidad de estos sitios. Le recomendamos leer sus políticas de privacidad.
+
+## 12. Transferencias Internacionales
+
+Sus datos pueden procesarse en servidores ubicados en la Unión Europea y, en algunos casos, fuera de ella (ej: servicios en la nube). Cuando transferimos datos fuera del EEE, implementamos salvaguardias apropiadas:
+- Cláusulas contractuales estándar de la UE
+- Certificaciones de Privacy Shield (cuando aplique)
+- Decisiones de adecuación de la Comisión Europea
+
+## 13. Actualizaciones de Esta Política
+
+Podemos actualizar esta política ocasionalmente. Los cambios significativos se notificarán por email o mediante aviso destacado en nuestro sitio. La fecha de "Última actualización" siempre se mostrará al inicio.
+
+## 14. Contacto
+
+Para preguntas sobre privacidad o ejercer sus derechos:
+
+**Delegado de Protección de Datos (DPO)**
+Email: privacidad@omnigoods.com
+Dirección postal: OMNIGOODS S.L., Calle Innovación 42, 28001 Madrid, España
+Teléfono: +34 900 123 456
+
+**Autoridad de Control**
+Agencia Española de Protección de Datos (AEPD)
+www.aepd.es
+C/ Jorge Juan, 6, 28001 Madrid
+
+---
+
+Gracias por confiar en OMNIGOODS. Su privacidad es importante para nosotros.
+
